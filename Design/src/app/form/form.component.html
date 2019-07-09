@@ -1,0 +1,185 @@
+<div align="center">
+<div class="custom-control custom-radio custom-control-inline" >
+  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" (click)="StudentSelected()">
+  <label class="custom-control-label" for="customRadioInline1" >STUDENT</label>
+</div>
+<div class="custom-control custom-radio custom-control-inline">
+  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" (click)="TeacherSelected()">
+  <label class="custom-control-label" for="customRadioInline2">TEACHER</label>
+</div>
+
+</div>
+
+<!------------------------->
+
+<div *ngIf="studentselected">
+<div align="center">
+    <h4>STUDENT FORM</h4>
+<form #StudentForm="ngForm" (ngSubmit)="OnSubmitStudent(StudentForm.value);">
+<div class="form-group">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email"  ngModel >
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">ID</label>
+      <input type="text" class="form-control" id="inputText" placeholder="Id" name="roll" ngModel>
+    </div>  
+  </div>
+ <div class="form-group col-md-6">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address" ngModel>
+  </div>
+ 
+  <div class="form-group">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity" name="city"  ngModel>
+    </div>
+    <div class="form-group col-md-2">
+      <label> Level
+      <select id="levelId" name="classname" ngModel>
+      <option value="" selected="selected">Select One</option>
+      <option value="level1" >Level 1</option>
+      <option value="level2" >Level 2</option>
+      <option value="level3" >Level 3</option>
+      <option value="level4" >Level 4</option>
+      </select>
+      </label> 
+    </div>
+    
+    <div class="form-group col-md-6">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip" name="zip" ngModel>
+    </div>
+
+
+
+  <button type="submit" class="btn btn-primary"(click)="aselected()" >Register</button>
+  </div>
+   </form>
+</div>
+
+<div *ngIf="a==true">
+  <hr>
+  <br>
+      <h1 style="text-align: center;">Student Information</h1>
+      <hr>
+    <table class="table table-sm">
+        <thead>
+                <tr>
+                        <th>email</th>
+                        <th>roll</th>
+                        <th>address</th> 
+                        <th>city</th>
+                        <th>zip</th>
+                        <th>level</th>
+                    </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let StudentArray of StudentArrays , index as i">
+                    <td>{{StudentArray.email}}</td>
+                    <td>{{StudentArray.roll}}</td>
+                    <td>{{StudentArray.address}}</td>
+                    <td>{{StudentArray.city}}</td>
+                    <td>{{StudentArray.zip}}</td>
+                    <td>{{StudentArray.classname}}</td>
+              </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+<!---->
+
+
+    <div *ngIf="teacherselected">
+      <div align="center">
+          <h4>Teacher Form</h4>
+      <form #TeacherForm="ngForm" (ngSubmit)="OnSubmitTeacher(TeacherForm.value);">
+      <div class="form-group">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email"  ngModel >
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">ID</label>
+            <input type="text" class="form-control" id="inputText" placeholder="Id" name="roll" ngModel>
+          </div>  
+        </div>
+       <div class="form-group col-md-6">
+          <label for="inputAddress">Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address" ngModel>
+        </div>
+       
+        <div class="form-group">
+          <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity" name="city"  ngModel>
+          </div>
+          <div class="form-group col-md-2">
+            <label> Level
+            <select id="levelId" name="classname1" ngModel>
+            <option value="" selected="selected">Select One</option>
+            <option value="level1" >Level 1</option>
+            <option value="level2" >Level 2</option>
+            <option value="level3" >Level 3</option>
+            <option value="level4" >Level 4</option>
+            </select>
+            </label> 
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip" name="zip" ngModel>
+          </div>
+      
+      
+      
+        <button type="submit" class="btn btn-primary" (click)="bselected()" >Register</button>
+        </div>
+         </form>
+      </div>
+      
+      
+      <div *ngIf="b==true">  <hr>
+        <br>
+            <h1 style="text-align: center;">Teacher Information</h1>
+            <hr>
+          <table class="table table-sm">
+              <thead>
+                      <tr>
+                         
+                              <th>email</th>
+                              <th>roll</th>
+                              <th>address</th> 
+                              <th>city</th>
+                              <th>zip</th>
+                              <th>level</th>
+                          </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor = "let TeacherArray of TeacherArrays , index as i">
+                          <td>{{TeacherArray.email}}</td>
+                          <td>{{TeacherArray.roll}}</td>
+                          <td>{{TeacherArray.address}}</td>
+                          <td>{{TeacherArray.city}}</td>
+                          <td>{{TeacherArray.zip}}</td>
+                          <td>{{TeacherArray.classname1}}</td>
+                    </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+      
+
+
+
+
+
+ 
+            
+              
+
+     
