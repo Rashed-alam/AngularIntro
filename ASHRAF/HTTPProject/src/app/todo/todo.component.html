@@ -1,0 +1,7 @@
+<label>Please enter a title: </label>
+<input type="text" class="form-controls" (keyup.enter)="CreateData(todo)" #todo>
+<ul class="list-group">
+    <li class="list-group-item"><u>Title list</u></li>
+    <li class="list-group-item" *ngFor="let todo of todos">{{ todo.title }}</li>
+
+  </ul>
