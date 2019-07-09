@@ -1,0 +1,19 @@
+  save(deptEntryForm: NgForm) {
+    console.log('ok');
+    console.log(deptEntryForm);
+    const aitem = new Dept();
+    aitem.deptID = parseInt (deptEntryForm.controls['code'].value);
+    aitem.deptCode = deptEntryForm.controls['code'].value;
+    aitem.deptName = deptEntryForm.controls['deptName'].value;
+    aitem.parent = this.parent1;
+    if (this.depthCnt === 0) {
+      this.topParent = aitem.deptID;
+    }
+    aitem.TopParent = this.topParent;
+    aitem.LR = 'L';
+    aitem.depth = this.depthCnt;
+    aitem.createDate = this.singleDateCash;
+    this.service.insertItem(aitem).subscribe((result: any) => {
+      this.setInsertStatus(result, 1);
+    });
+  }

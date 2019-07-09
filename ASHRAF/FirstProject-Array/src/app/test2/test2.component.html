@@ -1,0 +1,48 @@
+<h1>Welcome to {{title}}</h1>
+<form #userForm="ngForm" (ngSubmit)="OnSubmit(userForm.value);">
+<p>Name:</p>
+<input type="text" [(ngModel)]="name" name="name">
+<p>Roll:</p><input type="text" [(ngModel)]="roll" name="roll">
+<p>Class:</p> <select name="class" class="form-control" [(ngModel)]="class">
+    <option>...</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+  </select>
+<p>Date of Birth:</p><input type="text" [(ngModel)]="date" name="date">
+<p>Address:</p><textarea rows="4" cols="50" [(ngModel)]="address" name="address"></textarea>
+<br>
+<button type="submit">Submit</button>
+</form>
+<hr />
+<div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Roll</th>
+        <th scope="col">Class</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let array of arrays, index as i">
+        <th scope="row">{{i+1}}</th>
+        <td>{{array.name}}</td>
+        <td>{{array.roll}}</td>
+        <td>{{array.class}}</td>
+        <td>{{array.date}}</td>
+        <td>{{array.address}}</td>
+      </tr>
+   
+    </tbody>
+  </table>
+</div>
+
+
+

@@ -1,0 +1,62 @@
+        <form #deptEntryForm1="ngForm" (submit)="save(deptEntryForm1);">
+          <div class="modal-content" style="width: 100%; justify-content: center; margin-left: 0%; margin-right: 90%">
+            <div class="modal-header">
+              <div class="card-header" >
+                <h6 class="title">Cost Centre Entry Form</h6>
+              </div>
+              <button type="button" (click)="setStatus();" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="{{resStyle}}" *ngIf='resStatus'>{{message}}</div>
+                <div class="row">
+                  <div class="col-md-12 col-xs-12">
+                    <div class="col-md-12 col-xs-12" style="float: left; ">
+                      <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <div class="col-md-2" style="float: left ; padding: 0%"  >
+                            <label class="control-label" style="font-size: 13px" >Name of Head</label></div>
+                          <div class="col-md-10" style="margin-left: 0px" >
+                            <input type="text" name="deptName" [(ngModel)]="deptName"  #deptNameId="ngModel" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 col-xs-12">
+                    <div class="col-md-7 col-xs-12" style="float: left; ">
+                      <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <div class="col-md-2" style="float: left ; padding: 0%"  >
+                            <label class="control-label" style="font-size: 13px" >Code</label></div>
+                          <div class="col-md-8" style="margin-left: 13%">
+                            <input type="text" name="code" [(ngModel)]="code" required #codeid="ngModel" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-5 col-xs-12" style="float: right; ">
+                      <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <div class="col-md-4" style="float: left ; padding: 0%"  >
+                            <label class="control-label" style="font-size: 13px" >Creation Date</label></div>
+                          <div class="col-md-8" >
+                            <input type="date" value="{{singleDateCash}}"   class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer" style="height:10vh; padding-top: 0px">
+              <button type="button" (click)="setStatus();" class="btn btn-secondary" data-dismiss="modal" style=" margin-bottom: 8%">Close</button>
+              <button style="min-width:100px; margin-bottom: 8%" type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </form>

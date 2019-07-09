@@ -1,0 +1,52 @@
+<form #userForm="ngForm" (ngSubmit)="OnSubmit(userForm.value);">
+   <hr />
+   {{ userForm.value | json }}  <!--this is interpolation to have a peek on the input data-->
+   <hr />
+  
+    <h1 style="text-align: center;"><u>Registration</u></h1>
+    <br>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Email</label>
+        <input type="email" class="form-control" placeholder="Email" name="email" ngModel>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Password" ngModel>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" name="address" placeholder="1234 Main St" ngModel>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" name="phone" ngModel>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">District</label>
+        <select name="district" class="form-control" ngModel>
+          <option selected>Choose...</option>
+          <option>...</option>
+          <option>Dhaka</option>
+          <option>Khulna</option>
+          <option>Comilla</option>
+          <option>Rajshahi</option>
+          <option>Sylhet</option>
+          <option>Chittagong</option>
+          
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" class="form-control" name="zip" ngModel>
+      </div>
+    </div>
+    <br>
+    <p style="text-align: center;">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <br>
+ <button type="submit" class="btn btn-secondary" routerLink="/login">Login here</button>
+  </p>
+  </form>
