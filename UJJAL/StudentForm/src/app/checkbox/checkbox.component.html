@@ -1,0 +1,13 @@
+<p>checkbox works!</p>
+<form [formGroup]="demoForm">
+   
+        <div formArrayName="demoArray" 
+              *ngFor="let arrayItem of arrayItems; let i=index">
+                 
+              
+        <input [id]="arrayItem.id" type="checkbox"         [formControl]="demoArray[i]">
+              <label [for]="arrayItem.id" class="array-item-title">
+                 
+        {{arrayItem.title}}</label>   
+           </div>
+        </form>

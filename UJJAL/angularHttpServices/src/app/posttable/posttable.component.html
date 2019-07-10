@@ -1,0 +1,63 @@
+<div class="container">
+    <h2 style="text-align:center">Employee Registration!</h2>
+    <hr/>
+    <div class="row">
+        <!-- Employee registration table -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Register Employee</h3>
+                    <form [formGroup]= "empForm" (ngSubmit) = "addEmployee(empForm.value)">
+                        <div class="form-group">
+                            <label>User ID</label>
+                            <input type="text" formControlName="uid" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" formControlName="id" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>title</label>
+                            <input type="text" formControlName="utitle" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Comepelted</label>
+                            <input type="text" formControlName="ucom" class="form-control">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Employee Information table -->
+        <!-- <div class="col-md-6">
+                <div class="card">
+                        <div class="card-body">
+                                <h3 class="card-title">Employee List</h3>
+                                <table class="table">
+                                        <thead class="thead-dark">
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Age</th>
+                                            <th scope="col">Salary</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr *ngFor = "let emp of employee, index as i">
+                                            <td scope="row">{{i+1}}</td>
+                                            <td scope="row">{{emp.id}}</td>
+                                            <td scope="row">{{emp.name}}</td>
+                                            <td scope="row">{{emp.age}}</td>
+                                            <td scope="row">{{emp.salary}}</td>
+                                          </tr>
+                                        </tbody>
+                                </table>
+                        </div>
+        
+                    </div> 
+        </div> -->
+    </div>
+</div>

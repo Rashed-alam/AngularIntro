@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": "121",
+      "name": "erer",
+      "age": "121",
+      "salary": "1212"
+    },
+    {
+      "id": "1212",
+      "name": "fdsfs",
+      "age": "1212",
+      "salary": "2121"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
