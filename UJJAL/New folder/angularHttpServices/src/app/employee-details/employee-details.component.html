@@ -1,0 +1,34 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                        <h3 class="card-title">Employee List</h3>
+                        <table class="table">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Age</th>
+                                    <th scope="col">Salary</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor = "let emp of employee, index as i">
+                                    <td scope="row">{{i+1}}</td>
+                                    <td scope="row">{{emp.id}}</td>
+                                    <td scope="row">{{emp.name}}</td>
+                                    <td scope="row">{{emp.age}}</td>
+                                    <td scope="row">{{emp.salary}}</td>
+                                  </tr>
+                                </tbody>
+                        </table>
+                </div>
+
+            </div>      
+        </div>
+
+    </div>
+</div>
