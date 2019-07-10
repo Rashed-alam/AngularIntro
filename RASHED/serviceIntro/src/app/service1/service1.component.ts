@@ -26,6 +26,7 @@ public users =[];
       .subscribe(data => this.users = data
        );
     }
+    
     add(vauser:CUser){
       console.log(vauser);
     
