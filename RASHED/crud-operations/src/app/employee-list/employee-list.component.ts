@@ -10,33 +10,33 @@ import { Employee } from '../Emodel';
 })
 export class EmployeeListComponent implements OnInit {
 
-  allEmployee:Employee[];
+  allEmployee: Employee[];
   constructor(
-    private employeeservice:EmployeeService
+    private employeeservice: EmployeeService
   ) { }
 
   ngOnInit() {
     this.getAllEmployee();
   }
-getAllEmployee(){
-  this.employeeservice.getAllEmployees().subscribe(
-  (data:Employee[])=>{
-    this.allEmployee=data;
+  getAllEmployee() {
+    this.employeeservice.getAllEmployees().subscribe(
+      (data: Employee[]) => {
+        this.allEmployee = data;
 
-    }
-  );
-}
-deleteEmployee(id:number) {
-  console.log(id);
-  this.employeeservice.deleteEmployee(id).subscribe(
-    (data:Employee)=>{
-      this.getAllEmployee(); 
-    }
-  );
-}
-edit(emp){
-  this.employeeservice.currentEmployee=Object.assign({},emp);
+      }
+    );
+  }
+  deleteEmployee(id: number) {
+    console.log(id);
+    this.employeeservice.deleteEmployee(id).subscribe(
+      (data: Employee) => {
+        this.getAllEmployee();
+      }
+    );
+  }
+  edit(emp) {
+    this.employeeservice.currentEmployee = Object.assign({}, emp);
 
-}
+  }
 
 }
