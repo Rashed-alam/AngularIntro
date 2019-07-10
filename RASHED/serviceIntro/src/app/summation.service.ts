@@ -1,27 +1,38 @@
+import { CUser } from './user';
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import{Observable} from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'my-auth-token'
+  })
+};
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SummationService {
+  private _url:string="https://jsonplaceholder.typicode.com/posts";
 
-  constructor() { }
-  public add(x,y):number {
-    let result = 0;
-   result=x+y;
-    return result;
+  constructor(private http:HttpClient) { }
+ 
+ 
+  public show():Observable<CUser[]>
+   {
+  return this.http.get<CUser[]>(this._url);
+   }
+
+
+
+   public add (userN:CUser): Observable<CUser> {
+    return this.http.post<CUser>(this._url, userN, httpOptions);
+    //posting to the server
+      
   }
-
-
-  coins= [
-    {id: 1, name: 'BTC'},
-    {id: 2, name: 'XRP'},
-    {id:3,  name:'XTC'}
-  ];
-  getMyItems()
-  {
-    return this.coins;
-  }
-
 }
-
+   

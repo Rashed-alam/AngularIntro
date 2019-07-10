@@ -1,3 +1,4 @@
+import { CUser } from './../user';
 import { SummationService } from './../summation.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,17 +9,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./service1.component.css']
 })
 export class Service1Component implements OnInit {
-  sum:number=0;
 
+public users =[];
 
-  constructor(private a:SummationService) {
- 
+  constructor(private list:SummationService) {
+  
    }
 
   ngOnInit() {
-    this.sum=this.a.add(1,2);
-    console.log('check='+this.sum);
+    this.show();
+    }
+   
+   
+    show():void{
+      this.list.show()
+      .subscribe(data => this.users = data
+       );
+    }
+    add(vauser:CUser){
+      console.log(vauser);
+    
+      this.list
+        .add(vauser)
+        .subscribe(data => this.users.push(data));
+     
+
+    };
   
-  }
+
 
 }

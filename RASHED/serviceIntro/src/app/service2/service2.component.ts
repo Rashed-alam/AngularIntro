@@ -7,16 +7,14 @@ import { SummationService } from './../summation.service';
   styleUrls: ['./service2.component.css']
 })
 export class Service2Component implements OnInit {
-  sum1:number=0;
-coins=[];
 
-  constructor(private criptoservice:SummationService) { 
+
+
+  constructor() { 
   
   }
 
   ngOnInit() {
-    this.coins=this.criptoservice.getMyItems();
-    
   }
 
 }

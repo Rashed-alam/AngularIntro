@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { Service1Component } from './service1/service1.component';
 import { Service2Component } from './service2/service2.component';
 import{ SummationService} from './summation.service';
+import {HttpClientModule} from '@angular/common/http';
+import{FormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import{ SummationService} from './summation.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [SummationService],
   bootstrap: [AppComponent]

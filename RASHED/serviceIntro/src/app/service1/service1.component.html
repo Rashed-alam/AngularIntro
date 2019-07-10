@@ -1,3 +1,37 @@
-<h1>
-  Sum is {{sum}}
-</h1>
+<h2>
+  Employee list
+</h2>
+<h4>Employee Form</h4>
+<form #userform="ngForm" (ngSubmit)="add(userform.value)">
+<div class="form-group">
+    <div class="form-group col-md-6">
+      <label for="UserId">User Id</label>
+      <input type="text" class="form-control" id="inputEmail4" placeholder="userId" name="userId"  ngModel >
+    </div>
+    <div class="form-group col-md-6">
+      <label for="ID">ID</label>
+      <input type="text" class="form-control" id="inputText" placeholder="Id" name="id" ngModel>
+    </div>  
+  </div>
+ <div class="form-group col-md-6">
+    <label for="inputAddress">Title</label>
+    <input type="text" class="form-control" id="inputTitle" placeholder="Title" name="title" ngModel>
+  </div>
+  <div class="form-group col-md-6">
+      <label for="inputBody">Body</label>
+      <input type="text" class="form-control" id="inputBody" name="body" ngModel>
+    </div>
+
+
+
+  <button type="submit" class="btn btn-primary" >Register</button>
+ 
+   </form>
+
+<!------------------------------->
+<ul *ngFor="let user of users">
+  <li> {{user.userId}}</li>
+  <li> {{user.id}}</li>
+  <li> {{user.title}}</li>
+  <li> {{user.body}}</li>
+</ul>
