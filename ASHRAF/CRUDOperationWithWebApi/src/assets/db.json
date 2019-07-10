@@ -10,11 +10,19 @@
     },
     {
       "id": 2,
-      "fullname": "rash14313",
+      "fullname": "rasha",
       "email": "ala124m@gmail.com",
       "department": "jnnn4214k",
       "contact": 121241144,
       "address": "ra4124ng"
+    },
+    {
+      "id": 3,
+      "fullname": "ashraf",
+      "email": "abuashraf@gmail.com",
+      "department": "cse",
+      "contact": "123456789",
+      "address": "malibagh"
     }
   ]
 }

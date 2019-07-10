@@ -14,9 +14,9 @@
             <td>{{employee.fullname}}</td>
             <td>{{employee.department}}</td>
             <td>{{employee.contact}}</td>
-            <td><a href="#" class="badge badge-info">EDIT</a></td>
+            <td><a href="#" class="badge badge-info" (click)="edit(employee)">EDIT</a></td>
             <td><a href="#" class="badge badge-danger" (click)="deleteEmployee(employee.id)">DELETE</a></td>
           </tr>
          
         </tbody>
-      </table>
+      </table> 
