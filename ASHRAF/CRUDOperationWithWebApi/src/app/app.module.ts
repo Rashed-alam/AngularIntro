@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { EmployeesModule } from './modules/employees/employees.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -10,7 +12,9 @@ import { EmployeesModule } from './modules/employees/employees.module';
   ],
   imports: [
     BrowserModule,
-    EmployeesModule
+    EmployeesModule,
+    HttpClientModule
+ 
   ],
   providers: [],
   bootstrap: [AppComponent]
