@@ -1,0 +1,28 @@
+{
+    "Employee": [
+      {
+        "id": 1,
+        "firstname": "rash",
+        "lastname": "alam",
+        "designation": "jnnnk",
+        "contact": 12144,
+        "address": "rang"
+      },
+      {
+        "id": 3,
+        "firstname": "rash14313",
+        "lastname": "ala124m",
+        "designation": "jnnn4214k",
+        "contact": 121241144,
+        "address": "ra4124ng"
+      },
+      {
+        "id": 4,
+        "firstname": "ashraf",
+        "lastname": "uddin",
+        "designation": "dtbhkbj",
+        "contact": "01998383",
+        "address": "uxz nvsdvdsv"
+      }
+    ]
+  }
