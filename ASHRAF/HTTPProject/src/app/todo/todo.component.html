@@ -1,7 +1,37 @@
 <label>Please enter a title: </label>
-<input type="text" class="form-controls" (keyup.enter)="CreateData(todo)" #todo>
-<ul class="list-group">
-    <li class="list-group-item"><u>Title list</u></li>
-    <li class="list-group-item" *ngFor="let todo of todos">{{ todo.title }}</li>
+<input type="text" class="form-controls" (keyup.enter)="CreateData(todo)" #todo> 
+<hr>
 
-  </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+      USER ID
+      </div>
+      <div class="col-sm">
+     ID
+      </div>
+      <div class="col-sm">
+        TITLE
+      </div>
+      <div class="col-sm">
+       COMPLETED
+      </div>
+    </div>
+  </div> 
+  <br>
+  <div class="container" *ngFor="let todo of todos">
+    <div class="row">
+      <div class="col-sm">
+        {{ todo.userId }}
+      </div>
+      <div class="col-sm">
+      {{ todo.id }}
+      </div>
+      <div class="col-sm">
+        {{ todo.title }}
+      </div>
+      <div class="col-sm">
+        {{ todo.completed }}
+      </div>
+    </div>
+  </div> 

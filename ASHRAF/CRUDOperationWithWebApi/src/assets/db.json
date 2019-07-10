@@ -1,0 +1,28 @@
+{
+    "Employee": [
+      {
+        "id": 1,
+        "fullname": "rash",
+        "email": "alam@yahoo.com",
+        "department": "jnnnk",
+        "contact": 12144,
+        "address": "rang"
+      },
+      {
+        "id": 2,
+        "fullname": "rash14313",
+        "email": "ala124m@gmail.com",
+        "department": "jnnn4214k",
+        "contact": 121241144,
+        "address": "ra4124ng"
+      },
+      {
+        "id": 3,
+        "fullname": "ashraf",
+        "email": "uddin@yahoo.com",
+        "department": "dtbhkbj",
+        "contact": "01998383",
+        "address": "uxz nvsdvdsv"
+      }
+    ]
+  }
