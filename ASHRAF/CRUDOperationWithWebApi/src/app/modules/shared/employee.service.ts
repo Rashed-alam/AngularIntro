@@ -20,4 +20,8 @@ export class EmployeeService {
     return this.httpcall.get<Employee[]>(this.Url, headerOption);
   }
 
+  deleteThisEmployee(id: number): Observable<Employee[]>{
+     return this.httpcall.delete<Employee[]>(this.Url + '/' + id, headerOption);
+  }
+
 }

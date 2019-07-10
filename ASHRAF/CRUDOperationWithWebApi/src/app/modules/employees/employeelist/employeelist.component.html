@@ -9,25 +9,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+          <tr *ngFor ="let employee of allEmployee, index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{employee.fullname}}</td>
+            <td>{{employee.department}}</td>
+            <td>{{employee.contact}}</td>
             <td><a href="#" class="badge badge-info">EDIT</a></td>
-            <td><a href="#" class="badge badge-danger">DELETE</a></td>
+            <td><a href="#" class="badge badge-danger" (click)="deleteEmployee(employee.id)">DELETE</a></td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
          
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
         </tbody>
       </table>
