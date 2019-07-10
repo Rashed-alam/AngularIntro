@@ -13,10 +13,12 @@ export class ProductDetailComponent implements OnInit {
   
   constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) { }
 
+  //initially get the selected product
   ngOnInit() {
     this.getProductDetails(this.route.snapshot.params['id']);
   }
 
+  //get the selected product details
   getProductDetails(id) {
     this.api.getProduct(id)
       .subscribe(data => {
@@ -27,6 +29,7 @@ export class ProductDetailComponent implements OnInit {
 
   }
 
+  //delete the product on delete button click
   deleteProduct(id) {
     
     this.api.deleteProduct(id)
@@ -39,4 +42,6 @@ export class ProductDetailComponent implements OnInit {
         }
       );
   }
+
+  
 }
