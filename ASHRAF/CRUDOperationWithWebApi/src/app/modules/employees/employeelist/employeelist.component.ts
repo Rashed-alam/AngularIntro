@@ -31,10 +31,13 @@ export class EmployeelistComponent implements OnInit {
     console.log(id);
     this.employeelist.deleteThisEmployee(id)
     .subscribe(
-      (data : Employee[]) =>{
+      (data : Employee) =>{
         this.getAllEmployeeList();
       }
     );
+  }
+  edit(employee){
+    this.employeelist.currentEmployee= Object.assign({},employee);
   }
 
 }
