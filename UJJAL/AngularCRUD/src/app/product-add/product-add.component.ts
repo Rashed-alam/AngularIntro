@@ -10,7 +10,9 @@ import { FormBuilder,FormGroup,Validators, NgForm } from '@angular/forms';
 })
 
 export class ProductAddComponent implements OnInit {
-
+  
+  public validation: string = "";
+  
   productForm: FormGroup;
   prod_name:string='';
   prod_desc:string='';
@@ -21,9 +23,9 @@ export class ProductAddComponent implements OnInit {
 
   ngOnInit() {
     this.productForm = this.fb.group({
-      'prod_name':[null],
-      'prod_desc':[null],
-      'prod_price':[null],
+      'prod_name':[null,Validators.required],
+      'prod_desc':[null,Validators.required],
+      'prod_price':[null,Validators.required],
       'updated_at': [null]    
     });
   }
