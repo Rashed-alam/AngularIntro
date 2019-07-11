@@ -3,7 +3,7 @@
     {
       "prod_name": "A",
       "prod_desc": "its is A",
-      "prod_price": "100",
+      "prod_price": "100000",
       "updated_at": "2019-07-11",
       "id": 1
     },
@@ -36,9 +36,9 @@
       "id": 6
     },
     {
-      "prod_name": "H",
-      "prod_desc": "it is H",
-      "prod_price": "70",
+      "prod_name": "uada",
+      "prod_desc": "1212",
+      "prod_price": "1213",
       "updated_at": "2019-07-11",
       "id": 7
     }
