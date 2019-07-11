@@ -17,7 +17,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class SummationService {
-  private _url:string="https://jsonplaceholder.typicode.com/posts";
+  private _url:string="http://localhost:3000/user";
 
   constructor(private http:HttpClient) { }
  
@@ -29,8 +29,10 @@ export class SummationService {
 
 
 
-   public add (userN:CUser): Observable<CUser> {
-    return this.http.post<CUser>(this._url, userN, httpOptions);
+   public add (userN) {
+     console.log('service='+JSON.stringify(userN));
+    // return null;
+    return this.http.post('http://localhost:3000/user', userN, httpOptions);
     //posting to the server
       
   }
