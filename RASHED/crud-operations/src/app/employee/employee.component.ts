@@ -8,6 +8,7 @@ import { Employee } from '../Emodel';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
+  employ = new Employee();
 
   constructor(private employeeservice:EmployeeService) { }
 
@@ -26,7 +27,10 @@ export class EmployeeComponent implements OnInit {
 
 
   createEmployee(emp:Employee){
-    this.employeeservice.createEmployee(emp).subscribe();
+
+    this.employeeservice.createEmployee(emp).subscribe((res:Employee) =>
+      console.log(res)
+    );
 
   }
   updateEmployee(emp:Employee){

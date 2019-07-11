@@ -1,0 +1,36 @@
+{
+  "Employee": [
+    {
+      "id": 4,
+      "fullname": "farhana",
+      "email": "farhana@northsouth.edu",
+      "department": "eee",
+      "contact": "1",
+      "address": "mirpur"
+    },
+    {
+      "id": 5,
+      "fullname": "ashraf",
+      "email": "abuasd@gmaillcom",
+      "department": "qeqeqwe",
+      "contact": "2",
+      "address": "qweqwe"
+    },
+    {
+      "id": 6,
+      "fullname": "ujjal",
+      "email": "adks",
+      "department": "cse",
+      "contact": "3",
+      "address": "asa"
+    },
+    {
+      "id": 7,
+      "fullname": "ashraf as",
+      "email": "sasd",
+      "department": "cse",
+      "contact": "4",
+      "address": "asasda"
+    }
+  ]
+}
