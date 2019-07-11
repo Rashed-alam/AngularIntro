@@ -25,11 +25,13 @@
 </div>
 
 <div class="row">
-    <div class="uk-column-medium-1-2">
-        <button class="btn btn-success btn-block btn-lg"
-            (click)="createAndUpdate(employeeservice.currentEmployee)">SAVE</button>
+   
+    <div class="card-columns">
+        <button class="btn btn-success" (click)="createAndUpdate(employeeservice.currentEmployee)">SAVE</button>
     </div>
-    <div class="uk-column-medium-1-1">
-        <button class="btn btn-primary btn-block btn-log" (click)="clear()">CLEAR</button>
+  
+
+    <div class="card-columns">
+        <button class="btn btn-primary"  (click)="clear()">CLEAR</button>
     </div>
 </div>

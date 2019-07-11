@@ -20,10 +20,8 @@ export class EmployeeListComponent implements OnInit {
   }
   getAllEmployee() {
     this.employeeservice.getAllEmployees().subscribe(
-      (data: Employee[]) => {
-        this.allEmployee = data;
-
-      }
+      (data => 
+        this.allEmployee = data)   
     );
   }
   deleteEmployee(id: number) {
