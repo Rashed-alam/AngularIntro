@@ -23,6 +23,14 @@
       "department": "cse",
       "contact": "123456789",
       "address": "malibagh"
+    },
+    {
+      "id": 4,
+      "fullname": "rashed",
+      "email": "rashed@gmail.com",
+      "department": "cse",
+      "contact": "123456",
+      "address": "motijheel"
     }
   ]
 }
