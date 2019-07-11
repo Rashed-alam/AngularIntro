@@ -8,13 +8,6 @@
       "id": 1
     },
     {
-      "prod_name": "F",
-      "prod_desc": "it is B",
-      "prod_price": "20",
-      "updated_at": "2019-07-11",
-      "id": 2
-    },
-    {
       "prod_name": "C",
       "prod_desc": "it is C",
       "prod_price": "30",
@@ -27,6 +20,27 @@
       "prod_price": "40",
       "updated_at": "2019-07-11",
       "id": 4
+    },
+    {
+      "prod_name": "E",
+      "prod_desc": "it is E",
+      "prod_price": "40",
+      "updated_at": "2019-07-11",
+      "id": 5
+    },
+    {
+      "prod_name": "F",
+      "prod_desc": "it is FG",
+      "prod_price": "40",
+      "updated_at": "2019-07-11",
+      "id": 6
+    },
+    {
+      "prod_name": "H",
+      "prod_desc": "it is H",
+      "prod_price": "70",
+      "updated_at": "2019-07-11",
+      "id": 7
     }
   ]
 }
