@@ -1,31 +1,32 @@
 {
   "products": [
     {
-      "prod_name": "abac",
-      "prod_desc": "it is A",
+      "prod_name": "A",
+      "prod_desc": "its is A",
       "prod_price": "100",
+      "updated_at": "2019-07-11",
       "id": 1
     },
     {
-      "id": 3,
+      "prod_name": "F",
+      "prod_desc": "it is B",
+      "prod_price": "20",
+      "updated_at": "2019-07-11",
+      "id": 2
+    },
+    {
       "prod_name": "C",
       "prod_desc": "it is C",
-      "prod_price": 100,
-      "updated_at": "Feb1,2019"
+      "prod_price": "30",
+      "updated_at": "2019-07-11",
+      "id": 3
     },
     {
-      "id": 4,
       "prod_name": "D",
-      "prod_desc": "it is D",
-      "prod_price": 100,
-      "updated_at": "Feb1,2019"
-    },
-    {
-      "prod_name": "ujjal",
-      "prod_desc": "hello",
-      "prod_price": "123",
-      "updated_at": "2019-07-13",
-      "id": 6
+      "prod_desc": "it is d",
+      "prod_price": "40",
+      "updated_at": "2019-07-11",
+      "id": 4
     }
   ]
 }
