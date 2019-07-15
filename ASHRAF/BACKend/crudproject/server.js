@@ -3,16 +3,23 @@ const routes = require('./routes/api'); //importing the routes from api file
 const mongoose = require('mongoose'); //importing the mongoose
 const bodyParser = require('body-parser');//setting up of body-parser
 
+    
+
 //setting up of express app 
 const app = express();
+
 
 //connecting to mongodb
 mongoose.connect('mongodb://localhost/ChipsDb');
 mongoose.Promise = global.Promise;
 
-app.use(bodyParser.json());//this will use body-parser object
 
-app.use('/chips', routes); //this will use all the routes 
+//this will use body-parser object
+app.use(bodyParser.json());
+
+
+//this will use all the routes 
+app.use('/chips', routes); 
 
 //listening to requests
 app.listen(3000, ()=>{

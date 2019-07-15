@@ -28,10 +28,14 @@ router.put('/editchips/:id',(req,res)=>{
     res.send({type: 'PUT'});
 });
 
+
+
 //DELETING THE DATA FROM DB 
 router.delete('/deletechips/:id',(req,res)=>{
     res.send({type: 'DELETE'});
 });
 
-module.exports = router; /** this will export all the routes we have written on top 
+
+/** this will export all the routes we have written on top 
                                 to another file which will be importing it */
+module.exports = router; 
