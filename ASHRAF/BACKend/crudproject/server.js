@@ -14,12 +14,17 @@ mongoose.connect('mongodb://localhost/ChipsDb');
 mongoose.Promise = global.Promise;
 
 
-//this will use body-parser object
+//this will use body-parser object[middleware]
 app.use(bodyParser.json());
 
 
-//this will use all the routes 
+//this will use all the routes [middleware]
 app.use('/chips', routes); 
+
+//this is for error handling[middleware]
+app.use(function(err,req,res,next){
+    res.status(422).send({error:err.message});
+});
 
 //listening to requests
 app.listen(3000, ()=>{
