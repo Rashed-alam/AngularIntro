@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit() {
+    
     this.api.getProducts()
       .subscribe(res => {
         this.data = res;

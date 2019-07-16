@@ -33,7 +33,7 @@ export class ProductAddComponent implements OnInit {
   onFormSubmit(form:any) {                    
     this.api.addProduct(form)       //sending the list
         .subscribe(res =>{          //subscrining to apiservices
-          let id = res['id'];       //assigning result id to loaca id
+          let id = res['_id'];       //assigning product unique _id to loacal id
           this.router.navigate(['/product-details/'+id]);
         }, (err) => {
           console.log(err);

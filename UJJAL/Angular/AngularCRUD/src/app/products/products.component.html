@@ -14,8 +14,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor ="let d of data" routerLink="/product-details/{{d.id}}">
-                    <td scope="row">{{d.id}}</td>
+                  <tr *ngFor ="let d of data" routerLink="/product-details/{{d._id}}">
+                    <td scope="row">{{d._id}}</td>
                     <td scope="row">{{d.prod_name}}</td>
                     <td scope="row">{{d.prod_price}}</td>
                   </tr>

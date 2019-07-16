@@ -10,7 +10,7 @@ import { Product } from '../product';
 })
 export class ProductDetailComponent implements OnInit {
 
-  product: Product = { id: null, prod_name: '', prod_desc: '', prod_price: null, updated_at: null };
+  product: Product = { _id: null, prod_name: '', prod_desc: '', prod_price: null, updated_at: null };
   
   constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) { }
 
@@ -20,7 +20,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   //get the selected product details
-  getProductDetails(id) {
+  getProductDetails(id:any) {
     this.api.getProduct(id)
       .subscribe(data => {
         this.product = data;
