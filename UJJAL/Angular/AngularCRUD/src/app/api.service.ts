@@ -8,7 +8,7 @@ import { Observable, of } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = "http://localhost:3000/products";
+const apiUrl = "http://localhost:3000/api/products";
 
 
 @Injectable({
@@ -37,6 +37,7 @@ export class ApiService {
 
   //get all products using get methods
   getProducts (): Observable<Product[]> {
+    console.log('inside serice');
     return this.http.get<Product[]>(apiUrl)
       .pipe(
         tap(heroes => console.log('fetched products')),
@@ -45,7 +46,7 @@ export class ApiService {
   }
   
   // get individual products using get methods passing product id
-  getProduct(id: number): Observable<Product> {
+  getProduct(id: any): Observable<Product> {
     const url = `${apiUrl}/${id}`;
     return this.http.get<Product>(url).pipe(
       tap(_ => console.log(`fetched product id=${id}`)),
@@ -56,7 +57,7 @@ export class ApiService {
   // add new product using post method
   addProduct (product): Observable<Product> {
     return this.http.post<Product>(apiUrl, product, httpOptions).pipe(
-      tap((product: Product) => console.log(`added product w/ id=${product.id}`)),
+      tap((product: Product) => console.log(`added product w/ id=${product._id}`)),
       catchError(this.handleError<Product>('addProduct'))
     );
   }

@@ -8,14 +8,14 @@
             <table class="table">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">id</th>
+                    <th scope="col">#</th>
                     <th scope="col">Product name</th>
                     <th scope="col">Price</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor ="let d of data" routerLink="/product-details/{{d.id}}">
-                    <td scope="row">{{d.id}}</td>
+                  <tr *ngFor ="let d of data,index as i" routerLink="/product-details/{{d._id}}">
+                    <td scope="row">{{i+1}}</td>
                     <td scope="row">{{d.prod_name}}</td>
                     <td scope="row">{{d.prod_price}}</td>
                   </tr>

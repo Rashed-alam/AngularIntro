@@ -11,7 +11,7 @@ import { formatDate } from '@angular/common'; //date time formation control
 export class ProductEditComponent implements OnInit {
   
   productForm: FormGroup;
-  id:number;
+  gid:any;
   datetime:boolean = false;
   // prod_name:string='';
   // prod_desc:string='';
@@ -30,22 +30,24 @@ export class ProductEditComponent implements OnInit {
   }
 
   getProduct(id) {
+    let date = formatDate(new Date(), "dd-MM-yyyy",'en');
+    console.log(date);
     this.api.getProduct(id).subscribe(data => {
-      this.id = data.id;
+      this.gid = data._id;
       this.productForm.setValue({
         prod_name: data.prod_name,
         prod_desc: data.prod_desc,
         prod_price: data.prod_price,
-        updated_at : formatDate(new Date(),'yyyy-MM-dd','en') //formating date accoding requirements
+        updated_at : date //formating date accoding requirements
       });
     });
   }
 
   onFormSubmit(form:any) {
    
-    this.api.updateProduct(this.id, form)
+    this.api.updateProduct(this.gid, form)
       .subscribe(res => {
-          let Id = res['id'];
+          let Id = res['_id'];
           this.router.navigate(['/product-details', Id]);
         }, (err) => {
           console.log(err);
@@ -55,6 +57,6 @@ export class ProductEditComponent implements OnInit {
   }
 
   productDetails() {
-    this.router.navigate(['/product-details', this.id]);
+    this.router.navigate(['/product-details', this.gid]);
   }
 }

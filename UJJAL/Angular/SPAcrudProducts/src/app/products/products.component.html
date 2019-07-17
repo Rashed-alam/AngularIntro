@@ -1,0 +1,72 @@
+<class class="container">
+    <class class="row">
+        <h2>Welcome to Single Page Application</h2>
+        <!-- Div for form -->
+        <div class="col-md-6">
+                <div class="card">
+                        <div class="card-body">
+                          <h3 class="card-title">Products List</h3>
+                              <!-- product form -->
+                              <form [formGroup]="productForm" (ngSubmit)="onFormSubmit(productForm.value)">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input  formControlName="prod_name" type = "text" class="form-control">
+                                    <!-- Validation for prod_name -->
+                                    <span class="text-danger font-bold" *ngIf = "productForm.controls['prod_name'].invalid && (productForm.controls['prod_name'].dirty || productForm.controls['prod_name'].touched)">
+                                        *Name required</span>
+                                </div>
+                                
+                              
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" formControlName="prod_desc" rows="3"></textarea>
+                                    <!-- Validation for prod_desc -->
+                                    <span class="text-danger font-bold" *ngIf = "productForm.controls['prod_desc'].invalid && (productForm.controls['prod_desc'].dirty || productForm.controls['prod_desc'].touched)">
+                                        *Description required</span>  
+                                </div>
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input  formControlName="prod_price" type = "text" class="form-control"> 
+                                </div>
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input  formControlName="updated_at" type = "date" class="form-control"> 
+                                </div>
+                                <button type="submit" *ngIf="productForm.valid" class="btn btn-success">Add</button>
+                              </form>
+                        </div>
+                    </div>
+        </div>
+        <!-- Div for table -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Products List</h3>
+                  <table class="table">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">id</th>
+                          <th scope="col">Product name</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor ="let d of data,index as i" routerLink="/product-details/{{d._id}}">
+                          <td scope="row">{{i+1}}</td>
+                          <td scope="row">{{d.prod_name}}</td>
+                          <td scope="row">{{d.prod_price}}</td>
+                          <td scope="row">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-primary" routerLink="/product-edit/{{product._id}}">Edit</button>
+                                <button type="button" class="btn btn-danger" (click)="deleteProduct(product._id)">Delete</button>
+                              </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+            </div>                  
+        </div>
+    </class>
+</class>
