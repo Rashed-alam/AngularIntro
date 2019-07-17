@@ -27,7 +27,7 @@ router.post('/products', function(req,res, next){
       
 });
 
-//update request for ninjas
+//update request
 router.put('/products/:id', function(req,res,next){
     Product.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){ //find id then update to db
         Product.findOne({_id: req.params.id}).then(function(prd){ //find the updated id and return
@@ -36,7 +36,7 @@ router.put('/products/:id', function(req,res,next){
     });
 });
 
-//Delete request for removing ninja
+//Delete request 
 router.delete('/products/:id', function(req,res,next){
     //console.log(req.params.id); //return the id of request
 

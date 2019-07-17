@@ -7,7 +7,7 @@ import { FormBuilder,FormGroup,Validators, NgForm } from '@angular/forms';
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
   styleUrls: ['./product-add.component.css']
-})
+})                                                                                                            
 
 export class ProductAddComponent implements OnInit {
   
