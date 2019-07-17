@@ -3,6 +3,11 @@
 <div class="row">
   <!-----------------------------------------this div is for the registration section on the left hand side------------------------------------------------------>
   <div class="col">
+      <div class="card-group">
+          <div class="card">
+          
+            <div class="card-body">
+             
     <h2 style="text-align: center;">User Registration Form</h2>
     <hr>
     <form>
@@ -44,34 +49,50 @@
       </form>
     <hr>
   </div>
+            </div>
+           
+          </div>
+          </div>
+           
+
+
+
   <!-----------------------------------------------this div is for showing the registered information back to the user(right hand side)---------------------------------->
   <hr>
   <div class="col">
-    <h2 style="text-align: center;">User Information List</h2>
-    <hr>
-    <table class="table table-hover table-white">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Department</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Opertions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor ="let employee of allEmployee, index as i">
-            <th scope="row">{{i+1}}</th>
-            <td>{{employee.fullname}}</td>
-            <td>{{employee.department}}</td>
-            <td>{{employee.contact}}</td>
-            <td><a href="#" class="badge badge-info" (click)="edit(employee)">EDIT</a></td>
-            <td><a href="#" class="badge badge-danger" (click)="deleteEmployee(employee._id)">DELETE</a></td>
-          </tr>
-         
-        </tbody>
-      </table> 
+
+      <div class="card">
+   
+          <div class="card-body">
+              <h2 style="text-align: center;">User Information List</h2>
+              <hr>
+              <table class="table table-hover table-white">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Department</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col">Opertions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor ="let employee of allEmployee, index as i">
+                      <th scope="row">{{i+1}}</th>
+                      <td>{{employee.fullname}}</td>
+                      <td>{{employee.department}}</td>
+                      <td>{{employee.contact}}</td>
+                      <td><a href="#" class="badge badge-info" (click)="edit(employee)">EDIT</a></td>
+                      <td><a href="#" class="badge badge-danger" (click)="deleteEmployee(employee._id)">DELETE</a></td>
+                    </tr>
+                   
+                  </tbody>
+                </table> 
+            </div>
+          </div>
+          
+        </div>
   </div>
+   
   
-</div>
 </div>
