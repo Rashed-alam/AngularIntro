@@ -8,7 +8,7 @@ import { Employee } from './employee.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'CRUD OPERATION IN ANGULAR 8';
+  title = 'CRUD OPERATION using MEAN Stack';
 
   allEmployee: Employee[];
 
@@ -56,6 +56,7 @@ createEmployee(emp : Employee){
   this.employeelist.createEmployee(emp)
   .subscribe();
   this.getAllEmployeeList();
+  this.clear();
 }
 
 updateEmployee(emp: Employee){
