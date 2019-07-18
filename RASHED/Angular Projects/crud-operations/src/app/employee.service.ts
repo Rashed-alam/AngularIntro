@@ -20,10 +20,11 @@ const headerOptions = {
   providedIn: 'root'
 })
 export class EmployeeService {
-  _url: string = 'http://localhost:3000/Employee';
+  _url: string = 'http://localhost:3000/api/ninjas';
+  
 
   currentEmployee: Employee = {
-    id: null,
+    _id: null,
     firstname: '',
     lastname: '',
     designation: '',
@@ -33,19 +34,19 @@ export class EmployeeService {
 
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient 
   ) { }
 
-  getAllEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this._url, headerOptions);
+  getAllEmployees():Observable<Employee> {
+    return this.http.get<Employee>(this._url, headerOptions);
   }
-  deleteEmployee(id: number): Observable<Employee> {
-    return this.http.delete<Employee>(this._url + '/' + id, headerOptions);
+  deleteEmployee(_id: any): Observable<Employee> {
+    return this.http.delete<Employee>(this._url +'/'+_id,headerOptions);
   }
   createEmployee(emp: Employee): Observable<Employee> {
-    return this.http.post<Employee>(this._url, emp, headerOptions);
+    return this.http.post<Employee>(this._url+'/', emp, headerOptions);
   }
   updateEmployee(emp: Employee): Observable<Employee> {
-    return this.http.put<Employee>(this._url + '/' + emp.id, emp, headerOptions);
+    return this.http.put<Employee>(this._url + '/' +emp._id, emp, headerOptions);
   }
 }

@@ -2,39 +2,45 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../Emodel';
 
-
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
+ public allEmployee:Employee[]=[];
 
-  allEmployee: Employee[];
+ employeeList: any = [];
   constructor(
-    private employeeservice: EmployeeService
+    private list: EmployeeService
   ) { }
 
   ngOnInit() {
-    this.getAllEmployee();
+    this.getEmployeeList();
   }
-  getAllEmployee() {
-    this.employeeservice.getAllEmployees().subscribe(
-      (data => 
-        this.allEmployee = data)   
-    );
+  getEmployeeList():void {
+    this.list.getAllEmployees()
+    .subscribe(data =>{
+      this.employeeList = data;
+      //this.allEmployee = data;
+    })
+
   }
-  deleteEmployee(id: number) {
-    console.log(id);
-    this.employeeservice.deleteEmployee(id).subscribe(
-      (data: Employee) => {
-        this.getAllEmployee();
+  deleteEmployee(_id: any) {
+    console.log(_id);
+    this.list.deleteEmployee(_id).subscribe(
+      (data:Employee) => {
+        this.getEmployeeList();
       }
     );
-  }
+  }  
   edit(emp) {
-    this.employeeservice.currentEmployee = Object.assign({}, emp);
+    this.list.currentEmployee = Object.assign({}, emp);
+    this.getEmployeeList();
 
   }
-
+//
+getAllEmployeeCall(){
+  this.getEmployeeList();
+}
 }

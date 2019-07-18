@@ -1,10 +1,10 @@
 <table class="table table-hover">
-    <tr *ngFor="let emp of allEmployee">
+    <tr *ngFor= "let emp of employeeList">
         <td>{{emp.firstname}}</td>
         <td>{{emp.address}}</td>
         <td>{{emp.designation}}</td>
         <td>{{emp.contact}}</td>
-        <td>Rashed</td>
+       
        
         <td>
             <a class="btn text-danger" (click)="edit(emp)">
@@ -13,7 +13,7 @@
             </a>
         </td>
         <td>
-                <a class="btn text-danger" (click)="deleteEmployee(emp.id)">
+                <a class="btn text-danger" (click)="deleteEmployee(emp._id)">
                 <i class="fa fa-trash"></i>
 
                 </a>

@@ -11,6 +11,14 @@ router.get('/ninjas', function (req, res, next) {
    //res.send({ type: 'GET' });
 });
 
+// router.get('/ninjas/:id', function (req, res, next) {
+//    Ninja.findById({_id:req.params.id},req.body).then(function (ninjas) {
+//       res.send({name:ninjas.name});
+//    });
+
+//    //res.send({ type: 'GET' });
+// });
+
 router.post('/ninjas', function (req, res, next) {
    //console.log(req.body); 
    Ninja.create(req.body).then(function (ninja) {
@@ -22,9 +30,9 @@ router.post('/ninjas', function (req, res, next) {
 
 //update a ninja in the db
 
-router.put('/ninjas/:id', function (req, res, next) {
-   Ninja.findByIdAndUpdate({ _id: req.params.id }, req.body).then(function () {
-      Ninja.findOne({ _id: req.params.id }).then(function (ninja) {
+router.put('/ninjas/:_id', function (req, res, next) {
+   Ninja.findByIdAndUpdate({ _id: req.params._id }, req.body).then(function () {
+      Ninja.findOne({ _id: req.params._id }).then(function (ninja) {
          res.send(ninja);
       });
 
@@ -34,11 +42,11 @@ router.put('/ninjas/:id', function (req, res, next) {
 
 //delete
 
-router.delete('/ninjas/:id', function (req, res, next) {
+router.delete('/ninjas/:_id', function (req, res, next) {
    //console .log(req.params.id);                                       //find and delete by id then send the req to user
-   Ninja.findByIdAndDelete({ _id: req.params.id }).then(function (ninja) {
-      res.send(ninja);
-   });
+   Ninja.findByIdAndRemove({ _id: req.params._id }).then(function (ninja) {
+      res.send({ninja});
+   }).catch(next);
    //res.send({type:'DELETE'});
 });
 

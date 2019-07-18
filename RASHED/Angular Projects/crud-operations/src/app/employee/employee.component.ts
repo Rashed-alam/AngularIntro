@@ -1,6 +1,8 @@
+// import { EmployeeListComponent } from './../employee-list/employee-list.component';
 import { EmployeeService } from './../employee.service';
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../Emodel';
+//import {EmployeeListComponent}
 
 @Component({
   selector: 'app-employee',
@@ -10,27 +12,29 @@ import { Employee } from '../Emodel';
 export class EmployeeComponent implements OnInit {
   employ = new Employee();
 
-  constructor(private employeeservice:EmployeeService) { }
+  constructor(private employeeservice:EmployeeService,) { }
 
   ngOnInit() {
   }
   createAndUpdate(currentEmployee:Employee){
     // console.log(currentEmployee);
-    if(currentEmployee.id != null){
+    if(currentEmployee._id !=null){
       console.log('update');
       this.updateEmployee(currentEmployee);
     }else{
       console.log('create');
       this.createEmployee(currentEmployee);
+     // this.ecom.getAllEmployeeCall();
     }
+    
   }
 
 
   createEmployee(emp:Employee){
-
     this.employeeservice.createEmployee(emp).subscribe((res:Employee) =>
       console.log(res)
     );
+    
 
   }
   updateEmployee(emp:Employee){
@@ -39,7 +43,7 @@ export class EmployeeComponent implements OnInit {
   clear(){
     this.employeeservice.currentEmployee=
       {
-        id: null,
+        _id: null,
         firstname: '',
         lastname: '',
         designation: '',

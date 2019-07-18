@@ -4,16 +4,24 @@ const Schema = mongoose.Schema;
 //create a ninja Schema & model
 
 const NinjaSchema = new Schema({
-    name: {
-        type: String,
-        required: [true, 'Name field is required']
+    id: {
+        type:Number,
+        //required: [true, 'Name field is required']
     },
-    rank: {
+    firstname: {
         type: String,
     },
-    available: {
-        type: Boolean,
-        default: false
+    lastname: {
+        type: String,
+    },
+    designation: {
+        type: String,
+    },
+    contact: {
+        type: Number,
+    },
+    address: {
+        type: String,
     }
     //add in geo location
 });
