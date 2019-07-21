@@ -1,31 +1,31 @@
-const mongoose = require('mongoose'); //importing the mongoose
-const Schema = mongoose.Schema; //creating an object schema of mongoose
-
-//This is the Schema of chips
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const UserSchema = new Schema({
-    
-    name:{
+    _id:  String,
+    name: {
         type: String,
         required: [true,"Name Field is required"]
     },
-    phone:{
-        type: Number,
-        required: [true,"Email Field is required"]
-    },
     email: {
         type: String,
-        required: [true,"Department Field is required"]
+        required: [true,"Email Field is required"],
+        unique: [true, "Email must be unique"],
+        lowercase: true
     },
-    password:{
+    phone: {
         type: String,
-        required: [true,"Contact Field is required"]
+        required: [true,"Contact Field is required"],
+        unique: [true, "Phone number must be unique"]
+    },
+    password: {
+        type: String,
+        required: [true,"Password Field is required"]
     }
-    
-});
+  });
 
-//creating an object model of mongoose
-const User = mongoose.model('users',UserSchema);
+  //creating an object model of mongoose
+const User = mongoose.model('user',UserSchema);
 
 
-//exporting the schema as model 'chips'
+//exporting the schema as model 'User'
 module.exports = User; 
