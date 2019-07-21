@@ -1,34 +1,30 @@
 const express = require('express'); // Fast, unopinionated, minimalist web framework for node.
-
-const app = express(); // Initiate Express Application
-const router = express.Router();
+const routes = require('./routes/authentication');
 const mongoose = require('mongoose'); // Node Tool for MongoDB
-const config = require('./config/database'); // Mongoose Config
-//const path = require('path'); // NodeJS Package for file paths
-const authentication = require('./routes/authentication')(router);
+const bodyParser = require('body-parser');
 
 
-// Database Connection
+const app = express();
+
+//connecting to mongodb
+mongoose.connect('mongodb://localhost/socialnetworkDb');
 mongoose.Promise = global.Promise;
-mongoose.connect(config.uri, (err) => {
-  if (err) {
-    console.log('Could NOT connect to database: ', err);
-  } else {
+
+
+
+//this will use body-parser object[middleware]
+app.use(bodyParser.json());
+
  
-    console.log('Connected to database: ' + config.db);
-  }
+//this will use all the routes [middleware]
+app.use('/users', routes); 
+
+//this is for error handling[middleware]
+app.use(function(err,req,res,next){
+    res.status(422).send({error:err.message});
 });
 
-// // Provide static directory for frontend
-// app.use(express.static(__dirname + '/frontend/src/'));
-app.use('/authentication', authentication);
-
-//  // Connect server to Angular  Index.html
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/frontend/src/index.html'));
-// });
-
-// Start Server: Listen on port 8080
-app.listen(8080, () => {
-  console.log('Listening on port 8080');
-});
+//listening to requests
+app.listen(3100, ()=>{
+    console.log('Server has been started at port : 3100');
+    });
