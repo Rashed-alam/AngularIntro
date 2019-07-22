@@ -9,7 +9,7 @@ const User = require('../models/user');
 
 
 //GETTING THE LIST OF CHIPS FROM DB
-router.get('/allchips',(req,res,next)=>{ //http://localhost:3100/chips/allchips
+router.get('/alluser',(req,res,next)=>{ //http://localhost:3100/users/alluser
     User.find({}).then(function(user){
         res.send(user);
     }).catch(next);
@@ -17,7 +17,7 @@ router.get('/allchips',(req,res,next)=>{ //http://localhost:3100/chips/allchips
 
 
 //POSTING THE CHIPS INTO THE DB
-router.post('/newchips',(req,res,next)=>{ //http://localhost:3100/chips/newchips
+router.post('/newuser',(req,res,next)=>{ //http://localhost:3100/users/newuser
     User.create(req.body).then(function(user){
         res.send(user);
     }).catch(next);
@@ -26,7 +26,7 @@ router.post('/newchips',(req,res,next)=>{ //http://localhost:3100/chips/newchips
 
 
 //UPDATING THE DATA IN DB
-router.put('/editchips/:id',(req,res,next)=>{ //http://localhost:3100/chips/editchips/_id
+router.put('/edituser/:id',(req,res,next)=>{ //http://localhost:3100/chips/editchips/_id
     User.findByIdAndUpdate({_id: req.params.id},req.body).then(function(){ //unique id wise khuje then seta k edit kore dibe
         User.findOne({_id:req.params.id}).then(function(user){ //sei id wise abar khujbe...khuje user k dekhabe j eta edit korsi
             res.send(user);
@@ -38,7 +38,7 @@ router.put('/editchips/:id',(req,res,next)=>{ //http://localhost:3100/chips/edit
 
 
 //DELETING THE DATA FROM DB 
-router.delete('/deletechips/:id',(req,res,next)=>{//http://localhost:3100/chips/deletechips/_id
+router.delete('/deleteuser/:id',(req,res,next)=>{//http://localhost:3100/chips/deletechips/_id
     User.findByIdAndRemove({_id: req.params.id}).then(function(user){ //unique id wise khuje then seta k delete kore dibe
        res.send({user});  //this is for showing the user j ei id te ei info ase + user k back dekhabe
     }).catch(next);

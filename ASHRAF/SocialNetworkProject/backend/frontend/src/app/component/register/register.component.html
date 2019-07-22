@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="card card-signin flex-row my-5">
+          <div class="card-img-left d-none d-md-flex">
+             <!-- Background image for card set in CSS! -->
+          </div>
+          <div class="card-body">
+            <h1 class="card-title text-center">Register</h1> <hr>
+            <form class="form-signin" [formGroup]="form" (submit)="onRegisterSubmit()">
+              <div class="form-label-group" [ngClass]="{'has-error':(form.controls.name.errors && form.controls.name.dirty),'has-success': !form.controls.name.errors}">
+                Fullname
+                <input type="text" id="inputUserame" class="form-control" placeholder="Full name" required autofocus name="name" formControlName="name">
+                <ul class="help-block">
+                    <li *ngIf="form.controls.name.errors?.required && form.controls.name.dirty">This field is required.</li>
+                </ul>
+              </div>
+
+              <div class="form-label-group" [ngClass]="{'has-error':(form.controls.email.errors && form.controls.email.dirty),'has-success': !form.controls.email.errors}">
+                Email address
+
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required name="email" formControlName="email">
+                <ul class="help-block">
+                        <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">This field is required</li>
+                        <li *ngIf="(form.controls.email.errors?.minlength && form.controls.email.dirty || form.controls.email.errors?.maxlength && form.controls.email.dirty ) && form.controls.email.dirty">Minimum characters: 5, Maximum characters: 30</li>
+                        <li *ngIf="form.controls.email.errors?.validateEmail && form.controls.email.dirty">This must be a valid e-mail</li>
+                      </ul>
+              </div>
+              
+              <div class="form-label-group" [ngClass]="{'has-error':(form.controls.phone.errors && form.controls.phone.dirty),'has-success': !form.controls.phone.errors}">
+                    Phone
+                <input type="text" id="inputPassword" class="form-control" placeholder="Phone" required name="phone" formControlName="phone">
+                <ul class="help-block">
+                        <li *ngIf="form.controls.phone.errors?.required && form.controls.phone.dirty">This field is required.</li>
+                        <li *ngIf="form.controls.phone.errors?.minlength || form.controls.phone.errors?.maxlength">Minimum Digit: 11</li>
+                    </ul>
+              </div>
+              
+              <div class="form-label-group" [ngClass]="{'has-error':(form.controls.password.errors && form.controls.password.dirty),'has-success': !form.controls.password.errors}">
+                    Password
+                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required name="password" formControlName="password">
+                <ul class="help-block">
+                        <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required.</li>
+                        <li *ngIf="form.controls.password.errors?.minlength || form.controls.password.errors?.maxlength">Password must be 8 characters long</li>
+                    </ul>
+              </div>
+
+              <input [disabled]="!form.valid" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"  value="register">
+              <a class="d-block text-center mt-2 small" href="#">Sign In</a>
+              <hr class="my-4">
+            
+            </form>
+            
+          </div>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- <p>{{form.controls.name.value}}</p>
+  <p>{{form.controls.email.value}}</p>
+  <p>{{form.controls.phone.value}}</p>
+  <p>{{form.controls.password.value}}</p> -->
