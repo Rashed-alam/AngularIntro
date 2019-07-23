@@ -2,6 +2,7 @@ const express = require('express'); // Fast, unopinionated, minimalist web frame
 const routes = require('./routes/authentication');
 const mongoose = require('mongoose'); // Node Tool for MongoDB
 const bodyParser = require('body-parser');
+const cors = require('cors'); // for cross platform resource sharing
 
 
 const app = express();
@@ -11,7 +12,8 @@ mongoose.connect('mongodb://localhost/socialnetworkDb');
 mongoose.Promise = global.Promise;
 
 
-
+//this will allow request from any port number or domain
+app.use(cors());
 //this will use body-parser object[middleware]
 app.use(bodyParser.json());
 
