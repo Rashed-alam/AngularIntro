@@ -35,6 +35,7 @@ router.put('/ninjas/:_id', function (req, res, next) {
       Ninja.findOne({ _id: req.params._id }).then(function (ninja) {
          res.send(ninja);
       });
+      
 
    });
    //res.send({type:'PUT'});

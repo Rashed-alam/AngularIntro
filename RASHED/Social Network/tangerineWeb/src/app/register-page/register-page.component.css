@@ -1,0 +1,13 @@
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+div {
+	padding: 10px 5px;      
+	text-align: center;
+}
+.card-header a {
+    color: yellow;
+    
+  }

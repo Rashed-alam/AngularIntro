@@ -1,16 +1,21 @@
+
+<div class="card">
+        <h5 class="card-title">Employee Information</h5>
+    <div class="card-body">
+    
 <div class="row">
     <div class="col-md-6 form-group">
-        <input placeholder="First Name" class="form-control" [(ngModel)]="employeeservice.currentEmployee.firstname">
+        <input placeholder="First Name" class="form-control" [(ngModel)]="list.currentEmployee.firstname">
     </div>
     <div class="col-md-6 form-group">
-        <input placeholder="Last Name" class="form-control" [(ngModel)]="employeeservice.currentEmployee.lastname">
+        <input placeholder="Last Name" class="form-control" [(ngModel)]="list.currentEmployee.lastname">
     </div>
 </div>
 
 
 <div class="row">
     <div class="col-md-12 form-group">
-        <input placeholder="Designation" class="form-control" [(ngModel)]="employeeservice.currentEmployee.designation">
+        <input placeholder="Designation" class="form-control" [(ngModel)]="list.currentEmployee.designation">
     </div>
 
 </div>
@@ -23,21 +28,56 @@
 
 <div class="row">
     <div class="col-md-6 form-group">
-        <input placeholder="Contact" class="form-control" [(ngModel)]="employeeservice.currentEmployee.contact">
+        <input placeholder="Contact" class="form-control" [(ngModel)]="list.currentEmployee.contact">
     </div>
     <div class="col-md-6 form-group">
-        <input placeholder="Address" class="form-control" [(ngModel)]="employeeservice.currentEmployee.address">
+        <input placeholder="Address" class="form-control" [(ngModel)]="list.currentEmployee.address">
     </div>
 </div>
 
 <div class="row">
-   
-    <div class="card-columns">
-        <button class="btn btn-success" (click)="createAndUpdate(employeeservice.currentEmployee)">SAVE</button>
-    </div>
-  
 
     <div class="card-columns">
-        <button class="btn btn-primary"  (click)="clear()">CLEAR</button>
+        <button class="btn btn-success" (click)="createAndUpdate(list.currentEmployee)">SAVE</button>
     </div>
+
+
+    <div class="card-columns">
+        <button class="btn btn-primary" (click)="clear()">CLEAR</button>
+    </div>
+</div>
+    </div>
+  </div>
+
+
+
+
+
+<!---------------------------->
+<div class="card">
+  <div class="card-body">
+    
+<table class="table table-hover">
+    <tr *ngFor="let emp of employeeList">
+        <td>{{emp.firstname}}</td>
+        <td>{{emp.address}}</td>
+        <td>{{emp.designation}}</td>
+        <td>{{emp.contact}}</td>
+
+
+        <td>
+            <a class="btn text-danger" (click)="edit(emp)">
+                <i class="fa fa-edit"></i>
+
+            </a>
+        </td>
+        <td>
+            <a class="btn text-danger" (click)="deleteEmployee(emp._id)">
+                <i class="fa fa-trash"></i>
+
+            </a>
+        </td>
+    </tr>
+</table>
+  </div>
 </div>

@@ -1,0 +1,48 @@
+<div class="card header" style="max-width: 50rem">
+    <h4> Registration Form</h4>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col">
+                <input placeholder="First Name" class="form-control" [(ngModel)]="list.currentUser.firstname">
+            </div>
+            <div class="col">
+                <input placeholder="Last Name" class="form-control" [(ngModel)]="list.currentUser.lastname">
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <input placeholder="Contact" class="form-control" [(ngModel)]="list.currentUser.contact">
+            </div>
+        </div>
+        <div>
+            Gender
+            <select class="form-control" [(ngModel)]="list.currentUser.gender">
+
+                <option selected=" "></option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Others</option>
+            </select>
+        </div>
+
+        <div>
+            <input placeholder="password" class="form-control" [(ngModel)]="list.currentUser.password">
+        </div>
+
+
+        <div class="row">
+
+            <div class="card-columns">
+                <button class="btn btn-success" (click)="createUser(list.currentUser)">Create Account</button>
+            </div>
+
+
+            <div class="card-columns">
+                <button class="btn btn-primary" (click)="clear()">CLEAR</button>
+            </div>
+        </div>
+    </div>
+</div>
