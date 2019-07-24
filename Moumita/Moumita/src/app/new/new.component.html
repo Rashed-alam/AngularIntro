@@ -1,0 +1,139 @@
+<!-- 
+<div class="row">
+        <div class="col-md-12 col-xs-12">
+                <div class="col-md-3 col-xs-12" style="float: left; ">
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <div class="col-md-4" style="float: left ; padding: 0%"  >
+                        <label class="control-label" style="font-size: 11px" >item code</label></div>
+                      <div class="col-md-6" >
+                        <input type="text" name="code" [(ngModel)]="code"  #codeid="ngModel" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-xs-12" style="float: inside; padding-left: 0%">
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <div class="col-md-4" style="float:left;">
+                        <label class="control-label" style="font-size: 11px" >item name</label></div>
+                      <div class="col-md-8" style="float: left;">
+                        <input type="text" name="itemName" [(ngModel)]="itemName"  #itemNameId="ngModel" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 col-xs-12" style="float: right;">
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <div class="col-md-4" style="float:left;">
+                        <label class="control-label" style="font-size: 11px" >specification</label></div>
+                      <div class="col-md-8" style="float: left;">
+                        <input type="text" name="specification" [(ngModel)]="specification"  #specificationId="ngModel" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+</div>
+<div class="col-md-12 col-xs-12">
+        <div class="col-md-3 col-xs-12" style="float: left; ">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <div class="col-md-4" style="float: left ; padding: 0%"  >
+                <label class="control-label" style="font-size: 11px" >item code</label></div>
+              <div class="col-md-6" >
+                <input type="text" name="code" [(ngModel)]="code"  #codeid="ngModel" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12" style="float: inside; padding-left: 0%">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <div class="col-md-4" style="float:left;">
+                <label class="control-label" style="font-size: 11px" >item name</label></div>
+              <div class="col-md-8" style="float: left;">
+                <input type="text" name="itemName" [(ngModel)]="itemName"  #itemNameId="ngModel" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 col-xs-12" style="float: right;">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <div class="col-md-4" style="float:left;">
+                <label class="control-label" style="font-size: 11px" >specification</label></div>
+              <div class="col-md-8" style="float: left;">
+                <input type="text" name="specification" [(ngModel)]="specification"  #specificationId="ngModel" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+     
+
+          <!------------------------>
+         
+
+             
+              <div class="row">
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-body">
+                          <form #loginForm="ngForm" (submit)="submitInfo(loginForm);">
+                              <div class="row">
+                                  <div class=col-md-12>
+                                <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" name="name" [(ngModel)]="name"  #nameID="ngModel" placeholder="Enter name">
+                                        
+                                      </div>
+                                      
+                                <div class="form-group">
+                                  <label>Email address</label>
+                                  <input type="text" class="form-control" name="email" [(ngModel)]="email"  #emailID="ngModel" placeholder="Enter email">
+                                 
+                                </div>
+                                <div class="form-group">
+                                  <label>Password</label>
+                                  <input type="password" class="form-control"  name="pass" [(ngModel)]="pass"  #passID="ngModel"  placeholder="Password">
+                                </div>
+                                <div class="form-group form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                                </div>
+                              </form>
+                    
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="card1">
+                      <div class="card1-body">
+                          <table class="table">
+                              <thead>
+                                <tr>
+                                 <th scope="row">Name</th>
+                                  <th scope="row">Email</th>
+                                  <th scope="row">Password</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                 <!---- <th scope="col"></th>-->
+                                  <td>{{name}}</td>
+                                  <td>{{email}}</td>
+                                  <td>{{pass}}</td>
+                                </tr>
+                                </tbody>
+                               
+                            </table>
+              
+                      </div>
+                    </div>
+                  </div>
+                </div>      
