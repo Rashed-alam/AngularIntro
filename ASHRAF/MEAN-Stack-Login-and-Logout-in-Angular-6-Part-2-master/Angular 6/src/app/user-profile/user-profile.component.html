@@ -1,3 +1,15 @@
+<!-- Side navigation -->
+<div class="sidenav">
+        <a routerLink="/home">Home Page</a>
+      <a routerLink="/userprofile">User Profile</a>
+     <a (click)="onLogout()">Logout </a> 
+     <a routerLink="/dashboard">Dashboard</a>
+    </div>
+
+
+
+
+
 <table *ngIf="userDetails" class="table-fill">
   <thead>
       <tr>
@@ -17,10 +29,10 @@
           <td>Email</td>
           <td>{{userDetails.email}}</td>
       </tr>
-      <tr>
+      <!-- <tr>
           <td colspan="2" class="text-center">
               <input type="button" (click)="onLogout()" value="Logout" />
           </td>
-      </tr>
+      </tr> -->
   </tbody>
 </table>

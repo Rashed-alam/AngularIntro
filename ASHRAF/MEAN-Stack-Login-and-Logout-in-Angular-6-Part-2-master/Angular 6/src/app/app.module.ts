@@ -18,6 +18,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddpostComponent } from './posts/addpost/addpost.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     UserProfileComponent,
     SignInComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent,
+    AddpostComponent
   ],
   imports: [
     BrowserModule,

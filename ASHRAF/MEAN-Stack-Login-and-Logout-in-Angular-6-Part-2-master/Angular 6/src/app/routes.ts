@@ -5,6 +5,8 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 export const appRoutes: Routes = [
     {
         path: 'signup', component: UserComponent,
@@ -18,11 +20,18 @@ export const appRoutes: Routes = [
         path: 'userprofile', component: UserProfileComponent,canActivate:[AuthGuard]
     },
      {
-        path: 'home', component: HomeComponent,
-        children: [{ path: '', component: SignUpComponent }]
+        path: 'home', component: HomeComponent
+      
     },
-   
+    {
+        path: 'dashboard', component: DashboardComponent
+      
+    },
     {
         path: '', component: HomeComponent
+    },
+    
+    {
+        path: '**', component: HomeComponent
     }
 ];
