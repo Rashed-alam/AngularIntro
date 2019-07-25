@@ -73,9 +73,18 @@
       </div> -->
      
 
-          <!------------------------>
+          <!---------ngIF--------------->
          
-
+          <!----<div *ngIf="displayName; then thenBlock; else elseBlock"></div>
+          <ng-template #thenBlock>
+           <h2>
+           hellow
+           </h2>
+           </ng-template>
+           <ng-template #elseBlock>
+           <h2>
+           hidden</h2>
+           </ng-template> --->
              
               <div class="row">
                   <div class="col-sm-6">
@@ -120,15 +129,18 @@
                                  <th scope="row">Name</th>
                                   <th scope="row">Email</th>
                                   <th scope="row">Password</th>
+                                 
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                 <!---- <th scope="col"></th>-->
-                                  <td>{{name}}</td>
-                                  <td>{{email}}</td>
-                                  <td>{{pass}}</td>
+                               <tr *ngFor= "let list of demoList" >
+                                 
+                                  <td>{{list.name}}</td>
+                                  <td>{{list.email}}</td>
+                                  <td>{{list.pass}}</td>
+                                  
                                 </tr>
+
                                 </tbody>
                                
                             </table>
