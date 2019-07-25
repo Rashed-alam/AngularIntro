@@ -3,9 +3,7 @@ const Schema = mongoose.Schema; //creating an object schema of mongoose
 
 //This is the Schema of chips
 const ChipsSchema = new Schema({
-    _id:{
-        type:Number
-    },
+    
     fullname:{
         type: String,
         required: [true,"Name Field is required"]

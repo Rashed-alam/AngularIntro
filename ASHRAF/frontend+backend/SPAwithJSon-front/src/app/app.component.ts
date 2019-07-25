@@ -62,11 +62,12 @@ createEmployee(emp : Employee){
 updateEmployee(emp: Employee){
 this.employeelist.updateEmployee(emp)
   .subscribe();
+  this.getAllEmployeeList();
 }
 
 clear(){
 this.employeelist.currentEmployee = {
-  _id: null,
+ 
   fullname : '',
   email : '',
   department : '',
