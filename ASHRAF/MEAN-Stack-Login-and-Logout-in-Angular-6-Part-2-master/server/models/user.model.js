@@ -40,7 +40,8 @@ userSchema.pre('save', function (next) {
 
 // Methods
 userSchema.methods.verifyPassword = function (password) {
-    return bcrypt.compareSync(password, this.password);
+    return bcrypt.compareSync(password, this.password);//this will compare the plain password and the encrypted password
+    //if it matches each other, it will return true else false
 };
 
 userSchema.methods.generateJwt = function () {
