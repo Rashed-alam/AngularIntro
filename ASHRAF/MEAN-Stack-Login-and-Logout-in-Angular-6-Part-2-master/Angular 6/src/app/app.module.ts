@@ -19,7 +19,9 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddpostComponent } from './posts/addpost/addpost.component';
+import { BlogComponent } from './blog/blog.component';
+import {LocationService } from './shared/location.service';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { AddpostComponent } from './posts/addpost/addpost.component';
     HomeComponent,
     NavbarComponent,
     DashboardComponent,
-    AddpostComponent
+    BlogComponent
+ 
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import { AddpostComponent } from './posts/addpost/addpost.component';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  },AuthGuard,UserService],
+  },AuthGuard,UserService,LocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

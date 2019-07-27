@@ -6,6 +6,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BlogComponent } from './blog/blog.component';
+import {LocationService } from './shared/location.service';
 
 export const appRoutes: Routes = [
     {
@@ -24,7 +26,11 @@ export const appRoutes: Routes = [
       
     },
     {
-        path: 'dashboard', component: DashboardComponent
+        path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]
+      
+    },
+    {
+        path: 'blog', component: BlogComponent, canActivate:[AuthGuard]
       
     },
     {

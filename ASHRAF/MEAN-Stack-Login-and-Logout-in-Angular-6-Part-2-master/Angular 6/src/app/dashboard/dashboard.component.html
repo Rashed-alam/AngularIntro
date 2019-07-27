@@ -1,13 +1,11 @@
 <!-- Side navigation -->
 <div class="sidenav">
-    <a routerLink="/home">Home Page</a>
-  <a routerLink="/userprofile">User Profile</a>
- <a (click)="onLogout()">Logout </a> 
+    
+  <button type="button" routerLink="/userprofile">User Profile</button>
+ <button type="button" (click)="onLogout()">Logout</button>
   
 </div>
-
 <div class="main">
-  <h1 style="text-align: center;">Dashboard</h1>
-  <hr>
-   <app-addpost></app-addpost> 
+  
+ <app-blog></app-blog>
   </div>

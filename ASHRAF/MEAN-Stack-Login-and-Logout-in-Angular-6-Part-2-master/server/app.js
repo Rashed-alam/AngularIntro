@@ -8,7 +8,8 @@ const cors = require('cors');
 const passport = require('passport');
 
 const rtsIndex = require('./routes/index.router');
-
+const blogs = require('./routes/blogs');
+const location = require('./routes/location');
 var app = express();
 
 // middleware
@@ -16,6 +17,8 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(passport.initialize());
 app.use('/api', rtsIndex);
+app.use('/blogs',blogs);
+app.use('/location',location);
 
 // error handler
 app.use((err, req, res, next) => {
