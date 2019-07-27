@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BlogComponent } from './blog/blog.component';
 import {LocationService } from './shared/location.service';
+// import { BlogService } from './shared/blog.service';
 
 export const appRoutes: Routes = [
     {

@@ -1,46 +1,38 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Blog } from "../shared/blog.model";
-import { environment } from "src/environments/environment";
-import { take, map } from "rxjs/operators";
-import { stringify } from '@angular/core/src/render3/util';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Blog } from './blog.model';
 
-@Injectable({
-  providedIn: "root"
-})
-export class ArticlesService {
-  private readonly API = `${environment.apiBaseUrl}/articles`;
-  private articles: Blog[] = [];
+const headerOption = {
+  headers: new HttpHeaders({ 'Content-Type' : 'application/json' })
+};
+ @Injectable()
+// @Injectable({
+//   providedIn: 'root'
+// })
+export class BlogService {
 
-  constructor(private http: HttpClient) {}
+  Url = "http://localhost:4000/blogs";
 
-  list() {
-    return this.http.get<Blog[]>(this.API).pipe();
+  currentBlog: Blog = {
+        
+    post_title: '',
+    post_description: '',
+    post_location: '',
+    post_privacy: '',
+    post_user: ''
   }
 
-  loadById(id) {
-    return this.http.get<Blog>(`${this.API}/${id}`).pipe(take(1));
+  constructor(private httpcall: HttpClient) { }
+
+
+  getAllBlog(): Observable<Blog[]>{
+    return this.httpcall.get<Blog[]>(this.Url+'/all', headerOption);
   }
 
-  private create(article: Blog) {
-    return this.http.post(this.API, article).pipe(take(1));
-  }
 
-  remove(id) {
-    return this.http.delete(`${this.API}/${id}`).pipe(take(1));
+  createPost(blog : Blog): Observable<Blog> {
+    return this.httpcall.post<Blog>(this.Url+'/new', blog , headerOption);
   }
-
-  private update(article) {
-    return this.http.put(`${this.API}/${article.id}`, article).pipe(take(1));
-  }
-
-  save(article) {
   
-    if (article.id) {
-      return this.update(article);
-    } else {
-      article.createdAt = new Date();
-      return this.create(article);
-    }
-  }
 }

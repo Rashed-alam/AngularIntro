@@ -11,51 +11,46 @@
 <button [disabled]="loadingBlogs" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadBlogs()">Reload</button>
 <hr>
 <div *ngIf="!newPost">
-  <div class="card">
-    <div class="card-header">
-      <h3 class="panel-title">Post title</h3>
-    </div>
-    <div class="card-body">
-        <p>MongoDB is a free and open-source cross-platform document-oriented database program. This NoSQL database program uses JSON-like documents with schemas.</p>
-
-    </div>
-  
-    <div class="card-footer">
+  <div class="jumbotron">
+    <form>
+    <input type="text" placeholder="Post Title" name="blog.currentBlog.post_title" [(ngModel)]="blog.currentBlog.post_title">
+    <textarea name="blog.currentBlog.post_description" cols="90" rows="10" placeholder="Post something awesome" [(ngModel)]="blog.currentBlog.post_description"></textarea>
       <p><i>Posted by: </i></p>
-     
-      
-      <div class="btn-group">
-          <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Location
-          </button>
-          <div class="dropdown-item" >
-    
-          <select *ngFor ="let i of allLocation">
-            <option>{{i.location_name}}</option>
+      Location: 
+          <select name="blog.currentBlog.post_location" [(ngModel)]="blog.currentBlog.post_location">
+              <option value="{{i.location_name}}"  *ngFor ="let i of allLocation">{{i.location_name}}</option>
+          </select>
+          <br>
+          Privacy 
+          <select name="blog.currentBlog.post_privacy" [(ngModel)]="blog.currentBlog.post_privacy">
+              <option value="public">Public</option>
+              <option value="private">Private</option>
           </select>
           
-          </div>
-        </div>      
-      
-        <div class="btn-group">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             Privacy
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Public</a>
-              <a class="dropdown-item" href="#">Private</a>
+      <br>
+      <div class="col-md-2">
               
-            
-            </div>
-          </div>
-        <a href=""><button type="button" class="btn btn-info">Edit</button></a> 
-        <a href=""><button type="button" class="btn btn-danger">Delete</button></a>
-    </div>
-    <!-- Example single danger button -->
+          <button type="submit" class="btn btn-success" (click)="createPost(blog.currentBlog)">Submit</button>
+          
+      </div>
+        <!-- <a href=""><button type="button" class="btn btn-info">Edit</button></a> 
+        <a href=""><button type="button" class="btn btn-danger">Delete</button></a> -->
 
-    </div>
-   
+
+
+    
+  </form>
+</div>
 </div>
 
 
-<div></div>
+<div class="card border-primary mb-3" style="max-width: 50rem;" *ngFor="let i of allBlog">
+    <div class="card-header"><strong>User:</strong> {{i.post_user}}</div>
+    <div class="card-body text-primary">
+      <h5 class="card-title"><u>Title:</u> {{i.post_title}}</h5>
+      <p class="card-text"><u>Description</u> {{i.post_description}}</p>
+    </div>
+  
+  </div>
+ 
+

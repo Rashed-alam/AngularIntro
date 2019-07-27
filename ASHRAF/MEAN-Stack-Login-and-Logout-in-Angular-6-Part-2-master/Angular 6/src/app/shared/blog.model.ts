@@ -1,8 +1,7 @@
 export class Blog{
-    _id: string;
-    title: string;
-    content: string;
-    createdAt: Date;
-    location: string;
-    privacy: string;
+    post_title: String;
+    post_description: String;
+    post_location: String;
+    post_privacy: String;
+    post_user: String;
 }

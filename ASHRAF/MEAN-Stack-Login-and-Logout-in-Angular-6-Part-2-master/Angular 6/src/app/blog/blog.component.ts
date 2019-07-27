@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '../shared/location.model';
 import { LocationService } from '../shared/location.service';
-
+import { Blog } from '../shared/blog.model';
+import { BlogService } from '../shared/blog.service';
 
 @Component({
   selector: 'app-blog',
@@ -15,12 +16,14 @@ export class BlogComponent implements OnInit {
   newPost = false;
   loadingBlogs = false;
 
-  allLocation: any= [];
+  allLocation: Location [];
+  allBlog: Blog[];
 
-  constructor(private Ls: LocationService) { }
+  constructor(private Ls: LocationService, private blog: BlogService) { }
 
   ngOnInit() {
     this.getAllLocation();
+    this.getAllPost();
   }
 
 
@@ -44,12 +47,29 @@ export class BlogComponent implements OnInit {
     .subscribe(
        (data : Location[]) =>{
          this.allLocation = data;
-          console.log(data);
-          console.log(JSON.stringify(this.allLocation));
+    
        }
     );
   }
 
+  createPost(b : Blog){
+    this.blog.createPost(b)
+    .subscribe();
+    console.log(b);
+    alert('Post Created');
+    this.getAllPost();
+  }
+
+
+  getAllPost(){
+    this.blog.getAllBlog()
+    .subscribe(
+       (data : Blog[]) =>{
+         this.allBlog = data;
+    
+       }
+    );
+  }
 
 
 
