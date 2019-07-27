@@ -28,9 +28,11 @@
           <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            Location
           </button>
-          <div class="dropdown-menu" *ngFor ="let location of allLocation">
-            <a class="dropdown-item" href="#">{{location.location_name}}</a>
+          <div class="dropdown-item" >
     
+          <select *ngFor ="let i of allLocation">
+            <option>{{i.location_name}}</option>
+          </select>
           
           </div>
         </div>      
@@ -54,3 +56,6 @@
     </div>
    
 </div>
+
+
+<div></div>

@@ -15,7 +15,7 @@ export class BlogComponent implements OnInit {
   newPost = false;
   loadingBlogs = false;
 
-  allLocation: Location[];
+  allLocation: any= [];
 
   constructor(private Ls: LocationService) { }
 
@@ -44,7 +44,8 @@ export class BlogComponent implements OnInit {
     .subscribe(
        (data : Location[]) =>{
          this.allLocation = data;
-  
+          console.log(data);
+          console.log(JSON.stringify(this.allLocation));
        }
     );
   }
