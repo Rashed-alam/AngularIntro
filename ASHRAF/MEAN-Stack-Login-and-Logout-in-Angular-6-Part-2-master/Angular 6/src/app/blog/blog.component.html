@@ -11,44 +11,53 @@
 <button [disabled]="loadingBlogs" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadBlogs()">Reload</button>
 <hr>
 <div *ngIf="!newPost">
-  <div class="jumbotron">
+  <div class="jumbotron jumbotron-fluid">
     <form>
-    <input type="text" placeholder="Post Title" name="blog.currentBlog.post_title" [(ngModel)]="blog.currentBlog.post_title">
+    
+    <input type="text" placeholder="Post Title" name="blog.currentBlog.post_title" [(ngModel)]="blog.currentBlog.post_title"> <br>
     <textarea name="blog.currentBlog.post_description" cols="90" rows="10" placeholder="Post something awesome" [(ngModel)]="blog.currentBlog.post_description"></textarea>
-      <p><i>Posted by: </i></p>
-      Location: 
-          <select name="blog.currentBlog.post_location" [(ngModel)]="blog.currentBlog.post_location">
-              <option value="{{i.location_name}}"  *ngFor ="let i of allLocation">{{i.location_name}}</option>
-          </select>
-          <br>
-          Privacy 
-          <select name="blog.currentBlog.post_privacy" [(ngModel)]="blog.currentBlog.post_privacy">
-              <option value="public">Public</option>
-              <option value="private">Private</option>
-          </select>
-          
-      <br>
-      <div class="col-md-2">
-              
-          <button type="submit" class="btn btn-success" (click)="createPost(blog.currentBlog)">Submit</button>
-          
-      </div>
+<br>   
+          <div class="container">
+              <div class="row">
+                <div class="col-sm">
+                    Location: 
+                    <select name="blog.currentBlog.post_location" [(ngModel)]="blog.currentBlog.post_location">
+                        <option value="{{i.location_name}}"  *ngFor ="let i of allLocation">{{i.location_name}}</option>
+                    </select>
+                </div>
+                <div class="col-sm">
+                    Privacy 
+                    <select name="blog.currentBlog.post_privacy" [(ngModel)]="blog.currentBlog.post_privacy">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                </div>
+                <div class="col-sm">
+                    <button type="submit" class="btn btn-success" (click)="createPost(blog.currentBlog)">Submit</button>
+                </div>
+              </div>
+            </div>
+
+
+      
+
         <!-- <a href=""><button type="button" class="btn btn-info">Edit</button></a> 
         <a href=""><button type="button" class="btn btn-danger">Delete</button></a> -->
 
 
 
-    
+  
   </form>
 </div>
 </div>
 
 
 <div class="card border-primary mb-3" style="max-width: 50rem;" *ngFor="let i of allBlog">
+  
     <div class="card-header"><strong>User:</strong> {{i.post_user}}</div>
     <div class="card-body text-primary">
       <h5 class="card-title"><u>Title:</u> {{i.post_title}}</h5>
-      <p class="card-text"><u>Description</u> {{i.post_description}}</p>
+      <p class="card-text"><u>Description: </u> {{i.post_description}}</p>
     </div>
   
   </div>
