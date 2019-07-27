@@ -48,18 +48,20 @@
                   </div>
                   <div class="col">
                       <div class="dropdown">
-                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown button
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                         
+                          <select>
+                            <option *ngFor="let i of newLocation">
+                            
+                                  {{i.location_name}}
+                            </option>
+                          </select>
+                     
+                        
                           </div>
                         </div>
                   </div>
                 </div>
-              </div>
+            
             <button type="button" class="btn btn-primary">Post</button>
           </form>
         </div>
