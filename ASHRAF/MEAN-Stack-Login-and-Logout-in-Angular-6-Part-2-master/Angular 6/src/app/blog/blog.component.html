@@ -42,8 +42,7 @@
 
       
 
-        <!-- <a href=""><button type="button" class="btn btn-info">Edit</button></a> 
-        <a href=""><button type="button" class="btn btn-danger">Delete</button></a> -->
+         
 
 
 
@@ -55,12 +54,13 @@
 
 <div class="card border-primary mb-3" style="max-width: 50rem;" *ngFor="let i of allBlog" >
   
-    <div class="card-header" >User: <strong>{{i.post_user}}</strong></div>
+    <div class="card-header"> <i>Posted by </i> <strong>  {{i.post_user}}</strong></div>
     <div class="card-body text-primary">
       <h5 class="card-title"><u>Title:</u> {{i.post_title}}</h5>
       <p class="card-text"><u>Description: </u> {{i.post_description}}</p>
     </div>
-  
+    
   </div>
+ 
  
 

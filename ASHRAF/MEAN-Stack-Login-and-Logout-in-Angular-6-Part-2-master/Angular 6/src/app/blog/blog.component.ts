@@ -71,7 +71,7 @@ export class BlogComponent implements OnInit {
   }
 
   createPost(b : Blog){
-     b.post_user = this.userDetails.fullName;
+     b.post_user = this.userDetails.email;
     this.blog.createPost(b)
     .subscribe();
     console.log(b);
