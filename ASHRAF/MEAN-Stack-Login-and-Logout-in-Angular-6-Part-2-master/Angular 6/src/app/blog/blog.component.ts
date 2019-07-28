@@ -4,7 +4,7 @@ import { LocationService } from '../shared/location.service';
 import { Blog } from '../shared/blog.model';
 import { BlogService } from '../shared/blog.service';
 import { UserService } from '../shared/user.service';
-
+import { User } from '../shared/user.model';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class BlogComponent implements OnInit {
 
   allLocation: Location [];
   allBlog: Blog[];
-  userDetails;
+  userDetails : true;
 
   constructor(private Ls: LocationService, private blog: BlogService,private userService: UserService) { }
 
@@ -30,6 +30,7 @@ export class BlogComponent implements OnInit {
     this.userService.getUserProfile().subscribe(
       res => {
         this.userDetails = res['user'];
+        console.log(res);
       },
       err => { 
         console.log(err);
@@ -38,6 +39,7 @@ export class BlogComponent implements OnInit {
     );
     this.getAllLocation();
     this.getAllPost();
+    
 
   }
 
@@ -55,7 +57,7 @@ export class BlogComponent implements OnInit {
 
     setTimeout(()=>{
       this.loadingBlogs = false;
-    }, 4000);
+    }, 2000);
   }
 
   getAllLocation(){
@@ -69,12 +71,14 @@ export class BlogComponent implements OnInit {
   }
 
   createPost(b : Blog){
+     b.post_user = this.userDetails.fullName;
     this.blog.createPost(b)
     .subscribe();
     console.log(b);
     alert('Post Created');
     this.getAllPost(); 
     this.clearAll();
+   
   }
 
 
