@@ -3,7 +3,7 @@ const Blog = require("../models/blog.model");
 const router = express.Router();
 
 router.get('/all',(req,res,next)=>{ 
-  Blog.find({}).then(function(blog){
+  Blog.find({ "post_privacy" : "public" }).then(function(blog){
       res.send(blog);
   }).catch(next);
 });

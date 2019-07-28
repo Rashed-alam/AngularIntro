@@ -32,6 +32,10 @@
                         <option value="private">Private</option>
                     </select>
                 </div>
+                <div *ngIf="userDetails" class="col-sm">
+                  <!-- Posting as: {{userDetails.fullName}} -->
+                 <input type="hidden" name="blog.currentBlog.post_user" [(ngModel)]="blog.currentBlog.post_user" value="Tom">
+                </div>
                 <div class="col-sm">
                     <button type="submit" class="btn btn-success" (click)="createPost(blog.currentBlog)">Submit</button>
                 </div>
@@ -52,9 +56,9 @@
 </div>
 
 
-<div class="card border-primary mb-3" style="max-width: 50rem;" *ngFor="let i of allBlog">
+<div class="card border-primary mb-3" style="max-width: 50rem;" *ngFor="let i of allBlog" >
   
-    <div class="card-header"><strong>User:</strong> {{i.post_user}}</div>
+    <div class="card-header" ><strong>User:{{i.post_user}}</strong></div>
     <div class="card-body text-primary">
       <h5 class="card-title"><u>Title:</u> {{i.post_title}}</h5>
       <p class="card-text"><u>Description: </u> {{i.post_description}}</p>
