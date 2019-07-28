@@ -4,10 +4,13 @@ const router = express.Router();
 const User = require("../models/user.model");
 
 
-router.get('/all',(req,res,next)=>{ 
+router.get('/all/:name',(req,res,next)=>{ 
   
-  Blog.find({ "post_privacy" : "public" }).then(function(blog){
+  Blog.findOne({ "post_privacy" : "public" }).then(function(blog){
+    //  res.send(blog);
+    if((req.params.name == blog.post_user)){
       res.send(blog);
+    }
   }).catch(next);
 });
 
