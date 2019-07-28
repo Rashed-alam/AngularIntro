@@ -15,7 +15,7 @@ const PostSchema = new Schema({
         type:String,
     },
     security:{
-        type:Boolean
+        type:String
     }
 
 });
