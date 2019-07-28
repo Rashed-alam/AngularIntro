@@ -22,7 +22,7 @@ export class BlogComponent implements OnInit {
 
   allLocation: Location [];
   allBlog: Blog[];
-  userDetails : true;
+  userDetails ;
 
   constructor(private Ls: LocationService, private blog: BlogService,private userService: UserService) { }
 
