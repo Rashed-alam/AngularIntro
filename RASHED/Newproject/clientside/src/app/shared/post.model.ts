@@ -3,4 +3,5 @@ export class post {
     location: string;
     post: string; 
     security: string;
+    email: string;
 }

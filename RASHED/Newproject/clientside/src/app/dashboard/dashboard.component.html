@@ -31,18 +31,27 @@
       <div class="container">
         <div class="row">
           <div class="col">
+              <span>
+                  Select Privacy
+                      </span>
+                  
             <input type="radio" [(ngModel)]="PostService.currentPost.security" name="security" value="public"> Public
             <input type="radio"  [(ngModel)]="PostService.currentPost.security" name="security" value="private"> Private<br>
+                 
           </div>
           <div class="col">
             <div class="dropdown">
-
-              <select name="location"  [(ngModel)]="PostService.currentPost.location">
+              <span>
+                Select Location
+                    </span>
+              <select name="location" aria-placeholder="location"  [(ngModel)]="PostService.currentPost.location">
+                <option>  </option>
                 <option  *ngFor="let i of newLocation">
 
                   {{i.location_name}}
                 </option>
               </select>
+            
 
 
             </div>
@@ -57,10 +66,10 @@
 <!----------------->
 <div class="card" *ngFor="let i of allpost" >
   
-  <div class="card-header" ><strong>User:{{i.fullName}}</strong></div>
+  <div class="card-header" >{{i.email}}</div>
   <div class="card-body text-primary">
    <!-- <h5 class="card-title"><u>Title:</u> {{i.}}</h5> -->
-    <p class="card-text"><u>Description: </u> {{i.post}}</p>
+    <p class="card-text"> {{i.post}}</p>
   </div>
 
 </div>

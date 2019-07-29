@@ -19,7 +19,8 @@ export class PostService {
     fullName:'',
     location:'',
     post:'',
-    security:''
+    security:'',
+    email: ''
   }
   getallpost(): Observable<post[]> {
     return this.httpcall.get<post[]>(this.url, headerOption);
