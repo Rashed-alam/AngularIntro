@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
    
-    fullname: {
+    fullName: {
         type: String,
     },
     location: {
@@ -15,6 +15,9 @@ const PostSchema = new Schema({
         type:String,
     },
     security:{
+        type:String
+    },
+    email:{
         type:String
     }
 

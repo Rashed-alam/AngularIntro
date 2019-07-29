@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  //location
+  //location ser
   getLocationlist():void{
     this.list.getAllLocation()
     .subscribe(data=>{
@@ -53,22 +53,33 @@ export class DashboardComponent implements OnInit {
     .subscribe(
        (data :post[]) =>{
          this.allpost = data;
-         //console.log(this.allpost);
-    
+         console.log(this.allpost);
        }
     );
+  
   }
 
   createnewpost(a:post){
-   
-    a.fullName=this.userdetails.fullName;
+   a.fullName=this.userdetails.fullName;
+    a.email=this.userdetails.email;
  //console.log(a.fullName);
     this.PostService.createPost(a)
     .subscribe();
  //  console.log(a);
+ this.getAllPost();
+ this.clearAll();
 
   
    
+  }
+  clearAll(){
+    this.PostService.currentPost={
+      fullName:'',
+      email: '',
+      location:'',
+      post:'',
+      security:''
+    }
   }
   
 
