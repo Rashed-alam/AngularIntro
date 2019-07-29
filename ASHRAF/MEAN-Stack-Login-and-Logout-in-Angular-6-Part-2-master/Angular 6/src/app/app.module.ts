@@ -19,7 +19,9 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddpostComponent } from './posts/addpost/addpost.component';
+import { BlogComponent } from './blog/blog.component';
+import {LocationService } from './shared/location.service';
+import { BlogService } from './shared/blog.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { AddpostComponent } from './posts/addpost/addpost.component';
     HomeComponent,
     NavbarComponent,
     DashboardComponent,
-    AddpostComponent
+    BlogComponent
+ 
   ],
   imports: [
     BrowserModule,
@@ -39,11 +42,12 @@ import { AddpostComponent } from './posts/addpost/addpost.component';
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [{
+  providers: [ {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
+  
     multi: true
-  },AuthGuard,UserService],
+  },AuthGuard,UserService,LocationService,  BlogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

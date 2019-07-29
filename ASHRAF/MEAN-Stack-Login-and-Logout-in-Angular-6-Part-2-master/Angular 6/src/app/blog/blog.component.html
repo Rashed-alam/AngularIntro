@@ -1,0 +1,66 @@
+<h1 class="page-header">Blog Feed</h1>
+
+<!-- <div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{message}}
+  </div>
+</div> -->
+
+
+<button type="button" name="button" class="btn btn-warning" *ngIf="!newPost" (click)="newBlogForm()">New Post</button>
+<button [disabled]="loadingBlogs" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadBlogs()">Reload</button>
+<hr>
+<div *ngIf="!newPost">
+  <div class="jumbotron jumbotron-fluid">
+    <form>
+    
+    <input type="text" placeholder="Post Title" name="blog.currentBlog.post_title" [(ngModel)]="blog.currentBlog.post_title"> <br>
+    <textarea name="blog.currentBlog.post_description" cols="90" rows="10" placeholder="Post something awesome" [(ngModel)]="blog.currentBlog.post_description"></textarea>
+<br>   
+          <div class="container">
+              <div class="row">
+                <div class="col-sm">
+                    Location: 
+                    <select name="blog.currentBlog.post_location" [(ngModel)]="blog.currentBlog.post_location">
+                        <option value="{{i.location_name}}"  *ngFor ="let i of allLocation">{{i.location_name}}</option>
+                    </select>
+                </div>
+                <div class="col-sm">
+                    Privacy 
+                    <select name="blog.currentBlog.post_privacy" [(ngModel)]="blog.currentBlog.post_privacy">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                </div>
+               
+                <div class="col-sm">
+                    <button type="submit" class="btn btn-success" (click)="createPost(blog.currentBlog)">Submit</button>
+                </div>
+              </div>
+            </div>
+
+
+      
+
+         
+
+
+
+  
+  </form>
+</div>
+</div>
+
+
+<div class="card border-primary mb-3" style="max-width: 50rem;" *ngFor="let i of allBlog" >
+  
+    <div class="card-header"> <i>Posted by </i> <strong>  {{i.post_user}}</strong></div>
+    <div class="card-body text-primary">
+      <h5 class="card-title"><u>Title:</u> {{i.post_title}}</h5>
+      <p class="card-text"><u>Description: </u> {{i.post_description}}</p>
+    </div>
+    
+  </div>
+ 
+ 
+
