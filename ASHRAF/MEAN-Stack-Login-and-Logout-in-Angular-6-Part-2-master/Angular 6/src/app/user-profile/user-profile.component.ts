@@ -5,6 +5,7 @@ import { BlogService } from '../shared/blog.service';
 import { Blog } from '../shared/blog.model';
 
 
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -12,15 +13,14 @@ import { Blog } from '../shared/blog.model';
 })
 export class UserProfileComponent implements OnInit {
   userDetails;
-
   allblog: Blog[];
 
   constructor(private userService: UserService, private router: Router,private blogservice: BlogService) { }
 
   ngOnInit() {
-  //  this.getAllPostofUser();
 
 
+    
     this.userService.getUserProfile().subscribe(
       res => {
         this.userDetails = res['user'];
@@ -28,17 +28,13 @@ export class UserProfileComponent implements OnInit {
         .subscribe(
           (data : Blog []) => {
           this.allblog = data;
-          console.log(this.allblog);
-          }
-        );
+          
+          });
       },
       err => { 
         console.log(err);
-        
-      }
-    );
-    
-  
+      });
+      // this.getAllPostofUser();
   }
 
   onLogout(){
@@ -49,15 +45,37 @@ export class UserProfileComponent implements OnInit {
 
 
   // getAllPostofUser(){ 
-  // this.blogservice.getAllUserBlog(this.userDetails)
-  //       .subscribe(
-  //         (data : Blog []) => {
-  //         this.allblog = data;
-  //         console.log(this.allblog);
-  //         }
-  //       );
+  //   this.blogservice.getAllUserBlog(this.userDetails)
+  //         .subscribe(); 
+  //         console.log(this.userDetails);
   // }
 
+
+  // updateBlog(bl: Blog){
+  //   this.blogservice.updateUserBlog(bl)
+  //     .subscribe(
+  //       (data : Blog []) => {
+  //         this.allblog = data;
+  //         }
+  //     );
+     
+  //   }
+
+    // edit(bl){
+    //   this.blogservice.currentBlog= Object.assign({},bl);
+      
+    // }
+
+    deletePost(_id: any){
+      console.log(_id);
+      this.blogservice.deleteThisPost(_id)
+      .subscribe(
+        (data : Blog[]) =>{
+          alert('Post Deleted');
+        
+        }
+      );
+    }
 
 
 }

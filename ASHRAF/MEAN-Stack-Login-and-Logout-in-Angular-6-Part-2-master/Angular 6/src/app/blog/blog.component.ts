@@ -94,6 +94,7 @@ export class BlogComponent implements OnInit {
 
   clearAll(){
     this.blog.currentBlog = {
+      _id: null,
       post_title: '',
       post_description: '',
       post_location: '',

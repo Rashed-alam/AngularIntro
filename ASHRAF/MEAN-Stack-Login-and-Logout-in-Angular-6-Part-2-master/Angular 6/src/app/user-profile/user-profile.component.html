@@ -49,6 +49,9 @@
       <div class="card-footer">
         <small class="text-muted">{{b.post_location}}</small>
       </div>
+      <button type="button" class="badge badge-info" (click)="edit(b)">EDIT</button>
+      <!-- <a href="#" class="badge badge-danger" (click)="deleteEmployee(employee._id)">DELETE</a> -->
+      <button type="button" class="badge badge-danger" (click)="deletePost(b._id)">Delete</button>
     </div>
     
   

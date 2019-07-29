@@ -15,7 +15,7 @@ export class BlogService {
   Url = "http://localhost:4000/blogs";
 
   currentBlog: Blog = {
-        
+        _id: null,
     post_title: '',
     post_description: '',
     post_location: '',
@@ -39,5 +39,13 @@ export class BlogService {
 getAllUserBlog(userEmail):Observable<Blog[]>{
   return this.httpcall.post<Blog[]>(this.Url+'/all/'+userEmail.email, headerOption);
 }
+
+//this is for editing a particular post of the user
+// updateUserBlog(blog : Blog): Observable<Blog[]> {
+//   return this.httpcall.put<Blog[]>(this.Url+'/edit/'+ blog._id, blog, headerOption);
+// }
   
+deleteThisPost(_id: any): Observable<Blog[]>{
+  return this.httpcall.delete<Blog[]>(this.Url+'/delete/'+ _id, headerOption);
+}
 }
