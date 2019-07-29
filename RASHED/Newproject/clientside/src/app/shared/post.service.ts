@@ -20,7 +20,8 @@ export class PostService {
     location:'',
     post:'',
     security:'',
-    email: ''
+    email: '',
+    _id:''
   }
   getallpost(): Observable<post[]> {
     return this.httpcall.get<post[]>(this.url, headerOption);
@@ -29,5 +30,16 @@ export class PostService {
   createPost(a:post): Observable<post[]> {
     return this.httpcall.post<post[]>(this.url,a, headerOption);
   }
+  //this is for getting all posts of only the user logged in
+getAllUserPost(userEmail):Observable<post[]>{
+  return this.httpcall.post<post[]>(this.url+'/all/'+userEmail.email, headerOption);
+}
+
+
+
+deletepost(id):Observable<post[]>{
+  return this.httpcall.delete<post[]>(this.url+'/delete/'+id,headerOption);
+}
+
   
 }
