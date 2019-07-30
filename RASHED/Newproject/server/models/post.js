@@ -13,12 +13,14 @@ const PostSchema = new Schema({
     },
     post:{
         type:String,
+        required: 'post can\'t be empty',
     },
     security:{
-        type:String
+        type:String,
     },
     email:{
-        type:String
+        type:String,
+        
     }
 
 });

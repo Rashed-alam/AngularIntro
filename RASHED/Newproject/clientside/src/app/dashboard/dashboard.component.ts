@@ -4,10 +4,10 @@ import { UserService } from './../shared/user.service';
 import { LocationService } from './../shared/location.service';
 import { Component, OnInit } from '@angular/core';
 
-
-
-
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+const headerOption = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Component({
   selector: 'app-dashboard',
@@ -15,73 +15,79 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private list:LocationService,private userservice:UserService,private PostService:PostService) { }
-  
-  
-  newLocation:any=[];
-  userdetails:any={};
-  allpost:post[];
+  constructor(private http:HttpClient,  private list: LocationService, private userservice: UserService, private PostService: PostService) { }
 
+
+  newLocation: any = [];
+  userdetails: any = {};
+  allpost: post[];
+ // showsuccessmessage:boolean;
 
 
 
   ngOnInit() {
-    this.getLocationlist();
+    //this.getLocationlist();
     this.getAllPost();
     this.userservice.getUserProfile().subscribe(
       res => {
         this.userdetails = res['user'];
-       console.log(this.userdetails.fullName);
+        console.log(this.userdetails.fullName);
       },
-      err => { 
+      err => {
         console.log(err);
-        
+
       }
     );
   }
-  //location ser
-  getLocationlist():void{
-    this.list.getAllLocation()
-    .subscribe(data=>{
-      this.newLocation=data;
-      //console.log(data);
-    })
- 
-  }
-  getAllPost(){
+  // //location ser
+  // getLocationlist(): void {
+  //   this.list.getAllLocation()
+  //     .subscribe(data => {
+  //       this.newLocation = data;
+  //       //console.log(data);
+  //     })
+
+  // }
+  getAllPost() {
     this.PostService.getallpost()
-    .subscribe(
-       (data :post[]) =>{
-         this.allpost = data;
-         console.log(this.allpost);
-       }
-    );
-  
-  }
+      .subscribe(
+        (data: post[]) => {
+          this.allpost = data;
+          console.log(this.allpost);
+        }
+      );
 
-  createnewpost(a:post){
-   a.fullName=this.userdetails.fullName;
-    a.email=this.userdetails.email;
- //console.log(a.fullName);
-    this.PostService.createPost(a)
-    .subscribe();
- //  console.log(a);
- this.getAllPost();
- this.clearAll();
+  }
+//this post worked
 
-  
-   
-  }
-  clearAll(){
-    this.PostService.currentPost={
-      fullName:'',
-      email: '',
-      location:'',
-      post:'',
-      security:'',
-      _id:''
-    }
-  }
-  
+  // createnewpost(a:post) {
+  //   a.fullName = this.userdetails.fullName;
+  //   a.email = this.userdetails.email;
+  //   // const email = a.email;
+  //    console.log(a);
+  //   // this.http.post('http://localhost:3000/post/data',a, headerOption).subscribe(res=>{
+  //   //   console.log(res);
+  //   this.PostService.createPost(a).subscribe();
+  //   }
+
+
+
+  //   this.PostService.createPost(a)
+  //     .subscribe(
+  //        res=>{
+  //         console.log('ok');
+  //         this.showsuccessmessage=true;
+  //         setTimeout(()=>this.showsuccessmessage=false,4000);
+  //       },
+  //       err=>{
+  //       }  
+  //     ); 
+  //  this.getAllPost();
+  //   this.clearAll();
+  // }
+
+
+ 
+
 
 }

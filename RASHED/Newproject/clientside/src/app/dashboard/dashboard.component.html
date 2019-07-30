@@ -19,7 +19,7 @@
 
 
 
-
+<!-- 
 <div class="card">
   <div class="card-header">
     Speak Up
@@ -62,14 +62,22 @@
       <button type="button" (click)="createnewpost(PostService.currentPost)" class="btn btn-primary">Post</button>
     </form>
   </div>
-</div>
+  <!-- <div class="success" *ngIf="showsuccessmessage">
+      Status Updated successfully
+      
+    </div>
+</div> --> 
+
 <!----------------->
+<h1>Posts</h1>
 <div class="card" *ngFor="let i of allpost" >
   
-  <div class="card-header" >{{i.email}}</div>
+  <div class="card-header" >{{i.fullName}}</div>
   <div class="card-body text-primary">
    <!-- <h5 class="card-title"><u>Title:</u> {{i.}}</h5> -->
-    <p class="card-text"> {{i.post}}</p>
+    <h5 class="card-text"> {{i.post}}</h5>
+ 
+    <span class="card-text">location: {{i.location}}</span>
   </div>
 
 </div>

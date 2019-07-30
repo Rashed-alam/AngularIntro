@@ -4,5 +4,5 @@ export class post {
     post: string; 
     security: string;
     email: string;
-    _id:string
+   
 }

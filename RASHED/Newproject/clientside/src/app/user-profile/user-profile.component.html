@@ -13,13 +13,16 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/userprofile']" routerLinkActive="router-link-active">Profile</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="onLogout()" value="Logout" >Logout</a>
+      </li>
     </ul>
   </div>
 </nav>
 
 
 <!--------------------->
-<table *ngIf="userDetails" class="table-fill">
+<table allign="left" *ngIf="userDetails" class="table-fill">
   <thead>
     <tr>
       <th colspan="2" class="text-center">User Profile</th>
@@ -38,15 +41,74 @@
       <td>Email</td>
       <td>{{userDetails.email}}</td>
     </tr>
-    <tr>
+    <!-- <tr>
       <td colspan="2" class="text-center">
         <input type="button" (click)="onLogout()" value="Logout" />
       </td>
-    </tr>
+    </tr> -->
   </tbody>
 </table>
 
 <!------------------------>
+
+<div class="card">
+  <div class="card-header">
+    Speak Up
+  </div>
+  <div class="card-body">
+    <form >
+      <textarea  [(ngModel)]="PostService.currentPost.post" name="post" id="post" cols="100" rows="10" placeholder="Write your post" required></textarea>
+      <hr>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+              <span>
+                  Select Privacy :
+                      </span>
+                  
+            <input type="radio" [(ngModel)]="PostService.currentPost.security" name="security" value="public"> Public
+            <input type="radio"  [(ngModel)]="PostService.currentPost.security" name="security" value="private"> Private<br>
+                 
+          </div>
+          <div class="col">
+            <div class="dropdown">
+              <span>
+                Select Location
+                    </span>
+              <select name="location" aria-placeholder="location"  [(ngModel)]="PostService.currentPost.location">
+                <option>  </option>
+                <option  *ngFor="let i of newLocation">
+
+                  {{i.location_name}}
+                </option>
+              </select>
+            
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" (click)="createAndUpdate(PostService.currentPost)" class="btn btn-primary">Post</button>
+    </form>
+  </div>
+  <div class="success" *ngIf="showsuccessmessage">
+      Status Updated successfully
+      
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!----------------->
 <hr>
 <h1 style="text-align: center;">Your Posts</h1>
 <div class="card-header">
@@ -58,7 +120,7 @@
     </div>
     <div class="card-footer">
       <small class="text-muted">{{b.location}}</small>
-      <a class="btn text-danger">Edit
+      <a class="btn text-danger" (click)="edit(b,b._id)">Edit
           <i class="fa fa-edit"></i>
       </a>
       <a class="btn text-danger"(click)="deletenewpost(b._id)">Delete

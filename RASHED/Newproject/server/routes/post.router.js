@@ -36,16 +36,12 @@ blogPost.post('/all/:email',(req,res,next)=>{
    }).catch(next);
  });
 
- blogPost.put('/edit/:id/:name',(req,res,next)=>{
+ blogPost.put('/edit/:id',(req,res,next)=>{
     //find by unique id then edit the blog
     PostInfo.findByIdAndUpdate({_id:req.params.id},req.body).then(function(){
        PostInfo.findOne({_id:req.params.id}).then(function(post){
-         if(req.params.name==post.email){
-            res.send(post);
-         }
-         else{
-            res.send({'message':'not found any post by you'});
-         }
+          res.send(post);
+        
        });
       
     }).catch(next);
