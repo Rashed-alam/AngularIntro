@@ -69,16 +69,33 @@
 </div> --> 
 
 <!----------------->
-<h1>Posts</h1>
+<!-- <h1>Posts</h1>
 <div class="card" *ngFor="let i of allpost" >
   
   <div class="card-header" >{{i.fullName}}</div>
   <div class="card-body text-primary">
-   <!-- <h5 class="card-title"><u>Title:</u> {{i.}}</h5> -->
+   
     <h5 class="card-text"> {{i.post}}</h5>
  
     <span class="card-text">location: {{i.location}}</span>
   </div>
 
+</div> -->
+
+<hr>
+<h1 style="text-align: center;">Newsfeed</h1>
+<div class="card">
+  <div class="card border-success mb-3" *ngFor="let b of allpost">
+
+    <div class="card-body">
+      <h5 class="card-title">{{b.fullName}}</h5>
+      <p class="card-text">{{b.post}}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{b.location}}</small>
+     
+    </div>
+  </div>
 </div>
+<hr>
 
