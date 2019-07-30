@@ -25,24 +25,12 @@ router.post('/new',(req,res,next)=>{
  
 });
 
-// router.put('/edit/:id/:email',(req,res,next)=>{ 
-//   Blog.findByIdAndUpdate({_id: req.params.id},req.body).then(function(){
-//     Blog.findOne({_id:req.params.id}).then(function(blog){ 
-//         if(req.params.email == blog.post_user){
-//           res.send(blog);
-//         } else {
-//           res.send({'message':'not found any posts by you'});
-//         }
-//       }).catch(next);
-//   });
-// });
-
 
 //for editing existing posts
 router.put('/edit/:id',(req,res,next)=>{ 
   Blog.findByIdAndUpdate({_id: req.params.id},req.body).then(function(){ 
     Blog.findOne({_id:req.params.id}).then(function(blog){ 
-          res.send(blog);
+          res.send({blog});
       }).catch(next);
   });
 
@@ -51,7 +39,7 @@ router.put('/edit/:id',(req,res,next)=>{
 //for deleting post
 router.delete('/delete/:id',(req,res,next)=>{
   Blog.findByIdAndRemove({_id: req.params.id}).then(function(blog){
-     res.send({blog});  
+     res.send(blog);  
   }).catch(next);
 
 });

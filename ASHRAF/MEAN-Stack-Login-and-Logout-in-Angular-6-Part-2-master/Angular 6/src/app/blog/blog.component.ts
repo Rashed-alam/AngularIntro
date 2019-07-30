@@ -5,7 +5,7 @@ import { Blog } from '../shared/blog.model';
 import { BlogService } from '../shared/blog.service';
 import { UserService } from '../shared/user.service';
 import { User } from '../shared/user.model';
-
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-blog',
@@ -21,16 +21,22 @@ export class BlogComponent implements OnInit {
 
 
   allLocation: Location [];
-  allBlog: Blog[];
+  allblog: Blog[];
   userDetails ;
 
-  constructor(private Ls: LocationService, private blog: BlogService,private userService: UserService) { }
+  constructor(private Ls: LocationService, private blog: BlogService,private userService: UserService,private router: Router) { }
 
   ngOnInit() {
     this.userService.getUserProfile().subscribe(
       res => {
         this.userDetails = res['user'];
         console.log(res);
+        // this.blog.getAllUserBlog(this.userDetails)
+        // .subscribe(
+        //   (data : Blog []) => {
+        //   this.allblog = data;
+          
+        //   });
       },
       err => { 
         console.log(err);
@@ -59,7 +65,7 @@ export class BlogComponent implements OnInit {
       this.loadingBlogs = false;
     }, 2000);
   }
-
+//for getting all the location from database
   getAllLocation(){
     this.Ls.getAllLocation()
     .subscribe(
@@ -69,7 +75,7 @@ export class BlogComponent implements OnInit {
        }
     );
   }
-
+//for creating post from dashboard
   createPost(b : Blog){
      b.post_user = this.userDetails.email;
     this.blog.createPost(b)
@@ -81,17 +87,17 @@ export class BlogComponent implements OnInit {
    
   }
 
-
+//to get all the posts by everyone in the dashboard page
   getAllPost(){
     this.blog.getAllBlog()
     .subscribe(
        (data : Blog[]) =>{
-         this.allBlog = data;
+         this.allblog = data;
     
        }
     );
   }
-
+//after submitting the form, this will clear all the inputted data
   clearAll(){
     this.blog.currentBlog = {
       _id: null,
@@ -102,8 +108,23 @@ export class BlogComponent implements OnInit {
       post_user: ''
     }
   }
+  //this will log the user out of the session
+  onLogout(){
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
+  }
 
-
+  //this is for deleting any post
+  deletePost(_id: any){
+    console.log(_id);
+    this.blog.deleteThisPost(_id)
+    .subscribe(
+      (data : Blog[]) =>{
+        alert('Post Deleted');
+      
+      }
+    );
+  }
 
 
 }
