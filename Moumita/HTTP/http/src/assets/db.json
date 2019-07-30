@@ -1,19 +1,36 @@
 {
-    "Employee":[
-        {"id": 1,
-          "firstName": "S",
-          "lastName": "Das",
-          "Adress": "rgpur",
-          "Phone":1234
-
-        },
-
-        {"id": 1,
-            "firstName": "P",
-            "lastName": "Ds",
-            "Adress": "rgpur",
-            "Phone":6789
-  
-          }
-    ]
+  "Employee": [
+    {
+      "id": 1,
+      "firstName": "Svn",
+      "lastName": "Das",
+      "Address": "rgpur",
+      "Phone": 1234,
+      "email": "das@gmail.com"
+    },
+    {
+      "id": 2,
+      "firstName": "P",
+      "lastName": "Ry",
+      "Address": "rgpur",
+      "Phone": 6789,
+      "email": "p12@yahoo.com"
+    },
+    {
+      "firstName": "M",
+      "lastName": "Das",
+      "Address": "dhk",
+      "id": 3,
+      "Phone": "567",
+      "email": "m023@gmail.com"
+    },
+    {
+      "firstName": "dly",
+      "lastName": "ry",
+      "Address": "dhk",
+      "id": 4,
+      "email": "dly@gmail.com",
+      "Phone": "3457"
+    }
+  ]
 }

@@ -18,10 +18,24 @@ export class EmployeeListComponent implements OnInit {
     this.getAllEmployee();
   }
   getAllEmployee()
+ 
   {
     this.employeeService.getAllEmployees().subscribe((data: Employee[]) => {
-      this.allEmployee = data;});
+      this.allEmployee = data;
+      console.log(data);
+      console.log(this.allEmployee);
+    });
     }
+  deletEmployee(id:number)
+  {
+    this.employeeService.deletEmployee(id) .subscribe((data: Employee) => {});
+    this.getAllEmployee();
+  }
+  edit(emp: any){
+    this.employeeService. currentEmployee = Object.assign({}, emp);
+
+  }
+    
   }
 
 
