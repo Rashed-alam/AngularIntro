@@ -7,7 +7,7 @@
 <app-home></app-home>
 
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
             <form #loginForm="ngForm" (submit)="submitInfo(loginForm);">
@@ -40,13 +40,15 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-8">
       <div class="card1">
         <div class="card1-body">
             <table class="table">
                 <thead>
                   <tr>
                    <th scope="row">Name</th>
+                    <th scope="row">Address</th>
+                    <th scope="row">Age</th>
                     <th scope="row">Department</th>
                     <th scope="row">Result</th>
                    
@@ -56,6 +58,8 @@
                  <tr *ngFor= "let list of demoList" >
                    
                     <td>{{list.name}}</td>
+                    <td>{{list.add}}</td>
+                    <td>{{list.age}}</td>
                     <td>{{list.dept}}</td>
                     <td>{{list.res}}</td>
                     

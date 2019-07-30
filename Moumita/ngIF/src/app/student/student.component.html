@@ -1,0 +1,88 @@
+
+<p>Student Information</p> 
+
+ <button routerLink="/"> HOME</button> 
+<!-- <button routerLink="/dept"> DEPARTMENT</button> 
+<button routerLink="/res"> RESULT</button>-->
+
+
+<div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+                <form #loginForm="ngForm" (submit)="submitInfo(loginForm);">
+                    <div class="row">
+                        <div class="col-md-12">
+                      <div class="form-group">
+                          <label>Name</label>
+                          
+                          <input type="text" class="form-control" name="name" [(ngModel)]="name"  #nameID="ngModel" placeholder="Enter name">
+                         </div> 
+                     
+                        
+                  <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" class="form-control" name="add" [(ngModel)]="add"  #addID="ngModel" placeholder="Address">
+                   
+                  </div>
+
+                  <div class="form-group">
+                    <label>Age</label>
+                    <input type="text" class="form-control" name="age" [(ngModel)]="age"  #ageID="ngModel" placeholder="Age">
+                   
+                  </div>
+
+                  <div class="form-group">
+                    <label>Department</label>
+                    <input type="text" class="form-control" name="dept" [(ngModel)]="dept"  #deptID="ngModel" placeholder="Department">
+                   
+                  </div>
+                  <div class="form-group">
+                    <label>Result</label>
+                    <input type="text" class="form-control"  name="res" [(ngModel)]="res"  #resID="ngModel"  placeholder="Result">
+                  </div>
+                  <!-- <div class="form-group form-check"> 
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  </div>-->
+                  <button type="submit" (click)="getStudentData()" class="btn btn-primary">Submit</button>
+                  </div>
+                  </div>
+                </form>
+      
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card1">
+        <div class="card1-body">
+            <table class="table" [hidden]="!isStudentHidden">
+                <thead>
+                  <tr>
+                   <th scope="row">Name</th>
+                   <th scope="row">Address</th>
+                   <th scope="row">Age</th>
+                    <th scope="row">Department</th>
+                    <th scope="row">Result</th>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                 <tr *ngFor= "let list of demoList" >
+                   
+                    <td>{{list.name}}</td>
+                    <td>{{list.add}}</td>
+                    <td>{{list.age}}</td>
+                    <td>{{list.dept}}</td>
+                    <td>{{list.res}}</td>
+                    
+                  </tr>
+
+                  </tbody>
+                 
+              </table>
+
+        </div>
+      </div>
+    </div>
+  </div>  
