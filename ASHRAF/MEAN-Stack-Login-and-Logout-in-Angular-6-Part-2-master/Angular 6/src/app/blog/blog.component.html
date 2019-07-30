@@ -1,29 +1,17 @@
-
-
-<!-- <div class="row show-hide-message">
-  <div [ngClass]="messageClass">
-    {{message}}
-  </div>
-</div> -->
-
-
-<!-- <button type="button" name="button" class="btn btn-warning" *ngIf="!newPost" (click)="newBlogForm()">New Post</button>
-<button [disabled]="loadingBlogs" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadBlogs()">Reload</button>
-<hr>
-<div *ngIf="!newPost">
-  
-</div> -->
-
-
+<div class="jumbotron text-center">
 <!-- this is for showing all the public posts in the dashboard -->
 <h1 class="page-header">All Public Blog Posts</h1>
-<div class="card border-primary mb-3" style="max-width: 50rem;" *ngFor="let i of allblog" >
-    <div class="card-header"> <i>Posted by </i> <strong>  {{i.post_user}}</strong></div>
-    <div class="card-body text-primary">
-      <h5 class="card-title"><u>Title:</u> {{i.post_title}}</h5>
-      <h6 class="card-text">Privacy: {{i.post_privacy}}</h6>
-      <p class="card-text">Description: {{i.post_description}}</p>
+<div class="card mb-3" *ngFor="let i of allblog">
+    <div class="card-body">
+      <h5 class="card-title"><strong>{{i.post_title}}</strong></h5>
+      <p class="card-text">{{i.post_description}}</p>
+      <p class="font-italic"><small class="text-muted">Written by <strong> {{i.post_user}}</strong> from {{i.post_location}}</small></p>
     </div>
   </div>
+</div>
+
+
+
+ 
 
 

@@ -22,6 +22,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BlogComponent } from './blog/blog.component';
 import {LocationService } from './shared/location.service';
 import { BlogService } from './shared/blog.service';
+import { ContactusComponent } from './contactus/contactus.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { BlogService } from './shared/blog.service';
     HomeComponent,
     NavbarComponent,
     DashboardComponent,
-    BlogComponent
+    BlogComponent,
+    ContactusComponent
  
   ],
   imports: [

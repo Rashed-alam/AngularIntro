@@ -15,7 +15,7 @@ export class BlogService {
   Url = "http://localhost:4000/blogs";
 
   currentBlog: Blog = {
-        _id: '',
+        
     post_title: '',
     post_description: '',
     post_location: '',
@@ -41,7 +41,7 @@ getAllUserBlog(userEmail):Observable<Blog[]>{
 }
 
 //this is for editing a particular post of the user
-updateUserBlog(blog : Blog): Observable<Blog> {
+updateUserBlog(blog : any): Observable<Blog> {
   return this.httpcall.put<Blog>(this.Url+'/edit/'+ blog._id, blog, headerOption);
 }
   

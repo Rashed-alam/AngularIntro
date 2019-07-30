@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BlogComponent } from './blog/blog.component';
 import {LocationService } from './shared/location.service';
+import { ContactusComponent} from './contactus/contactus.component';
+import { from } from 'rxjs';
 // import { BlogService } from './shared/blog.service';
 
 export const appRoutes: Routes = [
@@ -24,6 +26,10 @@ export const appRoutes: Routes = [
     },
      {
         path: 'home', component: HomeComponent
+      
+    },
+    {
+        path: 'contactus', component: ContactusComponent
       
     },
     {

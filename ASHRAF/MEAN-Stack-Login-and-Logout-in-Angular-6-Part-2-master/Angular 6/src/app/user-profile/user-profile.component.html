@@ -1,40 +1,67 @@
-<!-- top navigation buttons -->
-<div>
-    <button type="button" routerLink="/dashboard">Dashboard</button>
-    <button type="button" (click)="onLogout()">Logout</button>
-</div>
-<hr>
-<div>
+ <!-- this is for floating left navigation bar -->
+ <nav class="floating-menu">
+    <ul class="main-menu">
+        <li>
+            <a routerLink="/home" class="ripple">
+                <i class="fas fa-home fa-lg"></i>
+            </a>
+        </li>
+        <li>
+                <a routerLink="/dashboard" class="ripple">
+                    <i class="fas fa-user fa-lg"></i>
+                </a>
+            </li>
+        <li>
+            <a routerLink="/userprofile" class="ripple">
+                <i class="far fa-user fa-lg"></i>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/contactus" class="ripple">
+                <i class="far fa-address-card fa-lg"></i>
+            </a>
+        </li>
+        <li>
+                <a (click)="onLogout()" class="ripple">
+                    <i class="fab fa-blogger-b fa-lg"></i>
+                </a>
+            </li>
+    </ul>
+    <div class="menu-bg"></div>
+</nav>
 <!-- user information box -->
 <div class="card" style="width: 18rem;" *ngIf="userDetails">
-    <img class="card-img-top" src="data:image/png;base64,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" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{userDetails.fullName}}</h5>
       <p class="card-text">{{userDetails.email}}</p>
     </div>
-  </div>
-<hr>
-
-  <div class="row">
-      <div class="col-4" *ngFor = "let b of allblog">
-  <!-- user all posts box -->
-  <div class="card border-success mb-3" style="max-width: 18rem;" >
-        <div class="card-header bg-transparent border-success">{{b.post_privacy}}</div>
-        <div class="card-body text-success">
-          <h5 class="card-title">{{b.post_title}}</h5>
+</div>
+  <!-- user's all posts box -->
+  <h2 style="text-align: center;">My Posts</h2>
+      <div class="card mb-3" *ngFor = "let b of allblog">
+        <div class="card-body">
+            <h6>{{b.post_privacy}} post</h6>
+          <h5 class="card-title"><b>"{{b.post_title}}"</b></h5>
           <p class="card-text">{{b.post_description}}</p>
+            <p>Location: {{b.post_location}}</p>
+             <button type="button" (click)="editPost(b)"><span class="badge badge-pill badge-warning">Edit</span></button>
+            <button type="button"(click)="deletePost(b._id)"><span class="badge badge-pill badge-danger">Delete</span></button>   
         </div>
-        <div class="card-footer bg-transparent border-success">{{b.post_location}}</div>
-        <button type="button" class="badge badge-info" (click)="editPost(b)">EDIT</button>
-        <button type="button" class="badge badge-danger" (click)="deletePost(b._id)">DELETE</button> 
-      </div>
     </div>
-      <div class="col-8">
-         
-      </div>
-    </div>
+    <hr>
+<div class="success" *ngIf="showdeletemessage">
+            Post Deleted successfully
+</div>
+<div class="success" *ngIf="showsuccessmessage">
+        Post Created successfully
+</div>
+<div class="success" *ngIf="showeditmessage">
+        Post Updated successfully
+</div>
 
-   <form>
+<!-- this is for writing any new posts -->
+      <h1 style="text-align: center;">Create Posts</h1>
+            <form>
                     <input type="text" placeholder="Post Title" name="blog.currentBlog.post_title" [(ngModel)]="blog.currentBlog.post_title"> <br>
                     <textarea name="blog.currentBlog.post_description" cols="90" rows="10" placeholder="Post something awesome" [(ngModel)]="blog.currentBlog.post_description"></textarea>
                 <br>   
@@ -60,5 +87,8 @@
                               </div>
                             </div>
                   </form> 
+          
 
-
+  
+                      
+                      

@@ -17,11 +17,14 @@ export class UserProfileComponent implements OnInit {
   message;
   newPost = false;
   loadingBlogs = false;
-
+  showsuccessmessage:boolean;
+  showeditmessage: boolean;
+  showdeletemessage: boolean;
 
   allLocation: Location [];
   allblog: Blog[];
   userDetails ;
+  
 
   constructor(private Ls: LocationService, private blog: BlogService,private userService: UserService,private router: Router) { }
 
@@ -86,8 +89,8 @@ userProfile(){
      b.post_user = this.userDetails.email;
     this.blog.createPost(b)
     .subscribe();
-    console.log(b);
-    alert('Post Created');
+    this.showsuccessmessage=true;
+      setTimeout(()=>this.showsuccessmessage=false,4000);
    // this.getAllPostofUser(); 
    this.userBlogdata();
     this.clearAll();
@@ -120,12 +123,13 @@ userProfile(){
     this.blog.deleteThisPost(_id)
     .subscribe(
       (data) =>{
-      //  this.blog.getAllUserBlog(this.userDetails);
-        alert('Post Deleted');
-        this.userBlogdata();
-      
+        this.showdeletemessage=true;
+        setTimeout(()=>this.showdeletemessage=false,4000);
+      this.userBlogdata();
       }
+      
     );
+   
   }
 
   // getAllPostofUser(){ 
@@ -140,25 +144,29 @@ userProfile(){
   editPost(Blog){
     this.blog.currentBlog = Object.assign({},Blog);
     this.userBlogdata();
+    
   }
 
   //this is for checking if the blog is to be created or updated
-  createAndUpdate(currentBlog: Blog){
+  createAndUpdate(key: any){
     
-    if(currentBlog._id  == null){
-      this.createPost(currentBlog);
+    if(key._id  == null){
+      this.createPost(key);
     }
     else{
-      this.updatePost(currentBlog);
+      this.updatePost(key);
     }
+    
   }
 
   //this is for updating user blogs
   updatePost(bl: Blog){
     this.blog.updateUserBlog(bl)
     .subscribe();
-    alert('Post Edited');
+    this.showeditmessage=true;
+    setTimeout(()=>this.showeditmessage=false,4000);
     this.userBlogdata();
+    this.clearAll();
   }
 
 
