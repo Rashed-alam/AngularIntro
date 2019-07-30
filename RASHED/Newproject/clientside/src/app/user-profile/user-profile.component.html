@@ -22,7 +22,20 @@
 
 
 <!--------------------->
-<table allign="left" *ngIf="userDetails" class="table-fill">
+<div class="card bg-light mb-3"  style="width: 18rem;" *ngIf="userDetails">
+  <div class="card" style="width: 18rem;" *ngIf="userDetails">
+  <div class="card-body">
+    <h5 class="card-title">{{userDetails.fullName}}</h5>
+    <p class="card-text">{{userDetails.email}}</p>
+  
+  </div>
+</div>
+</div>
+
+
+
+
+<!-- <table class="table table-bordered" *ngIf="userDetails" class="table-fill">
   <thead>
     <tr>
       <th colspan="2" class="text-center">User Profile</th>
@@ -41,23 +54,16 @@
       <td>Email</td>
       <td>{{userDetails.email}}</td>
     </tr>
-    <!-- <tr>
-      <td colspan="2" class="text-center">
-        <input type="button" (click)="onLogout()" value="Logout" />
-      </td>
-    </tr> -->
   </tbody>
-</table>
+</table> -->
 
 <!------------------------>
 
 <div class="card">
-  <div class="card-header">
-    Speak Up
-  </div>
+  
   <div class="card-body">
     <form >
-      <textarea  [(ngModel)]="PostService.currentPost.post" name="post" id="post" cols="100" rows="10" placeholder="Write your post" required></textarea>
+      <textarea  [(ngModel)]="PostService.currentPost.post" name="post" id="post" cols="100" rows="5" placeholder="Write your post" required></textarea>
       <hr>
       <div class="container">
         <div class="row">
@@ -94,7 +100,7 @@
     </form>
   </div>
   <div class="success" *ngIf="showsuccessmessage">
-      Status Updated successfully
+      Post Created successfully
       
     </div>
 </div>
@@ -111,8 +117,8 @@
 <!----------------->
 <hr>
 <h1 style="text-align: center;">Your Posts</h1>
-<div class="card-header">
-  <div class="card" *ngFor="let b of allblog">
+<div class="card border-dark mb-3">
+  <div class="card border-success mb-3" *ngFor="let b of allblog">
 
     <div class="card-body">
       <h5 class="card-title">{{b.fullName}}</h5>
@@ -120,7 +126,7 @@
     </div>
     <div class="card-footer">
       <small class="text-muted">{{b.location}}</small>
-      <a class="btn text-danger" (click)="edit(b,b._id)">Edit
+      <a class="btn text-danger" (click)="edit(b)">Edit
           <i class="fa fa-edit"></i>
       </a>
       <a class="btn text-danger"(click)="deletenewpost(b._id)">Delete

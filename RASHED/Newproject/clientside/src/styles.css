@@ -295,7 +295,7 @@ label.validation-message{
   margin-bottom: 15px;
 }
 
-/* Table Styles */
+/* Table Styles
 .table-fill {
   background: white;
   border-radius:3px;
@@ -303,13 +303,13 @@ label.validation-message{
   height: 320px;
   margin: auto;
   max-width: 600px;
-  padding:5px;
+ 
   width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
-}
+} */
  
-th {
+/* th {
   color:#D5DDE5;;
   background:#1b1e24;
   border-bottom:4px solid #9ea7af;
@@ -398,4 +398,4 @@ td.text-center {
 
 td.text-right {
   text-align: right;
-}
+} */
