@@ -1,5 +1,5 @@
 <!-- Side navigation -->
-<div class="sidenav">
+<div>
     <button type="button" routerLink="/dashboard">Dashboard</button>
    
     <button type="button" (click)="onLogout()">Logout</button>
@@ -37,3 +37,25 @@
       </tr> -->
   </tbody>
 </table>
+<hr>
+<h1 style="text-align: center;">Your Posts</h1>
+<div class="card-deck">
+    <div class="card" *ngFor = "let b of allblog">
+      
+      <div class="card-body">
+        <h5 class="card-title">{{b.post_title}}</h5>
+        <p class="card-text">{{b.post_description}}</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">{{b.post_location}}</small>
+      </div>
+      <button type="button" class="badge badge-info" (click)="edit(b)">EDIT</button>
+      <!-- <a href="#" class="badge badge-danger" (click)="deleteEmployee(employee._id)">DELETE</a> -->
+      <button type="button" class="badge badge-danger" (click)="deletePost(b._id)">Delete</button>
+    </div>
+    
+  
+  </div>
+  <hr>
+
+ 

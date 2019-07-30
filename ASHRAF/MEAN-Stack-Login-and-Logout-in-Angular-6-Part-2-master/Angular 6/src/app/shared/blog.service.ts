@@ -15,7 +15,7 @@ export class BlogService {
   Url = "http://localhost:4000/blogs";
 
   currentBlog: Blog = {
-        
+        _id: null,
     post_title: '',
     post_description: '',
     post_location: '',
@@ -25,14 +25,27 @@ export class BlogService {
 
   constructor(private httpcall: HttpClient) { }
 
-
+  //this is for getting all posts of dashboard
   getAllBlog(): Observable<Blog[]>{
     return this.httpcall.get<Blog[]>(this.Url+'/all', headerOption);
   }
 
-
+//this is for creating posts inside dashboard
   createPost(blog : Blog): Observable<Blog> {
     return this.httpcall.post<Blog>(this.Url+'/new', blog , headerOption);
   }
+
+//this is for getting all posts of only the user logged in
+getAllUserBlog(userEmail):Observable<Blog[]>{
+  return this.httpcall.post<Blog[]>(this.Url+'/all/'+userEmail.email, headerOption);
+}
+
+//this is for editing a particular post of the user
+// updateUserBlog(blog : Blog): Observable<Blog[]> {
+//   return this.httpcall.put<Blog[]>(this.Url+'/edit/'+ blog._id, blog, headerOption);
+// }
   
+deleteThisPost(_id: any): Observable<Blog[]>{
+  return this.httpcall.delete<Blog[]>(this.Url+'/delete/'+ _id, headerOption);
+}
 }
