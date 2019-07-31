@@ -9,10 +9,22 @@ const headerOption =
 };
 
 
+type NewType = Employee;
+
 @Injectable()
 export class EmployeeService {
 
   mocUrl= 'http://localhost:3000/Employee';
+
+  currentEmployee: NewType = {
+    firstName: '',
+    lastName: '',
+    Address: '',
+    id: null,
+    email:'',
+    Phone: null
+  }
+
   constructor(
     private http: HttpClient
   ) { }
@@ -21,4 +33,16 @@ export class EmployeeService {
   {
     return this.http.get<Employee[]>(this.mocUrl, headerOption);
   }
+  deletEmployee(id: number): Observable<Employee>{
+    return this.http.delete<Employee>(this.mocUrl + '/' + id, headerOption);
+  }
+  createEmployee(emp: Employee): Observable<Employee>
+  {
+    return this.http.post<Employee>(this.mocUrl, emp, headerOption);
+  }
+  updateEmployee(emp: Employee): Observable<Employee>
+  {
+    return this.http.put<Employee>(this.mocUrl + '/' + emp.id, emp, headerOption);
+  }
+  
 }
