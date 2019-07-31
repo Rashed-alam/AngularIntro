@@ -7,15 +7,12 @@ const headerOption = {
   headers: new HttpHeaders({ 'Content-Type' : 'application/json' })
 };
  @Injectable()
-// @Injectable({
-//   providedIn: 'root'
-// })
+
 export class BlogService {
 
   Url = "http://localhost:4000/blogs";
 
-  currentBlog: Blog = {
-        
+  currentBlog: Blog = { 
     post_title: '',
     post_description: '',
     post_location: '',
@@ -44,7 +41,7 @@ getAllUserBlog(userEmail):Observable<Blog[]>{
 updateUserBlog(blog : any): Observable<Blog> {
   return this.httpcall.put<Blog>(this.Url+'/edit/'+ blog._id, blog, headerOption);
 }
-  
+ //this is for deleting a particular post when the user is logged in 
 deleteThisPost(_id: any): Observable<Blog[]>{
   return this.httpcall.delete<Blog[]>(this.Url+'/delete/'+ _id, headerOption);
 }

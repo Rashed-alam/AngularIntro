@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { environment } from '../../environments/environment';
 import { User } from './user.model';
 
@@ -19,16 +18,16 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   //HttpMethods
-
+//for registering a user
   postUser(user: User){
     console.log(user);
     return this.http.post(environment.apiBaseUrl+'/register', user, this.noAuthHeader);
   }
-
+//for login
   login(authCredentials) {
     return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials,this.noAuthHeader);
   }
-
+//for fetching the profile
   getUserProfile() {
     return this.http.get(environment.apiBaseUrl + '/userProfile');
   }
