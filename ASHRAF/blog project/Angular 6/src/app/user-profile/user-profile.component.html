@@ -125,13 +125,23 @@
         <h5 style="text-align: center;">My Posts</h5>
       <div class="card mb-3" *ngFor = "let b of allblog">
         <div class="card-body">
-            <h6>{{b.post_privacy}} post</h6>
           <h5 class="card-title"><b>"{{b.post_title}}"</b></h5>
-          <p class="card-text">{{b.post_description}}</p>
-            <p>Location: {{b.post_location}}</p>
-             <button type="button" (click)="editPost(b)" data-toggle="modal" data-target="#exampleModal"><span class="badge badge-pill badge-warning">Edit</span></button>
-            <button type="button"(click)="deletePost(b._id)"><span class="badge badge-pill badge-danger">Delete</span></button>   
+          <p class="card-text">{{b.post_description}}</p>      
         </div>
+        <div class="container">
+                <div class="row">
+                  <div class="col-sm">
+                        <i class="fa fa-lock"> {{b.post_privacy}} post</i>
+                  </div>
+                  <div class="col-sm">
+                        <i class="fa fa-map-marker" style="font-size:20px;"> {{b.post_location}}</i> <br>
+                  </div>
+                  <div class="col-sm">
+                        <button (click)="editPost(b)" data-toggle="modal" data-target="#exampleModal"><span class="badge badge-pill badge-warning">Edit</span></button>
+                        <button (click)="deletePost(b._id)"><span class="badge badge-pill badge-danger">Delete</span></button>   
+                  </div>
+                </div>
+              </div> <br>
     </div>
 </div>
     <hr>
