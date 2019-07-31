@@ -148,6 +148,7 @@ userProfile(){
   editPost(Blog){
     this.blog.currentBlog = Object.assign({},Blog);
     this.userBlogdata();
+   
     
   }
 

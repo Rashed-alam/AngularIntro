@@ -30,12 +30,18 @@
     <div class="menu-bg"></div>
 </nav>
 <br>
+
+
+
 <!-- user information box -->
 <div *ngIf="userDetails">
       <h1 style="text-align: center;">Hi, {{userDetails.fullName}}</h1>
       <!-- <p class="card-text">{{userDetails.email}}</p> -->
 </div>
 <hr>
+
+
+
 <!-- this is for writing any new posts -->
 <h5 style="text-align: center;">Write Something Awesome</h5>
 <div class="card">
@@ -70,6 +76,8 @@
                 </div>
       </form> 
 
+
+      
 
       <!-- this part is done for editing an existing form -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -138,8 +146,8 @@
                         <i class="fa fa-map-marker" style="font-size:20px;"> {{b.post_location}}</i> <br>
                   </div>
                   <div class="col-sm">
-                        <button (click)="editPost(b)" data-toggle="modal" data-target="#exampleModal"><span class="badge badge-pill badge-warning">Edit</span></button>
-                        <button (click)="deletePost(b._id)"><span class="badge badge-pill badge-danger">Delete</span></button>   
+                        <button (click)="editPost(b)" data-toggle="modal" data-target="#exampleModal"><span class="badge badge-box   badge-warning">Edit</span></button>
+                        <button (click)="deletePost(b._id)"><span class="badge badge-box badge-danger">Delete</span></button>   
                   </div>
                 </div>
               </div> <br>
