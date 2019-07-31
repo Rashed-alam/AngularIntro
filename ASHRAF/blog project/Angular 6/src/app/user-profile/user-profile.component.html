@@ -122,9 +122,10 @@
   <!-- user's all posts box -->
  
   <div class="jumbotron">
-        <h5 style="text-align: center;">My Posts</h5>
+        <h5 style="text-align: center;">My Total Posts: ({{allblog.length}})</h5>
       <div class="card mb-3" *ngFor = "let b of allblog">
         <div class="card-body">
+        
           <h5 class="card-title"><b>"{{b.post_title}}"</b></h5>
           <p class="card-text">{{b.post_description}}</p>      
         </div>

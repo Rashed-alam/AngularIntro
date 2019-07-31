@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
   allblog: Blog[];
   userDetails ;
   
-
+  
   constructor(private Ls: LocationService, private blog: BlogService,private userService: UserService,private router: Router) { }
 
   ngOnInit() {
@@ -58,6 +58,7 @@ userBlogdata(){
     (data : Blog []) => {
     this.allblog = data;
     });
+   
 }
 //this is for showing the user information back to profile page
 userProfile(){
