@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AddDataService} from '../add-data.service'
+import { AddDataService } from '../add-data.service';
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
