@@ -1,0 +1,33 @@
+ <!-- this is for floating left navigation bar -->
+    <nav class="floating-menu">
+        <ul class="main-menu">
+            <li>
+                <a routerLink="/home" class="ripple" routerLinkActive="active">
+                    <i class="fas fa-home fa-lg"></i>
+                </a>
+            </li>
+            <li>
+                    <a routerLink="/dashboard" class="ripple" routerLinkActive="active">
+                        <i class="fas fa-profile fa-lg"></i>
+                    </a>
+                </li>
+            <li>
+                <a routerLink="/userprofile" class="ripple" routerLinkActive="active">
+                    <i class="far fa-user fa-lg"></i>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/contactus" class="ripple" routerLinkActive="active">
+                    <i class="far fa-address-card fa-lg"></i>
+                </a>
+            </li>
+            <li>
+                    <a (click)="onLogout()" class="ripple" routerLinkActive="active">
+                        <i class="fab fa-blogger-b fa-lg"></i>
+                    </a>
+                </li>
+        </ul>
+        <div class="menu-bg"></div>
+    </nav>
+
+    <app-blog></app-blog>

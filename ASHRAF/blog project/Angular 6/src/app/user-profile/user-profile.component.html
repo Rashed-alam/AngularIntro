@@ -1,0 +1,166 @@
+ <!-- this is for floating left navigation bar -->
+ <nav class="floating-menu">
+    <ul class="main-menu">
+        <li>
+            <a routerLink="/home" class="ripple">
+                <i class="fas fa-home fa-lg"></i>
+            </a>
+        </li>
+        <li>
+                <a routerLink="/dashboard" class="ripple">
+                    <i class="fas fa-user fa-lg"></i>
+                </a>
+            </li>
+        <li>
+            <a routerLink="/userprofile" class="ripple">
+                <i class="far fa-user fa-lg"></i>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/contactus" class="ripple">
+                <i class="far fa-address-card fa-lg"></i>
+            </a>
+        </li>
+        <li>
+                <a (click)="onLogout()" class="ripple">
+                    <i class="fab fa-blogger-b fa-lg"></i>
+                </a>
+            </li>
+    </ul>
+    <div class="menu-bg"></div>
+</nav>
+<br>
+
+
+
+<!-- user information box -->
+<div *ngIf="userDetails">
+      <h1 style="text-align: center;">Hi, {{userDetails.fullName}}</h1>
+      <!-- <p class="card-text">{{userDetails.email}}</p> -->
+</div>
+<hr>
+
+
+
+<!-- this is for writing any new posts -->
+<h5 style="text-align: center;">Write Something Awesome</h5>
+<div class="card">
+<div class="card-body">
+        <div class="success" role="alert" *ngIf="showsuccessmessage">
+                Post Created successfully
+        </div>
+<form>
+        <input type="text" class="form-control" placeholder="Post Title" name="blog.currentBlog.post_title" [(ngModel)]="blog.currentBlog.post_title"> <br>
+        <textarea name="blog.currentBlog.post_description" cols="90" rows="10" placeholder="Post something awesome" [(ngModel)]="blog.currentBlog.post_description"></textarea>
+    <br>   
+              <div class="container">
+                  <div class="row">
+                    <div class="col-sm">
+                        Location: 
+                        <select name="blog.currentBlog.post_location" [(ngModel)]="blog.currentBlog.post_location">
+                            <option value="{{i.location_name}}"  *ngFor ="let i of allLocation">{{i.location_name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm">
+                        Privacy 
+                        <select name="blog.currentBlog.post_privacy" [(ngModel)]="blog.currentBlog.post_privacy">
+                            <option value="public">Public</option>
+                            <option value="private">Private</option>
+                        </select>
+                    </div>
+                   
+                    <div class="col-sm">
+                        <button type="submit" class="btn btn-success" (click)="createAndUpdate(blog.currentBlog)">Submit</button>
+                    </div>
+                  </div>
+                </div>
+      </form> 
+
+
+      
+
+      <!-- this part is done for editing an existing form -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                  <input type="text" class="form-control" placeholder="Post Title" name="blog.currentBlog.post_title" [(ngModel)]="blog.currentBlog.post_title"> <br>
+                  <textarea name="blog.currentBlog.post_description" cols="50" rows="10" placeholder="Post something awesome" [(ngModel)]="blog.currentBlog.post_description"></textarea>
+              <br>   
+                        <div class="container">
+                            <div class="row">
+                              <div class="col-sm">
+                                  Location: 
+                                  <select name="blog.currentBlog.post_location" [(ngModel)]="blog.currentBlog.post_location">
+                                      <option value="{{i.location_name}}"  *ngFor ="let i of allLocation">{{i.location_name}}</option>
+                                  </select>
+                              </div>
+                              <div class="col-sm">
+                                  Privacy 
+                                  <select name="blog.currentBlog.post_privacy" [(ngModel)]="blog.currentBlog.post_privacy">
+                                      <option value="public">Public</option>
+                                      <option value="private">Private</option>
+                                  </select>
+                              </div>
+                             
+                              
+                            </div>
+                          </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success" data-dismiss="modal" (click)="createAndUpdate(blog.currentBlog)">Save Changes</button>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+    </div>
+    </div>
+    <br>
+
+  <!-- user's all posts box -->
+ 
+  <div class="jumbotron">
+        <h5 style="text-align: center;">My Total Posts: ({{allblog.length}})</h5>
+      <div class="card mb-3" *ngFor = "let b of allblog">
+        <div class="card-body">
+        
+          <h5 class="card-title"><b>"{{b.post_title}}"</b></h5>
+          <p class="card-text">{{b.post_description}}</p>      
+        </div>
+        <div class="container">
+                <div class="row">
+                  <div class="col-sm">
+                        <i class="fa fa-lock"> {{b.post_privacy}} post</i>
+                  </div>
+                  <div class="col-sm">
+                        <i class="fa fa-map-marker" style="font-size:20px;"> {{b.post_location}}</i> <br>
+                  </div>
+                  <div class="col-sm">
+                        <button (click)="editPost(b)" data-toggle="modal" data-target="#exampleModal"><span class="badge badge-box   badge-warning">Edit</span></button>
+                        <button (click)="deletePost(b._id)"><span class="badge badge-box badge-danger">Delete</span></button>   
+                  </div>
+                </div>
+              </div> <br>
+    </div>
+</div>
+    <hr>
+<div class="alert alert-danger" *ngIf="showdeletemessage">
+            Post Deleted successfully
+</div>
+
+
+          
+
+  
+                      
+                      
