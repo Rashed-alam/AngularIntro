@@ -14,6 +14,9 @@
         <a class="nav-link" [routerLink]="['/userprofile']" routerLinkActive="router-link-active">Profile</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/postdetails']" routerLinkActive="router-link-active">Blog Reports</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" (click)="onLogout()" value="Logout" >Logout</a>
       </li>
     </ul>
@@ -81,6 +84,7 @@
               <span>
                 Select Location
                     </span>
+                    
               <select name="location" aria-placeholder="location"  [(ngModel)]="PostService.currentPost.location">
                 <option>  </option>
                 <option  *ngFor="let i of newLocation">
@@ -88,6 +92,12 @@
                   {{i.location_name}}
                 </option>
               </select>
+              <!-- <p>
+                <label>Select a date</label>
+                <input type="date" id="date" [(ngModel)]="PostService.currentPost.det"/>
+            </p>
+            
+            <p> {{ det | date : 'dd/MM/yyyy'}} </p> -->
             
 
 

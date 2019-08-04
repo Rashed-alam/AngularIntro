@@ -1,3 +1,4 @@
+import { PostdetailsComponent } from './postdetails/postdetails.component';
 import { Routes } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
@@ -5,6 +6,7 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 export const appRoutes: Routes = [
     {
@@ -20,6 +22,9 @@ export const appRoutes: Routes = [
     },
     {
         path: 'dashboard', component: DashboardComponent
+    },
+    {
+        path: 'postdetails', component: PostdetailsComponent
     },
     {
         path: '', redirectTo: '/login', pathMatch: 'full'

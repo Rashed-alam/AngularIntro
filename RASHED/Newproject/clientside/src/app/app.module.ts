@@ -18,6 +18,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PostdetailsComponent } from './postdetails/postdetails.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     UserProfileComponent,
     SignInComponent,
  
-    DashboardComponent
+    DashboardComponent,
+ 
+    PostdetailsComponent
   ],
   imports: [
     BrowserModule,
