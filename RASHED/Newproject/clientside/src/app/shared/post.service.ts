@@ -22,7 +22,8 @@ export class PostService {
     location:'',
     post:'',
     security:'',
-    email: ''
+    email: '',
+    det: null
    
   }
   getallpost(): Observable<post[]> {
