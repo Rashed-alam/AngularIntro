@@ -1,7 +1,7 @@
 const express = require("express");
 const Blog = require("../models/blog.model");
 const router = express.Router();
-const User = require("../models/user.model");
+
 
 //for getting the posts of the user(profile)
 router.post('/all/:email',(req,res,next)=>{ 

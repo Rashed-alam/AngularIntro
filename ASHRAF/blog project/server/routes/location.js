@@ -8,12 +8,15 @@ const Location = require('../models/location.model');
  */
 
 
-//GETTING THE LIST OF CHIPS FROM DB
+//getting all the locatin from database
 router.get('/all',(req,res,next)=>{ 
     Location.find({}).then(function(location){
         res.send(location);
     }).catch(next);
 });
+
+
+//creating new location into database
 router.post('/new',(req,res,next)=>{ 
     Location.create(req.body).then(function(location){
         res.send(location);
