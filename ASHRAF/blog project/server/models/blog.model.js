@@ -6,7 +6,7 @@ const BlogSchema = mongoose.Schema({
   post_location: {type: String, required: true},
   post_privacy: {type: String, required: true},
   post_user: {type: String,required: true},
-  post_username: {type: String},
+  post_username: {type: String, required: true},
   post_date: {type: Date}
 });
 
