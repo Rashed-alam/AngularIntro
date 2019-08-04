@@ -48,8 +48,7 @@ export class UserProfileComponent implements OnInit {
     );
     //this.userProfile();
     this.getAllLocation();
-    this.userBlogdata();
-    //this.getAllPostofUser();
+
   }
   
 //this is for showing the user their own corresponding blogs
@@ -94,19 +93,15 @@ userProfile(){
     this.blog.createPost(b)
     .subscribe();
     this.showsuccessmessage=true;
-      setTimeout(()=>this.showsuccessmessage=false,4000);
-   // this.getAllPostofUser(); 
+      setTimeout(()=>this.showsuccessmessage=false,4000); 
    this.userBlogdata();
     this.clearAll();
-  
-   
   }
 
 
 //after submitting the form, this will clear all the inputted data
   clearAll(){
     this.blog.currentBlog = {
-      
       post_title: '',
       post_description: '',
       post_location: '',
@@ -134,32 +129,18 @@ userProfile(){
         this.showdeletemessage=true;
         setTimeout(()=>this.showdeletemessage=false,4000);
       this.userBlogdata();
-      }
-      
-    ); }
-    
-   
+      });
+     }
   }
-
-  // getAllPostofUser(){ 
-  //   console.log(this.userDetails);
-  // //   this.blog.getAllUserBlog(this.userDetails.email)
-  // //         .subscribe(); 
-  // //         console.log(this.userDetails);
-  // }
-
 
   
   editPost(Blog){
     this.blog.currentBlog = Object.assign({},Blog);
     this.userBlogdata();
-   
-    
   }
 
   //this is for checking if the blog is to be created or updated
   createAndUpdate(key: any){
-    
     if(key._id  == null){
       this.createPost(key);
     }
