@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit {
   allLocation: Location [];
   allblog: Blog[];
   userDetails ;
-  
+  today: number = Date.now();
   
   constructor(private Ls: LocationService, private blog: BlogService,private userService: UserService,private router: Router) { }
 
@@ -48,6 +48,7 @@ export class UserProfileComponent implements OnInit {
     );
     //this.userProfile();
     this.getAllLocation();
+    this.userBlogdata();
     //this.getAllPostofUser();
   }
   
@@ -88,6 +89,8 @@ userProfile(){
 //for creating post from dashboard
   createPost(b : Blog){
      b.post_user = this.userDetails.email;
+     b.post_username = this.userDetails.fullName;
+     b.post_date = this.today;
     this.blog.createPost(b)
     .subscribe();
     this.showsuccessmessage=true;
@@ -95,7 +98,7 @@ userProfile(){
    // this.getAllPostofUser(); 
    this.userBlogdata();
     this.clearAll();
-   
+  
    
   }
 
@@ -103,12 +106,14 @@ userProfile(){
 //after submitting the form, this will clear all the inputted data
   clearAll(){
     this.blog.currentBlog = {
-      _id:'',
+      
       post_title: '',
       post_description: '',
       post_location: '',
       post_privacy: '',
-      post_user: ''
+      post_user: '',
+      post_username:'',
+      post_date: null
     }
   }
 
@@ -170,8 +175,9 @@ userProfile(){
     .subscribe();
     this.showeditmessage=true;
     setTimeout(()=>this.showeditmessage=false,4000);
-    this.userBlogdata();
     this.clearAll();
+    this.userBlogdata();
+   
   }
 
 
