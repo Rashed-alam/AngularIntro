@@ -1,0 +1,172 @@
+<form >
+  
+<div class="jumbotron">
+    <div class="card" style="width: 70rem;">
+        <div class="card-body">
+          <h1 class="card-title"><u>Fabric Calculation</u></h1><br>
+         
+          <div class="container">
+            <div class="row">
+              <div class="col-4">
+                  <div class="form-group">
+                      <label for="formGroupExampleInput">ID</label>
+                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                    </div>
+              </div>
+              <div class="col-4">
+               Mail Date: 
+               
+              </div>
+              <div class="col-4">
+                Entry Date: 
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="container">
+            <div class="row">
+              <div class="col-4">
+                  <div class="form-group">
+                      <label for="formGroupExampleInput">Ref. No. </label>
+                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter Reference Number">
+                    </div>
+              </div>
+              
+            </div>
+          </div>
+          <br>
+          <div class="container">
+            <div class="row">
+             
+              <div class="col-6">
+                  <div class="form-group">
+                      <label for="formGroupExampleInput">Buyer Name</label>
+                      <select class="custom-select">
+                          <option selected>Select buyer name</option>
+                          <option value="{{b.name}}" *ngFor="let b of allBuyers">{{b.name}}</option>
+                        </select>
+                    </div>
+                    <button class="button">New Buyer</button>
+              </div>
+             
+              
+            </div>
+          </div>
+          <hr>
+          <div class="card-deck">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title"><u>Style</u></h5>
+                   
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Code</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter the Code">
+                      </div>
+                      <div class="form-group">
+                        <label for="formGroupExampleInput2">Item Name</label>
+                        <select class="custom-select">
+                            <option selected>Select the Item name</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="formGroupExampleInput2">Sleeve Type</label>
+                          <select class="custom-select">
+                              <option selected>Select the Sleeve type</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+                        </div>
+                      
+                  </div>
+                
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                      <div class="form-group row">
+                          <label for="inputEmail3" class="col-sm-2 col-form-label">Size</label>
+                          <div class="col-sm-10">
+                              <select class="custom-select">
+                                  <option selected>Select a Size</option>
+                                  <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                </select>
+                            <button class="button">New Size</button>
+                          </div>
+                         
+                        </div>
+                
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Fabrics</label>
+                            <div class="col-sm-10">
+                                <select class="custom-select">
+                                    <option selected>Select the Fabric Type</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                  </select>
+                            </div>
+                          </div>
+                              
+                              <div class="form-group row">
+                                  <label for="inputEmail3" class="col-sm-2 col-form-label">Chest</label>
+                                  <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Chest Size input">
+                                    <select class="custom-select">
+                                        <option selected>Select a Size</option>
+                                        <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                      </select>
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="inputPassword3" class="col-sm-2 col-form-label">Length</label>
+                                  <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="inputPassword3" placeholder="Length input">
+                                    <select class="custom-select">
+                                        <option selected>Select a Size</option>
+                                        <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                      </select>
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Sleeve</label>
+                                    <div class="col-sm-10">
+                                      <input type="password" class="form-control" id="inputPassword3" placeholder="Sleeve input">
+                                      <select class="custom-select">
+                                          <option selected>Select a Size</option>
+                                          <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                        </select>
+                                    </div>
+                                  </div>
+                                    
+
+                                          
+
+                  </div>
+                
+                </div>
+               
+              </div>
+          
+        </div>
+        <hr>
+        <div class="container">
+                <div class="row justify-content-md-center">
+                  <div class="col col-lg-2">
+                    <button type="button" class="btn btn-success">Save</button>
+                  </div>
+                  <div class="col-md-auto">
+                  
+                  </div>
+                  <div class="col col-lg-2">
+                        <button type="button" class="btn btn-primary">Refresh</button>
+                  </div>
+                </div>
+              </div>
+              <br><br>
+            
+      </div>
+</div>
+</form>
