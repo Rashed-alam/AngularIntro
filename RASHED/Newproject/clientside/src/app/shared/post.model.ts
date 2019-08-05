@@ -4,5 +4,6 @@ export class post {
     post: string; 
     security: string;
     email: string;
+    det:Date;
    
 }

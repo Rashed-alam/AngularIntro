@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BlogComponent } from './blog/blog.component';
 import {LocationService } from './shared/location.service';
 import { ContactusComponent} from './contactus/contactus.component';
+import { ListComponent } from './list/list.component';
 import { from } from 'rxjs';
 // import { BlogService } from './shared/blog.service';
 
@@ -38,6 +39,10 @@ export const appRoutes: Routes = [
     },
     {
         path: 'blog', component: BlogComponent, canActivate:[AuthGuard]
+      
+    },
+    {
+        path: 'list', component: ListComponent, canActivate:[AuthGuard]
       
     },
     {

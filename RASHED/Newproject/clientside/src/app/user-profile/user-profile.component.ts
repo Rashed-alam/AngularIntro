@@ -16,9 +16,12 @@ export class UserProfileComponent implements OnInit {
   allblog:post[];
   newLocation: any = [];
   showsuccessmessage:boolean;
+  today_date=new Date();
   constructor(private userService: UserService, private router: Router,private PostService:PostService,private list: LocationService) { }
 
   ngOnInit() {
+
+    
     this.getLocationlist();
     this.userService.getUserProfile().subscribe(
       res => {
@@ -62,6 +65,7 @@ createAndUpdate(a: any) {
 createnewpost(a:any) {
   a.fullName = this.userDetails.fullName;
   a.email = this.userDetails.email;
+  a.det=this.today_date;
   // const email = a.email;
    console.log(a);
   // this.http.post('http://localhost:3000/post/data',a, headerOption).subscribe(res=>{
@@ -111,6 +115,7 @@ clearAll() {
     location: '',
     post: '',
     security: '',
+    det:null
   }
 }
 

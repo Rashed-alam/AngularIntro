@@ -21,6 +21,9 @@ const PostSchema = new Schema({
     email:{
         type:String,
         
+    },
+    det:{
+        type:Date
     }
 
 });

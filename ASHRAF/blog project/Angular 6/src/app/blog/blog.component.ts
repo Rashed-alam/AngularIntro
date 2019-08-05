@@ -7,6 +7,7 @@ import { UserService } from '../shared/user.service';
 import { User } from '../shared/user.model';
 import { Router } from "@angular/router";
 
+
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -23,6 +24,7 @@ export class BlogComponent implements OnInit {
   allLocation: Location [];
   allblog: Blog[];
   userDetails ;
+  today = new Date();
 
   constructor(private Ls: LocationService, private blog: BlogService,private userService: UserService,private router: Router) { }
 
@@ -76,16 +78,18 @@ export class BlogComponent implements OnInit {
     );
   }
 //for creating post from dashboard
-  createPost(b : Blog){
-     b.post_user = this.userDetails.email;
-    this.blog.createPost(b)
-    .subscribe();
-    console.log(b);
-    alert('Post Created');
-    this.getAllPost(); 
-    this.clearAll();
+  // createPost(b : Blog){
+  //    b.post_user = this.userDetails.email;
+  //    b.post_username= this.userDetails.fullName;
+  //    b.post_date = this.today;
+  //   this.blog.createPost(b)
+  //   .subscribe();
+  //   console.log(b);
+  //   alert('Post Created');
+  //   this.getAllPost(); 
+  //   this.clearAll();
    
-  }
+  // }
 
 //to get all the posts by everyone in the dashboard page
   getAllPost(){
@@ -98,16 +102,17 @@ export class BlogComponent implements OnInit {
     );
   }
 //after submitting the form, this will clear all the inputted data
-  clearAll(){
-    this.blog.currentBlog = {
-      _id: null,
-      post_title: '',
-      post_description: '',
-      post_location: '',
-      post_privacy: '',
-      post_user: ''
-    }
-  }
+  // clearAll(){
+  //   this.blog.currentBlog = {
+  //     post_title: '',
+  //     post_description: '',
+  //     post_location: '',
+  //     post_privacy: '',
+  //     post_user: '',
+  //     post_username:'',
+  //     post_date: null
+  //   }
+  // }
   //this will log the user out of the session
   onLogout(){
     this.userService.deleteToken();
@@ -115,16 +120,16 @@ export class BlogComponent implements OnInit {
   }
 
   //this is for deleting any post
-  deletePost(_id: any){
-    console.log(_id);
-    this.blog.deleteThisPost(_id)
-    .subscribe(
-      (data : Blog[]) =>{
-        alert('Post Deleted');
+  // deletePost(_id: any){
+  //   console.log(_id);
+  //   this.blog.deleteThisPost(_id)
+  //   .subscribe(
+  //     (data : Blog[]) =>{
+  //       alert('Post Deleted');
       
-      }
-    );
-  }
+  //     }
+  //   );
+  // }
 
 
 }

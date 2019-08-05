@@ -3,7 +3,7 @@
         "PORT": 4000,
         "MONGODB_URI": "mongodb://localhost:27017/MEANStackDB",
         "JWT_SECRET": "SECRET#123",
-        "JWT_EXP": "10m" 
+        "JWT_EXP": "20m" 
     }, 
     "production": {
         "PORT": 80,

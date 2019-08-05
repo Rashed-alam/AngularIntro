@@ -1,0 +1,66 @@
+<nav class="floating-menu">
+  <ul class="main-menu">
+      <li>
+          <a routerLink="/home" class="ripple" routerLinkActive="active">
+              <i class="fas fa-home fa-lg"></i>
+          </a>
+      </li>
+      <li>
+              <a routerLink="/dashboard" class="ripple" routerLinkActive="active">
+                  <i class="fas fa-profile fa-lg"></i>
+              </a>
+          </li>
+      <li>
+          <a routerLink="/userprofile" class="ripple" routerLinkActive="active">
+              <i class="far fa-user fa-lg"></i>
+          </a>
+      </li>
+      <li>
+          <a routerLink="/contactus" class="ripple" routerLinkActive="active">
+              <i class="far fa-address-card fa-lg"></i>
+          </a>
+      </li>
+      <li>
+          <a routerLink="/list" class="ripple" routerLinkActive="active">
+              <i class="far fa-list fa-lg"></i>
+          </a>
+      </li>
+      <li>
+              <a (click)="onLogout()" class="ripple" routerLinkActive="active">
+                  <i class="fab fa-blogger-b fa-lg"></i>
+              </a>
+          </li>
+  </ul>
+  <div class="menu-bg"></div>
+</nav>
+<br>
+<h1 style="text-align: center;">List of All Users and Posts</h1>
+<hr>
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Sl.</th>
+      <th scope="col">Name</th>
+      <th scope="col">Created on</th>
+      <th scope="col">Email</th>
+      <th scope="col">Location</th>
+      <th scope="col">Privacy</th>
+      <th scope="col">Post Title</th>
+      <th scope="col">Post Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of allblog,index as a">
+      <th scope="row">{{a+1}}</th>
+  
+      <td>{{i.post_username}}</td>
+      <td>{{i.post_date | date :  "dd.MM.yyyy"}}</td>
+      <td>{{i.post_user}}</td>
+      <td>{{i.post_location}}</td>
+      <td>{{i.post_privacy}}</td>
+      <td>{{i.post_title}}</td>
+      <td>{{i.post_description}}</td>
+    </tr>
+   
+  </tbody>
+</table>

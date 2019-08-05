@@ -13,11 +13,14 @@ export class BlogService {
   Url = "http://localhost:4000/blogs";
 
   currentBlog: Blog = { 
+    
     post_title: '',
     post_description: '',
     post_location: '',
     post_privacy: '',
-    post_user: ''
+    post_user: '',
+    post_username:'',
+    post_date: null
   }
 
   constructor(private httpcall: HttpClient) { }

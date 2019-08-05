@@ -1,11 +1,12 @@
-<div class="jumbotron text-center">
+<div class="jumbotron ">
 <!-- this is for showing all the public posts in the dashboard -->
-<h1 class="page-header">All Public Blog Posts</h1>
+<h1 class="page-header" style="text-align: center">Displaying total {{allblog.length}} Public Posts</h1>
+<hr>
 <div class="card mb-3" *ngFor="let i of allblog">
     <div class="card-body">
       <h5 class="card-title"><strong>{{i.post_title}}</strong></h5>
       <p class="card-text">{{i.post_description}}</p>
-      <p class="font-italic"><small class="text-muted">Written by <strong> {{i.post_user}}</strong> from {{i.post_location}}</small></p>
+      <p class="font-italic" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Written by <strong> {{i.post_username}}</strong> from {{i.post_location}}</p><p>Posted at {{i.post_date | date : 'medium'}}</p>
     </div>
   </div>
 </div>
