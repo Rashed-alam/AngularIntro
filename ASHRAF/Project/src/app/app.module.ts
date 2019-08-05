@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { FabricCalculationComponent } from './fabric-calculation/fabric-calculation.component';
 import { BuyersService } from '../shared/buyers.service';
 import { UnitofmeasurementService } from '../shared/unitofmeasurement.service';
-
+import { SleeveTypeService } from '../shared/sleeve-type.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { UnitofmeasurementService } from '../shared/unitofmeasurement.service';
     HttpClientModule
     
   ],
-  providers: [BuyersService,UnitofmeasurementService],
+  providers: [BuyersService,UnitofmeasurementService,SleeveTypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
