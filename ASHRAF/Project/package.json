@@ -23,6 +23,9 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.0",
     "angular-material": "^1.1.19",
     "angular-material-datepicker": "^1.0.2",
+    "bootstrap": "^4.3.1",
+    "bootstrap-datepicker": "^1.9.0",
+    "ngx-bootstrap": "^5.1.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

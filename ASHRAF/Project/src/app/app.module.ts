@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
@@ -9,6 +11,11 @@ import { FabricCalculationComponent } from './fabric-calculation/fabric-calculat
 import { BuyersService } from '../shared/buyers.service';
 import { UnitofmeasurementService } from '../shared/unitofmeasurement.service';
 import { SleeveTypeService } from '../shared/sleeve-type.service';
+import { FabricTypeService } from '../shared/fabric-type.service';
+import { BsDatepickerModule } from 'ngx-bootstrap';
+import { DatePipe } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ItemNameService } from '../shared/item-name.service';
 
 @NgModule({
   declarations: [
@@ -17,11 +24,16 @@ import { SleeveTypeService } from '../shared/sleeve-type.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BsDatepickerModule.forRoot(),
+    NgbModule,
+    FormsModule
     
   ],
-  providers: [BuyersService,UnitofmeasurementService,SleeveTypeService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [BuyersService,UnitofmeasurementService,SleeveTypeService,FabricTypeService, DatePipe, ItemNameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

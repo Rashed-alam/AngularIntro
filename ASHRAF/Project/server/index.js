@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');//setting up of body-parser
 const cors = require('cors'); // for cross platform resource sharing
 const buyer = require('./routes/buyerInfoApi');
 const sleeves = require('./routes/sleeveTypeApi');
+const fabrics = require('./routes/fabricTypeApi');
+const items = require('./routes/itemEntryApi');
 //setting up of express app 
 const app = express();
 
@@ -23,6 +25,9 @@ app.use(bodyParser.json());
 app.use('/api/v1/uom', uom); //for showing the Unit of measurement
 app.use('/api/v1/buyer',buyer);// for showing the buyers 
 app.use('/api/v1/sleevetype',sleeves);
+app.use('/api/v1/fabrictype',fabrics);
+app.use('/api/v1/item',items);
+
 
 
 //this is for error handling[middleware]

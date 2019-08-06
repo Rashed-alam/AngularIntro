@@ -1,60 +1,56 @@
 const mongoose = require("mongoose");
 const AutoIncrement = require('mongoose-sequence')(mongoose);
-const BuyerInfoSchema = new mongoose.Schema({
-
-
-    buyerCode: {
-        type: Number,
+const FabricEntrySchema = new mongoose.Schema({
+    mailDate: {
+        type: Date,
         required: true
     },
-    name: {
+    entryDate: {
+        type: Date,
+        required: true
+    },
+    refNo: {
         type: String,
         required: true
     },
-    mobileNo: {
-        type: String,
-        required: true
-    },
-    email: {
+    buyer_name: {
         type: String,
         default: null
     },
-    house: {
+    style_code: {
         type: String,
         default: null
     },
-    road: {
+    style_item_name: {
         type: String,
         default: null
     },
-    sector: {
+    style_sleeve_type: {
         type: String,
         default: null
     },
-    vatRegNo: {
+    size: {
         type: String,
         default: null
     },
-    binNo: {
-        type: Number,
+    fabrics: {
+        type: String,
         default: 0
     },
-    eTin: {
+    chest: {
         type: String,
         default: null
     },
-    tds: {
-        type: Number,
+    length: {
+        type: String,
         default: 0
     },
-
-
-    sisterConcern: {
-        type: Number,
+    sleeve: {
+        type: String,
         default: 0
     },
 
 
 })
-BuyerInfoSchema.plugin(AutoIncrement, { inc_field: 'buyerId' });
-module.exports = mongoose.model('BuyerInfo', BuyerInfoSchema);
+FabricEntrySchema.plugin(AutoIncrement, { inc_field: 'fabricEntry_id' });
+module.exports = mongoose.model('fabricEntry', FabricEntrySchema);
