@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <div class="card text-center">
+        <div class="card-header">
+          Size
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Size ID:</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-sm" placeholder="{{a}}" readonly="">
+              </div>
+
+            </div>
+            <div  class="col-md-12">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Size Name:</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-sm" [(ngModel)]="ClientSize.currentSize.size_name">
+              </div>
+
+            </div>
+            <div class="col-md-12" style="display: flex">
+              <button  class="btn btn-light ml-auto" (click)="createAndUpdate (ClientSize.currentSize)">Add</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="success" *ngIf="showsuccessmessage">
+         Created New size successfully
+        
+      </div>
+<!------------------>
+
+<div class="card">
+  <div class="col-md-12">
+    <div class="card text-center">
+      <div class="card-header">
+        All Available Size
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Size-ID</th>
+            <th scope="col">Size-Name</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of allsize">
+
+            <td>{{p.size_id}}</td>
+            <td>{{p.size_name}}</td>
+            <td><a class="btn text-success"(click)="edit(p)" >
+                <i class="fa fa-edit"></i>
+              </a></td>
+            <td> <a class="btn text-danger" (click)="deletesize(p._id)">
+                <i class="fa fa-trash"></i>
+              </a></td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</div>
