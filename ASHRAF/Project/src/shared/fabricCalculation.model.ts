@@ -1,7 +1,7 @@
 export class FabricCalulation{
     fabricEntry_id: Number;
-    mailDate: Date;
-    entryDate: Date;
+    mailDate: String;
+    entryDate: String;
     refNo: String;
     buyer_name: String;
     style_code: String;

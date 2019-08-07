@@ -12,6 +12,8 @@ import { DatePipe } from '@angular/common';
 import { ItemNameService } from 'src/shared/item-name.service';
 import { NgForm } from '@angular/forms';
 import { Items } from 'src/shared/item.model';
+import { FabricCalculationService } from 'src/shared/fabric-calculation.service';
+import { FabricCalulation } from 'src/shared/fabricCalculation.model';
 
 @Component({
   selector: 'app-fabric-calculation',
@@ -26,6 +28,7 @@ export class FabricCalculationComponent implements OnInit {
   allSleeveType: Sleeves[];
   allFabricType: FabricType[];
   allItems: Items[];
+  FabricCalc: FabricCalulation[];
   showsuccessmessage:boolean;
   today: any = Date.now();
   // txtVoucherDate1 = new Date();
@@ -36,7 +39,8 @@ export class FabricCalculationComponent implements OnInit {
         private St: SleeveTypeService,
         private ft: FabricTypeService,
         private DP: DatePipe,
-        private In: ItemNameService
+        private In: ItemNameService,
+        private Fc: FabricCalculationService
         ) { }
     
   ngOnInit() { 
@@ -47,6 +51,7 @@ export class FabricCalculationComponent implements OnInit {
    this.getAllSleeveType();
    this.getAllFabrics();
    this.getAllItems();
+   this.getallFabricEntries();
   }
 
   //this is for getting all the buyers list from database
@@ -90,9 +95,22 @@ export class FabricCalculationComponent implements OnInit {
     .subscribe(
       (data: Items[])=>{
         this.allItems = data;
-      }
-    )
+      })
   }
 
+  //this is for creating post
+
+
+
+  //this is for getting all the post
+  getallFabricEntries(){
+    this.Fc.getAllFabricEntries()
+    .subscribe(
+      (data: FabricCalulation[])=>{
+        this.FabricCalc = data;
+        
+      })
+      console.log(FabricCalulation);
+  }
 
 }

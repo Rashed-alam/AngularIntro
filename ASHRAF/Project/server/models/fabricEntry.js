@@ -53,4 +53,4 @@ const FabricEntrySchema = new mongoose.Schema({
 
 })
 FabricEntrySchema.plugin(AutoIncrement, { inc_field: 'fabricEntry_id' });
-module.exports = mongoose.model('fabricEntry', FabricEntrySchema);
+module.exports = mongoose.model('fabricentry', FabricEntrySchema);

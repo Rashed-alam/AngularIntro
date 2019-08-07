@@ -7,6 +7,7 @@ const buyer = require('./routes/buyerInfoApi');
 const sleeves = require('./routes/sleeveTypeApi');
 const fabrics = require('./routes/fabricTypeApi');
 const items = require('./routes/itemEntryApi');
+const fabricEntry = require('./routes/fabricEntryApi');
 //setting up of express app 
 const app = express();
 
@@ -20,14 +21,13 @@ app.use(cors());
 //this will use body-parser object[middleware]
 app.use(bodyParser.json());
 
- 
 //this will use all the routes [middleware]
 app.use('/api/v1/uom', uom); //for showing the Unit of measurement
 app.use('/api/v1/buyer',buyer);// for showing the buyers 
 app.use('/api/v1/sleevetype',sleeves);
 app.use('/api/v1/fabrictype',fabrics);
 app.use('/api/v1/item',items);
-
+app.use('/api/v1/fabricEntry',fabricEntry);
 
 
 //this is for error handling[middleware]

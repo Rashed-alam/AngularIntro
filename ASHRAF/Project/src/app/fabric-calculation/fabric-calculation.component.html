@@ -1,6 +1,4 @@
-<div class="success" role="alert" *ngIf="showsuccessmessage">
-    Post Created successfully
-</div>
+
 
 <form >
 <div class="jumbotron">
@@ -9,9 +7,9 @@
           <h1 class="card-title" style="background-color:cornflowerblue">Fabric Calculation</h1><br>
             <div class="row">
               <div class="col">
-                  <div class="form-inline">
+                  <div class="form-inline" *ngFor="let f of FabricCalc">
                       <label for="formGroupExampleInput">ID: </label>
-                     <input class="form-control" type="text" placeholder="" readonly style="width: 40%">
+                     <input class="form-control" type="text" placeholder="{{f.fabricEntry_id}}" readonly style="width: 40%">
                     </div>
               </div>
 
@@ -152,9 +150,7 @@
         <div class="col"></div>
       </div>
       </div>
-     
-     
-     
-      
 </div>
-
+<div class="success" role="alert" *ngIf="showsuccessmessage">
+  Post Created successfully
+</div>

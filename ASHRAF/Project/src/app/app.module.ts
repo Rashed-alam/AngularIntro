@@ -16,6 +16,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
 import { DatePipe } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ItemNameService } from '../shared/item-name.service';
+import { FabricCalculationService } from '../shared/fabric-calculation.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { ItemNameService } from '../shared/item-name.service';
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [BuyersService,UnitofmeasurementService,SleeveTypeService,FabricTypeService, DatePipe, ItemNameService],
+  providers: [BuyersService,UnitofmeasurementService,
+    SleeveTypeService,FabricTypeService, DatePipe, 
+    ItemNameService, FabricCalculationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
