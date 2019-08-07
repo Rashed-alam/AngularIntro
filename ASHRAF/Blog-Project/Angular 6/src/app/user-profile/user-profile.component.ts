@@ -90,6 +90,7 @@ userProfile(){
      b.post_user = this.userDetails.email;
      b.post_username = this.userDetails.fullName;
      b.post_date = this.today;
+     
     this.blog.createPost(b)
     .subscribe();
     this.showsuccessmessage=true;

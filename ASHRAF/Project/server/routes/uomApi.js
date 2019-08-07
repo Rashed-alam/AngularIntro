@@ -22,7 +22,25 @@ router.post('/new',(req,res,next)=>{ //http://localhost:3100/chips/newchips
     }).catch(next);
    
 });
-
+router.get('/',function(req,res,next){
+    UoM.find({},('Uom_id')).sort({"Uom_id":-1}).limit(1)
+    .then(data => {
+        var l = data.length;
+        if(l>0){
+            const x = Number( data[0].Uom_id + 1);
+            res.send({x});
+            
+        } else {
+            const x = Number(1); // can change 
+           res.send({x});
+          
+        }
+    }).catch(err => {
+    res.status(500).send({
+        message: err.message || "Error while getting Server Data"
+    });
+});
+ });
 
 
 

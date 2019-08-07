@@ -2,14 +2,17 @@
 
 <form >
 <div class="jumbotron">
-    <div class="card" style="width: 65%;">
+    <div class="card" style="width: 65%; margin-left: 13rem; margin-top: 0rem">
         <div class="card-body">
           <h1 class="card-title" style="background-color:cornflowerblue">Fabric Calculation</h1><br>
             <div class="row">
               <div class="col">
-                  <div class="form-inline" *ngFor="let f of FabricCalc">
+                  <div class="form-inline" >
+         
                       <label for="formGroupExampleInput">ID: </label>
-                     <input class="form-control" type="text" placeholder="{{f.fabricEntry_id}}" readonly style="width: 40%">
+                     <input class="form-control" type="text" placeholder="{{autoID}}"  
+                       readonly style="width: 40%">
+                    
                     </div>
               </div>
 
@@ -19,17 +22,17 @@
                            style="width: 100%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
                            class="form-control" [minDate]="minDate" [maxDate]="maxDate"> -->
                           <label for="formGroupExampleInput"> Mail Date: </label>
-                           <input type="text" name="today" [(ngModel)]="today"
+                           <input type="text" name="Fc.currentFabricCalc.mailDate" [(ngModel)]="Fc.currentFabricCalc.mailDate" placeholder="{{today}}"
                            style="width: 50%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
-                           class="form-control">
+                           class="form-control" required>
                           </div>
               </div>
               <div class="col">
                   <div class="form-inline">
                   <label for="formGroupExampleInput"> Entry Date: </label>
-                  <input type="text" name="today" [(ngModel)]="today"
-                  style="width: 50%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
-                  class="form-control">
+                  <input type="text" placeholder="{{today}}" name="Fc.currentFabricCalc.entryDate" [(ngModel)]="Fc.currentFabricCalc.entryDate"
+                  style="width: 50%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placeholder="{{today}}"
+                  class="form-control" required>
                  </div>
                 </div>
               </div>
@@ -38,7 +41,8 @@
                   <div class="col">
                       <div class="form-inline">
                           <label for="formGroupExampleInput">Ref. No: </label>
-                          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter Reference Number">
+                          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter Reference Number"
+                          name="Fc.currentFabricCalc.refNo" [(ngModel)]="Fc.currentFabricCalc.refNo" required>
                         </div>
                   </div>
                 </div>
@@ -47,8 +51,8 @@
                   <div class="col">
                     <div class="form-inline">
                           <label for="formGroupExampleInput">Buyer Name: </label>
-                          <select class="custom-select" style="width: 70%;">
-                              <option selected>.....</option>
+                          <select class="custom-select" style="width: 70%;" name="Fc.currentFabricCalc.buyer_name" [(ngModel)]="Fc.currentFabricCalc.buyer_name"required>
+                              <option selected>Select Buyer</option>
                               <option value="{{b.name}}" *ngFor="let b of allBuyers">{{b.name}}</option>
                             </select>
                   </div>
@@ -66,13 +70,14 @@
             <div class="form-group row">
                 <label>Code No:    </label>
                 <div class="col-sm-5">
-                  <input type="password" class="form-control" id="inputPassword" placeholder="Code Number" style="width: 14.5rem" >
+                  <input type="text" class="form-control" id="inputPassword" placeholder="Code Number" style="width: 14.5rem" 
+                  name="Fc.currentFabricCalc.style_code" [(ngModel)]="Fc.currentFabricCalc.style_code" onkeyup="this.value = this.value.toUpperCase();" required>
                 </div>
               </div>
               <div class="form-group row">
                   <label>Item Name:  </label>
                   <div class="col-sm-5">
-                    <select class="custom-select" style="width: 14.5rem">
+                    <select class="custom-select" style="width: 14.5rem" name="Fc.currentFabricCalc.style_item_name" [(ngModel)]="Fc.currentFabricCalc.style_item_name">
                       <option selected>.....</option>
                       <option value="{{i.itemName}}" *ngFor="let i of allItems">{{i.itemName}}</option>
                     </select>
@@ -81,7 +86,7 @@
                 <div class="form-group row">
                     <label>Sleeve Type:</label>
                     <div class="col-sm-5">
-                        <select class="custom-select" style="width: auto">
+                        <select class="custom-select" style="width: auto" name="Fc.currentFabricCalc.style_sleeve_type" [(ngModel)]="Fc.currentFabricCalc.style_sleeve_type">
                             <option selected>Select the Sleeve type</option>
                             <option value="{{s.Sleeve_name}}" *ngFor="let s of allSleeveType">{{s.Sleeve_name}}</option>
                           </select>
@@ -96,18 +101,21 @@
               <div class="form-group row">
                   <label>Size</label>
                   <div class="col-sm-10">
-                      <select class="custom-select" style="width: 50%">
+                      <select class="custom-select" style="width: 50%" name="Fc.currentFabricCalc.size" [(ngModel)]="Fc.currentFabricCalc.size">
                           <option selected>...</option>
                           <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                         </select>
-                    <button class="button" class="btn btn-outline-info">New Size</button>
+                   
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">
+                       New Size
+                      </button>
                   </div>
                 </div>
 
                 <div class="form-group row">
                     <label>Fabrics</label>
                     <div class="col-sm-10">
-                        <select class="custom-select" style="width: 70%">
+                        <select class="custom-select" style="width: 70%" name="Fc.currentFabricCalc.fabrics" [(ngModel)]="Fc.currentFabricCalc.fabrics">
                             <option selected>Select the Fabric Type</option>
                             <option value="{{f.fabric_name}}" *ngFor="let f of allFabricType">{{f.fabric_name}}</option>
                           
@@ -118,9 +126,9 @@
                       <div class="form-group row">
                           <label>Chest</label>
                           <div class="col-sm-10">
-                            <input type="email" id="inputEmail3" placeholder="input" style="width: 30%">
-                            <select class="custom-select" style="width: auto">
-                                <option selected>Select a Size</option>
+                            <input type="email" id="inputEmail3" placeholder="input" style="width: 30%" name="chestinput" [(ngModel)]="chestinput">
+                            <select class="custom-select" style="width: auto" name="chestselect" [(ngModel)]="chestselect">
+                                <option selected >Select a Size</option>
                                 <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                               </select>
                           </div>
@@ -128,8 +136,8 @@
                         <div class="form-group row">
                           <label>Length</label>
                           <div class="col-sm-10">
-                            <input type="password" id="inputPassword3" placeholder="input" style="width: 30%">
-                            <select class="custom-select" style="width: auto">
+                            <input type="text" id="inputPassword3" placeholder="input" style="width: 30%" name="lengthinput" [(ngModel)]="lengthinput">
+                            <select class="custom-select" style="width: auto" name="lengthselect" [(ngModel)]="lengthselect">
                                 <option selected>Select a Size</option>
                                 <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                               </select>
@@ -144,13 +152,60 @@
           <div class="col"></div>
           <div class="col"></div>
         
-        <div class="col"> <button type="button" class="btn btn-success">Submit</button></div>
-        <div class="col"> <button type="button" class="btn btn-primary">Clear</button></div>
+        <div class="col"> <button type="submit" class="btn btn-success" (click)="createFabricEntry(Fc.currentFabricCalc)">Submit</button></div>
+        <div class="col"> <button type="submit" class="btn btn-primary" (click)="clearAll()">Clear</button></div>
         <div class="col"></div>
         <div class="col"></div>
       </div>
       </div>
+      <div  class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="width: 60%">
+        Entry Created successfully
+      </div>
 </div>
-<div class="success" role="alert" *ngIf="showsuccessmessage">
-  Post Created successfully
-</div>
+
+
+<!-- ADD NEW SIZE PORTION -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add new Size</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-row align-items-center">
+                    <div class="col-sm-4">
+                        <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">Size ID:</div>
+                          </div>
+                          <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{sizeID}}">
+                        </div>
+                      </div> 
+                  <div class="col-sm-7">
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Size Name:</div>
+                      </div>
+                      <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Size" name="Ums.currentUoM.Uom_name"
+                      [(ngModel)]="Ums.currentUoM.Uom_name">
+                    </div>
+                  </div>
+                </div>
+                   <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" (click)="AddNewSize(Ums.currentUoM)">Add</button>
+                  </div>
+                </form>
+        </div>
+     
+        <div  class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsize" style="width: 60%">
+            Size Created successfully
+          </div>
+      </div>
+    </div>
+  </div>
