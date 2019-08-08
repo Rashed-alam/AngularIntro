@@ -4,7 +4,24 @@
     width: 90px;
 }
 .row{
-    padding: 10px;
+    padding-bottom: 10px;
 
 }
 
+.dropdown {
+    margin-top: 23px;
+    margin-bottom: 10px;
+  
+   
+}
+.card-header-2 {
+    padding: .75rem 1.25rem;
+    align-self: center;
+}
+
+/* .table {
+    width: 70%;
+    margin-bottom: 1rem;
+    color: #212529;
+    align-self: center;
+} */

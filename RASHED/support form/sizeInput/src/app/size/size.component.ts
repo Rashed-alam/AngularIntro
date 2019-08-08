@@ -10,6 +10,8 @@ export class SizeComponent implements OnInit {
 public a: any;
 allsize;
 showsuccessmessage: boolean;
+selectadd: boolean = false;
+Bid;
   constructor(private ClientSize: ClientSizeService) { }
 
   ngOnInit() {
@@ -18,6 +20,9 @@ showsuccessmessage: boolean;
  //console.log(this.a.size_id);
   }
   
+  selectSize(){
+    this.selectadd=true;
+  }
   getId() {
     this.ClientSize.getsizeid()
       .subscribe(
@@ -61,21 +66,26 @@ create(a:any){
   );
   this.getSize();
   this.clearAll();
+ 
   }
-
-  deletesize(_id:any){
-    alert('Confirm:Delete');
-    this.ClientSize.deletesize(_id).subscribe();
-    this.getSize();
+del(a){
+  this.Bid=a;
+}
+  deletesize( _id ){
+    // console.log('check='+_id);
+  this.ClientSize.deletesize(_id).subscribe();
+  this.getSize();
   }
   edit(a){
     this.ClientSize.currentSize=Object.assign({},a);
     this.getSize();
+    this.selectadd=true;
   }
   updatepost(a:any) {
     this.ClientSize.updatepost(a).subscribe();
     this.clearAll();
     this.getSize();
+    this.selectadd=false;
   }
   clearAll() {
     this.ClientSize.currentSize = {
