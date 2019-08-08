@@ -31,7 +31,7 @@ export class ClientSizeService {
     
     return this.httpcall.post<size[]>(this.url +'/new', a, headerOption);
    }
-   deletesize(id):Observable<size[]>{
+   deletesize(id): Observable<size[]>{
     return this.httpcall.delete<size[]>(this.url+'/delete/'+ id,headerOption);
   }
   updatepost(a:any): Observable<size> {
