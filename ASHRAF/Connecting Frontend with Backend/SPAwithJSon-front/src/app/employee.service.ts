@@ -14,7 +14,7 @@ export class employeelist {
   Url = "http://localhost:3100/chips/";
 
   currentEmployee: Employee = {
-        
+        _id:'',
         fullname : '',
         email : '',
         department : '',

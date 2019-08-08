@@ -27,22 +27,30 @@ export class FabricCalculationService {
     fabrics: '',
     chest: '',
     length: '',
-    sleeve: ''
+    sleeve: '',
+    length_unit_of_measurement: '',
+    chest_unit_of_measurement: '',
+    sleeve_unit_of_measurement: ''
   }
 
-   //this is for getting all posts of dashboard
+   
    getAllFabricEntries(): Observable<FabricCalulation[]>{
     return this.httpcall.get<FabricCalulation[]>(this.url+'/all', headerOption);
   }
 
-    //this is for getting all posts of dashboard
+
     getFabricEntry_ID(){
       return this.httpcall.get(this.url+'/', headerOption);
     }
   
-//this is for creating posts inside dashboard
+
   createFabricEntry(fabcal : FabricCalulation): Observable<FabricCalulation> {
     return this.httpcall.post<FabricCalulation>(this.url+'/new', fabcal , headerOption);
   }
+
+ 
+deleteFabricEntry(_id: any): Observable<FabricCalulation[]>{
+  return this.httpcall.delete<FabricCalulation[]>(this.url+'/delete/'+ _id, headerOption);
+}
 
 }

@@ -25,6 +25,7 @@
     "angular-material-datepicker": "^1.0.2",
     "bootstrap": "^4.3.1",
     "bootstrap-datepicker": "^1.9.0",
+    "font-awesome": "^4.7.0",
     "ngx-bootstrap": "^5.1.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",

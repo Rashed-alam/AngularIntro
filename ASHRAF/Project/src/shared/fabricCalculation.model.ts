@@ -12,4 +12,7 @@ export class FabricCalulation{
     chest: String;
     length: String;
     sleeve: String;
+    length_unit_of_measurement: String;
+    chest_unit_of_measurement: String;
+    sleeve_unit_of_measurement: String;
 }
