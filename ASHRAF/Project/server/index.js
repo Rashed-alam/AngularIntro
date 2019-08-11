@@ -1,5 +1,4 @@
 const express = require('express'); //ekhane express require korar jonno i can use get/post/put/delete
-const uom = require('./routes/uomApi'); //importing the routes from api file
 const mongoose = require('mongoose'); //importing the mongoose
 const bodyParser = require('body-parser');//setting up of body-parser
 const cors = require('cors'); // for cross platform resource sharing
@@ -8,6 +7,7 @@ const sleeves = require('./routes/sleeveTypeApi');
 const fabrics = require('./routes/fabricTypeApi');
 const items = require('./routes/itemEntryApi');
 const fabricEntry = require('./routes/fabricEntryApi');
+const uom = require('./routes/uomApi'); //importing the routes from api file
 //setting up of express app 
 const app = express();
 

@@ -1,6 +1,6 @@
 <form>
 <div class="jumbotron" style="margin-top: -3rem">
-    <div class="card border-primary mb-3" style="max-width: 43rem; margin-left: 16rem;">
+    <div class="card border-primary mb-3" style="max-width: 43rem; margin-left: 28rem;">
       <div class="card-header"><h2 style="text-align: center">Fabric Calculation</h2></div>
         <div class="card-body" >
       
@@ -10,9 +10,7 @@
                   <div class="form-inline " >
          
                       <label >ID: </label>
-                     <input class="form-control" type="text" placeholder="{{autoID}}"  
-                       readonly style="width: 58%">
-                    
+                     <input class="form-control" type="text" placeholder="{{autoID}}" readonly style="width: 48%" disabled>
                     </div>
               </div>
 
@@ -183,7 +181,7 @@
 </form>
 
 
-<!-- ADD NEW SIZE PORTION -->
+<!--------------------------------------------- ADD NEW SIZE PORTION ------------------------------------------------------------------>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -195,14 +193,14 @@
           </button>
         </div>
         <div class="modal-body">
-            <form>
+            <form name="form" (ngSubmit)="f.form.valid && AddNewSize(Ums.currentUoM)" #f="ngForm" novalidate>
                 <div class="form-row align-items-center">
                     <div class="col-sm-4">
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
                             <div class="input-group-text">Size ID:</div>
                           </div>
-                          <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{sizeID}}">
+                          <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{sizeID}}" disabled>
                         </div>
                       </div> 
                   <div class="col-sm-7">
@@ -210,23 +208,35 @@
                       <div class="input-group-prepend">
                         <div class="input-group-text">Size Name:</div>
                       </div>
-                      <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Size" name="Ums.currentUoM.Uom_name"
-                      [(ngModel)]="Ums.currentUoM.Uom_name" required [disabled]="Ums.currentUoM.Uom_name === ''">
+                      <input type="text" id="size_name"class="form-control" minlength="5" placeholder="Size" name="Ums.currentUoM.Uom_name"
+                      [(ngModel)]="Ums.currentUoM.Uom_name" #size_name="ngModel" required>
                     </div>
                   </div>
                 </div>
                    <div class="modal-footer">
                     <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" (click)="AddNewSize(Ums.currentUoM)" data-dismiss="modal">Add</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="f.form.pristine || f.form.invalid" >Add</button>
                   </div>
+
+                  <div class="form-group">
+                    <div *ngIf="(size_name.invalid && size_name.untouched)" class="alert alert-danger">
+                      <div *ngIf="size_name.errors.required">
+                        Name is required.
+                      </div>
+                      <div *ngIf="size_name.errors.minlength">
+                        Name must be at least 4 characters long.
+                      </div>
+                    </div>
+                  </div>
+                  <div  class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsize">
+                    Size Added successfully
+                  </div>
+
                 </form>
+<!------------------------------------------------------------ end of ADD NEW SIZE PORTION ------------------------------------------------------------------>
         </div>
-     
-        <div  class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsize" style="width: 60%">
-            Size Created successfully
-          </div>
       </div>
     </div>
   </div>
-  <app-fabric-result>
-</app-fabric-result>
+
+<app-fabric-result></app-fabric-result>

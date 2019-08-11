@@ -183,8 +183,9 @@ export class FabricCalculationComponent implements OnInit {
   AddNewSize(size: UoM){
     this.Ums.createSize(size)
     .subscribe();
-    this.showsuccessmessageforsize=true;
+      this.showsuccessmessageforsize=true;
       setTimeout(()=>this.showsuccessmessageforsize=false,4000); 
+      console.log(size);
       this.getAllSizeList();
       this.clearSize();
       
