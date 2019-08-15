@@ -185,7 +185,6 @@ export class FabricCalculationComponent implements OnInit {
     .subscribe();
       this.showsuccessmessageforsize=true;
       setTimeout(()=>this.showsuccessmessageforsize=false,4000); 
-      console.log(size);
       this.getAllSizeList();
       this.clearSize();
       

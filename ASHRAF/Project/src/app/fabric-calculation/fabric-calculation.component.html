@@ -1,5 +1,5 @@
 <form>
-<div class="jumbotron" style="margin-top: -3rem">
+<div class="jumbotron" style="margin-top: -4rem">
     <div class="card border-primary mb-3" style="max-width: 43rem; margin-left: 28rem;">
       <div class="card-header"><h2 style="text-align: center">Fabric Calculation</h2></div>
         <div class="card-body" >
@@ -109,6 +109,7 @@
                       <label class="input-group-text" for="inputGroupSelect01">Size:</label>
                     </div>
                     <select class="custom-select" style="width: 50%" name="Fc.currentFabricCalc.size" [(ngModel)]="Fc.currentFabricCalc.size" required>
+                      <option selected>Select</option>
                         <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                       </select>
                       <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">
@@ -215,11 +216,11 @@
                 </div>
                    <div class="modal-footer">
                     <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" [disabled]="f.form.pristine || f.form.invalid" >Add</button>
+                    <button type="submit" class="btn btn-success" [disabled]="f.form.pristine || f.form.invalid" >Add</button>
                   </div>
 
                   <div class="form-group">
-                    <div *ngIf="(size_name.invalid && size_name.untouched)" class="alert alert-danger">
+                    <div *ngIf="(size_name.invalid && size_name.touched)" class="alert alert-danger">
                       <div *ngIf="size_name.errors.required">
                         Name is required.
                       </div>
