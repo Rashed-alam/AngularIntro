@@ -1,4 +1,4 @@
-<form>
+<form name="mainform" (ngSubmit)="mainform.form.valid && createFabric(Fc.currentFabricCalc)" #mainform="ngForm" novalidate>
 <div class="jumbotron" style="margin-top: -4rem">
     <div class="card border-primary mb-3" style="max-width: 43rem; margin-left: 28rem;">
       <div class="card-header"><h2 style="text-align: center">Fabric Calculation</h2></div>
@@ -10,7 +10,7 @@
                   <div class="form-inline " >
          
                       <label >ID: </label>
-                     <input class="form-control" type="text" placeholder="{{autoID}}" readonly style="width: 48%" disabled>
+                     <input class="form-control" type="text" placeholder="{{autoID}}" style="width: 48%" disabled>
                     </div>
               </div>
 
@@ -20,17 +20,17 @@
                            style="width: 100%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
                            class="form-control" [minDate]="minDate" [maxDate]="maxDate"> -->
                           <label for="formGroupExampleInput"> Mail Date: </label>
-                           <input type="text" name="Fc.currentFabricCalc.mailDate" [(ngModel)]="Fc.currentFabricCalc.mailDate" placeholder="{{today}}"
-                           style="width: 60%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
-                           class="form-control" required>
+                           <input type="text" id="mailDate" name="Fc.currentFabricCalc.mailDate" [(ngModel)]="Fc.currentFabricCalc.mailDate" placeholder="{{today}}"
+                           style="width: 60%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+                           class="form-control" #mailDate="ngModel" required>
                           </div>
               </div>
               <div class="col-md-4">
                   <div class="form-inline">
                   <label for="formGroupExampleInput"> Entry Date: </label>
-                  <input type="text" placeholder="{{today}}" name="Fc.currentFabricCalc.entryDate" [(ngModel)]="Fc.currentFabricCalc.entryDate"
-                  style="width: 60%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placeholder="{{today}}"
-                  class="form-control" required>
+                  <input type="text" id="entryDate" placeholder="{{today}}" name="Fc.currentFabricCalc.entryDate" [(ngModel)]="Fc.currentFabricCalc.entryDate"
+                  style="width: 60%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placeholder="{{today}}"
+                  class="form-control" #entryDate="ngModel" required>
                  </div>
                 </div>
               </div>
@@ -42,8 +42,8 @@
                             <div class="input-group-prepend">
                               <div class="input-group-text">Ref. No: </div>
                             </div>
-                            <input type="text" class="form-control" style="width: 30%" id="formGroupExampleInput" placeholder="Enter Reference Number"
-                          name="Fc.currentFabricCalc.refNo" [(ngModel)]="Fc.currentFabricCalc.refNo" required>
+                            <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="Enter Reference Number"
+                          name="Fc.currentFabricCalc.refNo" [(ngModel)]="Fc.currentFabricCalc.refNo" #refNo="ngModel"required>
                           </div>
                   </div>
                 </div>
@@ -54,7 +54,7 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text" for="inputGroupSelect01">Buyer Name:</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01" style="width: 62%;" name="Fc.currentFabricCalc.buyer_name" [(ngModel)]="Fc.currentFabricCalc.buyer_name"required>
+                    <select class="custom-select" id="buyer_name" style="width: 62%;" name="Fc.currentFabricCalc.buyer_name" [(ngModel)]="Fc.currentFabricCalc.buyer_name" #buyer_name="ngModel" required>
                       <option value="{{b.name}}" *ngFor="let b of allBuyers">{{b.name}}</option>
                     </select>
                   </div>
@@ -75,15 +75,15 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text">Code No:</div>
                   </div>
-                  <input type="text" class="form-control" id="inputPassword" placeholder="Code Number" style="width: 12.5rem" 
-                  name="Fc.currentFabricCalc.style_code" [(ngModel)]="Fc.currentFabricCalc.style_code" onkeyup="this.value = this.value.toUpperCase();" required>
+                  <input type="text" class="form-control" id="style_code" placeholder="Code Number" style="width: 12.5rem" 
+                  name="Fc.currentFabricCalc.style_code" [(ngModel)]="Fc.currentFabricCalc.style_code" onkeyup="this.value = this.value.toUpperCase();" #style_code="ngModel" required>
                 </div>
 
                 <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                   <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">Item Name:</label>
                   </div>
-                  <select class="custom-select" id="inputGroupSelect01" style="width: 64%;" name="Fc.currentFabricCalc.style_item_name" [(ngModel)]="Fc.currentFabricCalc.style_item_name" required>
+                  <select class="custom-select" id="itemName" style="width: 64%;" name="Fc.currentFabricCalc.style_item_name" [(ngModel)]="Fc.currentFabricCalc.style_item_name" #itemName="ngModel" required>
                     <option value="{{i.itemName}}" *ngFor="let i of allItems">{{i.itemName}}</option>
                   </select>
                 </div>
@@ -92,7 +92,7 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text" for="inputGroupSelect01">Sleeve Type:</label>
                     </div>
-                    <select class="custom-select" style="width: 63%;" name="Fc.currentFabricCalc.style_sleeve_type" [(ngModel)]="Fc.currentFabricCalc.style_sleeve_type" required>
+                    <select class="custom-select" style="width: 63%;" id="style_sleeve_type" name="Fc.currentFabricCalc.style_sleeve_type" [(ngModel)]="Fc.currentFabricCalc.style_sleeve_type" #style_sleeve_type="ngModel" required>
                       <option value="{{s.Sleeve_name}}" *ngFor="let s of allSleeveType">{{s.Sleeve_name}}</option>
                     </select>
                   </div>
@@ -108,7 +108,7 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text" for="inputGroupSelect01">Size:</label>
                     </div>
-                    <select class="custom-select" style="width: 50%" name="Fc.currentFabricCalc.size" [(ngModel)]="Fc.currentFabricCalc.size" required>
+                    <select class="custom-select" style="width: 50%" id="size" name="Fc.currentFabricCalc.size" [(ngModel)]="Fc.currentFabricCalc.size" #size="ngModel" required>
                       <option selected>Select</option>
                         <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                       </select>
@@ -121,7 +121,7 @@
                       <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Fabrics:</label>
                       </div>
-                      <select class="custom-select" style="width: 70%" name="Fc.currentFabricCalc.fabrics" [(ngModel)]="Fc.currentFabricCalc.fabrics" required>
+                      <select class="custom-select" style="width: 70%" id="fabrics" name="Fc.currentFabricCalc.fabrics" [(ngModel)]="Fc.currentFabricCalc.fabrics" #fabrics="ngModel" required>
                           <option value="{{f.fabric_name}}" *ngFor="let f of allFabricType">{{f.fabric_name}}</option>
                         </select>
                     </div>
@@ -167,7 +167,7 @@
           <div class="col"></div>
           <div class="col"></div>
         
-        <div class="col"> <button type="submit" class="btn btn-success" style="margin-left: 20%;" (click)="createFabric(Fc.currentFabricCalc)">Submit</button></div>
+        <div class="col"> <button type="submit" class="btn btn-success" style="margin-left: 20%;" [disabled]="mainform.form.pristine || mainform.form.invalid">Submit</button></div>
         <div class="col"> <button type="submit" class="btn btn-primary" style="margin-left: -6%;" (click)="clearAll()">Clear</button></div>
         <div class="col"></div>
         <div class="col"></div>
