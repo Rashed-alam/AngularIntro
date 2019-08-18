@@ -42,7 +42,7 @@ router.get('/',function(req,res,next){
 router.put('/edit/:id',(req,res,next)=>{ 
     FabricEntry.findByIdAndUpdate({_id: req.params.id},req.body).then(function(){ 
         FabricEntry.findOne({_id:req.params.id}).then(function(fabricentry){ 
-            res.send({fabricentry});
+            res.send(fabricentry);
         }).catch(next);
     });
   

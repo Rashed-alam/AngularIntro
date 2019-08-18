@@ -1,10 +1,8 @@
-<form name="mainform" (ngSubmit)="mainform.form.valid && createFabric(Fc.currentFabricCalc)" #mainform="ngForm" novalidate>
+<form name="mainform" (ngSubmit)="mainform.form.valid && createAndUpdate(Fc.currentFabricCalc)" #mainform="ngForm" novalidate>
 <div class="jumbotron" style="margin-top: -4rem">
-    <div class="card border-primary mb-3" style="max-width: 43rem; margin-left: 28rem;">
+    <div class="card border-primary mb-3" style="max-width: 43rem; margin-left: 16rem;">
       <div class="card-header"><h2 style="text-align: center">Fabric Calculation</h2></div>
         <div class="card-body" >
-      
-          
             <div class="row">
               <div class="col-md-3">
                   <div class="form-inline " >
@@ -109,7 +107,7 @@
                       <label class="input-group-text" for="inputGroupSelect01">Size:</label>
                     </div>
                     <select class="custom-select" style="width: 50%" id="size" name="Fc.currentFabricCalc.size" [(ngModel)]="Fc.currentFabricCalc.size" #size="ngModel" required>
-                      <option selected>Select</option>
+                     
                         <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                       </select>
                       <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">
@@ -132,7 +130,7 @@
                             </div>
                             <input type="text" class="form-control" id="inputEmail3" maxlength="4" placeholder="input" style="width: 30%" name="Fc.currentFabricCalc.chest" [(ngModel)]="Fc.currentFabricCalc.chest" required>
                             <select class="custom-select" style="width:40%" name="Fc.currentFabricCalc.chest_unit_of_measurement" [(ngModel)]="Fc.currentFabricCalc.chest_unit_of_measurement" required>
-                                <option selected >Select</option>
+                               
                                 <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                               </select>
                           </div>
@@ -142,7 +140,7 @@
                             </div>
                             <input type="text" class="form-control" id="inputPassword3" maxlength="4" placeholder="input" style="width: 22%" name="Fc.currentFabricCalc.length" [(ngModel)]="Fc.currentFabricCalc.length" required>
                             <select class="custom-select" style="width: auto" name="Fc.currentFabricCalc.length_unit_of_measurement" [(ngModel)]="Fc.currentFabricCalc.length_unit_of_measurement" required>
-                                <option selected>Select</option>
+                                
                                 <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                               </select>
                           </div>
@@ -153,7 +151,7 @@
                             </div>
                             <input type="text" class="form-control" id="inputPassword3" maxlength="4" placeholder="input" style="width: 24%" name="Fc.currentFabricCalc.sleeve" [(ngModel)]="Fc.currentFabricCalc.sleeve" required>
                             <select class="custom-select" style="width: auto" name="Fc.currentFabricCalc.sleeve_unit_of_measurement" [(ngModel)]="Fc.currentFabricCalc.sleeve_unit_of_measurement" required>
-                                <option value="null" selected>Select</option>
+                              
                                 <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                               </select>
                           </div>
@@ -175,6 +173,9 @@
       </div>
       <div  class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="align-content: center">
           Entry Created successfully
+        </div>
+        <div  class="alert alert-success" role="alert" *ngIf="showeditmessage" style="align-content: center">
+          Entry Edited successfully
         </div>
       </div>
       
@@ -220,7 +221,7 @@
                   </div>
 
                   <div class="form-group">
-                    <div *ngIf="(size_name.invalid && size_name.touched)" class="alert alert-danger">
+                    <div *ngIf="size_name.invalid && size_name.untouched" class="alert alert-danger">
                       <div *ngIf="size_name.errors.required">
                         Name is required.
                       </div>
@@ -240,4 +241,40 @@
     </div>
   </div>
 
-<app-fabric-result></app-fabric-result>
+<!------------------------------------------------------ This part is for showing the list of inputs -->
+
+<div class="card border-info mb-3" style="max-width: 50rem; margin-left: 15rem">
+  <div class="alert alert-danger" *ngIf="showdeletemessage">
+  Post Deleted successfully
+</div>
+  <div class="card-header"><h2 style="text-align: center">Fabric Entries List</h2></div>
+  <div class="card-body">
+<table class="table table-hover">
+<thead>
+  <tr>
+    
+    <th scope="col">No.</th>
+    <th scope="col">Ref. No.</th>
+    <th scope="col">Buyer</th>
+    <th scope="col">Entry Date</th>
+    <th scope="col">Mail Date</th>
+    <th scope="col">Fabric Type</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let entry of FabricCalc,index as i">
+    <td>{{i+1}}</td>
+    <td>{{entry.refNo}}</td>
+    <td>{{entry.buyer_name}}</td>
+    <td>{{entry.entryDate | date :  "dd.MM.yyyy"}}</td>
+    <td>{{entry.mailDate | date :  "dd.MM.yyyy"}}</td>
+    <td>{{entry.fabrics}}</td>
+    <td><button (click)="editFabricEntry(entry)"><span class="badge badge-box badge-warning">Edit</span></button></td>
+    <td><button (click)="deleteFabricEntry(entry._id)"><span class="badge badge-box badge-danger">Delete</span></button></td>
+  </tr>
+</tbody>
+</table>
+   
+  </div>
+</div>
+<!------------------------------------------------------------------ End of the list --------------------------------------------------->

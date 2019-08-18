@@ -53,4 +53,9 @@ deleteFabricEntry(_id: any): Observable<FabricCalulation[]>{
   return this.httpcall.delete<FabricCalulation[]>(this.url+'/delete/'+ _id, headerOption);
 }
 
+
+updateFabricEntry(entry : any): Observable<FabricCalulation> {
+  return this.httpcall.put<FabricCalulation>(this.url+'/edit/'+ entry._id, entry, headerOption);
+}
+
 }

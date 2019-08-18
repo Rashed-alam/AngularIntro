@@ -17,13 +17,12 @@ import { DatePipe } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ItemNameService } from '../shared/item-name.service';
 import { FabricCalculationService } from '../shared/fabric-calculation.service';
-import { FabricResultComponent } from './fabric-result/fabric-result.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     FabricCalculationComponent,
-    FabricResultComponent
   ],
   imports: [
     BrowserModule,
