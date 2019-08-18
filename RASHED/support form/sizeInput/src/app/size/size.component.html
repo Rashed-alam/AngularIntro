@@ -8,7 +8,7 @@
       <button type="button" style="margin-left: 11rem" class="btn btn-secondary" [routerLink]="['/report']" routerLinkActive="router-link-active">Report</button>
     </div>
   </div>
-  <form>
+  <form name="form"  #f="ngForm">
   <div *ngIf="selectadd==true">
     <div class="row justify-content-md-center">
       <div class="col-md-6">
@@ -51,11 +51,10 @@
 
               </div>
               <div class="row justify-content-md-center">
-              <div class="col-md-6" style="display: flex">
-                <button class="btn btn-light" style="margin-left:22rem;" (click)="createAndUpdate (ClientSize.currentSize)">Submit</button>
-              </div>
-              <div class="col-md-6" style="display: flex">
-                <button class="btn btn-light"style="margin-left:11rem;" (click)="clearAll()">Clear</button>
+              <div class="col-md-12" style="display: flex">
+                <button class="btn btn-light" style="margin-left:22rem;"  [disabled]="f.form.pristine || f.form.invalid" (click)="createAndUpdate (ClientSize.currentSize)">Submit</button>
+              
+                <button class="btn btn-light"style="margin-left:1rem;" (click)="clearAll()">Clear</button>
               </div>
               </div>
             </div>
@@ -75,6 +74,9 @@
   </div>
   <div class="row justify-content-md-center" *ngIf="showupdatemessage">
     <p>Updated successfully</p>
+  </div>
+  <div class="row justify-content-md-center"  *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
   </div>
   <div class="row justify-content-md-center">
     <div class="col-md-6">

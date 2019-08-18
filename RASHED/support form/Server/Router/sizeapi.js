@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Size=require('../Models/size');
+const Size = require('../Models/size');
 
 router.get('/all', function (req, res, next) {
     Size.find({}).then(function (sizes) {
@@ -13,9 +13,19 @@ router.post('/new', function (req, res, next) {
     Size.create(req.body).then(function (sizes) {
        res.send(sizes);
  
-    }).catch(next);
+    }).catch((err,doc) => { 
+      if (!err)
+      res.send(doc);
+  else {
+      if (err.code == 11000)
+          res.status(422).send(['Can not add new size.Duplicate entry found.']);
+      else
+          return next(err);
+  }
+      });
+  });
  
- });
+
  router.get('/',function(req,res,next){
     Size.find({},('size_id')).sort({"size_id":-1}).limit(1)
     .then(data => {
@@ -53,5 +63,24 @@ router.post('/new', function (req, res, next) {
       
     }).catch(next);
  });
+
+//error handling
+// router.duplicateEntry = (req, res, next) => {
+//    var size = new Size();
+//    size.size_name = req.body.size_name;
+//    size.inc_field = req.body.inc_field;
+  
+//    size.save((err, doc) => {
+//        if (!err)
+//            res.send(doc);
+//        else {
+//            if (err.code == 11000)
+//                res.status(422).send(['Duplicate email adrress found.']);
+//            else
+//                return next(err);
+//        }
+
+//    });
+// }
 
  module.exports = router;

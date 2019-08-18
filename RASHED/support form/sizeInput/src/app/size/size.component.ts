@@ -10,9 +10,11 @@ export class SizeComponent implements OnInit {
   public a: any;
   allsize;
   showsuccessmessage: boolean;
-  showdeletemessage:boolean;
-  showupdatemessage:boolean;
+  showdeletemessage: boolean;
+  showupdatemessage: boolean;
   selectadd: boolean = false;
+  serverErrorMessages: string;
+
   Bid;
   constructor(private ClientSize: ClientSizeService) { }
 
@@ -30,6 +32,7 @@ export class SizeComponent implements OnInit {
       .subscribe(
         res => {
           this.a = res['size_id'];
+
           //console.log(this.a);
         },
         err => {
@@ -41,8 +44,8 @@ export class SizeComponent implements OnInit {
   getSize() {
     this.ClientSize.getallsize().subscribe(
       (data) => {
-      this.allsize = data;
-        console.log(this.allsize);
+        this.allsize = data;
+        //console.log(this.allsize);
       }
     );
   }
@@ -63,10 +66,19 @@ export class SizeComponent implements OnInit {
   create(a: any) {
     this.ClientSize.createPost(a).subscribe(
       res => {
-        console.log('ok');
+
         this.showsuccessmessage = true;
         setTimeout(() => this.showsuccessmessage = false, 4000);
+
       },
+      err => {
+
+        if (err.status === 422) {
+          this.serverErrorMessages = err.error.join('<br/>');
+        }
+        else
+       this.serverErrorMessages = 'Something went wrong.Please contact admin';
+      }
     );
     this.getSize();
     this.clearAll();
@@ -106,8 +118,10 @@ export class SizeComponent implements OnInit {
   clearAll() {
     this.ClientSize.currentSize = {
       size_name: '',
-      size_id: null
+      size_id: null,
     }
+    this.serverErrorMessages = '';
+
   }
 
 }

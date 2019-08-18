@@ -11,10 +11,10 @@ const headerOption = {
   providedIn: 'root'
 })
 export class ClientSizeService {
-  url='http://localhost:3000/api'
+  url = 'http://localhost:3000/api'
   constructor(private httpcall: HttpClient) { }
- 
-  currentSize: size ={
+
+  currentSize: size = {
     size_name: '',
     size_id: null
   };
@@ -27,14 +27,14 @@ export class ClientSizeService {
   getallsize(): Observable<size[]> {
     return this.httpcall.get<size[]>(this.url + '/all', headerOption);
   }
-  createPost(a:any): Observable<size[]> {
-    
-    return this.httpcall.post<size[]>(this.url +'/new', a, headerOption);
-   }
-   deletesize(id): Observable<size[]>{
-    return this.httpcall.delete<size[]>(this.url+'/delete/'+ id,headerOption);
+  createPost(a: any): Observable<size[]> {
+
+    return this.httpcall.post<size[]>(this.url + '/new', a, headerOption);
   }
-  updatepost(a:any): Observable<size> {
-    return this.httpcall.put<size>(this.url+'/edit/'+a._id,a,headerOption)
+  deletesize(id): Observable<size[]> {
+    return this.httpcall.delete<size[]>(this.url + '/delete/' + id, headerOption);
+  }
+  updatepost(a: any): Observable<size> {
+    return this.httpcall.put<size>(this.url + '/edit/' + a._id, a, headerOption)
   }
 }
