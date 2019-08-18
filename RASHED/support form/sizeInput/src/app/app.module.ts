@@ -1,22 +1,28 @@
+import { appRoutes } from './app-routing/app-routing.module';
 import { ClientSizeService } from './shared/client-size.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
 
 
 import { AppComponent } from './app.component';
 import { SizeComponent } from './size/size.component';
 import {HttpClientModule} from '@angular/common/http';
-import{FormsModule} from '@angular/forms'
+import{FormsModule} from '@angular/forms';
+import { ReportComponent } from './report/report.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    SizeComponent
+    SizeComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [ClientSizeService],
   bootstrap: [AppComponent]

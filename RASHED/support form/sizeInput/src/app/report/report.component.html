@@ -1,0 +1,35 @@
+<div class="container">
+<div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card text-center">
+          <div class="card-header">
+            All Available Size
+          </div>
+          <div class="card-body">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Size-ID</th>
+                  <th scope="col">Size-Name</th>
+                 
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of allsize">
+
+                  <td>{{p.size_id}}</td>
+                  <td>{{p.size_name}}</td>
+                  
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
