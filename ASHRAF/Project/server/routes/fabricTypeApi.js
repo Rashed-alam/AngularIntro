@@ -3,20 +3,21 @@ const router = express.Router();
 const Fabrics = require('../models/fabrictype');
 
 //GETTING THE LIST OF CHIPS FROM DB
-router.get('/all',(req,res,next)=>{ //http://localhost:3100/chips/allchips
+router.get('/all',(req,res,next)=>{ 
     Fabrics.find({}).then(function(fabrics){
         res.send(fabrics);
     }).catch(next);
 });
-
-
 //POSTING THE CHIPS INTO THE DB
-router.post('/new',(req,res,next)=>{ //http://localhost:3100/chips/newchips
+router.post('/new',(req,res,next)=>{ 
     Fabrics.create(req.body).then(function(fabrics){
         res.send(fabrics);
     }).catch(next);
    
 });
+
+
+
 
 
 

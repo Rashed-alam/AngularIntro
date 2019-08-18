@@ -38,6 +38,10 @@ export class FabricCalculationComponent implements OnInit {
   today: any = Date.now();
   public autoID: any;
   public sizeID: any;
+  changeUser = "Ashraf";
+  changeDate = this.today;
+  deleteevent= "delete";
+  editevent="edit";
 
 
   constructor(private Bs:BuyersService, 
@@ -139,6 +143,8 @@ export class FabricCalculationComponent implements OnInit {
     res => {
       this.showsuccessmessageforsubmitting = true;
       setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
+      this.getallFabricEntries();
+      this.clearAll();
     },
     err => {
       if (err.status === 422) {
@@ -147,6 +153,7 @@ export class FabricCalculationComponent implements OnInit {
       else
         this.serverErrorMessages = 'Something went wrong.Please contact admin.';
     }
+    
    );
   }
 
@@ -169,7 +176,11 @@ export class FabricCalculationComponent implements OnInit {
       sleeve: '',
       length_unit_of_measurement: '',
       chest_unit_of_measurement: '',
-      sleeve_unit_of_measurement: ''
+      sleeve_unit_of_measurement: '',
+      track_Id: null,
+    changeUser: '',
+    changeDate: '',
+    event:''
     }
   }
 
@@ -203,17 +214,21 @@ export class FabricCalculationComponent implements OnInit {
   }
 
    //this is for deleting an entry from the database
-   deleteFabricEntry(_id: any){
+   deleteFabricEntry(f: FabricCalulation){
     var confirmation;
     confirmation= confirm("Are you sure ?");
     if(confirmation == true){
-    this.Fc.deleteFabricEntry(_id)
-    .subscribe(
-      (data) =>{
+      f.changeUser= this.changeUser;
+      f.changeDate= this.today;
+      f.event = this.deleteevent;
+    this.Fc.createFabricArchieve(f)
+    .subscribe(res => {
+      this.Fc.deleteFabricEntry(f).subscribe((data) =>{
         this.showdeletemessage=true;
         setTimeout(()=>this.showdeletemessage=false,4000);
       this.getallFabricEntries();
       });
+    });
      }
   }
 
@@ -226,12 +241,18 @@ export class FabricCalculationComponent implements OnInit {
 
   //this is for updating any entry from database
   updateFabricEntry(FabCal: FabricCalulation){
-    this.Fc.updateFabricEntry(FabCal)
-    .subscribe();
-    this.showeditmessage=true;
-    setTimeout(()=>this.showeditmessage=false,4000);
-    this.getallFabricEntries();
-    this.clearAll();
+    FabCal.changeUser= this.changeUser;
+    FabCal.changeDate= this.today;
+    FabCal.event = this.editevent;
+      this.Fc.createFabricArchieve(FabCal).subscribe(res => {
+            this.Fc.updateFabricEntry(FabCal)
+    .subscribe((data)=>{
+      this.showeditmessage=true;
+      setTimeout(()=>this.showeditmessage=false,4000);
+      this.getallFabricEntries();
+      this.clearAll();
+    });
+    });
    
   }
 

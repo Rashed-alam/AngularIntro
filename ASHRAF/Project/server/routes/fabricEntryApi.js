@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const FabricEntry = require('../models/fabricEntry');
+const FabricArchieve = require('../models/fabricArchieve');
 
 //GETTING THE LIST OF CHIPS FROM DB
 router.get('/all',(req,res,next)=>{ //http://localhost:3100/chips/allchips
@@ -55,6 +56,15 @@ router.put('/edit/:id',(req,res,next)=>{
     }).catch(next);
   
   });
+
+
+  // this is for archieve part
+router.post('/fabricArchieve',(req,res,next)=>{
+    FabricArchieve.create(req.body).then(function(f){
+        res.send(f);
+    }).catch(next);
+   
+});
 
 
 /** this will export all the routes we have written on top 

@@ -1,4 +1,5 @@
 export class FabricCalulation{
+  
     fabricEntry_id: Number;
     mailDate: String;
     entryDate: String;
@@ -15,4 +16,8 @@ export class FabricCalulation{
     length_unit_of_measurement: String;
     chest_unit_of_measurement: String;
     sleeve_unit_of_measurement: String;
+    track_Id: Number;
+    changeUser: String;
+    changeDate: String;
+    event:String;
 }

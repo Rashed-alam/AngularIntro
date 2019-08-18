@@ -15,6 +15,7 @@ export class FabricCalculationService {
   constructor(private httpcall: HttpClient) { }
 
   currentFabricCalc: FabricCalulation = {
+    
     fabricEntry_id: null,
     mailDate: '',
     entryDate: '',
@@ -30,7 +31,11 @@ export class FabricCalculationService {
     sleeve: '',
     length_unit_of_measurement: '',
     chest_unit_of_measurement: '',
-    sleeve_unit_of_measurement: ''
+    sleeve_unit_of_measurement: '',
+    track_Id: null,
+    changeUser: '',
+    changeDate: '',
+    event:''
   }
 
    
@@ -49,13 +54,17 @@ export class FabricCalculationService {
   }
 
  
-deleteFabricEntry(_id: any): Observable<FabricCalulation[]>{
-  return this.httpcall.delete<FabricCalulation[]>(this.url+'/delete/'+ _id, headerOption);
+deleteFabricEntry(input: any): Observable<FabricCalulation[]>{
+  return this.httpcall.delete<FabricCalulation[]>(this.url+'/delete/'+ input._id, headerOption);
 }
 
 
 updateFabricEntry(entry : any): Observable<FabricCalulation> {
   return this.httpcall.put<FabricCalulation>(this.url+'/edit/'+ entry._id, entry, headerOption);
+}
+
+createFabricArchieve(fab: FabricCalulation): Observable<FabricCalulation> {
+  return this.httpcall.post<FabricCalulation>(this.url+'/fabricArchieve', fab , headerOption);
 }
 
 }

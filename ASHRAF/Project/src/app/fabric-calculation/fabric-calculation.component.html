@@ -181,7 +181,7 @@
       
 </div>
 </form>
-
+<a [routerLink]="['/report']" routerLinkActive="router-link-active" style="margin-left:61rem;">Report</a>
 
 <!--------------------------------------------- ADD NEW SIZE PORTION ------------------------------------------------------------------>
 
@@ -258,7 +258,9 @@
     <th scope="col">Buyer</th>
     <th scope="col">Entry Date</th>
     <th scope="col">Mail Date</th>
-    <th scope="col">Fabric Type</th>
+    <th scope="col">Fabric Entry ID</th>
+    <th scope="col">Style Code</th>
+   
   </tr>
 </thead>
 <tbody>
@@ -268,9 +270,10 @@
     <td>{{entry.buyer_name}}</td>
     <td>{{entry.entryDate | date :  "dd.MM.yyyy"}}</td>
     <td>{{entry.mailDate | date :  "dd.MM.yyyy"}}</td>
-    <td>{{entry.fabrics}}</td>
+    <td>{{entry.fabricEntry_id}}</td>
+    <td>{{entry.style_code}}</td>
     <td><button (click)="editFabricEntry(entry)"><span class="badge badge-box badge-warning">Edit</span></button></td>
-    <td><button (click)="deleteFabricEntry(entry._id)"><span class="badge badge-box badge-danger">Delete</span></button></td>
+    <td><button (click)="deleteFabricEntry(entry)"><span class="badge badge-box badge-danger">Delete</span></button></td>
   </tr>
 </tbody>
 </table>
