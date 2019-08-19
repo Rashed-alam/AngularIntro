@@ -165,9 +165,9 @@
           <div class="col"></div>
           <div class="col"></div>
         
-        <div class="col"> <button type="submit" class="btn btn-success" style="margin-left: 20%;" [disabled]="mainform.form.pristine || mainform.form.invalid">Submit</button></div>
-        <div class="col"> <button type="submit" class="btn btn-primary" style="margin-left: -6%;" (click)="clearAll()">Clear</button></div>
-        <div class="col"></div>
+        <div class="col"> <button type="submit" class="btn btn-success" style="margin-left: -2rem;" [disabled]="mainform.form.pristine || mainform.form.invalid">Submit</button></div>
+        <div class="col"> <button type="submit" class="btn btn-danger" style="margin-left: -3rem;" (click)="clearAll()">Clear</button></div>
+        <div class="col"><button type="submit" class="btn btn-primary" [routerLink]="['/report']" style="margin-left:-5rem;">Report</button></div>
         <div class="col"></div>
         
       </div>
@@ -181,7 +181,7 @@
       
 </div>
 </form>
-<a [routerLink]="['/report']" routerLinkActive="router-link-active" style="margin-left:61rem;">Report</a>
+
 
 <!--------------------------------------------- ADD NEW SIZE PORTION ------------------------------------------------------------------>
 

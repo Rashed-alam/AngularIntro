@@ -15,6 +15,7 @@ export class ReportComponent implements OnInit {
 
   ngOnInit() {
     this.getallFabricEntries();
+   
   }
 
   //this is for getting all the fabric entries from database
@@ -23,8 +24,8 @@ export class ReportComponent implements OnInit {
     .subscribe(
       (data: FabricCalulation[])=>{
         this.FabricCalc = data;
-        console.log(data);
       })  
   }
+
 
 }

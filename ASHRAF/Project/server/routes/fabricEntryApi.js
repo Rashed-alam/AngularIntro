@@ -4,7 +4,7 @@ const FabricEntry = require('../models/fabricEntry');
 const FabricArchieve = require('../models/fabricArchieve');
 
 //GETTING THE LIST OF CHIPS FROM DB
-router.get('/all',(req,res,next)=>{ //http://localhost:3100/chips/allchips
+router.get('/all',(req,res,next)=>{ 
     FabricEntry.find({}).then(function(fabricentry){
         res.send(fabricentry);
     }).catch(next);
@@ -65,6 +65,13 @@ router.post('/fabricArchieve',(req,res,next)=>{
     }).catch(next);
    
 });
+
+router.get('/allFabricArchieve',(req,res,next)=>{ 
+    FabricArchieve.find({}).then(function(f){
+        res.send(f);
+    }).catch(next);
+});
+
 
 
 /** this will export all the routes we have written on top 

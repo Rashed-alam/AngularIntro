@@ -36,6 +36,7 @@ export class FabricCalculationComponent implements OnInit {
   showeditmessage: boolean;
   showdeletemessage: boolean;
   today: any = Date.now();
+  archievedate: any =Date.now();
   public autoID: any;
   public sizeID: any;
   changeUser = "Ashraf";
@@ -54,8 +55,10 @@ export class FabricCalculationComponent implements OnInit {
         ) { }
     
   ngOnInit() { 
-    const present = this.DP.transform(this.today, "dd-MM-yyyy");
+   const present = this.DP.transform(this.today, "dd-MM-yyyy");
    this.today = present;
+   const datewithtime = this.DP.transform(this.archievedate, "medium");
+   this.archievedate= datewithtime;
    this.getAllBuyersList();
    this.getAllSizeList();
    this.getAllSleeveType();
@@ -219,18 +222,21 @@ export class FabricCalculationComponent implements OnInit {
     confirmation= confirm("Are you sure ?");
     if(confirmation == true){
       f.changeUser= this.changeUser;
-      f.changeDate= this.today;
+      f.changeDate= this.archievedate;
       f.event = this.deleteevent;
     this.Fc.createFabricArchieve(f)
     .subscribe(res => {
       this.Fc.deleteFabricEntry(f).subscribe((data) =>{
+        this.getallFabricEntries();
         this.showdeletemessage=true;
         setTimeout(()=>this.showdeletemessage=false,4000);
-      this.getallFabricEntries();
+        
       });
     });
      }
   }
+
+  
 
 
   editFabricEntry(FabricCalulation){
@@ -242,7 +248,7 @@ export class FabricCalculationComponent implements OnInit {
   //this is for updating any entry from database
   updateFabricEntry(FabCal: FabricCalulation){
     FabCal.changeUser= this.changeUser;
-    FabCal.changeDate= this.today;
+    FabCal.changeDate= this.archievedate;
     FabCal.event = this.editevent;
       this.Fc.createFabricArchieve(FabCal).subscribe(res => {
             this.Fc.updateFabricEntry(FabCal)

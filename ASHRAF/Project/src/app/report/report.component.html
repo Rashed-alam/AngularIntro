@@ -1,14 +1,17 @@
 <router-outlet></router-outlet>
-<table class="table table-bordered">
+<div>
+<table class="table table-bordered" style="width: 78%; margin-left: 8rem; text-align: center; margin-top: 1rem;font-size: 12px; border: 5px solid #dee2e6; position: relative;">
     <thead>
       <tr>
         <th scope="col">No.</th>
         <th scope="col">Ref. No.</th>
-        <th scope="col">Buyer</th>
+        <th scope="col">Buyer Name</th>
         <th scope="col">Entry Date</th>
         <th scope="col">Mail Date</th>
-        <th scope="col">Fabric Entry ID</th>
-        <th scope="col">Style Code</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Sleeve Type</th>
+        <th scope="col">Fabrics</th>
+        <th scope="col">Measurement</th>
        
       </tr>
     </thead>
@@ -19,8 +22,15 @@
           <td>{{entry.buyer_name}}</td>
           <td>{{entry.entryDate | date :  "dd.MM.yyyy"}}</td>
           <td>{{entry.mailDate | date :  "dd.MM.yyyy"}}</td>
-          <td>{{entry.fabricEntry_id}}</td>
-          <td>{{entry.style_code}}</td>
+          <td>{{entry.style_item_name}}</td>
+          <td>{{entry.style_sleeve_type}}</td>
+          <td>{{entry.fabrics}}</td>
+          <td>Chest: {{entry.chest}}-{{entry.chest_unit_of_measurement}} <br>
+            Length: {{entry.length}}-{{entry.length_unit_of_measurement}} <br>
+            Sleeve: {{entry.sleeve}}-{{entry.sleeve_unit_of_measurement}}</td>
+     
+        
          
     </tbody>
   </table>
+  

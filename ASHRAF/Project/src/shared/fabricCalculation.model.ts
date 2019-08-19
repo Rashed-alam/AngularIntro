@@ -1,5 +1,5 @@
 export class FabricCalulation{
-  
+    
     fabricEntry_id: Number;
     mailDate: String;
     entryDate: String;

@@ -67,4 +67,8 @@ createFabricArchieve(fab: FabricCalulation): Observable<FabricCalulation> {
   return this.httpcall.post<FabricCalulation>(this.url+'/fabricArchieve', fab , headerOption);
 }
 
+getFabricArchieve(): Observable<FabricCalulation[]>{
+  return this.httpcall.get<FabricCalulation[]>(this.url+'/allFabricArchieve', headerOption);
+}
+
 }
