@@ -54,8 +54,8 @@ export class FabricCalculationService {
   }
 
  
-deleteFabricEntry(input: any): Observable<FabricCalulation[]>{
-  return this.httpcall.delete<FabricCalulation[]>(this.url+'/delete/'+ input._id, headerOption);
+deleteFabricEntry(_id: any): Observable<FabricCalulation[]>{
+  return this.httpcall.delete<FabricCalulation[]>(this.url+'/delete/'+ _id, headerOption);
 }
 
 

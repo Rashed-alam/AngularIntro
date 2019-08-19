@@ -35,14 +35,15 @@ export class FabricCalculationComponent implements OnInit {
   serverErrorMessages: any;
   showeditmessage: boolean;
   showdeletemessage: boolean;
-  today: any = Date.now();
-  archievedate: any =Date.now();
+  today: any = Date.now(); //for showing today's date
+  archievedate: any =Date.now();// for showing date and time into archieve
   public autoID: any;
   public sizeID: any;
   changeUser = "Ashraf";
   changeDate = this.today;
   deleteevent= "delete";
   editevent="edit";
+  swapVariableForArchieve;
 
 
   constructor(private Bs:BuyersService, 
@@ -226,7 +227,7 @@ export class FabricCalculationComponent implements OnInit {
       f.event = this.deleteevent;
     this.Fc.createFabricArchieve(f)
     .subscribe(res => {
-      this.Fc.deleteFabricEntry(f).subscribe((data) =>{
+      this.Fc.deleteFabricEntry(f._id).subscribe((data) =>{
         this.getallFabricEntries();
         this.showdeletemessage=true;
         setTimeout(()=>this.showdeletemessage=false,4000);
@@ -242,15 +243,17 @@ export class FabricCalculationComponent implements OnInit {
   editFabricEntry(FabricCalulation){
     this.Fc.currentFabricCalc = Object.assign({},FabricCalulation);
     this.getallFabricEntries();
+    this.swapVariableForArchieve = FabricCalulation;
   }
 
 
   //this is for updating any entry from database
   updateFabricEntry(FabCal: FabricCalulation){
-    FabCal.changeUser= this.changeUser;
-    FabCal.changeDate= this.archievedate;
-    FabCal.event = this.editevent;
-      this.Fc.createFabricArchieve(FabCal).subscribe(res => {
+    this.swapVariableForArchieve.changeUser = this.changeUser;
+    this.swapVariableForArchieve.changeDate = this.archievedate;
+    this.swapVariableForArchieve.event = this.editevent;
+    this.swapVariableForArchieve._id = null;
+      this.Fc.createFabricArchieve(this.swapVariableForArchieve).subscribe(res => {
             this.Fc.updateFabricEntry(FabCal)
     .subscribe((data)=>{
       this.showeditmessage=true;
