@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Size = require('../Models/size');
+const size_archive=require('../Models/archive')
 
 router.get('/all', function (req, res, next) {
     Size.find({}).then(function (sizes) {
@@ -9,7 +10,7 @@ router.get('/all', function (req, res, next) {
 });
 
 router.post('/new', function (req, res, next) {
-    //console.log(req.body); 
+
     Size.create(req.body).then(function (sizes) {
        res.send(sizes);
  
@@ -58,29 +59,28 @@ router.post('/new', function (req, res, next) {
     Size.findByIdAndUpdate({_id:req.params.id},req.body).then(function(){
         Size.findOne({_id:req.params.id}).then(function(size){
           res.send(size);
-        
        });
       
-    }).catch(next);
+    }).catch((err,doc) => { 
+        if (!err)
+        res.send(doc);
+    else {
+        if (err.code == 11000)
+            res.status(422).send(['Can not add new size.Duplicate entry found here.']);
+        else
+            return next(err);
+    }
+        });
  });
+ //get by id
+ 
+//archive part
+router.post('/sizeArchieve',(req,res,next)=>{
+    size_archive.create(req.body).then(function(f){
+        res.send(f);
+    }).catch(next);
+   
+});
 
-//error handling
-// router.duplicateEntry = (req, res, next) => {
-//    var size = new Size();
-//    size.size_name = req.body.size_name;
-//    size.inc_field = req.body.inc_field;
-  
-//    size.save((err, doc) => {
-//        if (!err)
-//            res.send(doc);
-//        else {
-//            if (err.code == 11000)
-//                res.status(422).send(['Duplicate email adrress found.']);
-//            else
-//                return next(err);
-//        }
-
-//    });
-// }
 
  module.exports = router;
