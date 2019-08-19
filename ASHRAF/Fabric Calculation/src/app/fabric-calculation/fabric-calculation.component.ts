@@ -227,7 +227,7 @@ export class FabricCalculationComponent implements OnInit {
       f.event = this.deleteevent;
     this.Fc.createFabricArchieve(f)
     .subscribe(res => {
-      this.Fc.deleteFabricEntry(f._id).subscribe((data) =>{
+      this.Fc.deleteFabricEntry(f).subscribe((data) =>{
         this.getallFabricEntries();
         this.showdeletemessage=true;
         setTimeout(()=>this.showdeletemessage=false,4000);
