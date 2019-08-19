@@ -16,7 +16,11 @@ export class ClientSizeService {
 
   currentSize: size = {
     size_name: '',
-    size_id: null
+    size_id: null,
+    track_Id: null,
+    changeUser: '',
+    changeDate: '',
+    event: ''
   };
 
   getsizeid() {
@@ -35,6 +39,9 @@ export class ClientSizeService {
     return this.httpcall.delete<size[]>(this.url + '/delete/' + id, headerOption);
   }
   updatepost(a: any): Observable<size> {
-    return this.httpcall.put<size>(this.url + '/edit/' + a._id, a, headerOption)
+    return this.httpcall.put<size>(this.url + '/edit/' + a._id, a, headerOption);
+  }
+  createsizeArchive(b: any): Observable<size[]> {
+    return this.httpcall.post<size[]>(this.url + '/sizeArchieve', b, headerOption);
   }
 }
