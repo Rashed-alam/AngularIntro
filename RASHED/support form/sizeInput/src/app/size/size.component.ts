@@ -99,7 +99,6 @@ export class SizeComponent implements OnInit {
     p.changeUser = this.changeUser;
     p.changeDate = this.today;
     p.event = this.deleteevent;
-    p._id =null;
     this.ClientSize.createsizeArchive(p).subscribe(res => {
       this.ClientSize.deletesize(p._id).subscribe(
         res => {
@@ -120,7 +119,7 @@ export class SizeComponent implements OnInit {
     this.b_old= a;
    
   }
-  updatepost(a) {
+  updatepost(n) {
 
     
     this.b_old.changeUser =this.changeUser;
@@ -130,7 +129,7 @@ export class SizeComponent implements OnInit {
     console.log(this.b_old);
     
     this.ClientSize.createsizeArchive(this.b_old).subscribe(res=>{
-      this.ClientSize.updatepost(a).subscribe(
+      this.ClientSize.updatepost(n).subscribe(
       res => {
         console.log(res);
         this.showupdatemessage = true;
