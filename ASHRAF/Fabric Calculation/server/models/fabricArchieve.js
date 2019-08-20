@@ -2,68 +2,147 @@ const mongoose = require("mongoose");
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 const FabricArchieveSchema = new mongoose.Schema({
 
-    fabricEntry_id:{
+    fabricEntry_id:{ //30
         type: String
     },
-    mailDate: {
-        type: Date
+    mailDate: { //1
+        type: Date,
+        default: null,
+        required: "Mail Date cannot be Empty"
     },
-    entryDate: {
-        type: Date
+    entryDate: { //2
+        type: Date,
+        default: null,
+        required: "Entry Date cannot be Empty"
     },
-    refNo: {
-        type: String
+    refNo: { //3
+        type: String,
+        required: true,
+        required: "Reference No. cannot be Empty"
     },
-    buyer_name: {
-        type: String
+    buyer_name: { //4
+        type: String,
+        default: null,
+        required: "Buyer Name cannot be Empty"
     },
-    style_code: {
-        type: String
+   
+    style_code: { //5
+        type: String,
+        default: null,
+        required: "Style Code cannot be Empty"
     },
-    style_item_name: {
-        type: String
+    style_item_name: { //6
+        type: String,
+        default: null,
+        required: "Item Name cannot be Empty"
     },
-    style_sleeve_type: {
-        type: String
+    style_sleeve_type: { //7
+        type: String,
+        default: null,
+        required: "Sleeve Type cannot be Empty"
     },
     size: {
-        type: String
+        type: String, //8
+        default: null,
+        required: "Size cannot be Empty"
     },
     fabrics: {
-        type: String
+        type: String, //9
+        default: 0,
+        required: "Fabric Type Date cannot be Empty"
     },
     chest: {
-        type: String
+        type: String, //10
+        default: null,
+        required: "Chest Size cannot be Empty"
     },
     length: {
-        type: String
+        type: String, //11
+        default: 0,
+        required: "Length size cannot be Empty"
     },
     sleeve: {
+        type: String, //12
+        default: 0,
+        required: "Sleeve Type cannot be Empty"
+    },
+    length_unit_of_measurement:{ //13
         type: String,
-        default: 0
+        default: 0,
+        required: "Length Unit of Measurement cannot be Empty"
     },
-    length_unit_of_measurement:{
-        type: String
+    chest_unit_of_measurement:{ //14
+        type: String,
+        default: 0,
+        required: "Chest Unit of Measurement cannot be Empty"
     },
-    chest_unit_of_measurement:{
-        type: String
+    sleeve_unit_of_measurement:{ //15
+        type: String,
+        default: 0,
+        required: "Sleeve Unit of Measurement cannot be Empty"
     },
-    sleeve_unit_of_measurement:{
-        type: String
-      
+    waste_percentage:{ //16
+        type: Number,
+        default: 0,
+        required: "Sleeve Unit of Measurement cannot be Empty"
     },
-    changeUser: {
+    hood:{ //17
+        type: String,
+        default: 0,
+        required: "Sleeve Unit of Measurement cannot be Empty"
+    },
+    bottom:{ //18
+        type: String,
+        default: 0,
+        required: "Sleeve Unit of Measurement cannot be Empty"
+    },
+    thigh:{ //19
+        type: String,
+        default: 0,
+        required: "Sleeve Unit of Measurement cannot be Empty"
+    },
+    pocket:{ //20
+        type: String,
+        default: 0,
+        required: "Sleeve Unit of Measurement cannot be Empty"
+    },
+    pocket_unit_of_measurement:{ //21
+        type: String,
+        default: 0,
+        required: "Chest Unit of Measurement cannot be Empty"
+    },
+    hood_unit_of_measurement:{ //22
+        type: String,
+        default: 0,
+        required: "Chest Unit of Measurement cannot be Empty"
+    },
+    bottom_unit_of_measurement:{ //23
+        type: String,
+        default: 0,
+        required: "Chest Unit of Measurement cannot be Empty"
+    },
+    thigh_unit_of_measurement:{ //24
+        type: String,
+        default: 0,
+        required: "Chest Unit of Measurement cannot be Empty"
+    },
+    fabric_weigh:{ //25
+        type: String,
+        default: 0,
+        required: "Chest Unit of Measurement cannot be Empty"
+    },
+    changeUser: {//26
         type: String
         
     },
-    changeDate: {
+    changeDate: {//27
         type: String
       
     },
-    event: {
+    event: {//28
         type: String
     }
 
 })
-FabricArchieveSchema.plugin(AutoIncrement, { inc_field: 'track_Id' });
+FabricArchieveSchema.plugin(AutoIncrement, { inc_field: 'track_Id' });//29
 module.exports = mongoose.model('fabricarchieve', FabricArchieveSchema);

@@ -45,16 +45,12 @@ router.get('/all', function (req, res) {
 });
 
 
-// Get a BuyerInfo
+// Get a Buyer information from the database
 
-router.get('/:id', function (req, res) {
-
-    BuyerInfo.find({ buyerId: req.params.id }, (err, alldata) => {
-        if (err) return res.json(err);
-        res.send(alldata);
-    })
-
-    //res.send("get a buyer info")
+router.get('/:id', (req, res, next)=> {
+    BuyerInfo.find({ _id: req.params.id }).then(function(x){
+        res.send(x);
+    }).catch(next);
 });
 
 
