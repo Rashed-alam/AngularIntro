@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 
 
+import{DatePipe} from '@angular/common';
 import { AppComponent } from './app.component';
 import { SizeComponent } from './size/size.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -23,8 +24,10 @@ import { ReportComponent } from './report/report.component'
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+  
+
   ],
-  providers: [ClientSizeService],
+  providers: [ClientSizeService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
