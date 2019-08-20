@@ -1,0 +1,380 @@
+<div class="card border-primary mb-3" style="max-width: 55rem; margin-left: 15rem;">
+    <div class="card-header">
+        <h2 style="text-align: center">Price Calculation</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card-group">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Mail Date:</div>
+                            </div>
+                            <input type="text" id="mailDate" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
+                                class="form-control">
+                        </div>
+
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Entry Date:</label>
+                            </div>
+                            <input type="text" id="mailDate" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
+                                class="form-control">
+                        </div>
+
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">ID:</label>
+                            </div>
+                            <input class="form-control" type="text" placeholder="{{autoID}}" style="width: 48%"
+                                disabled>
+                        </div>
+
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Ref No:</label>
+                            </div>
+                            <input type="text" id="refNo" class="form-control" style="width: 30%"
+                                placeholder="Enter Reference Number" required>
+                        </div>
+
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Buyer Name:</label>
+                            </div>
+                            <select class="custom-select" id="buyer_name" style="width: 60%;" required>
+                                <option value="{{b.name}}" *ngFor="let b of allBuyers">{{b.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <h5 style="text-align: center">Quotation Info</h5>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Code No:</div>
+                            </div>
+                            <input type="text" class="form-control" id="style_code" placeholder="Code Number"
+                                style="width: 12.5rem" name="Fc.currentFabricCalc.style_code"
+                                [(ngModel)]="Fc.currentFabricCalc.style_code"
+                                onkeyup="this.value = this.value.toUpperCase();" #style_code="ngModel" required>
+                        </div>
+
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Item Name:</label>
+                            </div>
+                            <input type="text" class="form-control" id="style_code" style="width: 30%;">
+                        </div>
+
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Size:</label>
+                            </div>
+                            <select class="custom-select" style="width: 50%" id="size" required>
+
+                                <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Fabrics:</label>
+                            </div>
+                            <input type="text" id="refNo" class="form-control" style="width: 30%"
+                                placeholder="Enter Reference Number" required>
+                        </div>
+
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Chest:</label>
+                            </div>
+                            <input type="text" class="form-control" id="inputEmail3" maxlength="4" placeholder="input"
+                                style="width: 30%" required>
+
+                        </div>
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Length:</label>
+                            </div>
+                            <input type="text" class="form-control" id="inputPassword3" maxlength="4"
+                                placeholder="input" style="width: 22%" required>
+
+                        </div>
+
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Sleeve:</label>
+                            </div>
+                            <input type="text" class="form-control" id="inputPassword3" maxlength="4"
+                                placeholder="input" style="width: 24%" required>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="card">
+            <div class="card-body">
+                    <div class="col-md-12">
+                            <div class="row" >
+                
+                                <div class="col-md-4">
+                                    <span class="input-group-text" for="inputGroupSelect01">Calculation ID </span>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" aria-label="Sizing example input"
+                                        aria-describedby="inputGroup-sizing-sm"  placeholder="{{a}}" readonly="">
+                                </div>
+                
+                
+                            </div>
+                
+                
+                            <div class="row" style="margin-top:1rem">
+                                <div class="col-md-5">
+                
+                                    <label class="input-group-text" for="inputGroupSelect01"> Fabric Amount</label>
+                
+                                </div>
+                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                            UOM
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        ...
+                                    </div>
+                                </div>
+                
+                            </div>
+                
+                
+                
+                
+                
+                            <div class="row" style="margin-top:1rem">
+                                <div class="col-md-5">
+                
+                                    <label class="input-group-text" for="inputGroupSelect01"> Fabric Unit Price</label>
+                
+                                </div>
+                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                            UOM
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        ...
+                                    </div>
+                                </div>
+                
+                            </div>
+                
+                
+                            <div class="row" style="margin-top:1rem">
+                                <div class="col-md-5">
+                
+                                    <label class="input-group-text" for="inputGroupSelect01"> Fabric Total Price</label>
+                
+                                </div>
+                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                            UOM
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        ...
+                                    </div>
+                                </div>
+                
+                            </div>
+                
+                            <div class="row" style="margin-top:1rem">
+                                <div class="col-md-4">
+                
+                                    <label class="input-group-text" for="inputGroupSelect01"> RIB</label>
+                
+                                </div>
+                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                            UOM
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        ...
+                                    </div>
+                                </div>
+                
+                            </div>
+                            <div class="row" style="margin-top:1rem">
+                                <div class="col-md-4">
+                
+                                    <label class="input-group-text" for="inputGroupSelect01"> CM</label>
+                
+                                </div>
+                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                            UOM
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        ...
+                                    </div>
+                                </div>
+                
+                            </div>
+                            <div class="row" style="margin-top:1rem">
+                                <div class="col-md-4">
+                
+                                    <label class="input-group-text" for="inputGroupSelect01"> TRIM</label>
+                
+                                </div>
+                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                            UOM
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        ...
+                                    </div>
+                                </div>
+                
+                            </div>
+                
+                            <div class="row" style="margin-top:1rem">
+                                <div class="col-md-4">
+                
+                                    <label class="input-group-text" for="inputGroupSelect01"> Print</label>
+                
+                                </div>
+                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                            UOM
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        ...
+                                    </div>
+                                </div>
+                
+                            </div>
+                
+                            <div class="row" style="margin-top:1rem">
+                                <div class="col-md-4">
+                
+                                    <label class="input-group-text" for="inputGroupSelect01"> DOC</label>
+                
+                                </div>
+                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                            UOM
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        ...
+                                    </div>
+                                </div>
+                
+                            </div>
+                
+                            <button type="button" class="btn btn-success btn-lg"
+                                style="margin-left: 18rem; margin-top: 1rem">Calculate</button>
+                
+                            <div class="row" style="margin-top:1rem">
+                                <div class="col-md-5">
+                
+                                    <label class="input-group-text" for="inputGroupSelect01" > Per Dozen Price</label>
+                
+                                </div>
+                                <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="Per Dozen Price" readonly="">
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                            UOM
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        ...
+                                    </div>
+                                </div>
+                
+                            </div>
+                            <div class="row" style="margin-top:1rem">
+                                <div class="col-md-5">
+                
+                                    <label class="input-group-text" for="inputGroupSelect01"> Per Unit
+                                        Price</label>
+                
+                                </div>
+                                <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="Per Unit Price" readonly="">
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                 UOM
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        ...
+                                    </div>
+                                </div>
+                
+                            </div>
+                
+                            <div class="row" style="margin-top: 2rem">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-info" style="margin-left: 5rem;">Add</button>
+                                    <button type="button" class="btn btn-info" style="margin-left: 11rem;">Cancel</button>
+                
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+      
+
+    </div>
+</div>

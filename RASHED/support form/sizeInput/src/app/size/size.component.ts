@@ -1,5 +1,6 @@
 import { ClientSizeService } from './../shared/client-size.service';
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-size',
@@ -16,14 +17,17 @@ export class SizeComponent implements OnInit {
   serverErrorMessages: string;
   Bid;
   today: any = Date.now();
+  archievedate: any = Date.now();
   changeUser = "rashed";
   changeDate = this.today;
   deleteevent = "delete";
   editevent = "edit";
   b_old;
-  constructor(private ClientSize: ClientSizeService) { }
+  constructor(private ClientSize: ClientSizeService, private DP: DatePipe) { }
 
   ngOnInit() {
+    const datewithtime = this.DP.transform(this.archievedate, "medium");
+    this.archievedate = datewithtime;
     this.getId();
     this.getSize();
     //console.log(this.a.size_id);
@@ -70,14 +74,14 @@ export class SizeComponent implements OnInit {
   create(a: any) {
     this.ClientSize.createPost(a).subscribe(
       res => {
-      
+
 
         this.showsuccessmessage = true;
         setTimeout(() => this.showsuccessmessage = false, 4000);
 
       },
       err => {
-       
+
         if (err.status === 422) {
           this.serverErrorMessages = err.error.join('<br/>');
         }
@@ -97,12 +101,12 @@ export class SizeComponent implements OnInit {
   deletesize(p: any) {
     // console.log('check='+_id);
     p.changeUser = this.changeUser;
-    p.changeDate = this.today;
+    p.changeDate = this.archievedate;
     p.event = this.deleteevent;
     this.ClientSize.createsizeArchive(p).subscribe(res => {
       this.ClientSize.deletesize(p._id).subscribe(
         res => {
-         console.log('ok');
+          console.log('ok');
           this.showdeletemessage = true;
           setTimeout(() => this.showdeletemessage = false, 4000);
         },
@@ -116,40 +120,40 @@ export class SizeComponent implements OnInit {
     this.ClientSize.currentSize = Object.assign({}, a);
     this.getSize();
     this.selectadd = true;
-    this.b_old= a;
-   
+    this.b_old = a;
+
   }
   updatepost(n) {
 
-    
-    this.b_old.changeUser =this.changeUser;
-    this.b_old.changeDate=this.today;
-    this.b_old.event=this.editevent;
-    this.b_old._id=null;
-    console.log(this.b_old);
-    
-    this.ClientSize.createsizeArchive(this.b_old).subscribe(res=>{
-      this.ClientSize.updatepost(n).subscribe(
-      res => {
-        console.log(res);
-        this.showupdatemessage = true;
-        setTimeout(() => this.showupdatemessage = false, 4000);
-      },
-      err => {
 
-        if (err.status === 422) {
-          this.serverErrorMessages = err.error.join('<br/>');
+    this.b_old.changeUser = this.changeUser;
+    this.b_old.changeDate = this.archievedate;
+    this.b_old.event = this.editevent;
+    this.b_old._id = null;
+   // console.log(this.b_old);
+
+    this.ClientSize.createsizeArchive(this.b_old).subscribe(res => {
+      this.ClientSize.updatepost(n).subscribe(
+        res => {
+          console.log(res);
+          this.showupdatemessage = true;
+          setTimeout(() => this.showupdatemessage = false, 4000);
+        },
+        err => {
+
+          if (err.status === 422) {
+            this.serverErrorMessages = err.error.join('<br/>');
+          }
+          else {
+            this.serverErrorMessages = 'Something went wrong.Please contact admin';
+          }
         }
-        else {
-          this.serverErrorMessages = 'Something went wrong.Please contact admin';
-        }
-      }
-    );
-    this.clearAll();
-    this.getSize();
-    this.selectadd = false;
+      );
+      this.clearAll();
+      this.getSize();
+      this.selectadd = false;
     });
-    
+
   }
   clearAll() {
     this.ClientSize.currentSize = {
