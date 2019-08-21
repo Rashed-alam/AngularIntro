@@ -22,13 +22,10 @@ export class UnitofmeasurementService {
     return this.httpcall.get<UoM[]>(this.url+'/all', headerOption);
    
   }
-  createSize(object : UoM): Observable<UoM> {
-    return this.httpcall.post<UoM>(this.url+'/new', object , headerOption);
-  }
+  // createSize(object : UoM): Observable<UoM> {
+  //   return this.httpcall.post<UoM>(this.url+'/new', object , headerOption);
+  // }
 
-  getSizeid(){
-    return this.httpcall.get(this.url+'/', headerOption);
-   
-  }
+  
 
 }

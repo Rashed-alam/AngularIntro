@@ -17,6 +17,7 @@ import { ItemNameService } from '../shared/item-name.service';
 import { FabricCalculationService } from '../shared/fabric-calculation.service';
 import { ReportComponent } from './report/report.component';
 import { appRoutes } from './app-routing.module';
+import { SizelistService } from '../shared/sizelist.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { appRoutes } from './app-routing.module';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [BuyersService,UnitofmeasurementService,
     SleeveTypeService,FabricTypeService, DatePipe, 
-    ItemNameService, FabricCalculationService],
+    ItemNameService, FabricCalculationService,SizelistService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

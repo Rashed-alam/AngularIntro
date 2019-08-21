@@ -76,9 +76,10 @@
                   <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">Size:</label>
                   </div>
-                  <select class="custom-select" id="size" name="Fc.currentFabricCalc.size" [(ngModel)]="Fc.currentFabricCalc.size" #size="ngModel" required>
+                  <select class="custom-select" id="size" name="Fc.currentFabricCalc.size"
+                   [(ngModel)]="Fc.currentFabricCalc.size" #size="ngModel" required>
                    
-                      <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                      <option value="{{s.size_name}}" *ngFor="let s of allSize">{{s.size_name}}</option>
                     </select>
                     <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">
                         New Size
@@ -288,14 +289,14 @@
           </button>
         </div>
         <div class="modal-body">
-            <form name="form" (ngSubmit)="f.form.valid && AddNewSize(Ums.currentUoM)" #f="ngForm" novalidate>
+            <form name="form" (ngSubmit)="f.form.valid && AddNewSize(Sl.currentSizeList)" #f="ngForm" novalidate>
                 <div class="form-row align-items-center">
                     <div class="col-sm-4">
                         <div class="input-group mb-2">
                           <div class="input-group-prepend">
                             <div class="input-group-text">Size ID:</div>
                           </div>
-                          <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{sizeID}}" disabled>
+                          <input type="text" class="form-control" placeholder="{{sizeID}}" disabled>
                         </div>
                       </div> 
                   <div class="col-sm-7">
@@ -303,8 +304,8 @@
                       <div class="input-group-prepend">
                         <div class="input-group-text">Size Name:</div>
                       </div>
-                      <input type="text" id="size_name"class="form-control" minlength="2" placeholder="Size" name="Ums.currentUoM.Uom_name"
-                      [(ngModel)]="Ums.currentUoM.Uom_name" #size_name="ngModel" required>
+                      <input type="text" id="size_name"class="form-control" minlength="2" placeholder="Size" name="Sl.currentSizeList.size_name"
+                      [(ngModel)]="Sl.currentSizeList.size_name" #size_name="ngModel" required>
                     </div>
                   </div>
                 </div>
