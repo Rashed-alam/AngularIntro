@@ -12,23 +12,23 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Mail Date:</div>
                             </div>
-                            <input type="text" id="mailDate" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
-                                class="form-control">
+                            <input type="text" id="mailDate" value="{{Fc.currentFabricCalc.mailDate | date :'dd-MM-yyyy'}}" 
+                                class="form-control" disabled>
                         </div>
 
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Entry Date:</label>
                             </div>
-                            <input type="text" id="mailDate" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
-                                class="form-control">
+                            <input type="text" id="entryDate" value="{{Fc.currentFabricCalc.entryDate | date :'dd-MM-yyyy'}}"
+                                class="form-control" disabled>
                         </div>
-
+ 
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">ID:</label>
                             </div>
-                            <input class="form-control" type="text" placeholder="{{autoID}}" style="width: 48%"
+                            <input class="form-control" type="text" style="width: 48%" value="{{Fc.currentFabricCalc.fabricEntry_id}}"
                                 disabled>
                         </div>
 
@@ -37,16 +37,15 @@
                                 <label class="input-group-text" for="inputGroupSelect01">Ref No:</label>
                             </div>
                             <input type="text" id="refNo" class="form-control" style="width: 30%"
-                                placeholder="Enter Reference Number" required>
+                                placeholder="Enter Reference Number" #box (keyup.enter)="onEnter(box.value)" required>
+                                
                         </div>
 
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Buyer Name:</label>
                             </div>
-                            <select class="custom-select" id="buyer_name" style="width: 60%;" required>
-                                <option value="{{b.name}}" *ngFor="let b of allBuyers">{{b.name}}</option>
-                            </select>
+                            <input type="text" class="form-control" id="style_code" style="width: 30%;" value="{{Fc.currentFabricCalc.buyer_name}}" disabled>
                         </div>
                     </div>
                     <hr>
@@ -57,26 +56,23 @@
                                 <div class="input-group-text">Code No:</div>
                             </div>
                             <input type="text" class="form-control" id="style_code" placeholder="Code Number"
-                                style="width: 12.5rem" name="Fc.currentFabricCalc.style_code"
-                                [(ngModel)]="Fc.currentFabricCalc.style_code"
-                                onkeyup="this.value = this.value.toUpperCase();" #style_code="ngModel" required>
+                                style="width: 12.5rem" 
+                              
+                                onkeyup="this.value = this.value.toUpperCase();" value="{{Fc.currentFabricCalc.style_code}}" disabled>
                         </div>
 
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Item Name:</label>
                             </div>
-                            <input type="text" class="form-control" id="style_code" style="width: 30%;">
+                            <input type="text" class="form-control" id="style_code" style="width: 30%;" value="{{Fc.currentFabricCalc.style_item_name}}" disabled>
                         </div>
 
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Size:</label>
                             </div>
-                            <select class="custom-select" style="width: 50%" id="size" required>
-
-                                <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
-                            </select>
+                            <input type="text" class="form-control" id="style_code" style="width: 30%;" value="{{Fc.currentFabricCalc.size}}" disabled>
                         </div>
 
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
@@ -84,32 +80,73 @@
                                 <label class="input-group-text" for="inputGroupSelect01">Fabrics:</label>
                             </div>
                             <input type="text" id="refNo" class="form-control" style="width: 30%"
-                                placeholder="Enter Reference Number" required>
+                                value="{{Fc.currentFabricCalc.fabrics}}" disabled>
                         </div>
 
-                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Chest:</label>
                             </div>
                             <input type="text" class="form-control" id="inputEmail3" maxlength="4" placeholder="input"
-                                style="width: 30%" required>
+                                style="width: 30%" value="{{Fc.currentFabricCalc.chest}}" disabled>
 
                         </div>
-                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected || ShortsSelected">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Length:</label>
                             </div>
                             <input type="text" class="form-control" id="inputPassword3" maxlength="4"
-                                placeholder="input" style="width: 22%" required>
+                                placeholder="input" style="width: 22%" value="{{Fc.currentFabricCalc.length}}" disabled>
 
                         </div>
 
-                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Sleeve:</label>
                             </div>
                             <input type="text" class="form-control" id="inputPassword3" maxlength="4"
-                                placeholder="input" style="width: 24%" required>
+                                placeholder="input" style="width: 24%" value="{{Fc.currentFabricCalc.sleeve}}" disabled>
+
+                        </div>
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="JacketSelected">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Sleeve type</label>
+                            </div>
+                            <input type="text" class="form-control" id="inputPassword3" maxlength="4"
+                                placeholder="input" style="width: 24%" value="{{Fc.currentFabricCalc.style_sleeve_type}}" disabled>
+
+                        </div>
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="JacketSelected">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Hood:</label>
+                            </div>
+                            <input type="text" class="form-control" id="inputPassword3" maxlength="4"
+                                placeholder="input" style="width: 24%" value="{{Fc.currentFabricCalc.hood}}" disabled>
+
+                        </div>
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="JacketSelected">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Bottom:</label>
+                            </div>
+                            <input type="text" class="form-control" id="inputPassword3" maxlength="4"
+                                placeholder="input" style="width: 24%" value="{{Fc.currentFabricCalc.bottom}}" disabled>
+
+                        </div>
+                   
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="ShortsSelected">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">2/1 Thigh:</label>
+                            </div>
+                            <input type="text" class="form-control" id="inputPassword3" maxlength="4"
+                                placeholder="input" style="width: 24%" value="{{Fc.currentFabricCalc.thigh}}" disabled>
+
+                        </div>
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="ShortsSelected">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Pocket:</label>
+                            </div>
+                            <input type="text" class="form-control" id="inputPassword3" maxlength="4"
+                                placeholder="input" style="width: 24%" value="{{Fc.currentFabricCalc.pocket}}" disabled>
 
                         </div>
 
