@@ -3,7 +3,7 @@ const router = express.Router();
 const FabricEntry = require('../models/fabricEntry');
 const FabricArchieve = require('../models/fabricArchieve');
 
-//GETTING THE LIST OF CHIPS FROM DB
+//GETTING THE LIST OF entries FROM DB
 router.get('/all',(req,res,next)=>{ 
     FabricEntry.find({}).then(function(fabricentry){
         res.send(fabricentry);
@@ -11,14 +11,14 @@ router.get('/all',(req,res,next)=>{
 });
 
 
-//POSTING THE CHIPS INTO THE DB
+//POSTING THE entries INTO THE DB
 router.post('/new',(req,res,next)=>{ 
     FabricEntry.create(req.body).then(function(fabricentry){
         res.send(fabricentry);
     }).catch(next);
    
 });
-//this part is for fetching back the AUtoID from database
+//this part is for fetching back the entry AUtoID from database
 router.get('/',function(req,res,next){
     FabricEntry.find({},('fabricEntry_id')).sort({"fabricEntry_id":-1}).limit(1)
     .then(data => {
@@ -39,7 +39,7 @@ router.get('/',function(req,res,next){
 });
  });
 
- //for editing existing posts
+ //for editing existing entries
 router.put('/edit/:id',(req,res,next)=>{ 
     FabricEntry.findByIdAndUpdate({_id: req.params.id},req.body).then(function(){ 
         FabricEntry.findOne({_id:req.params.id}).then(function(fabricentry){ 
@@ -49,7 +49,7 @@ router.put('/edit/:id',(req,res,next)=>{
   
   });
   
-  //for deleting post
+  //for deleting entries
   router.delete('/delete/:id',(req,res,next)=>{
     FabricEntry.findByIdAndRemove({_id: req.params.id}).then(function(fabricentry){
        res.send(fabricentry);  
@@ -65,7 +65,7 @@ router.post('/fabricArchieve',(req,res,next)=>{
     }).catch(next);
    
 });
-
+//for showing all the archieve data from db
 router.get('/allFabricArchieve',(req,res,next)=>{ 
     FabricArchieve.find({}).then(function(f){
         res.send(f);

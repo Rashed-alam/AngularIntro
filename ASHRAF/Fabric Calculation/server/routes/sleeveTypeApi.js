@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Sleeves = require('../models/sleevetype');
 
-//GETTING THE LIST OF CHIPS FROM DB
+//GETTING THE LIST OF sleeve type FROM DB
 router.get('/all',(req,res,next)=>{ //http://localhost:3100/chips/allchips
     Sleeves.find({}).then(function(sleeves){
         res.send(sleeves);
@@ -10,7 +10,7 @@ router.get('/all',(req,res,next)=>{ //http://localhost:3100/chips/allchips
 });
 
 
-//POSTING THE CHIPS INTO THE DB
+//POSTING THE sleeves INTO THE DB
 router.post('/new',(req,res,next)=>{ //http://localhost:3100/chips/newchips
     Sleeves.create(req.body).then(function(sleeves){
         res.send(sleeves);
