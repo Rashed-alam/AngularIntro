@@ -86,13 +86,21 @@ export class FabricCalculationComponent implements OnInit {
     var chestsize: any= 0;
     var lengthsize: any= 0 ;
     var sleevesize: any = 0;
-    var tShirtCalculation: any= 0;
-    var fabricsize: any= 0;
+    var hoodsize: any= 0;
+    var bottomsize: any = 0;
+    var thighsize: any = 0;
+    var pocketsize: any = 0;
+    var fabricsize: any= 0;// for gsm value
     wastePercentage = this.Fc.currentFabricCalc.waste_percentage;
     chestsize = this.Fc.currentFabricCalc.chest;
     lengthsize = this.Fc.currentFabricCalc.length;
     sleevesize = this.Fc.currentFabricCalc.sleeve;
     fabricsize = this.Fc.currentFabricCalc.fabrics;
+    hoodsize = this.Fc.currentFabricCalc.hood;
+    bottomsize = this.Fc.currentFabricCalc.bottom;
+    thighsize = this.Fc.currentFabricCalc.thigh;
+    pocketsize = this.Fc.currentFabricCalc.pocket;
+    //this part is for calculating the boys tshirt fabric
     var step1 : any = 0;
     step1 = parseInt(lengthsize) + parseInt(sleevesize);
     console.log("Step 1:"+ step1);
@@ -104,10 +112,11 @@ export class FabricCalculationComponent implements OnInit {
     console.log("Step 3:"+ step3);
     var step4: any = 0;
     step4 = (step2 + step3);
-    var convertoFloat;
-    convertoFloat = parseFloat(step4).toFixed(6);
-    this.fabricWeight = convertoFloat +" Kg/per dozen";
+    var convertoFloat; 
+    convertoFloat = parseFloat(step4).toFixed(5);
+    this.fabricWeight = convertoFloat +" Kg/per dozen";//main answer for fabric calculation
     console.log("Step 4:"+ this.fabricWeight);
+    //end of fabric calculation of boys tshirt
   }
 
 

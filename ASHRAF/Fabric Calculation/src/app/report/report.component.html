@@ -9,7 +9,7 @@
         <th scope="col">Entry Date</th>
         <th scope="col">Mail Date</th>
         <th scope="col">Item Name</th>
-        <th scope="col">Sleeve Type</th>
+        <th scope="col">Waste</th>
         <th scope="col">Fabric Weight</th>
         <th scope="col">Measurements</th>
        
@@ -23,7 +23,7 @@
           <td>{{entry.entryDate | date :  "dd-MM-yyyy"}}</td>
           <td>{{entry.mailDate | date :  "dd-MM-yyyy"}}</td>
           <td>{{entry.style_item_name}}</td>
-          <td>{{entry.style_sleeve_type}}</td>
+          <td>{{entry.waste_percentage}}%</td>
           <td>{{entry.fabric_weight}}</td>
           <td>Chest: {{entry.chest}}{{entry.chest_unit_of_measurement}} <br>
             Length: {{entry.length}}{{entry.length_unit_of_measurement}} <br>
