@@ -48,6 +48,8 @@ export class FabricCalculationComponent implements OnInit {
   JacketSelected: boolean = false;
   ShortsSelected: boolean = false;
   x: any; //for holding the item name selection click
+  public fabricWeight: any;
+  sizeSelection: any;
 
   constructor(private Bs:BuyersService, 
         private Ums:UnitofmeasurementService, 
@@ -76,7 +78,32 @@ export class FabricCalculationComponent implements OnInit {
   }
   //this function is for calculating the fabric weight
   calculate(){
-
+    var wastePercentage: any= 0; //waste percentage
+    var chestsize: any= 0;
+    var lengthsize: any= 0 ;
+    var sleevesize: any = 0;
+    var tShirtCalculation: any= 0;
+    var fabricsize: any= 0;
+    wastePercentage = this.Fc.currentFabricCalc.waste_percentage;
+    chestsize = this.Fc.currentFabricCalc.chest;
+    lengthsize = this.Fc.currentFabricCalc.length;
+    sleevesize = this.Fc.currentFabricCalc.sleeve;
+    fabricsize = this.Fc.currentFabricCalc.fabrics;
+    var step1 : any = 0;
+    step1 = parseInt(lengthsize) + parseInt(sleevesize);
+    console.log("Step 1:"+ step1);
+    var step2 : any= 0;
+    step2 =((step1*parseInt(chestsize)*2*parseInt(fabricsize))/(Math.pow(10,7)))*12;
+    console.log("Step 2:"+step2);
+    var step3: any = 0;
+    step3 = (((wastePercentage)/100)*step2);
+    console.log("Step 3:"+ step3);
+    var step4: any = 0;
+    step4 = (step2 + step3);
+    var convertoFloat;
+    convertoFloat = parseFloat(step4).toFixed(6);
+    this.fabricWeight = convertoFloat +" Kg/per dozen";
+    console.log("Step 4:"+ this.fabricWeight);
   }
 
 
@@ -173,7 +200,7 @@ export class FabricCalculationComponent implements OnInit {
 
   //this is for creating fabric entry into the database
   createFabric(f: FabricCalulation){
-  
+    this.fabricWeight = this.Fc.currentFabricCalc.fabric_weight;
    this.Fc.createFabricEntry(f)
    .subscribe(
     res => {
@@ -206,20 +233,20 @@ export class FabricCalculationComponent implements OnInit {
     style_item_name: '',
     style_sleeve_type: '',
     size: '',
-    fabrics: '',
-    chest: '',
-    length: '',
-    sleeve: '',
+    fabrics: null,
+    chest: null,
+    length: null,
+    sleeve: null,
     waste_percentage: null,
-    hood:'',
-    bottom: '',
-    thigh: '',
-    pocket: '',
+    hood:null,
+    bottom: null,
+    thigh: null,
+    pocket: null,
     pocket_unit_of_measurement: '',
     thigh_unit_of_measurement: '',
     bottom_unit_of_measurement: '',
     hood_unit_of_measurement: '',
-    fabric_weight:'',
+    fabric_weight:null,
     length_unit_of_measurement: '',
     chest_unit_of_measurement: '',
     sleeve_unit_of_measurement: '',
@@ -316,15 +343,15 @@ export class FabricCalculationComponent implements OnInit {
     }
   }
 
-  buyerInformation(buyer: any){
-   console.log(buyer);
-    this.Bs.getBuyerInformation(buyer)
-    .subscribe(
-       (data : Buyers[]) =>{
-         this.allBuyers = data;
+  // buyerInformation(buyer: any){
+  //  console.log(buyer);
+  //   this.Bs.getBuyerInformation(buyer)
+  //   .subscribe(
+  //      (data : Buyers[]) =>{
+  //        this.allBuyers = data;
          
-       });
-  }
+  //      });
+  // }
 
    
 

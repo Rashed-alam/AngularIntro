@@ -3,129 +3,105 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 const FabricEntrySchema = new mongoose.Schema({
     mailDate: { //1
         type: Date,
-        default: null,
-        required: "Mail Date cannot be Empty"
+        default: null
     },
     entryDate: { //2
         type: Date,
-        default: null,
-        required: "Entry Date cannot be Empty"
+        default: null
     },
     refNo: { //3
         type: String,
-        required: true,
-        required: "Reference No. cannot be Empty"
+        required: true
     },
     buyer_name: { //4
         type: String,
-        default: null,
-        required: "Buyer Name cannot be Empty"
+        default: null
+       
     },
    
     style_code: { //5
         type: String,
-        default: null,
-        required: "Style Code cannot be Empty"
+        default: null
     },
     style_item_name: { //6
         type: String,
-        default: null,
-        required: "Item Name cannot be Empty"
+        default: null
     },
     style_sleeve_type: { //7
         type: String,
-        default: null,
-        required: "Sleeve Type cannot be Empty"
+        default: null
     },
     size: {
         type: String, //8
-        default: null,
-        required: "Size cannot be Empty"
+        default: null
     },
     fabrics: {
         type: String, //9
-        default: 0,
-        required: "Fabric Type Date cannot be Empty"
+        default: 0
     },
     chest: {
         type: String, //10
-        default: null,
-        required: "Chest Size cannot be Empty"
+        default: null
     },
     length: {
         type: String, //11
-        default: 0,
-        required: "Length size cannot be Empty"
+        default: 0
     },
     sleeve: {
         type: String, //12
-        default: 0,
-        required: "Sleeve Type cannot be Empty"
+        default: 0
     },
     length_unit_of_measurement:{ //13
         type: String,
-        default: 0,
-        required: "Length Unit of Measurement cannot be Empty"
+        default: 0
     },
     chest_unit_of_measurement:{ //14
         type: String,
-        default: 0,
-        required: "Chest Unit of Measurement cannot be Empty"
+        default: 0
     },
     sleeve_unit_of_measurement:{ //15
         type: String,
-        default: 0,
-        required: "Sleeve Unit of Measurement cannot be Empty"
+        default: 0
     },
     waste_percentage:{ //16
         type: Number,
-        default: 0,
-        required: "Sleeve Unit of Measurement cannot be Empty"
+        default: 0
     },
     hood:{ //17
         type: String,
-        default: 0,
-        required: "Sleeve Unit of Measurement cannot be Empty"
+        default: 0
     },
     bottom:{ //18
         type: String,
-        default: 0,
-        required: "Sleeve Unit of Measurement cannot be Empty"
+        default: 0
     },
     thigh:{ //19
         type: String,
-        default: 0,
-        required: "Sleeve Unit of Measurement cannot be Empty"
+        default: 0
     },
     pocket:{ //20
         type: String,
-        default: 0,
-        required: "Sleeve Unit of Measurement cannot be Empty"
+        default: 0
     },
     pocket_unit_of_measurement:{ //21
         type: String,
-        default: 0,
-        required: "Chest Unit of Measurement cannot be Empty"
+        default: 0
     },
     hood_unit_of_measurement:{ //22
         type: String,
-        default: 0,
-        required: "Chest Unit of Measurement cannot be Empty"
+        default: 0
     },
     bottom_unit_of_measurement:{ //23
         type: String,
-        default: 0,
-        required: "Chest Unit of Measurement cannot be Empty"
+        default: 0
     },
     thigh_unit_of_measurement:{ //24
         type: String,
-        default: 0,
-        required: "Chest Unit of Measurement cannot be Empty"
+        default: 0
     },
-    fabric_weigh:{ //25
+    fabric_weight:{ //25
         type: String,
-        default: 0,
-        required: "Chest Unit of Measurement cannot be Empty"
+        default: 0
     },
 
 
