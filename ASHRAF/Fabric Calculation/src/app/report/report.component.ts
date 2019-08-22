@@ -10,12 +10,13 @@ import { FabricCalulation } from 'src/shared/fabricCalculation.model';
 export class ReportComponent implements OnInit {
 
   FabricCalc: FabricCalulation[];
+  referid: string;
 
   constructor(private Fc: FabricCalculationService) { }
 
   ngOnInit() {
     this.getallFabricEntries();
-   
+    this.Fc.currentReference.subscribe(referid=> this.referid = referid);
   }
 
   //this is for getting all the fabric entries from database
@@ -27,5 +28,5 @@ export class ReportComponent implements OnInit {
       })  
   }
 
-
+ 
 }

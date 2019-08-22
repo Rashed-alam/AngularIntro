@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, } from 'rxjs';
 import { FabricCalulation } from './fabricCalculation.model';
+import { BehaviorSubject } from 'rxjs';
 
 const headerOption = {
   headers: new HttpHeaders({ 'Content-Type' : 'application/json' })
@@ -9,6 +10,11 @@ const headerOption = {
 
 @Injectable()
 export class FabricCalculationService {
+  data = { name: 'Otcollect', type: 'Website' } 
+
+  
+  private reference = new BehaviorSubject("");
+  currentReference = this.reference.asObservable();
 
   url="http://localhost:3000/api/v1/fabricEntry";
 
@@ -79,6 +85,11 @@ createFabricArchieve(fab: FabricCalulation): Observable<FabricCalulation> {
 
 getFabricArchieve(): Observable<FabricCalulation[]>{
   return this.httpcall.get<FabricCalulation[]>(this.url+'/allFabricArchieve', headerOption);
+}
+
+//this is for passing the ref id to next component
+passReferenceNumber(refId){
+  this.reference.next(refId);
 }
 
 }

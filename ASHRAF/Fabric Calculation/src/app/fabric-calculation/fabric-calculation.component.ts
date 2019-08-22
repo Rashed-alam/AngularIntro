@@ -51,6 +51,7 @@ export class FabricCalculationComponent implements OnInit {
   ShortsSelected: boolean = false;
   x: any; //for holding the item name selection click of item name
   public fabricWeight: any;// for holding the fabric weight and sending it to the database
+  public referid: string;//for holding the refernce number 
 
 
   constructor(private Bs:BuyersService, 
@@ -214,6 +215,9 @@ export class FabricCalculationComponent implements OnInit {
   //this is for creating fabric entry into the database
   createFabric(f: FabricCalulation){
    f.fabric_weight=this.fabricWeight;
+   //f.refNo = this.Fc.currentReference.subscribe(referid=> this.referid = referid);
+   //this.Fc.currentReference.subscribe(referid=> this.referid = referid);
+   this.Fc.passReferenceNumber(this.Fc.currentFabricCalc.refNo); 
    this.Fc.createFabricEntry(f)
    .subscribe(
     res => {
@@ -228,9 +232,7 @@ export class FabricCalculationComponent implements OnInit {
       }
       else
         this.serverErrorMessages = 'Something went wrong.Please contact admin.';
-    }
-    
-   );
+    });
   }
 
 
