@@ -24,6 +24,7 @@ import { SizelistService } from '../shared/sizelist.service';
     AppComponent,
     FabricCalculationComponent,
     ReportComponent,
+    
   ],
   imports: [
     BrowserModule,

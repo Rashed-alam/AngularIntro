@@ -16,6 +16,7 @@ import { FabricCalculationService } from 'src/shared/fabric-calculation.service'
 import { FabricCalulation } from 'src/shared/fabricCalculation.model';
 import { SizelistService } from 'src/shared/sizelist.service';
 import { SizeList } from 'src/shared/sizelist.model';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-fabric-calculation',
@@ -61,7 +62,8 @@ export class FabricCalculationComponent implements OnInit {
         private DP: DatePipe,
         private In: ItemNameService,
         private Fc: FabricCalculationService,
-        private Sl: SizelistService
+        private Sl: SizelistService,
+        private router : Router
         ) { }
     
   ngOnInit() { 
@@ -225,6 +227,7 @@ export class FabricCalculationComponent implements OnInit {
       setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
       this.getallFabricEntries();
       this.clearAll();
+      this.router.navigateByUrl('/price');
     },
     err => {
       if (err.status === 422) {
