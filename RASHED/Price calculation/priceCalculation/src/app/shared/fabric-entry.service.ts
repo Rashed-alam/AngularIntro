@@ -17,6 +17,7 @@ export class FabricEntryService {
   currentFabricCalc: FabricCalulation = {
     
     fabricEntry_id: null,
+    calculation_id: null,
     mailDate: '',
     entryDate: '',
     refNo: '',
@@ -38,7 +39,7 @@ export class FabricEntryService {
     thigh_unit_of_measurement: '',
     bottom_unit_of_measurement: '',
     hood_unit_of_measurement: '',
-    fabric_weight:'',
+    fabric_weigh:'',
     length_unit_of_measurement: '',
     chest_unit_of_measurement: '',
     sleeve_unit_of_measurement: '',

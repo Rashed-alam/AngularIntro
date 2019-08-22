@@ -12,24 +12,26 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Mail Date:</div>
                             </div>
-                            <input type="text" id="mailDate" value="{{Fc.currentFabricCalc.mailDate | date :'dd-MM-yyyy'}}" 
-                                class="form-control" disabled>
+                            <input type="text" id="mailDate"
+                                value="{{Fc.currentFabricCalc.mailDate | date :'dd-MM-yyyy'}}" class="form-control"
+                                disabled>
                         </div>
 
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Entry Date:</label>
                             </div>
-                            <input type="text" id="entryDate" value="{{Fc.currentFabricCalc.entryDate | date :'dd-MM-yyyy'}}"
-                                class="form-control" disabled>
+                            <input type="text" id="entryDate"
+                                value="{{Fc.currentFabricCalc.entryDate | date :'dd-MM-yyyy'}}" class="form-control"
+                                disabled>
                         </div>
- 
+
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">ID:</label>
                             </div>
-                            <input class="form-control" type="text" style="width: 48%" value="{{Fc.currentFabricCalc.fabricEntry_id}}"
-                                disabled>
+                            <input class="form-control" type="text" style="width: 48%"
+                                value="{{Fc.currentFabricCalc.fabricEntry_id}}" disabled>
                         </div>
 
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
@@ -38,14 +40,15 @@
                             </div>
                             <input type="text" id="refNo" class="form-control" style="width: 30%"
                                 placeholder="Enter Reference Number" #box (keyup.enter)="onEnter(box.value)" required>
-                                
+
                         </div>
 
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Buyer Name:</label>
                             </div>
-                            <input type="text" class="form-control" id="style_code" style="width: 30%;" value="{{Fc.currentFabricCalc.buyer_name}}" disabled>
+                            <input type="text" class="form-control" id="style_code" style="width: 30%;"
+                                value="{{Fc.currentFabricCalc.buyer_name}}" disabled>
                         </div>
                     </div>
                     <hr>
@@ -56,23 +59,24 @@
                                 <div class="input-group-text">Code No:</div>
                             </div>
                             <input type="text" class="form-control" id="style_code" placeholder="Code Number"
-                                style="width: 12.5rem" 
-                              
-                                onkeyup="this.value = this.value.toUpperCase();" value="{{Fc.currentFabricCalc.style_code}}" disabled>
+                                style="width: 12.5rem" onkeyup="this.value = this.value.toUpperCase();"
+                                value="{{Fc.currentFabricCalc.style_code}}" disabled>
                         </div>
 
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Item Name:</label>
                             </div>
-                            <input type="text" class="form-control" id="style_code" style="width: 30%;" value="{{Fc.currentFabricCalc.style_item_name}}" disabled>
+                            <input type="text" class="form-control" id="style_code" style="width: 30%;"
+                                value="{{Fc.currentFabricCalc.style_item_name}}" disabled>
                         </div>
 
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Size:</label>
                             </div>
-                            <input type="text" class="form-control" id="style_code" style="width: 30%;" value="{{Fc.currentFabricCalc.size}}" disabled>
+                            <input type="text" class="form-control" id="style_code" style="width: 30%;"
+                                value="{{Fc.currentFabricCalc.size}}" disabled>
                         </div>
 
                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
@@ -83,7 +87,8 @@
                                 value="{{Fc.currentFabricCalc.fabrics}}" disabled>
                         </div>
 
-                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected">
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem"
+                            *ngIf="BoysTshirtSelected || JacketSelected">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Chest:</label>
                             </div>
@@ -91,7 +96,8 @@
                                 style="width: 30%" value="{{Fc.currentFabricCalc.chest}}" disabled>
 
                         </div>
-                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected || ShortsSelected">
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem"
+                            *ngIf="BoysTshirtSelected || JacketSelected || ShortsSelected">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Length:</label>
                             </div>
@@ -100,7 +106,8 @@
 
                         </div>
 
-                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected">
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem"
+                            *ngIf="BoysTshirtSelected || JacketSelected">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Sleeve:</label>
                             </div>
@@ -108,15 +115,18 @@
                                 placeholder="input" style="width: 24%" value="{{Fc.currentFabricCalc.sleeve}}" disabled>
 
                         </div>
-                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="JacketSelected">
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem"
+                            *ngIf="JacketSelected">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Sleeve type</label>
                             </div>
                             <input type="text" class="form-control" id="inputPassword3" maxlength="4"
-                                placeholder="input" style="width: 24%" value="{{Fc.currentFabricCalc.style_sleeve_type}}" disabled>
+                                placeholder="input" style="width: 24%"
+                                value="{{Fc.currentFabricCalc.style_sleeve_type}}" disabled>
 
                         </div>
-                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="JacketSelected">
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem"
+                            *ngIf="JacketSelected">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Hood:</label>
                             </div>
@@ -124,7 +134,8 @@
                                 placeholder="input" style="width: 24%" value="{{Fc.currentFabricCalc.hood}}" disabled>
 
                         </div>
-                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="JacketSelected">
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem"
+                            *ngIf="JacketSelected">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Bottom:</label>
                             </div>
@@ -132,8 +143,9 @@
                                 placeholder="input" style="width: 24%" value="{{Fc.currentFabricCalc.bottom}}" disabled>
 
                         </div>
-                   
-                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="ShortsSelected">
+
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem"
+                            *ngIf="ShortsSelected">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">2/1 Thigh:</label>
                             </div>
@@ -141,7 +153,8 @@
                                 placeholder="input" style="width: 24%" value="{{Fc.currentFabricCalc.thigh}}" disabled>
 
                         </div>
-                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="ShortsSelected">
+                        <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem"
+                            *ngIf="ShortsSelected">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Pocket:</label>
                             </div>
@@ -160,258 +173,261 @@
         </div>
         <div class="card">
             <div class="card-body">
-                    <div class="col-md-12">
-                            <div class="row" >
-                
-                                <div class="col-md-4">
-                                    <span class="input-group-text" for="inputGroupSelect01">Calculation ID </span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" aria-label="Sizing example input"
-                                        aria-describedby="inputGroup-sizing-sm"  placeholder="{{a}}" readonly="">
-                                </div>
-                
-                
-                            </div>
-                
-                
-                            <div class="row" style="margin-top:1rem">
-                                <div class="col-md-5">
-                
-                                    <label class="input-group-text" for="inputGroupSelect01"> Fabric Amount</label>
-                
-                                </div>
-                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                            UOM
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        ...
-                                    </div>
-                                </div>
-                
-                            </div>
-                
-                
-                
-                
-                
-                            <div class="row" style="margin-top:1rem">
-                                <div class="col-md-5">
-                
-                                    <label class="input-group-text" for="inputGroupSelect01"> Fabric Unit Price</label>
-                
-                                </div>
-                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                            UOM
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        ...
-                                    </div>
-                                </div>
-                
-                            </div>
-                
-                
-                            <div class="row" style="margin-top:1rem">
-                                <div class="col-md-5">
-                
-                                    <label class="input-group-text" for="inputGroupSelect01"> Fabric Total Price</label>
-                
-                                </div>
-                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                            UOM
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        ...
-                                    </div>
-                                </div>
-                
-                            </div>
-                
-                            <div class="row" style="margin-top:1rem">
-                                <div class="col-md-4">
-                
-                                    <label class="input-group-text" for="inputGroupSelect01"> RIB</label>
-                
-                                </div>
-                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                            UOM
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        ...
-                                    </div>
-                                </div>
-                
-                            </div>
-                            <div class="row" style="margin-top:1rem">
-                                <div class="col-md-4">
-                
-                                    <label class="input-group-text" for="inputGroupSelect01"> CM</label>
-                
-                                </div>
-                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                            UOM
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        ...
-                                    </div>
-                                </div>
-                
-                            </div>
-                            <div class="row" style="margin-top:1rem">
-                                <div class="col-md-4">
-                
-                                    <label class="input-group-text" for="inputGroupSelect01"> TRIM</label>
-                
-                                </div>
-                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                            UOM
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        ...
-                                    </div>
-                                </div>
-                
-                            </div>
-                
-                            <div class="row" style="margin-top:1rem">
-                                <div class="col-md-4">
-                
-                                    <label class="input-group-text" for="inputGroupSelect01"> Print</label>
-                
-                                </div>
-                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                            UOM
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        ...
-                                    </div>
-                                </div>
-                
-                            </div>
-                
-                            <div class="row" style="margin-top:1rem">
-                                <div class="col-md-4">
-                
-                                    <label class="input-group-text" for="inputGroupSelect01"> DOC</label>
-                
-                                </div>
-                                <input type="text" id="refNo" class="form-control" style="width: 30%" required>
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                            UOM
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        ...
-                                    </div>
-                                </div>
-                
-                            </div>
-                
-                            <button type="button" class="btn btn-success btn-lg"
-                                style="margin-left: 18rem; margin-top: 1rem">Calculate</button>
-                
-                            <div class="row" style="margin-top:1rem">
-                                <div class="col-md-5">
-                
-                                    <label class="input-group-text" for="inputGroupSelect01" > Per Dozen Price</label>
-                
-                                </div>
-                                <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="Per Dozen Price" readonly="">
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                            UOM
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        ...
-                                    </div>
-                                </div>
-                
-                            </div>
-                            <div class="row" style="margin-top:1rem">
-                                <div class="col-md-5">
-                
-                                    <label class="input-group-text" for="inputGroupSelect01"> Per Unit
-                                        Price</label>
-                
-                                </div>
-                                <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="Per Unit Price" readonly="">
-                                <div class="btn-group">
-                                    <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                 UOM
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        ...
-                                    </div>
-                                </div>
-                
-                            </div>
-                
-                            <div class="row" style="margin-top: 2rem">
-                                <div class="col-md-12">
-                                    <button type="button" class="btn btn-info" style="margin-left: 5rem;">Add</button>
-                                    <button type="button" class="btn btn-info" style="margin-left: 11rem;">Cancel</button>
-                
-                                </div>
+                <div class="col-md-12">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <span class="input-group-text" for="inputGroupSelect01">Calculation ID </span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-sm" value="{{Fc.currentFabricCalc.calculation_id}}" disabled>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row" style="margin-top:1rem">
+                        <div class="col-md-5">
+
+                            <label class="input-group-text" for="inputGroupSelect01"> Fabric Amount</label>
+
+                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%" value="{{Fc.currentFabricCalc.fabric_weigh}}" 
+                        [(ngModel)]="Pc.calculatePrice.fabric_weight" readonly>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                UOM
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                ...
                             </div>
                         </div>
+
+                    </div>
+
+
+
+
+
+                    <div class="row" style="margin-top:1rem">
+                        <div class="col-md-5">
+
+                            <label class="input-group-text" for="inputGroupSelect01"> Fabric Unit Price</label>
+
+                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%" [(ngModel)]="Pc.calculatePrice.fabric_unit_price" required>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                UOM
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                ...
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row" style="margin-top:1rem">
+                        <div class="col-md-5">
+
+                            <label class="input-group-text" for="inputGroupSelect01"> Fabric Total Price</label>
+
+                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"  value="{{pc.calculatePrice.fabric_total_price}}" disabled>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                UOM
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                ...
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="margin-top:1rem">
+                        <div class="col-md-4">
+
+                            <label class="input-group-text" for="inputGroupSelect01"> RIB</label>
+
+                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%" [(ngModel)]="Pc.calculatePrice.rib" required>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                UOM
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                ...
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-top:1rem">
+                        <div class="col-md-4">
+
+                            <label class="input-group-text" for="inputGroupSelect01"> CM</label>
+
+                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%" [(ngModel)]="Pc.calculatePrice.cm" required>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                UOM
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                ...
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-top:1rem">
+                        <div class="col-md-4">
+
+                            <label class="input-group-text" for="inputGroupSelect01"> TRIM</label>
+
+                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%" [(ngModel)]="Pc.calculatePrice.trim" required>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                UOM
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                ...
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="margin-top:1rem">
+                        <div class="col-md-4">
+
+                            <label class="input-group-text" for="inputGroupSelect01"> Print</label>
+
+                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%" [(ngModel)]="Pc.calculatePrice.print" required>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                UOM
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                ...
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="margin-top:1rem">
+                        <div class="col-md-4">
+
+                            <label class="input-group-text" for="inputGroupSelect01"> DOC</label>
+
+                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%" [(ngModel)]="Pc.calculatePrice.doc" required>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                UOM
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                ...
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button type="button" class="btn btn-success btn-lg"
+                        style="margin-left: 18rem; margin-top: 1rem" (click)="calculate()">Calculate</button>
+
+                    <div class="row" style="margin-top:1rem">
+                        <div class="col-md-5">
+
+                            <label class="input-group-text" for="inputGroupSelect01"> Per Dozen Price</label>
+
+                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                            placeholder="Per Dozen Price" [(ngModel)]="Pc.calculatePrice.per_dozen_price" readonly="">
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                UOM
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                ...
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-top:1rem">
+                        <div class="col-md-5">
+
+                            <label class="input-group-text" for="inputGroupSelect01"> Per Unit
+                                Price</label>
+
+                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                            placeholder="Per Unit Price" [(ngModel)]="Pc.calculatePrice.per_unit_price"  readonly="">
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
+                                UOM
+                            </button>
+                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                ...
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="margin-top: 2rem">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-info" style="margin-left: 5rem;">Add</button>
+                            <button type="button" class="btn btn-info" style="margin-left: 11rem;">Cancel</button>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-      
+
 
     </div>
 </div>

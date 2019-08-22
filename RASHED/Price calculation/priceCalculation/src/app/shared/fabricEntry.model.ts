@@ -1,7 +1,8 @@
 export class FabricCalulation {
 
    
-    fabricEntry_id: Number;//1
+    fabricEntry_id: Number;
+    calculation_id:Number;//1
     mailDate: String;//2
     entryDate: String;//3
     refNo: String;//4
@@ -26,9 +27,10 @@ export class FabricCalulation {
     length_unit_of_measurement: String;//23
     chest_unit_of_measurement: String;//24
     sleeve_unit_of_measurement: String;//25
-    fabric_weight: String;//26
+    fabric_weigh: String;//26
     track_Id: Number;
     changeUser: String;
     changeDate: String;
     event: String;
+   
 }

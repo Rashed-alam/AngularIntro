@@ -131,4 +131,5 @@ const FabricEntrySchema = new mongoose.Schema({
 
 })
 FabricEntrySchema.plugin(AutoIncrement, { inc_field: 'fabricEntry_id' }); //26
+FabricEntrySchema.plugin(AutoIncrement, { inc_field: 'calculation_id' }); //26
 module.exports = mongoose.model('fabricentry', FabricEntrySchema);
