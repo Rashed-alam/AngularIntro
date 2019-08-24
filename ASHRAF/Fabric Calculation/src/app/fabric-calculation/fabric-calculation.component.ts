@@ -51,8 +51,8 @@ export class FabricCalculationComponent implements OnInit {
   JacketSelected: boolean = false;
   ShortsSelected: boolean = false;
   x: any; //for holding the item name selection click of item name
-  public fabricWeight: any;// for holding the fabric weight and sending it to the database
-  public referid: string;//for holding the refernce number 
+  fabricWeight: any;// for holding the fabric weight and sending it to the database
+  referid: string;//for holding the refernce number 
 
 
   constructor(private Bs:BuyersService, 
@@ -95,20 +95,56 @@ export class FabricCalculationComponent implements OnInit {
     var pocketsize: any = 0;
     var fabricsize: any= 0;// for gsm value
     wastePercentage = this.Fc.currentFabricCalc.waste_percentage;
-    chestsize = this.Fc.currentFabricCalc.chest;
-    lengthsize = this.Fc.currentFabricCalc.length;
-    sleevesize = this.Fc.currentFabricCalc.sleeve;
     fabricsize = this.Fc.currentFabricCalc.fabrics;
-    hoodsize = this.Fc.currentFabricCalc.hood;
-    bottomsize = this.Fc.currentFabricCalc.bottom;
-    thighsize = this.Fc.currentFabricCalc.thigh;
-    pocketsize = this.Fc.currentFabricCalc.pocket;
+    //conversion from inch to cm
+    if(this.Fc.currentFabricCalc.chest_unit_of_measurement=='Inch'){
+      chestsize = this.Fc.currentFabricCalc.chest*2.54;
+    }else{
+      chestsize = this.Fc.currentFabricCalc.chest;
+    }
+    if(this.Fc.currentFabricCalc.thigh_unit_of_measurement=='Inch'){
+      thighsize = this.Fc.currentFabricCalc.thigh*2.54;
+    }else{
+      thighsize = this.Fc.currentFabricCalc.thigh;
+    }
+
+    if(this.Fc.currentFabricCalc.length_unit_of_measurement=='Inch'){
+      lengthsize = this.Fc.currentFabricCalc.length*2.54;
+    }else{
+      lengthsize = this.Fc.currentFabricCalc.length;
+    }
+
+    if(this.Fc.currentFabricCalc.sleeve_unit_of_measurement=='Inch'){
+      sleevesize = this.Fc.currentFabricCalc.sleeve*2.54;
+    }else{
+      sleevesize = this.Fc.currentFabricCalc.sleeve;
+    }
+
+    if(this.Fc.currentFabricCalc.hood_unit_of_measurement=='Inch'){
+      hoodsize = this.Fc.currentFabricCalc.hood*2.54;
+    }else{
+      hoodsize = this.Fc.currentFabricCalc.hood;
+    }
+
+    if(this.Fc.currentFabricCalc.bottom_unit_of_measurement=='Inch'){
+      bottomsize = this.Fc.currentFabricCalc.bottom*2.54;
+    }else{
+      bottomsize = this.Fc.currentFabricCalc.bottom;
+    }
+    
+    if(this.Fc.currentFabricCalc.pocket_unit_of_measurement=='Inch'){
+      pocketsize = this.Fc.currentFabricCalc.pocket*2.54;
+    }else{
+      pocketsize = this.Fc.currentFabricCalc.pocket;
+    }
+    
+
     //this part is for calculating the boys tshirt fabric
     var step1 : any = 0;
-    step1 = parseInt(lengthsize) + parseInt(sleevesize);
+    step1 = parseFloat(lengthsize) + parseFloat(sleevesize);
     console.log("Step 1:"+ step1);
     var step2 : any= 0;
-    step2 =((step1*parseInt(chestsize)*2*parseInt(fabricsize))/(Math.pow(10,7)))*12;
+    step2 =((step1*parseFloat(chestsize)*2*parseFloat(fabricsize))/(Math.pow(10,7)))*12;
     console.log("Step 2:"+step2);
     var step3: any = 0;
     step3 = (((wastePercentage)/100)*step2);
@@ -217,9 +253,8 @@ export class FabricCalculationComponent implements OnInit {
   //this is for creating fabric entry into the database
   createFabric(f: FabricCalulation){
    f.fabric_weight=this.fabricWeight;
-   //f.refNo = this.Fc.currentReference.subscribe(referid=> this.referid = referid);
-   //this.Fc.currentReference.subscribe(referid=> this.referid = referid);
-   this.Fc.passReferenceNumber(this.Fc.currentFabricCalc.refNo); 
+   f.entryDate = this.today;
+   this.Fc.passReferenceNumber(this.Fc.currentFabricCalc.refNo); //passsing the reference number to service
    this.Fc.createFabricEntry(f)
    .subscribe(
     res => {
@@ -227,7 +262,7 @@ export class FabricCalculationComponent implements OnInit {
       setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
       this.getallFabricEntries();
       this.clearAll();
-      this.router.navigateByUrl('/price');
+      this.router.navigateByUrl('/report');
     },
     err => {
       if (err.status === 422) {

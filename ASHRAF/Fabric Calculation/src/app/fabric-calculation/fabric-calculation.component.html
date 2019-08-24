@@ -29,7 +29,7 @@
                   <label for="formGroupExampleInput"> Entry Date: </label>
                   <input type="text" id="entryDate" placeholder="{{today}}" name="Fc.currentFabricCalc.entryDate" [(ngModel)]="Fc.currentFabricCalc.entryDate"
                   style="width: 60%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placeholder="{{today}}"
-                  class="form-control" #entryDate="ngModel" required>
+                  class="form-control" #entryDate="ngModel">
                  </div>
                 </div>
               </div>
@@ -141,7 +141,7 @@
         <div class="card">
          
           <div class="card-body" style="margin-bottom: -1rem; margin-top: -1rem">
-              <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected || ShortsSelected">
+              <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                   <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">Waste Percentage:</label>
                   </div>
@@ -154,7 +154,7 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text" for="inputGroupSelect01">Bottom:</label>
                     </div>
-                    <input type="text" class="form-control" id="inputPassword3" maxlength="4" placeholder="input" style="width: 17%" 
+                    <input type="text" class="form-control" id="inputPassword3" maxlength="6" placeholder="input" style="width: 17%" 
                     name="Fc.currentFabricCalc.bottom" [(ngModel)]="Fc.currentFabricCalc.bottom">
                     <select class="custom-select" style="width: auto" name="Fc.currentFabricCalc.bottom_unit_of_measurement" 
                     [(ngModel)]="Fc.currentFabricCalc.bottom_unit_of_measurement" >
@@ -166,7 +166,7 @@
                       <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Hood:</label>
                       </div>
-                      <input type="text" class="form-control" id="inputPassword3" maxlength="4" placeholder="input" style="width: 22%" 
+                      <input type="text" class="form-control" id="inputPassword3" maxlength="6" placeholder="input" style="width: 22%" 
                       name="Fc.currentFabricCalc.hood" [(ngModel)]="Fc.currentFabricCalc.hood" >
                       <select class="custom-select" style="width: auto" name="Fc.currentFabricCalc.hood_unit_of_measurement" 
                       [(ngModel)]="Fc.currentFabricCalc.hood_unit_of_measurement" >
@@ -178,7 +178,7 @@
                         <div class="input-group-prepend">
                           <label class="input-group-text" for="inputGroupSelect01">2/1 Thigh:</label>
                         </div>
-                        <input type="text" class="form-control" id="inputPassword3" maxlength="4" placeholder="input" style="width: 15%" 
+                        <input type="text" class="form-control" id="inputPassword3" maxlength="6" placeholder="input" style="width: 15%" 
                         name="Fc.currentFabricCalc.thigh" [(ngModel)]="Fc.currentFabricCalc.thigh" >
                             <select class="custom-select" style="width: auto" name="Fc.currentFabricCalc.thigh_unit_of_measurement" 
                             [(ngModel)]="Fc.currentFabricCalc.thigh_unit_of_measurement" >
@@ -190,7 +190,7 @@
                           <div class="input-group-prepend">
                             <label class="input-group-text" for="inputGroupSelect01">Pocket:</label>
                           </div>
-                          <input type="text" class="form-control" id="inputPassword3" maxlength="4" placeholder="input" style="width: 22%" 
+                          <input type="text" class="form-control" id="inputPassword3" maxlength="6" placeholder="input" style="width: 22%" 
                           name="Fc.currentFabricCalc.pocket" [(ngModel)]="Fc.currentFabricCalc.pocket" >
                             <select class="custom-select" style="width: auto" name="Fc.currentFabricCalc.pocket_unit_of_measurement" 
                             [(ngModel)]="Fc.currentFabricCalc.pocket_unit_of_measurement" >
@@ -202,7 +202,7 @@
                             <div class="input-group-prepend">
                               <label class="input-group-text" for="inputGroupSelect01">Chest:</label>
                             </div>
-                            <input type="text" class="form-control" id="chest" maxlength="4" placeholder="input" style="width: 35%" 
+                            <input type="text" class="form-control" id="chest" maxlength="6" placeholder="input" style="width: 37%" 
                             name="Fc.currentFabricCalc.chest" [(ngModel)]="Fc.currentFabricCalc.chest">
                             <select class="custom-select" style="width:40%" name="Fc.currentFabricCalc.chest_unit_of_measurement" 
                             [(ngModel)]="Fc.currentFabricCalc.chest_unit_of_measurement">
@@ -214,7 +214,7 @@
                             <div class="input-group-prepend">
                               <label class="input-group-text" for="inputGroupSelect01">Length:</label>
                             </div>
-                            <input type="text" class="form-control" id="length" maxlength="4" placeholder="input" style="width: 22%" 
+                            <input type="text" class="form-control" id="length" maxlength="6" placeholder="input" style="width: 22%" 
                             name="Fc.currentFabricCalc.length" [(ngModel)]="Fc.currentFabricCalc.length">
                             <select class="custom-select" style="width: auto" name="Fc.currentFabricCalc.length_unit_of_measurement" 
                             [(ngModel)]="Fc.currentFabricCalc.length_unit_of_measurement" >
@@ -227,7 +227,7 @@
                             <div class="input-group-prepend">
                               <label class="input-group-text" for="inputGroupSelect01">Sleeve:</label>
                             </div>
-                            <input type="text" class="form-control" id="inputPassword3" maxlength="4" placeholder="input" style="width: 24%" 
+                            <input type="text" class="form-control" id="inputPassword3" maxlength="6" placeholder="input" style="width: 24%" 
                             name="Fc.currentFabricCalc.sleeve" [(ngModel)]="Fc.currentFabricCalc.sleeve">
                             <select class="custom-select" style="width: auto" name="Fc.currentFabricCalc.sleeve_unit_of_measurement" 
                             [(ngModel)]="Fc.currentFabricCalc.sleeve_unit_of_measurement">
@@ -236,7 +236,7 @@
                               </select>
                           </div>
                         
-                          <button type="button" class="btn btn-outline-info" style="margin-left: 13rem;" (click)="calculate()">
+                          <button type="button" class="btn btn-outline-info" style="margin-left: 13rem;" (click)="calculate()" *ngIf="BoysTshirtSelected || JacketSelected || ShortsSelected">
                               Calculate
                              </button>
                           <div class="input-group mb-3" style="margin-bottom: rem; margin-top: 1rem">
