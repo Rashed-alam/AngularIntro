@@ -2,7 +2,7 @@
 <div class="jumbotron" style="margin-top: -4rem">
     <div class="card border-primary mb-3" style="max-width: 43rem; margin-left: 16rem;">
       <div class="card-header"><h2 style="text-align: center">Fabric Calculation</h2></div>
-        <div class="card-body" style="margin-bottom: -2rem;">
+        <div class="card-body" style="margin-bottom: -2rem; margin-top: -1rem;">
             <div class="row">
               <div class="col-md-3">
                   <div class="form-inline " >
@@ -28,7 +28,7 @@
                   <div class="form-inline">
                   <label for="formGroupExampleInput"> Entry Date: </label>
                   <input type="text" id="entryDate" placeholder="{{today}}" name="Fc.currentFabricCalc.entryDate" [(ngModel)]="Fc.currentFabricCalc.entryDate"
-                  style="width: 60%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" placeholder="{{today}}"
+                  style="width: 60%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"
                   class="form-control" #entryDate="ngModel">
                  </div>
                 </div>
@@ -105,7 +105,7 @@
         <div class="card">
           
           <div class="card-body">
-            <h5 class="card-title" style="text-align: center; margin-top: 0rem; padding-bottom: 10%">Style</h5>
+            <h5 class="card-title" style="text-align: center; margin-top: 0rem; padding-bottom: 0%">Style</h5>
                 <div class="input-group mb-2" *ngIf="JacketSelected || ShortsSelected">
                   <div class="input-group-prepend">
                     <div class="input-group-text">Code No:</div>
