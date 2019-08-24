@@ -1,0 +1,35 @@
+.input-group-text {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 90px;
+}
+.row{
+
+    margin-top: 1rem;
+
+}
+
+.dropdown {
+    margin-top: 23px;
+    margin-bottom: 10px;
+  
+   
+}
+.card-header-2 {
+    padding: .75rem 1.25rem;
+    align-self: center;
+}
+.alert {
+    position: relative;
+     padding: 0 0; 
+    margin-bottom: 0rem; 
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+/* .table {
+    width: 70%;
+    margin-bottom: 1rem;
+    color: #212529;
+    align-self: center;
+} */
