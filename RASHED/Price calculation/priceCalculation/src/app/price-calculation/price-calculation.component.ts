@@ -14,18 +14,34 @@ import { DatePipe } from '@angular/common';
 })
 export class PriceCalculationComponent implements OnInit {
   allfab: any;
+  allprice: any;
   ref: any;
   public x: any;
+  public calcId: any;
   a;
   BoysTshirtSelected: boolean = false;
   JacketSelected: boolean = false;
   ShortsSelected: boolean = false;
+  showsuccessmessage: boolean;
+  serverErrorMessages: any;
+  showdeletemessage: boolean;
+  showupdatemessage: boolean;
+  today: any = Date.now();
+  archievedate: any = Date.now();
+  changeUser = "rashed";
+  changeDate = this.today;
+  deleteevent = "delete";
+  editevent = "edit";
+  b_old;
 
-  constructor(private DP: DatePipe, private Fc: FabricEntryService,public Pc:PriceCalculationService) { }
+
+  constructor(private DP: DatePipe, private Fc: FabricEntryService, public Pc: PriceCalculationService) { }
 
   ngOnInit() {
-    //get ref from local storage
-    //send it as a parameter in getnewPost method
+    const datewithtime = this.DP.transform(this.archievedate, "medium");
+    this.archievedate = datewithtime;
+    this.getId();
+    this.getPrice();
   }
   onEnter(value: any) {
     this.ref = value;
@@ -43,7 +59,7 @@ export class PriceCalculationComponent implements OnInit {
         this.Fc.currentFabricCalc.mailDate = this.allfab[0].mailDate;
         this.Fc.currentFabricCalc.entryDate = this.allfab[0].entryDate;
         this.Fc.currentFabricCalc.fabricEntry_id = this.allfab[0].fabricEntry_id;
-        this.Fc.currentFabricCalc.calculation_id = this.allfab[0].calculation_id;
+
         this.Fc.currentFabricCalc.buyer_name = this.allfab[0].buyer_name;
         this.Fc.currentFabricCalc.style_code = this.allfab[0].style_code;
         this.Fc.currentFabricCalc.style_item_name = this.allfab[0].style_item_name;
@@ -69,42 +85,52 @@ export class PriceCalculationComponent implements OnInit {
 
   }
 
-  calculate(){
-    var FabricAmount: any= 0; //waste percentage
-    var FabricUnitPrice: any= 0;
-    var FabricTotalPrize: any= 0 ;
+  calculate() {
+    var FabricAmount: any = 0; //waste percentage
+    var FabricUnitPrice: any = 0;
+    var FabricTotalPrize: any = 0;
     var Rib: any = 0;
-    var CM: any= 0;
+    var CM: any = 0;
     var TRIM: any = 0;
     var Print: any = 0;
     var Doc: any = 0;
     var Fa;
+    var step1: any = 0;
     var step2;
-    
-    
-     this.Pc.calculatePrice.fabric_weight=this.Fc.currentFabricCalc.fabric_weigh;
-     FabricAmount = this.Pc.calculatePrice.fabric_weight;
-     FabricUnitPrice = this.Pc.calculatePrice.fabric_unit_price;
+    var step3: any = 0;
 
-     var step1 : any = 0;
-     step1 = (parseInt(FabricAmount)*parseInt(FabricUnitPrice));
 
-   
-    this.Pc.calculatePrice.fabric_total_price= step1;
-   
+
+    this.Pc.calculatePrice.fabric_weight = this.Fc.currentFabricCalc.fabric_weigh;
+    FabricAmount = this.Pc.calculatePrice.fabric_weight;
+    FabricUnitPrice = this.Pc.calculatePrice.fabric_unit_price;
+
+
+    step1 = (parseFloat(FabricAmount) * parseFloat(FabricUnitPrice));
+
+
+    this.Pc.calculatePrice.fabric_total_price = step1;
+    console.log(this.Pc.calculatePrice.fabric_total_price);
+
     Rib = this.Pc.calculatePrice.rib;
     TRIM = this.Pc.calculatePrice.trim;
     CM = this.Pc.calculatePrice.cm;
     Print = this.Pc.calculatePrice.print;
     Doc = this.Pc.calculatePrice.doc;
+    //console.log(this.Pc.calculatePrice);
+    step2 = (step1 + parseFloat(Rib) + parseFloat(TRIM) + parseFloat(CM) + parseFloat(Print) + parseFloat(Doc)).toFixed(3);
+    this.Pc.calculatePrice.per_dozen_price = step2;
+    step3 = (step2 / 12).toFixed(3);
+    this.Pc.calculatePrice.per_unit_price = step3;
+
     //console.log(this.Pc.calculatePrice.fabric_unit_price);
     //console.log(this.Pc.calculatePrice);
-    console.log(FabricAmount);
+    //console.log(FabricAmount);
     //this part is for calculating the boys tshirt fabric
-    var step1 : any = 0;
-    step1 = (parseInt(FabricAmount)*parseInt(FabricUnitPrice));
+    // var step1 : any = 0;
+    // step1 = (parseInt(FabricAmount)*parseInt(FabricUnitPrice));
 
-     //console.log(step1);
+    //console.log(step1);
     // var step2 : any= 0;
     // step2 =((step1*parseInt(chestsize)*2*parseInt(fabricsize))/(Math.pow(10,7)))*12;
     // console.log("Step 2:"+step2);
@@ -118,6 +144,130 @@ export class PriceCalculationComponent implements OnInit {
     // this.fabricWeight = convertoFloat +" Kg/per dozen";//main answer for fabric calculation
     // console.log("Step 4:"+ this.fabricWeight);
     // //end of fabric calculation of boys tshirt
+  }
+ 
+  getPrice() {
+    this.Pc.getallprice().subscribe(
+      (data) => {
+        this.allprice = data;
+        console.log(this.allprice);
+      }
+    );
+
+  }
+
+
+  getId() {
+
+    this.Pc.getCalculationid()
+      .subscribe(
+        res => {
+          this.calcId = res['calculation_id'];
+
+          console.log(this.calcId);
+        },
+        err => {
+          console.log(err);
+
+        }
+      );
+  }
+
+  createAndUpdate(a: any) {
+    // console.log(currentEmployee);
+    if (a._id != null) {
+      //console.log('update');
+      this.updateprice(a);
+    } else {
+      console.log('create');
+      this.create(a);
+    }
+    this.getPrice();
+    this.clearAll();
+  }
+
+
+
+  create(a) {
+    this.Pc.createPost(a).subscribe(
+      res => {
+
+        console.log('created');
+        this.showsuccessmessage = true;
+        setTimeout(() => this.showsuccessmessage = false, 4000);
+
+      },
+      err => {
+
+        if (err.status === 422) {
+          this.serverErrorMessages = err.error.join('<br/>');
+        }
+        else {
+          this.serverErrorMessages = 'Something went wrong.Please contact admin';
+        }
+      }
+    );
+    this.getPrice();
+    this.clearAll();
+  }
+
+  edit(a) {
+    this.Pc.calculatePrice = Object.assign({}, a);
+    this.getPrice();
+    this.b_old = a;
+  }
+
+  //delete and store in archive
+  del(p: any) {
+    // console.log('check='+_id);
+    p.changeUser = this.changeUser;
+    p.changeDate = this.archievedate;
+    p.event = this.deleteevent;
+    this.Pc.createpriceArchive(p).subscribe(res => {
+      this.Pc.deleteprice(p._id).subscribe(
+        res => {
+          console.log('ok');
+          this.showdeletemessage = true;
+          setTimeout(() => this.showdeletemessage = false, 4000);
+        },
+      );
+    });
+
+    this.getPrice();
+  }
+
+
+
+  updateprice(n) {
+    this.calculate();
+    this.b_old.changeUser = this.changeUser;
+    this.b_old.changeDate = this.archievedate;
+    this.b_old.event = this.editevent;
+    this.b_old._id = null;
+   
+    this.Pc.createpriceArchive(this.b_old).subscribe(res=>{
+      this.Pc.updateprice(n).subscribe(
+        res => {
+  
+          console.log(res);
+          this.showupdatemessage = true;
+          setTimeout(() => this.showupdatemessage = false, 4000);
+        },
+        err => {
+  
+          if (err.status === 422) {
+            this.serverErrorMessages = err.error.join('<br/>');
+          }
+          else {
+            this.serverErrorMessages = 'Something went wrong.Please contact admin';
+          }
+        }
+      );
+
+    });
+    this.getPrice();
+    this.clearAll();
+
   }
 
   selectSwitch(a) {
@@ -140,5 +290,24 @@ export class PriceCalculationComponent implements OnInit {
     }
   }
 
+  clearAll() {
+    this.Pc.calculatePrice = {
+      fabric_unit_price: '',
+      fabric_weight: '',
+      fabric_total_price: '',
+      rib: '',
+      cm: '',
+      trim: '',
+      print: '',
+      doc: '',
+      per_dozen_price: '',
+      per_unit_price: '',
+      track_Id: null,
+      changeUser: '',
+      changeDate: '',
+      event: ''
+
+    };
+  }
 
 }
