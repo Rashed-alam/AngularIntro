@@ -9,11 +9,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { DatePipe } from '@angular/common';
 import { PriceCalculationComponent } from './price-calculation/price-calculation.component';
+import { PriceArchiveComponent } from './price-archive/price-archive.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PriceCalculationComponent
+    PriceCalculationComponent,
+    PriceArchiveComponent
 
   ],
   imports: [
@@ -23,7 +26,8 @@ import { PriceCalculationComponent } from './price-calculation/price-calculation
     HttpClientModule,
     BsDatepickerModule.forRoot(),
     NgbModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(AppRoutingModule),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [DatePipe],

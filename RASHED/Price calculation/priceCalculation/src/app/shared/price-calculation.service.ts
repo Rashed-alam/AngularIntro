@@ -10,10 +10,10 @@ const headerOption = {
   providedIn: 'root'
 })
 export class PriceCalculationService {
-
-  constructor() { }
+  url='http://localhost:3000/api/v1/priceCalculation'
+  constructor(private httpcall: HttpClient) { }
   calculatePrice : PriceCalculation={
-    "calculation_id":null,//1
+    //"calculation_id":null,//1
     "fabric_weight":'',
     "fabric_unit_price":'',
     "fabric_total_price":'' ,
@@ -29,5 +29,24 @@ export class PriceCalculationService {
     "changeDate": '' ,
     "event": '' ,
 
+  }
+  getCalculationid() {
+    return this.httpcall.get(this.url + '/id', headerOption);
+  }
+  getallprice(): Observable<PriceCalculation[]> {
+    return this.httpcall.get<PriceCalculation[]>(this.url + '/', headerOption);
+  }
+  createPost(a: any): Observable<PriceCalculation[]> {
+
+    return this.httpcall.post<PriceCalculation[]>(this.url + '/new', a, headerOption);
+  }
+  deleteprice(id): Observable<PriceCalculation[]> {
+    return this.httpcall.delete<PriceCalculation[]>(this.url + '/delete/' + id, headerOption);
+  }
+  updateprice(a: any): Observable<PriceCalculation> {
+    return this.httpcall.put<PriceCalculation>(this.url + '/edit/' + a._id, a, headerOption);
+  }
+  createpriceArchive(b: any): Observable<PriceCalculation[]> {
+    return this.httpcall.post<PriceCalculation[]>(this.url + '/priceArchieve', b, headerOption);
   }
 }

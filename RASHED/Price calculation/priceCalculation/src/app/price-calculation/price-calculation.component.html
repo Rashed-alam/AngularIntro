@@ -181,7 +181,7 @@
                         </div>
                         <div class="col-md-4">
                             <input type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-sm" value="{{Fc.currentFabricCalc.calculation_id}}" disabled>
+                                aria-describedby="inputGroup-sizing-sm" value="{{calcId}}" disabled>
                         </div>
 
 
@@ -195,7 +195,7 @@
 
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%" value="{{Fc.currentFabricCalc.fabric_weigh}}" 
-                        [(ngModel)]="Pc.calculatePrice.fabric_weight" readonly>
+                        readonly>
                         <div class="btn-group">
                             <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
                                 UOM
@@ -244,7 +244,7 @@
                             <label class="input-group-text" for="inputGroupSelect01"> Fabric Total Price</label>
 
                         </div>
-                        <input type="text" id="refNo" class="form-control" style="width: 30%"  value="{{pc.calculatePrice.fabric_total_price}}" disabled>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%" value="{{Pc.calculatePrice.fabric_total_price}}" disabled>
                         <div class="btn-group">
                             <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
                                 UOM
@@ -378,7 +378,7 @@
 
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
-                            placeholder="Per Dozen Price" [(ngModel)]="Pc.calculatePrice.per_dozen_price" readonly="">
+                            placeholder="Per Dozen Price" value="{{Pc.calculatePrice.per_dozen_price}}"readonly="">
                         <div class="btn-group">
                             <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
                                 UOM
@@ -401,7 +401,7 @@
 
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
-                            placeholder="Per Unit Price" [(ngModel)]="Pc.calculatePrice.per_unit_price"  readonly="">
+                            placeholder="Per Unit Price" value="{{Pc.calculatePrice.per_unit_price}}"  readonly="">
                         <div class="btn-group">
                             <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
                                 UOM
@@ -419,7 +419,7 @@
 
                     <div class="row" style="margin-top: 2rem">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-info" style="margin-left: 5rem;">Add</button>
+                            <button type="button" class="btn btn-info" style="margin-left: 5rem;" (click)="createAndUpdate(Pc.calculatePrice)" >Add</button>
                             <button type="button" class="btn btn-info" style="margin-left: 11rem;">Cancel</button>
 
                         </div>
@@ -431,3 +431,66 @@
 
     </div>
 </div>
+<!---------table-->
+<div class="row justify-content-md-center">
+    <div class="col-md-11">
+      <div class="card">
+        <div class="card text-center">
+          <div class="card-header">
+            Price Calculation
+          </div>
+          <div class="card-body">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Calculation-ID</th>
+                  <th scope="col">Fabric amount</th>
+                  <th scope="col">Fabric Unit Price</th>
+                  <th scope="col">Fabric total Price</th>
+                  <th scope="col">RIB</th>
+                  <th scope="col">CM</th>
+                  <th scope="col">TRIM</th>
+                  <th scope="col">Print</th>
+                  <th scope="col">DOC</th>
+                  <th scope="col">Per Dozen Price</th>
+                  <th scope="col">Per Unit Price</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of allprice">
+
+                  <td>{{p.calculation_id}}</td>
+                  <td>{{p.fabric_weight}}</td>
+                  <td>{{p.fabric_unit_price}}</td>
+                  <td>{{p.fabric_total_price}}</td>
+                  <td>{{p.rib}}</td>
+                  <td>{{p.cm}}</td>
+                  <td>{{p.trim}}</td>
+                  <td>{{p.print}}</td>
+                  <td>{{p.doc}}</td>
+                  <td>{{p.per_dozen_price}}</td>
+                  <td>{{p.per_unit_price}}</td>
+                  <td><a class="btn text-success" (click)="edit(p)">
+                      <i class="fa fa-edit"></i>
+                    </a>
+
+                  </td>
+
+                  <td> <a class="btn text-danger" (click)="del(p)" data-toggle="modal" data-target="#exampleModal">
+                      <i class="fa fa-trash"></i>
+                    </a>
+                  </td>
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div class="col-md-6">
+        <button type="button" style="margin-left: 69rem; margin-top:2rem;" class="btn btn-secondary" [routerLink]="['/report']" routerLinkActive="router-link-active">Report</button>
+      </div>
