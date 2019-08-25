@@ -267,10 +267,14 @@
         
       </div>
       <div  class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="align-content: center">
-          Entry Created successfully
+          Entry Created successfully.
         </div>
+        
         <div  class="alert alert-success" role="alert" *ngIf="showeditmessage" style="align-content: center">
-          Entry Edited successfully
+          Entry Edited successfully. Data Saved.
+        </div>
+        <div  class="alert alert-danger" role="alert" *ngIf="serverErrorMessages" style="align-content: center">
+          Something went wrong, try again later. Thank you. 
         </div>
       </div>
       

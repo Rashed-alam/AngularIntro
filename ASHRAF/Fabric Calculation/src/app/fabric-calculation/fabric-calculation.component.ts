@@ -16,6 +16,7 @@ import { FabricCalulation } from 'src/shared/fabricCalculation.model';
 import { SizelistService } from 'src/shared/sizelist.service';
 import { SizeList } from 'src/shared/sizelist.model';
 import { Router } from "@angular/router";
+import { parseDate } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-fabric-calculation',
@@ -32,7 +33,7 @@ export class FabricCalculationComponent implements OnInit {
   allSize: SizeList[];
   showsuccessmessageforsubmitting:boolean;
   showsuccessmessageforsize: boolean;
-  serverErrorMessages: any;
+  serverErrorMessages: boolean;
   showeditmessage: boolean;
   showdeletemessage: boolean;
   today: any = Date.now(); //for showing today's date
@@ -245,8 +246,8 @@ export class FabricCalculationComponent implements OnInit {
 
   //this is for creating fabric entry into the database
   createFabric(f: FabricCalulation){
+  this.Fc.passReferenceNumber(this.Fc.currentFabricCalc.refNo);   //passsing the reference number to service
    f.fabric_weight=this.fabricWeight;
-   this.Fc.passReferenceNumber(this.Fc.currentFabricCalc.refNo); //passsing the reference number to service
    this.Fc.createFabricEntry(f)
    .subscribe(
     res => {
@@ -261,7 +262,7 @@ export class FabricCalculationComponent implements OnInit {
         this.serverErrorMessages = err.error.join('<br/>');
       }
       else
-        this.serverErrorMessages = 'Something went wrong.Please contact admin.';
+        this.serverErrorMessages = true;
     });
   }
 
