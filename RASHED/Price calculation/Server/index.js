@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');//setting up of body-parser
 const cors = require('cors'); // for cross platform resource sharing
 const fabricEntry = require('./routes/fabricEntryApi');
 const priceCalculation =require('./routes/priceCalculationapi');
+const Currency=require('./routes/currencyapi');
 
 //setting up of express app 
 const app = express();
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/v1/fabricEntry',fabricEntry);
 app.use('/api/v1/priceCalculation',priceCalculation);
+app.use('/api/v1/currency',Currency);
 
 
 

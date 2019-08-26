@@ -59,7 +59,7 @@ const PriceCalcSchema = new mongoose.Schema({
         default: 0,
      //   required: "Chest Unit of Measurement cannot be Empty"
     },
-    fabricTotalPrice_UOM:{ //24
+    PriceCurrency_UOM:{ //24
         type: String,
         default: 0,
      //   required: "Chest Unit of Measurement cannot be Empty"

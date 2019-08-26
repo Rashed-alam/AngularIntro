@@ -13,6 +13,7 @@ export class PriceCalculation {
     doc: String;
     per_dozen_price: String;
     per_unit_price:String;
+    PriceCurrency_UOM:String;
     track_Id: Number;
     changeUser: String;
     changeDate: String;

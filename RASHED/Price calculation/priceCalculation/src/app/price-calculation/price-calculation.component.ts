@@ -1,3 +1,4 @@
+import { CurrencyService } from './../shared/currency.service';
 import { PriceCalculationService } from './../shared/price-calculation.service';
 import { PriceCalculation } from './../shared/fabricCalculation.model';
 import { FabricCalulation } from './../shared/fabricEntry.model';
@@ -5,6 +6,7 @@ import { FabricEntryService } from './../shared/fabric-entry.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+
 
 
 @Component({
@@ -33,16 +35,37 @@ export class PriceCalculationComponent implements OnInit {
   deleteevent = "delete";
   editevent = "edit";
   b_old;
+  newcurrency;
+  setcurrency;
 
 
-  constructor(private DP: DatePipe, private Fc: FabricEntryService, public Pc: PriceCalculationService) { }
+
+constructor(private DP: DatePipe, private Fc: FabricEntryService, public Pc: PriceCalculationService,public CU:CurrencyService) { }
 
   ngOnInit() {
     const datewithtime = this.DP.transform(this.archievedate, "medium");
     this.archievedate = datewithtime;
     this.getId();
     this.getPrice();
+    this.getCurrencylist();
+    this.setcurrency='USD';
+    this.Pc.calculatePrice.PriceCurrency_UOM=this.setcurrency;
+    console.log(this.Pc.calculatePrice.PriceCurrency_UOM);
   }
+  getCurrencylist(): void {
+    this.CU.getAllCurrency()
+      .subscribe(data => {
+        this.newcurrency = data;
+        //console.log(data);
+      })
+  
+  }
+  setCurrency(w){
+this.setcurrency=w;
+this.Pc.calculatePrice.PriceCurrency_UOM=this.setcurrency;
+console.log(this.Pc.calculatePrice.PriceCurrency_UOM);
+  }
+
   onEnter(value: any) {
     this.ref = value;
     //console.log(this.ref);
@@ -122,28 +145,6 @@ export class PriceCalculationComponent implements OnInit {
     this.Pc.calculatePrice.per_dozen_price = step2;
     step3 = (step2 / 12).toFixed(3);
     this.Pc.calculatePrice.per_unit_price = step3;
-
-    //console.log(this.Pc.calculatePrice.fabric_unit_price);
-    //console.log(this.Pc.calculatePrice);
-    //console.log(FabricAmount);
-    //this part is for calculating the boys tshirt fabric
-    // var step1 : any = 0;
-    // step1 = (parseInt(FabricAmount)*parseInt(FabricUnitPrice));
-
-    //console.log(step1);
-    // var step2 : any= 0;
-    // step2 =((step1*parseInt(chestsize)*2*parseInt(fabricsize))/(Math.pow(10,7)))*12;
-    // console.log("Step 2:"+step2);
-    // var step3: any = 0;
-    // step3 = (((wastePercentage)/100)*step2);
-    // console.log("Step 3:"+ step3);
-    // var step4: any = 0;
-    // step4 = (step2 + step3);
-    // var convertoFloat; 
-    // convertoFloat = parseFloat(step4).toFixed(5);
-    // this.fabricWeight = convertoFloat +" Kg/per dozen";//main answer for fabric calculation
-    // console.log("Step 4:"+ this.fabricWeight);
-    // //end of fabric calculation of boys tshirt
   }
  
   getPrice() {
@@ -252,6 +253,7 @@ export class PriceCalculationComponent implements OnInit {
           console.log(res);
           this.showupdatemessage = true;
           setTimeout(() => this.showupdatemessage = false, 4000);
+          this.getPrice();
         },
         err => {
   
@@ -300,6 +302,7 @@ export class PriceCalculationComponent implements OnInit {
       trim: '',
       print: '',
       doc: '',
+      PriceCurrency_UOM:'USD',
       per_dozen_price: '',
       per_unit_price: '',
       track_Id: null,

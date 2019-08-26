@@ -4,30 +4,31 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 const headerOption = {
-  headers: new HttpHeaders({ 'Content-Type' : 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 @Injectable({
   providedIn: 'root'
 })
 export class PriceCalculationService {
-  url='http://localhost:3000/api/v1/priceCalculation'
+  url = 'http://localhost:3000/api/v1/priceCalculation'
   constructor(private httpcall: HttpClient) { }
-  calculatePrice : PriceCalculation={
+  calculatePrice: PriceCalculation = {
     //"calculation_id":null,//1
-    "fabric_weight":'',
-    "fabric_unit_price":'',
-    "fabric_total_price":'' ,
-    "rib":'' ,
-    "cm":'' ,
-    "trim":'' ,
-    "print":'' ,
-    "doc":'' ,
-    "per_dozen_price":'' ,
-    "per_unit_price":'' ,
-    "track_Id": null ,
-    "changeUser": '' ,
-    "changeDate": '' ,
-    "event": '' ,
+    "fabric_weight": '',
+    "fabric_unit_price": '',
+    "fabric_total_price": '',
+    "rib": '',
+    "cm": '',
+    "trim": '',
+    "print": '',
+    "doc": '',
+    "per_dozen_price": '',
+    "per_unit_price": '',
+    "PriceCurrency_UOM": '',
+    "track_Id": null,
+    "changeUser": '',
+    "changeDate": '',
+    "event": '',
 
   }
   getCalculationid() {
