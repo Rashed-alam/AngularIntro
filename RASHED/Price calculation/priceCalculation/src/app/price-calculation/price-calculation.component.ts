@@ -40,7 +40,7 @@ export class PriceCalculationComponent implements OnInit {
 
 
 
-constructor(private DP: DatePipe, private Fc: FabricEntryService, public Pc: PriceCalculationService,public CU:CurrencyService) { }
+  constructor(private DP: DatePipe, private Fc: FabricEntryService, public Pc: PriceCalculationService, public CU: CurrencyService) { }
 
   ngOnInit() {
     const datewithtime = this.DP.transform(this.archievedate, "medium");
@@ -48,8 +48,8 @@ constructor(private DP: DatePipe, private Fc: FabricEntryService, public Pc: Pri
     this.getId();
     this.getPrice();
     this.getCurrencylist();
-    this.setcurrency='USD';
-    this.Pc.calculatePrice.PriceCurrency_UOM=this.setcurrency;
+    this.setcurrency = 'USD';
+    this.Pc.calculatePrice.PriceCurrency_UOM = this.setcurrency;
     console.log(this.Pc.calculatePrice.PriceCurrency_UOM);
   }
   getCurrencylist(): void {
@@ -58,12 +58,12 @@ constructor(private DP: DatePipe, private Fc: FabricEntryService, public Pc: Pri
         this.newcurrency = data;
         //console.log(data);
       })
-  
+
   }
-  setCurrency(w){
-this.setcurrency=w;
-this.Pc.calculatePrice.PriceCurrency_UOM=this.setcurrency;
-console.log(this.Pc.calculatePrice.PriceCurrency_UOM);
+  setCurrency(w) {
+    this.setcurrency = w;
+    this.Pc.calculatePrice.PriceCurrency_UOM = this.setcurrency;
+    console.log(this.Pc.calculatePrice.PriceCurrency_UOM);
   }
 
   onEnter(value: any) {
@@ -146,7 +146,7 @@ console.log(this.Pc.calculatePrice.PriceCurrency_UOM);
     step3 = (step2 / 12).toFixed(3);
     this.Pc.calculatePrice.per_unit_price = step3;
   }
- 
+
   getPrice() {
     this.Pc.getallprice().subscribe(
       (data) => {
@@ -245,18 +245,18 @@ console.log(this.Pc.calculatePrice.PriceCurrency_UOM);
     this.b_old.changeDate = this.archievedate;
     this.b_old.event = this.editevent;
     this.b_old._id = null;
-   
-    this.Pc.createpriceArchive(this.b_old).subscribe(res=>{
+
+    this.Pc.createpriceArchive(this.b_old).subscribe(res => {
       this.Pc.updateprice(n).subscribe(
         res => {
-  
+
           console.log(res);
           this.showupdatemessage = true;
           setTimeout(() => this.showupdatemessage = false, 4000);
           this.getPrice();
         },
         err => {
-  
+
           if (err.status === 422) {
             this.serverErrorMessages = err.error.join('<br/>');
           }
@@ -267,7 +267,7 @@ console.log(this.Pc.calculatePrice.PriceCurrency_UOM);
       );
 
     });
-    this.getPrice();
+
     this.clearAll();
 
   }
@@ -302,7 +302,7 @@ console.log(this.Pc.calculatePrice.PriceCurrency_UOM);
       trim: '',
       print: '',
       doc: '',
-      PriceCurrency_UOM:'USD',
+      PriceCurrency_UOM: 'USD',
       per_dozen_price: '',
       per_unit_price: '',
       track_Id: null,
