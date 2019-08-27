@@ -181,7 +181,7 @@
                         </div>
                         <div class="col-md-4">
                             <input type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-sm" value="{{Fc.currentFabricCalc.calculation_id}}" disabled>
+                                aria-describedby="inputGroup-sizing-sm" value="{{calcId}}" disabled>
                         </div>
 
 
@@ -191,23 +191,11 @@
                     <div class="row" style="margin-top:1rem">
                         <div class="col-md-5">
 
-                            <label class="input-group-text" for="inputGroupSelect01"> Fabric Amount</label>
+                            <label class="input-group-text" for="inputGroupSelect01"> Fabric Weight</label>
 
                         </div>
-                        <input type="text" id="refNo" class="form-control" style="width: 30%" value="{{Fc.currentFabricCalc.fabric_weigh}}" 
-                        [(ngModel)]="Pc.calculatePrice.fabric_weight" readonly>
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                UOM
-                            </button>
-                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                ...
-                            </div>
-                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                            value="{{Fc.currentFabricCalc.fabric_weigh}}" readonly>
 
                     </div>
 
@@ -221,21 +209,19 @@
                             <label class="input-group-text" for="inputGroupSelect01"> Fabric Unit Price</label>
 
                         </div>
-                        <input type="text" id="refNo" class="form-control" style="width: 30%" [(ngModel)]="Pc.calculatePrice.fabric_unit_price" required>
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                UOM
-                            </button>
-                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                ...
-                            </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                            [(ngModel)]="Pc.calculatePrice.fabric_unit_price" required>
+                        <select name="currencyName" id="Currency"  #cur (click)="setCurrency(cur.value)">
+                            <option  *ngFor="let i of newcurrency">
+
+                                {{i.currencyName}}
+                              </option>
+                       
+                        </select>
+                              
                         </div>
 
-                    </div>
+                   
 
 
                     <div class="row" style="margin-top:1rem">
@@ -244,20 +230,9 @@
                             <label class="input-group-text" for="inputGroupSelect01"> Fabric Total Price</label>
 
                         </div>
-                        <input type="text" id="refNo" class="form-control" style="width: 30%"  value="{{pc.calculatePrice.fabric_total_price}}" disabled>
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                UOM
-                            </button>
-                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                ...
-                            </div>
-                        </div>
-
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                            value="{{Pc.calculatePrice.fabric_total_price}}" disabled>
+                             <a style="padding: 6px;">   {{setcurrency}}</a>
                     </div>
 
                     <div class="row" style="margin-top:1rem">
@@ -266,19 +241,10 @@
                             <label class="input-group-text" for="inputGroupSelect01"> RIB</label>
 
                         </div>
-                        <input type="text" id="refNo" class="form-control" style="width: 30%" [(ngModel)]="Pc.calculatePrice.rib" required>
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                UOM
-                            </button>
-                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                ...
-                            </div>
-                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                            [(ngModel)]="Pc.calculatePrice.rib" required>
+                            <a style="padding: 6px;">   {{setcurrency}}</a>
+
 
                     </div>
                     <div class="row" style="margin-top:1rem">
@@ -287,42 +253,22 @@
                             <label class="input-group-text" for="inputGroupSelect01"> CM</label>
 
                         </div>
-                        <input type="text" id="refNo" class="form-control" style="width: 30%" [(ngModel)]="Pc.calculatePrice.cm" required>
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                UOM
-                            </button>
-                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                ...
-                            </div>
-                        </div>
-
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                            [(ngModel)]="Pc.calculatePrice.cm" required>
+                            <a style="padding: 6px;">   {{setcurrency}}</a>
                     </div>
+
                     <div class="row" style="margin-top:1rem">
                         <div class="col-md-4">
 
                             <label class="input-group-text" for="inputGroupSelect01"> TRIM</label>
 
                         </div>
-                        <input type="text" id="refNo" class="form-control" style="width: 30%" [(ngModel)]="Pc.calculatePrice.trim" required>
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                UOM
-                            </button>
-                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                ...
-                            </div>
-                        </div>
-
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                            [(ngModel)]="Pc.calculatePrice.trim" required>
+                            <a style="padding: 6px;">   {{setcurrency}}</a>                   
                     </div>
+
 
                     <div class="row" style="margin-top:1rem">
                         <div class="col-md-4">
@@ -330,21 +276,11 @@
                             <label class="input-group-text" for="inputGroupSelect01"> Print</label>
 
                         </div>
-                        <input type="text" id="refNo" class="form-control" style="width: 30%" [(ngModel)]="Pc.calculatePrice.print" required>
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                UOM
-                            </button>
-                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                ...
-                            </div>
-                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                            [(ngModel)]="Pc.calculatePrice.print" required>  
+                            <a style="padding: 6px;">   {{setcurrency}}</a>                 
+                   </div>
 
-                    </div>
 
                     <div class="row" style="margin-top:1rem">
                         <div class="col-md-4">
@@ -352,24 +288,14 @@
                             <label class="input-group-text" for="inputGroupSelect01"> DOC</label>
 
                         </div>
-                        <input type="text" id="refNo" class="form-control" style="width: 30%" [(ngModel)]="Pc.calculatePrice.doc" required>
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                UOM
-                            </button>
-                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                ...
-                            </div>
-                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                            [(ngModel)]="Pc.calculatePrice.doc" required>
+                            <a style="padding: 6px;">   {{setcurrency}}</a>
+                    
+                   </div>
 
-                    </div>
-
-                    <button type="button" class="btn btn-success btn-lg"
-                        style="margin-left: 18rem; margin-top: 1rem" (click)="calculate()">Calculate</button>
+                    <button type="button" class="btn btn-success btn-lg" style="margin-left: 18rem; margin-top: 1rem"
+                        (click)="calculate()">Calculate</button>
 
                     <div class="row" style="margin-top:1rem">
                         <div class="col-md-5">
@@ -378,21 +304,10 @@
 
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
-                            placeholder="Per Dozen Price" [(ngModel)]="Pc.calculatePrice.per_dozen_price" readonly="">
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                UOM
-                            </button>
-                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                ...
-                            </div>
-                        </div>
-
+                            placeholder="Per Dozen Price" value="{{Pc.calculatePrice.per_dozen_price}}" readonly="">
+                            <a style="padding: 6px;">   {{setcurrency}}</a>
                     </div>
+
                     <div class="row" style="margin-top:1rem">
                         <div class="col-md-5">
 
@@ -401,25 +316,14 @@
 
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
-                            placeholder="Per Unit Price" [(ngModel)]="Pc.calculatePrice.per_unit_price"  readonly="">
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-sm" type="button" style="margin-left:1rem;">
-                                UOM
-                            </button>
-                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu">
-                                ...
-                            </div>
-                        </div>
-
-                    </div>
+                            placeholder="Per Unit Price" value="{{Pc.calculatePrice.per_unit_price}}" readonly="">
+                            <a style="padding: 6px;">   {{setcurrency}}</a>
+                                   </div>
 
                     <div class="row" style="margin-top: 2rem">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-info" style="margin-left: 5rem;">Add</button>
+                            <button type="button" class="btn btn-info" style="margin-left: 5rem;"
+                                (click)="createAndUpdate(Pc.calculatePrice)">Add</button>
                             <button type="button" class="btn btn-info" style="margin-left: 11rem;">Cancel</button>
 
                         </div>
@@ -430,4 +334,80 @@
 
 
     </div>
+</div>
+<!---message--->
+<div class="row justify-content-md-center" *ngIf="showsuccessmessage">
+    <p>Created New size successfully</p>
+
+  </div>
+  <div class="row justify-content-md-center" *ngIf="showdeletemessage">
+    <p>Deleted successfully</p>
+  </div>
+  <div class="row justify-content-md-center" *ngIf="showupdatemessage">
+    <p>Updated successfully</p>
+  </div>
+<!---------table-->
+<div class="row justify-content-md-center">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card text-center">
+                <div class="card-header">
+                    Price Calculation
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover border">
+                        <thead>
+                            <tr>
+                                <th scope="col">Calculation-ID</th>
+                                <th scope="col">Fabric amount</th>
+                                <th scope="col">Fabric Unit Price</th>
+                                <th scope="col">Fabric total Price</th>
+                                <th scope="col">RIB</th>
+                                <th scope="col">CM</th>
+                                <th scope="col">TRIM</th>
+                                <th scope="col">Print</th>
+                                <th scope="col">DOC</th>
+                                <th scope="col">Per Dozen Price</th>
+                                <th scope="col">Per Unit Price</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of allprice">
+
+                                <td>{{p.calculation_id}}</td>
+                                <td>{{p.fabric_weight}}</td>
+                                <td>{{p.fabric_unit_price+' '+p.PriceCurrency_UOM}}</td>
+                                <td>{{p.fabric_total_price+' '+p.PriceCurrency_UOM }}</td>
+                                <td>{{p.rib+' '+p.PriceCurrency_UOM }}</td>
+                                <td>{{p.cm+' '+p.PriceCurrency_UOM}}</td>
+                                <td>{{p.trim+' '+p.PriceCurrency_UOM}}</td>
+                                <td>{{p.print+' '+p.PriceCurrency_UOM}}</td>
+                                <td>{{p.doc+' '+p.PriceCurrency_UOM}}</td>
+                                <td>{{p.per_dozen_price+' '+p.PriceCurrency_UOM}}</td>
+                                <td>{{p.per_unit_price+' '+p.PriceCurrency_UOM}}</td>
+                                <td><a class="btn text-success" (click)="edit(p)">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+
+                                </td>
+
+                                <td> <a class="btn text-danger" (click)="del(p)" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-6">
+    <button type="button" style="margin-left: 69rem; margin-top:2rem;" class="btn btn-secondary"
+        [routerLink]="['/report']" routerLinkActive="router-link-active">Report</button>
 </div>

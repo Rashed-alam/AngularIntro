@@ -3,7 +3,6 @@ import { BuyersService } from 'src/shared/buyers.service';
 import { Buyers } from 'src/shared/buyers.model';
 import { UnitofmeasurementService } from 'src/shared/unitofmeasurement.service';
 import { UoM } from 'src/shared/unitofmeasurement.model';
-import { from } from 'rxjs';
 import { Sleeves } from 'src/shared/sleeves.model';
 import { SleeveTypeService } from 'src/shared/sleeve-type.service';
 import { FabricType } from 'src/shared/fabric-type.model';
@@ -17,6 +16,7 @@ import { FabricCalulation } from 'src/shared/fabricCalculation.model';
 import { SizelistService } from 'src/shared/sizelist.service';
 import { SizeList } from 'src/shared/sizelist.model';
 import { Router } from "@angular/router";
+import { parseDate } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-fabric-calculation',
@@ -24,8 +24,6 @@ import { Router } from "@angular/router";
   styleUrls: ['./fabric-calculation.component.css']
 })
 export class FabricCalculationComponent implements OnInit {
-
- 
   allBuyers: Buyers [];
   allUoM: UoM[];
   allSleeveType: Sleeves[];
@@ -35,13 +33,13 @@ export class FabricCalculationComponent implements OnInit {
   allSize: SizeList[];
   showsuccessmessageforsubmitting:boolean;
   showsuccessmessageforsize: boolean;
-  serverErrorMessages: any;
+  serverErrorMessages: boolean;
   showeditmessage: boolean;
   showdeletemessage: boolean;
   today: any = Date.now(); //for showing today's date
   archievedate: any =Date.now();// for showing date and time into archieve
-  public autoID: any;
-  public sizeID: any;
+  autoID: any;
+  sizeID: any;
   changeUser = "Ashraf";
   changeDate = this.today;
   deleteevent= "delete";
@@ -51,9 +49,8 @@ export class FabricCalculationComponent implements OnInit {
   JacketSelected: boolean = false;
   ShortsSelected: boolean = false;
   x: any; //for holding the item name selection click of item name
-  public fabricWeight: any;// for holding the fabric weight and sending it to the database
-  public referid: string;//for holding the refernce number 
-
+  fabricWeight: any;// for holding the fabric weight and sending it to the database
+  referid: string;//for holding the refernce number 
 
   constructor(private Bs:BuyersService, 
         private Ums:UnitofmeasurementService, 
@@ -95,20 +92,56 @@ export class FabricCalculationComponent implements OnInit {
     var pocketsize: any = 0;
     var fabricsize: any= 0;// for gsm value
     wastePercentage = this.Fc.currentFabricCalc.waste_percentage;
-    chestsize = this.Fc.currentFabricCalc.chest;
-    lengthsize = this.Fc.currentFabricCalc.length;
-    sleevesize = this.Fc.currentFabricCalc.sleeve;
     fabricsize = this.Fc.currentFabricCalc.fabrics;
-    hoodsize = this.Fc.currentFabricCalc.hood;
-    bottomsize = this.Fc.currentFabricCalc.bottom;
-    thighsize = this.Fc.currentFabricCalc.thigh;
-    pocketsize = this.Fc.currentFabricCalc.pocket;
+    //conversion from inch to cm
+    if(this.Fc.currentFabricCalc.chest_unit_of_measurement=='Inch'){
+      chestsize = this.Fc.currentFabricCalc.chest*2.54;
+    }else{
+      chestsize = this.Fc.currentFabricCalc.chest;
+    }
+    if(this.Fc.currentFabricCalc.thigh_unit_of_measurement=='Inch'){
+      thighsize = this.Fc.currentFabricCalc.thigh*2.54;
+    }else{
+      thighsize = this.Fc.currentFabricCalc.thigh;
+    }
+
+    if(this.Fc.currentFabricCalc.length_unit_of_measurement=='Inch'){
+      lengthsize = this.Fc.currentFabricCalc.length*2.54;
+    }else{
+      lengthsize = this.Fc.currentFabricCalc.length;
+    }
+
+    if(this.Fc.currentFabricCalc.sleeve_unit_of_measurement=='Inch'){
+      sleevesize = this.Fc.currentFabricCalc.sleeve*2.54;
+    }else{
+      sleevesize = this.Fc.currentFabricCalc.sleeve;
+    }
+
+    if(this.Fc.currentFabricCalc.hood_unit_of_measurement=='Inch'){
+      hoodsize = this.Fc.currentFabricCalc.hood*2.54;
+    }else{
+      hoodsize = this.Fc.currentFabricCalc.hood;
+    }
+
+    if(this.Fc.currentFabricCalc.bottom_unit_of_measurement=='Inch'){
+      bottomsize = this.Fc.currentFabricCalc.bottom*2.54;
+    }else{
+      bottomsize = this.Fc.currentFabricCalc.bottom;
+    }
+    
+    if(this.Fc.currentFabricCalc.pocket_unit_of_measurement=='Inch'){
+      pocketsize = this.Fc.currentFabricCalc.pocket*2.54;
+    }else{
+      pocketsize = this.Fc.currentFabricCalc.pocket;
+    }
+    
+
     //this part is for calculating the boys tshirt fabric
     var step1 : any = 0;
-    step1 = parseInt(lengthsize) + parseInt(sleevesize);
+    step1 = parseFloat(lengthsize) + parseFloat(sleevesize);
     console.log("Step 1:"+ step1);
     var step2 : any= 0;
-    step2 =((step1*parseInt(chestsize)*2*parseInt(fabricsize))/(Math.pow(10,7)))*12;
+    step2 =((step1*parseFloat(chestsize)*2*parseFloat(fabricsize))/(Math.pow(10,7)))*12;
     console.log("Step 2:"+step2);
     var step3: any = 0;
     step3 = (((wastePercentage)/100)*step2);
@@ -121,7 +154,6 @@ export class FabricCalculationComponent implements OnInit {
     console.log("Step 4:"+ this.fabricWeight);
     //end of fabric calculation of boys tshirt
   }
-
 
   //this is for selecting which fields to show upon item name selection
   selectSwitch(){
@@ -155,8 +187,6 @@ export class FabricCalculationComponent implements OnInit {
       });
   }
  
-
-
 //this part is for fetching the AutoGenerated ID from the database
   getAutoGeneratedID(){
    this.Fc.getFabricEntry_ID()
@@ -216,10 +246,8 @@ export class FabricCalculationComponent implements OnInit {
 
   //this is for creating fabric entry into the database
   createFabric(f: FabricCalulation){
+  this.Fc.passReferenceNumber(this.Fc.currentFabricCalc.refNo);   //passsing the reference number to service
    f.fabric_weight=this.fabricWeight;
-   //f.refNo = this.Fc.currentReference.subscribe(referid=> this.referid = referid);
-   //this.Fc.currentReference.subscribe(referid=> this.referid = referid);
-   this.Fc.passReferenceNumber(this.Fc.currentFabricCalc.refNo); 
    this.Fc.createFabricEntry(f)
    .subscribe(
     res => {
@@ -227,14 +255,14 @@ export class FabricCalculationComponent implements OnInit {
       setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
       this.getallFabricEntries();
       this.clearAll();
-      this.router.navigateByUrl('/price');
+      this.router.navigateByUrl('/report');
     },
     err => {
       if (err.status === 422) {
         this.serverErrorMessages = err.error.join('<br/>');
       }
       else
-        this.serverErrorMessages = 'Something went wrong.Please contact admin.';
+        this.serverErrorMessages = true;
     });
   }
 
@@ -323,9 +351,6 @@ export class FabricCalculationComponent implements OnInit {
      }
   }
 
-  
-
-
   editFabricEntry(FabricCalulation){
     this.Fc.currentFabricCalc = Object.assign({},FabricCalulation);
     this.getallFabricEntries();
@@ -369,9 +394,5 @@ export class FabricCalculationComponent implements OnInit {
          this.allUoM = data;
        });
   }
-
-  
-
-   
 
 }

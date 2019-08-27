@@ -1,0 +1,48 @@
+<div class="row justify-content-md-center">
+  <div class="col-md-11">
+    <div class="card">
+      <div class="card text-center">
+        <div class="card-header">
+          Price Calculation Report
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Calculation-ID</th>
+                <th scope="col">Fabric amount</th>
+                <th scope="col">Fabric Unit Price</th>
+                <th scope="col">Fabric total Price</th>
+                <th scope="col">RIB</th>
+                <th scope="col">CM</th>
+                <th scope="col">TRIM</th>
+                <th scope="col">Print</th>
+                <th scope="col">DOC</th>
+                <th scope="col">Per Dozen Price</th>
+                <th scope="col">Per Unit Price</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of allprice">
+
+                <td>{{p.calculation_id}}</td>
+                <td>{{p.fabric_weight }}</td>
+                <td>{{p.fabric_unit_price+' '+p.PriceCurrency_UOM}}</td>
+                <td>{{p.fabric_total_price+' '+p.PriceCurrency_UOM }}</td>
+                <td>{{p.rib+' '+p.PriceCurrency_UOM }}</td>
+                <td>{{p.cm+' '+p.PriceCurrency_UOM}}</td>
+                <td>{{p.trim+' '+p.PriceCurrency_UOM}}</td>
+                <td>{{p.print+' '+p.PriceCurrency_UOM}}</td>
+                <td>{{p.doc+' '+p.PriceCurrency_UOM}}</td>
+                <td>{{p.per_dozen_price+' '+p.PriceCurrency_UOM}}</td>
+                <td>{{p.per_unit_price+' '+p.PriceCurrency_UOM}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
