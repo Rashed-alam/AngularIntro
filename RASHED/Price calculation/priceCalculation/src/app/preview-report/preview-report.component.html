@@ -1,0 +1,202 @@
+<div class="container">
+    <div class="card border-primary mb-3" style=" max-width: 40rem;margin-left: 10rem;text-align: center">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">ID:</label>
+                        </div>
+                        <input class="form-control" type="text" style="width: 48%"
+                            value="{{Fc.currentFabricCalc.fabricEntry_id}}" disabled>
+                    </div>
+
+                    <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Ref No:</label>
+                        </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                        value="{{Fc.currentFabricCalc.refNo}}"required>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group mb-2" style="margin-bottom: 4rem; margin-top: 1rem">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Mail Date:</div>
+                        </div>
+                        <input type="text" id="mailDate" value="{{Fc.currentFabricCalc.mailDate | date :'dd-MM-yyyy'}}"
+                            class="form-control" disabled>
+                    </div>
+
+                    <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Entry Date:</label>
+                        </div>
+                        <input type="text" id="entryDate"
+                            value="{{Fc.currentFabricCalc.entryDate | date :'dd-MM-yyyy'}}" class="form-control"
+                            disabled>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Buyer Name:</label>
+                        </div>
+                        <input type="text" class="form-control" id="style_code" style="width: 50%;"
+                            value="{{Fc.currentFabricCalc.buyer_name}}" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-deck">
+        
+            <div class="col-md-4"  *ngFor="let p of allprice">
+                    <div class="card border-primary mb-3">
+                            <div class="card-body" style=" display: flex;">
+                                <div class="col-md-12">
+                                    <div class="row">
+                    
+                                        <div class="col-md-5">
+                                            <span class="input-group-text" for="inputGroupSelect01"style="width:8rem">Calculation ID </span>
+                                        </div>
+                                        <input type="text" id="refNo" class="form-control" style="width: 25%;margin-left:3rem" value="{{p.calculation_id}}" readonly>
+                    
+                                    </div>
+                    
+                    
+                                    <div class="row" style="margin-top:1rem">
+                                        <div class="col-md-5">
+                    
+                                            <label class="input-group-text" for="inputGroupSelect01" style="width:8rem"> Fabric Weight</label>
+                    
+                                        </div>
+                                        <input type="text" id="refNo" class="form-control" style="width: 30%;margin-left:3rem"
+                                            value="{{p.fabric_weight}}" readonly>
+                    
+                                    </div>
+                    
+                    
+                    
+                    
+                    
+                                    <div class="row" style="margin-top:1rem">
+                                        <div class="col-md-5">
+                    
+                                            <label class="input-group-text" for="inputGroupSelect0" style="width:8rem" > Fabric Unit Price</label>
+                    
+                                        </div>
+                                        <input type="text" id="refNo" class="form-control" style="width: 30%; margin-left:3rem"
+                                           value="{{p.fabric_unit_price}}" required>
+                                           <a style="padding:6px;margin-right:-3rem;font-size: 12px">{{p.PriceCurrency_UOM}}</a>
+                                    </div>
+                    
+                    
+                    
+                    
+                                    <div class="row" style="margin-top:1rem">
+                                        <div class="col-md-5">
+                    
+                                            <label class="input-group-text" for="inputGroupSelect01" style="width:8rem"> Fabric Total Price</label>
+                    
+                                        </div>
+                                        <input type="text" id="refNo" class="form-control" style="width: 30%; margin-left:3rem"
+                                            value="{{p.fabric_total_price}}" disabled>
+                                        <a style="padding:6px;margin-right:-3rem;font-size: 12px">{{p.PriceCurrency_UOM}}</a>
+                                    </div>
+                    
+                                    <div class="row" style="margin-top:1rem">
+                                        <div class="col-md-5">
+                    
+                                            <label class="input-group-text" for="inputGroupSelect01" style="width:8rem"> RIB</label>
+                    
+                                        </div>
+                                        <input type="text" id="refNo" class="form-control" style="width: 30%;margin-left:3rem"
+                                          value="{{p.rib}}" required>
+                                          <a style="padding:6px;margin-right:-3rem;font-size: 12px">{{p.PriceCurrency_UOM}}</a>
+                    
+                                    </div>
+                                    <div class="row" style="margin-top:1rem">
+                                        <div class="col-md-5">
+                    
+                                            <label class="input-group-text" for="inputGroupSelect01" style="width:8rem"> CM</label>
+                    
+                                        </div>
+                                        <input type="text" id="refNo" class="form-control" style="width: 30%;margin-left:3rem"
+                                           value="{{p.cm}}" required>
+                                           <a style="padding:6px;margin-right:-3rem;font-size: 12px">{{p.PriceCurrency_UOM}}</a>
+                                    </div>
+                    
+                                    <div class="row" style="margin-top:1rem">
+                                        <div class="col-md-5">
+                    
+                                            <label class="input-group-text" for="inputGroupSelect01" style="width:8rem"> TRIM</label>
+                    
+                                        </div>
+                                        <input type="text" id="refNo" class="form-control" style="width: 30%;margin-left:3rem"
+                                        value="{{p.trim}}" required>
+                                        <a style="padding:6px;margin-right:-3rem;font-size: 12px">{{p.PriceCurrency_UOM}}</a>
+                                    </div>
+                    
+                    
+                                    <div class="row" style="margin-top:1rem">
+                                        <div class="col-md-5">
+                    
+                                            <label class="input-group-text" for="inputGroupSelect01" style="width:8rem"> Print</label>
+                    
+                                        </div>
+                                        <input type="text" id="refNo" class="form-control" style="width: 30%;margin-left:3rem"
+                                            value="{{p.print}}" required>
+                                            <a style="padding:6px;margin-right:-3rem;font-size: 12px">{{p.PriceCurrency_UOM}}</a>
+                                    </div>
+                    
+                    
+                                    <div class="row" style="margin-top:1rem">
+                                        <div class="col-md-5">
+                    
+                                            <label class="input-group-text" for="inputGroupSelect01" style="width:8rem"> DOC</label>
+                    
+                                        </div>
+                                        <input type="text" id="refNo" class="form-control" style="width: 30%;margin-left:3rem"
+                                            value="{{p.doc}}" required>
+                                            <a style="padding:6px;margin-right:-3rem;font-size: 12px">{{p.PriceCurrency_UOM}}</a>
+                    
+                                    </div>
+                    
+                                    <div class="row" style="margin-top:1rem">
+                                        <div class="col-md-5">
+                    
+                                            <label class="input-group-text" for="inputGroupSelect01" style="width:8rem"> Per Dozen Price</label>
+                    
+                                        </div>
+                                        <input type="text" id="refNo" class="form-control" style="width: 35%;margin-left:3rem" placeholder="Per Dozen Price"
+                                            value="{{p.per_dozen_price}}" readonly="">
+                                            <a style="padding:6px;margin-right:-3rem;font-size: 12px">{{p.PriceCurrency_UOM}}</a>
+                                    </div>
+                    
+                                    <div class="row" style="margin-top:1rem">
+                                        <div class="col-md-5">
+                    
+                                            <label class="input-group-text" for="inputGroupSelect01" style="width:8rem"> Per Unit
+                                                Price</label>
+                    
+                                        </div>
+                                        <input type="text" id="refNo" class="form-control" style="width: 35%;margin-left:3rem" placeholder="Per Unit Price"
+                                            value="{{p.per_unit_price}}" readonly="">
+                                            <a style="padding:6px;margin-right:-3rem;font-size: 12px">{{p.PriceCurrency_UOM}}</a>
+                                    </div>
+                    
+                    
+                                </div>
+                            </div>
+                        
+
+            </div>
+        </div>
+          
+    </div>
+</div>

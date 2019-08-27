@@ -11,12 +11,14 @@ import { DatePipe } from '@angular/common';
 import { PriceCalculationComponent } from './price-calculation/price-calculation.component';
 import { PriceArchiveComponent } from './price-archive/price-archive.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PreviewReportComponent } from './preview-report/preview-report.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PriceCalculationComponent,
-    PriceArchiveComponent
+    PriceArchiveComponent,
+    PreviewReportComponent
 
   ],
   imports: [

@@ -82,7 +82,7 @@ export class PriceCalculationComponent implements OnInit {
         this.Fc.currentFabricCalc.mailDate = this.allfab[0].mailDate;
         this.Fc.currentFabricCalc.entryDate = this.allfab[0].entryDate;
         this.Fc.currentFabricCalc.fabricEntry_id = this.allfab[0].fabricEntry_id;
-
+        this.Fc.currentFabricCalc.refNo=this.allfab[0].refNo;
         this.Fc.currentFabricCalc.buyer_name = this.allfab[0].buyer_name;
         this.Fc.currentFabricCalc.style_code = this.allfab[0].style_code;
         this.Fc.currentFabricCalc.style_item_name = this.allfab[0].style_item_name;
@@ -97,10 +97,9 @@ export class PriceCalculationComponent implements OnInit {
         this.Fc.currentFabricCalc.pocket = this.allfab[0].pocket;
         this.Fc.currentFabricCalc.pocket = this.allfab[0].pocket;
         this.Fc.currentFabricCalc.fabric_weigh = this.allfab[0].fabric_weigh;
-        this.a = this.Fc.currentFabricCalc.style_item_name
-        this.selectSwitch(this.a);
-        //console.log(this.a);
+     
       }
+      
       )
     //  this.Fc.currentFabricCalc.mailDate=this.allfab[0].mailDate;
     //  console.log(  this.Fc.currentFabricCalc.mailDate);

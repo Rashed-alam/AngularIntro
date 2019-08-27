@@ -48,7 +48,7 @@
                                 <label class="input-group-text" for="inputGroupSelect01">Buyer Name:</label>
                             </div>
                             <input type="text" class="form-control" id="style_code" style="width: 30%;"
-                                value="{{Fc.currentFabricCalc.buyer_name}}" disabled>
+                                  value="{{Fc.currentFabricCalc.buyer_name}}" disabled>
                         </div>
                     </div>
                     <hr>
@@ -410,7 +410,9 @@
         </div>
     </div>
 </div>
-<div class="col-md-6">
-    <button type="button" style="margin-left: 69rem; margin-top:2rem;" class="btn btn-secondary"
+<div class="col-md-12">
+    <button type="button" style="margin-left: 66rem; margin-top:2rem;" class="btn btn-secondary"
         [routerLink]="['/report']" routerLinkActive="router-link-active">Report</button>
+    <button type="button" style="margin-left: 1rem; margin-top:2rem;" class="btn btn-secondary"
+        [routerLink]="['/Preview_report']" routerLinkActive="router-link-active" click>Submit</button>
 </div>
