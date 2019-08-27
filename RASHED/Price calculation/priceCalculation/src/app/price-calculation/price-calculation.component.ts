@@ -227,6 +227,8 @@ export class PriceCalculationComponent implements OnInit {
     this.Pc.createpriceArchive(p).subscribe(res => {
       this.Pc.deleteprice(p._id).subscribe(
         res => {
+
+          this.getPrice();
           console.log('ok');
           this.showdeletemessage = true;
           setTimeout(() => this.showdeletemessage = false, 4000);
@@ -234,7 +236,6 @@ export class PriceCalculationComponent implements OnInit {
       );
     });
 
-    this.getPrice();
   }
 
 

@@ -211,17 +211,17 @@
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
                             [(ngModel)]="Pc.calculatePrice.fabric_unit_price" required>
-                        <select name="currencyName" id="Currency"  #cur (click)="setCurrency(cur.value)">
-                            <option  *ngFor="let i of newcurrency">
+                        <select name="currencyName" id="Currency" #cur (click)="setCurrency(cur.value)">
+                            <option *ngFor="let i of newcurrency">
 
                                 {{i.currencyName}}
-                              </option>
-                       
-                        </select>
-                              
-                        </div>
+                            </option>
 
-                   
+                        </select>
+
+                    </div>
+
+
 
 
                     <div class="row" style="margin-top:1rem">
@@ -232,7 +232,7 @@
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
                             value="{{Pc.calculatePrice.fabric_total_price}}" disabled>
-                             <a style="padding: 6px;">   {{setcurrency}}</a>
+                        <a style="padding: 6px;"> {{setcurrency}}</a>
                     </div>
 
                     <div class="row" style="margin-top:1rem">
@@ -243,7 +243,7 @@
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
                             [(ngModel)]="Pc.calculatePrice.rib" required>
-                            <a style="padding: 6px;">   {{setcurrency}}</a>
+                        <a style="padding: 6px;"> {{setcurrency}}</a>
 
 
                     </div>
@@ -255,7 +255,7 @@
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
                             [(ngModel)]="Pc.calculatePrice.cm" required>
-                            <a style="padding: 6px;">   {{setcurrency}}</a>
+                        <a style="padding: 6px;"> {{setcurrency}}</a>
                     </div>
 
                     <div class="row" style="margin-top:1rem">
@@ -266,7 +266,7 @@
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
                             [(ngModel)]="Pc.calculatePrice.trim" required>
-                            <a style="padding: 6px;">   {{setcurrency}}</a>                   
+                        <a style="padding: 6px;"> {{setcurrency}}</a>
                     </div>
 
 
@@ -277,9 +277,9 @@
 
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
-                            [(ngModel)]="Pc.calculatePrice.print" required>  
-                            <a style="padding: 6px;">   {{setcurrency}}</a>                 
-                   </div>
+                            [(ngModel)]="Pc.calculatePrice.print" required>
+                        <a style="padding: 6px;"> {{setcurrency}}</a>
+                    </div>
 
 
                     <div class="row" style="margin-top:1rem">
@@ -290,9 +290,9 @@
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
                             [(ngModel)]="Pc.calculatePrice.doc" required>
-                            <a style="padding: 6px;">   {{setcurrency}}</a>
-                    
-                   </div>
+                        <a style="padding: 6px;"> {{setcurrency}}</a>
+
+                    </div>
 
                     <button type="button" class="btn btn-success btn-lg" style="margin-left: 18rem; margin-top: 1rem"
                         (click)="calculate()">Calculate</button>
@@ -305,7 +305,7 @@
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
                             placeholder="Per Dozen Price" value="{{Pc.calculatePrice.per_dozen_price}}" readonly="">
-                            <a style="padding: 6px;">   {{setcurrency}}</a>
+                        <a style="padding: 6px;"> {{setcurrency}}</a>
                     </div>
 
                     <div class="row" style="margin-top:1rem">
@@ -317,8 +317,8 @@
                         </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%"
                             placeholder="Per Unit Price" value="{{Pc.calculatePrice.per_unit_price}}" readonly="">
-                            <a style="padding: 6px;">   {{setcurrency}}</a>
-                                   </div>
+                        <a style="padding: 6px;"> {{setcurrency}}</a>
+                    </div>
 
                     <div class="row" style="margin-top: 2rem">
                         <div class="col-md-12">
@@ -336,26 +336,27 @@
     </div>
 </div>
 <!---message--->
-<div class="row justify-content-md-center" *ngIf="showsuccessmessage">
-    <p>Created New size successfully</p>
+<div class="alert alert-success row justify-content-md-center" *ngIf="showsuccessmessage">
+    <p>Created New Price successfully</p>
 
-  </div>
-  <div class="row justify-content-md-center" *ngIf="showdeletemessage">
+</div>
+<div class=" alert alert-danger row justify-content-md-center" *ngIf="showdeletemessage">
     <p>Deleted successfully</p>
-  </div>
-  <div class="row justify-content-md-center" *ngIf="showupdatemessage">
+</div>
+<div class="alert alert-success row justify-content-md-center" *ngIf="showupdatemessage">
     <p>Updated successfully</p>
-  </div>
+</div>
 <!---------table-->
 <div class="row justify-content-md-center">
     <div class="col-md-12">
         <div class="card">
             <div class="card text-center">
                 <div class="card-header">
-                    Price Calculation
+                    <h2> Price Calculation</h2>
+                    <h4>Currency in {{setcurrency}}</h4>
                 </div>
                 <div class="card-body">
-                    <table class="table table-hover border">
+                    <table class="table table-sm table-hover border">
                         <thead>
                             <tr>
                                 <th scope="col">Calculation-ID</th>
@@ -386,13 +387,15 @@
                                 <td>{{p.doc+' '+p.PriceCurrency_UOM}}</td>
                                 <td>{{p.per_dozen_price+' '+p.PriceCurrency_UOM}}</td>
                                 <td>{{p.per_unit_price+' '+p.PriceCurrency_UOM}}</td>
-                                <td><a class="btn text-success" (click)="edit(p)">
+                                <td>
+                                    <a class="btn text-success" (click)="edit(p)">
                                         <i class="fa fa-edit"></i>
                                     </a>
 
                                 </td>
 
-                                <td> <a class="btn text-danger" (click)="del(p)" data-toggle="modal"
+                                <td>
+                                    <a class="btn text-danger" (click)="del(p)" data-toggle="modal"
                                         data-target="#exampleModal">
                                         <i class="fa fa-trash"></i>
                                     </a>
