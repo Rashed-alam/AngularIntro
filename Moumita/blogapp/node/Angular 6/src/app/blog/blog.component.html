@@ -1,0 +1,105 @@
+<form #blogForm="ngForm" id="blogForm" > 
+    <!-- (ngSubmit)="onSubmit(blogForm.value)" -->
+  <div class="row">
+      <div class="col-md-5">
+          <div class="form-group">
+              <label >User Name</label> 
+              <textarea class="form-control"  [(ngModel)]="blog.post_user" name="text1" placeholder="user name"   ></textarea>
+          </div>
+
+          <div class="form-group">
+              <label >Title</label> 
+              <textarea class="form-control"  [(ngModel)]="blog.post_title" name="text2" placeholder="Title"   ></textarea>
+          </div>
+        <!-- </div> -->
+
+          
+         
+          <!-- <div class="col-md-4"> -->
+             <label >Detail</label> 
+               <textarea class="form-control" rows="3" [(ngModel)]="blog.post_detail" name="text3" placeholder="Detail"   ></textarea>
+                <br>
+              <div class="input-group" >
+                
+                 <label class="input-group-text" style="background-color: black; color: whitesmoke" >Privacy</label>
+                 </div>
+                      <label class="btn active">
+                    <input type="radio" #rdo1 ="ngModel"  value="p" checked name="option"   [(ngModel)]="blog.post_privacy" id="option1"  > Public
+                  </label>
+                  <label class="btn">
+                      <input type="radio" #rdo1="ngModel" name="option" value="pr"  [(ngModel)]="blog.post_privacy"  id="option1" > Private
+                    </label>
+                    <div class ="row">
+                     <div class="col-md-12">
+                    <div class="input-group"> 
+                         <div class="input-group-prepend">
+                          <label class="input-group-text"  >Location</label>
+                        </div> 
+                         <select class="custom-select" (change)="selectArea()" [(ngModel)]="blog.post_location" name="location"  >
+                          <option value="1">select</option>
+                          <option value="dhk">Dhaka</option>
+                          <option value="ctg">Chittagong</option>
+                           <option value="ctg">Chittagong</option>
+                          <option value="rgp">Rangpur</option>
+                          <option value="dnj">Dinajpur</option>
+                        </select> 
+                       </div>
+                       </div>
+                    </div>
+                    
+
+<br>
+                      <div>
+                        
+                     <button type="submit" class="btn btn-primary" (click)="onSubmit()">POST</button>
+                     <button type="button" class= "btn btn-danger" (click)="onLogout()">Log Out</button>
+                      </div>
+                      <!-- <input type="button" (click)="onLogout()" value="logout" /> -->
+            </div>
+
+            <div class="col-md-7">
+
+                <table class="table">
+                    <thead>
+                      <tr>
+                        
+                        <th>Title</th>
+                        <th>Detail</th>
+                        <th>Privacy</th>
+                        <th>Location</th>
+                        <th>User</th>
+                    
+                      </tr>
+                    </thead>
+                    <tbody>
+                       
+                          <tr *ngFor="let b of userslist">  
+                              <td>{{b.post_title}}</td>
+                              <td>{{b.post_detail}}</td>
+                              <td>{{b.post_privacy}}</td>
+                              <td>{{b.post_location}}</td>
+                              <td>{{b.post_user}}</td>
+                              
+                              <td><button class="btn text-success" (click)="updateUserBlog(b)" >Edit</button></td>
+                              <td><button class="btn text-danger" (click)="deleteThisPost(b._id)">Remove</button></td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+                
+            </div>
+          
+          <!-- </div>  -->
+          </div>
+      
+        </form>
+        
+      
+ 
+ 
+
+
+    
+    
+
+ 
