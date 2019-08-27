@@ -18,12 +18,15 @@ import { FabricCalculationService } from '../shared/fabric-calculation.service';
 import { ReportComponent } from './report/report.component';
 import { appRoutes } from './app-routing.module';
 import { SizelistService } from '../shared/sizelist.service';
+import { DirectorApprovalComponent } from './director-approval/director-approval.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FabricCalculationComponent,
     ReportComponent,
+    DirectorApprovalComponent,
+
     
   ],
   imports: [

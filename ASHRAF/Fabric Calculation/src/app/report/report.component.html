@@ -6,7 +6,7 @@
   <!-- <h2>Reference:{{referid}}</h2> -->
   <!-- <h5>Date:</h5> -->
 
-    <table class="table table-bordered" style="width: 100%; margin-left: 0rem; text-align: left; margin-top: 1rem;font-size: 10px; border: 5px solid #dee2e6; position: relative;">
+    <table class="table table-bordered" style="width: 100%; margin-left: 0rem; text-align: left; margin-top: 1rem;font-size: 12px; border: 5px solid #dee2e6; position: relative;">
       <thead>
         <tr>
           <th scope="col">Sl.</th>
@@ -14,30 +14,29 @@
           <th scope="col">Buyer</th>
           <th scope="col">Style No.</th>
           <th scope="col">Description</th>
-          <th scope="col">FOB Price</th>
-          <th scope="col">Remarks</th>
+          <th scope="col">FOB Price</th> 
+          <!-- <th scope="col">Remarks</th>
           <th scope="col">Revised FOB Price</th>
           <th scope="col">Remarks</th>
-          <th scope="col">Revised FOB Price</th>
+          <th scope="col">Revised FOB Price</th>  -->
          
         </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let entry of FabricCalc,index as i">
+          <tr *ngFor="let entry of fabricReport,index as i">
             <td>{{i+1}}</td>
-            <td>{{entry.refNo}}</td>
-            <td>{{entry.buyer_name}}</td>
-            <td>{{entry.style_code}}</td>
-            <td>{{entry.fabrics}}GSM {{entry.style_item_name}} {{entry.size}}</td>
-            <td>4.3</td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-          
+            <td>{{entry.reference}}</td>
+            <td>{{entry.Buyer}}</td>
+            <td>{{entry.Style}}</td>
+            <td>{{entry.Fabric}} GSM {{entry.Item}}</td>
+            <td>{{entry.RFOB}}</td>
+            <!-- <td><input type="text"> ({{entry.date | date :  "dd-MM-yyyy"}})</td>
+            <td>{{entry.FOB}}</td>
+            <td><input type="text"> ({{entry.date | date :  "dd-MM-yyyy"}})</td>
+            <td>{{entry.SFOB}}</td> -->
            
+          
+           </tr>
       </tbody>
     </table>
-
-  
 

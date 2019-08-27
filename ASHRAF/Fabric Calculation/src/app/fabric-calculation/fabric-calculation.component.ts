@@ -42,8 +42,8 @@ export class FabricCalculationComponent implements OnInit {
   sizeID: any;
   changeUser = "Ashraf";
   changeDate = this.today;
-  deleteevent= "delete";
-  editevent="edit";
+  deleteevent= "DELETED";
+  editevent="EDITED";
   swapVariableForArchieve;
   BoysTshirtSelected: boolean = false; 
   JacketSelected: boolean = false;
@@ -150,7 +150,7 @@ export class FabricCalculationComponent implements OnInit {
     step4 = (step2 + step3);
     var convertoFloat; 
     convertoFloat = parseFloat(step4).toFixed(5);
-    this.fabricWeight = convertoFloat +" Kg/per dozen";//main answer for fabric calculation
+    this.fabricWeight = convertoFloat;//main answer for fabric calculation
     console.log("Step 4:"+ this.fabricWeight);
     //end of fabric calculation of boys tshirt
   }
@@ -255,7 +255,7 @@ export class FabricCalculationComponent implements OnInit {
       setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
       this.getallFabricEntries();
       this.clearAll();
-      this.router.navigateByUrl('/report');
+      // this.router.navigateByUrl('/report');
     },
     err => {
       if (err.status === 422) {

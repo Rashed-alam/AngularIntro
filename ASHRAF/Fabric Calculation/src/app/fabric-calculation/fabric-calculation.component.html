@@ -57,7 +57,7 @@
                     <select class="custom-select" id="buyer_name" style="width: 5rem;"  name="Fc.currentFabricCalc.buyer_name" 
                     [(ngModel)]="Fc.currentFabricCalc.buyer_name" #buyer_name="ngModel" 
                     required>
-                      <option value="{{b.name}}" *ngFor="let b of allBuyers">{{b.name}},Address: {{b.house}},{{b.road}}, {{b.area}} </option>
+                      <option value="{{b.name}}" *ngFor="let b of allBuyers">{{b.name}} | Address: {{b.house}},{{b.road}},{{b.area}} </option>
                 
                     </select> 
         
@@ -244,9 +244,7 @@
                                 <label class="input-group-text" for="inputGroupSelect01">Fabric Weight</label>
                               </div>
                               <input type="text" class="form-control"  disabled style="width: 24%" 
-                              name="fabricWeight" [(ngModel)]="fabricWeight">   
-                           
-                              
+                              name="fabricWeight" [(ngModel)]="fabricWeight">kg/per dozen
                             </div>
 
                          
@@ -260,7 +258,7 @@
           <div class="col"></div>
           <div class="col"></div>
         
-        <div class="col"> <button type="submit" class="btn btn-success" style="margin-left: -2rem;" [disabled]="mainform.form.pristine || mainform.form.invalid">Submit</button></div>
+        <div class="col"> <button type="submit" class="btn btn-success" style="margin-left: -2rem;" [disabled]="mainform.form.pristine || mainform.form.invalid">Save</button></div>
         <div class="col"> <button type="submit" class="btn btn-danger" style="margin-left: -3rem;" (click)="clearAll()">Clear</button></div>
         <div class="col"><button type="submit" class="btn btn-primary" [routerLink]="['/report']" style="margin-left:-5rem;">Report</button></div>
         <div class="col"></div>
@@ -342,23 +340,24 @@
 
 <!------------------------------------------------------ This part is for showing the list of inputs -->
 
-<div class="card border-info mb-3" style="max-width: 50rem; margin-left: 15rem">
+<div class="card border-info mb-3" style="max-width: 73rem; margin-left: 3rem">
   <div class="alert alert-danger" *ngIf="showdeletemessage">
   Post Deleted successfully
 </div>
   <div class="card-header"><h2 style="text-align: center">Fabric Entries List</h2></div>
   <div class="card-body">
-<table class="table table-hover">
+<table class="table table-sm">
 <thead>
   <tr>
     
     <th scope="col">No.</th>
     <th scope="col">Ref. No.</th>
     <th scope="col">Buyer</th>
-    <th scope="col">Entry Date</th>
-    <th scope="col">Mail Date</th>
-    <th scope="col">Fabric Entry ID</th>
     <th scope="col">Style Code</th>
+    <th scope="col">Description</th>
+    <th scope="col">Fabric Weight</th>
+    <th scope="col">Mail Date</th>
+    <th scope="col">Entry Date</th>
    
   </tr>
 </thead>
@@ -367,12 +366,13 @@
     <td>{{i+1}}</td>
     <td>{{entry.refNo}}</td>
     <td>{{entry.buyer_name}}</td>
-    <td>{{entry.entryDate | date :  "dd.MM.yyyy"}}</td>
-    <td>{{entry.mailDate | date :  "dd.MM.yyyy"}}</td>
-    <td>{{entry.fabricEntry_id}}</td>
     <td>{{entry.style_code}}</td>
-    <td><button (click)="editFabricEntry(entry)"><span class="badge badge-box badge-warning">Edit</span></button></td>
-    <td><button (click)="deleteFabricEntry(entry)"><span class="badge badge-box badge-danger">Delete</span></button></td>
+    <td>{{entry.fabrics}}GSM {{entry.style_item_name}}</td>
+    <td>{{entry.fabric_weight}}</td>
+    <td>{{entry.mailDate | date : 'dd-MM-yyyy'}}</td>
+    <td>{{entry.entryDate | date : 'dd-MM-yyyy'}}</td>
+    <td><a class="btn text-sucess" (click)="editFabricEntry(entry)"><i class="fa fa-edit"></i></a></td>
+    <td><a class="btn text-danger"  (click)="deleteFabricEntry(entry)"><i class="fa fa-trash"></i></a></td>
   </tr>
 </tbody>
 </table>
