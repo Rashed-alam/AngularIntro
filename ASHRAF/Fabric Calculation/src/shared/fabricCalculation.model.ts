@@ -25,9 +25,9 @@ export class FabricCalulation{
     length_unit_of_measurement: String;//23
     chest_unit_of_measurement: String;//24
     sleeve_unit_of_measurement: String;//25
-    fabric_weight:number;//26
-    track_Id: Number;
-    changeUser: String;
-    changeDate: String;
-    event:String;
+    fabric_weight:String;//26
+    track_Id: Number;//27
+    changeUser: String;//28
+    changeDate: String;//29
+    event:String;//30
 }

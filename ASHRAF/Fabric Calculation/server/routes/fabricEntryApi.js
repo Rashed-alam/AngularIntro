@@ -72,6 +72,11 @@ router.get('/allFabricArchieve',(req,res,next)=>{
     }).catch(next);
 });
 
+router.post('/all/:refNo',(req,res,next)=>{ 
+    FabricEntry.find({"refNo": req.params.refNo}).then(function(fabricentry){
+       res.send(fabricentry);
+    }).catch(next);
+  });
 
 
 /** this will export all the routes we have written on top 

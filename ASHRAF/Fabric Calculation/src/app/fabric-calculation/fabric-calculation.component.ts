@@ -255,7 +255,7 @@ export class FabricCalculationComponent implements OnInit {
       setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
       this.getallFabricEntries();
       this.clearAll();
-      // this.router.navigateByUrl('/report');
+      this.router.navigateByUrl('/price');
     },
     err => {
       if (err.status === 422) {

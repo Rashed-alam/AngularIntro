@@ -19,13 +19,17 @@ import { ReportComponent } from './report/report.component';
 import { appRoutes } from './app-routing.module';
 import { SizelistService } from '../shared/sizelist.service';
 import { DirectorApprovalComponent } from './director-approval/director-approval.component';
-
+import { PriceCalculationComponent } from './price-calculation/price-calculation.component';
+import { CurrencyService } from 'src/shared/currency.service';
+import { PriceCalculationService } from 'src/shared/priceCalculation.service';
+ 
 @NgModule({
   declarations: [
     AppComponent,
     FabricCalculationComponent,
     ReportComponent,
     DirectorApprovalComponent,
+    PriceCalculationComponent,
 
     
   ],
@@ -42,7 +46,7 @@ import { DirectorApprovalComponent } from './director-approval/director-approval
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [BuyersService,UnitofmeasurementService,
     SleeveTypeService,FabricTypeService, DatePipe, 
-    ItemNameService, FabricCalculationService,SizelistService],
+    ItemNameService, FabricCalculationService,SizelistService,CurrencyService,PriceCalculationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

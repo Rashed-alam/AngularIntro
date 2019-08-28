@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FabricCalculationComponent } from './fabric-calculation/fabric-calculation.component';
 import { ReportComponent } from './report/report.component';
 import { DirectorApprovalComponent } from './director-approval/director-approval.component';
+import { PriceCalculationComponent } from './price-calculation/price-calculation.component';
 
 
 export const appRoutes: Routes =[{
@@ -14,6 +15,9 @@ export const appRoutes: Routes =[{
 },
 {
   path: 'director', component: DirectorApprovalComponent
+},
+{
+  path: 'price', component: PriceCalculationComponent
 }
 
 ];

@@ -120,5 +120,5 @@ const FabricArchieveSchema = new mongoose.Schema({
     }
 
 })
-FabricArchieveSchema.plugin(AutoIncrement, { inc_field: 'track_Id' });//29
+FabricArchieveSchema.plugin(AutoIncrement, { inc_field: 'track_Id1' });//29
 module.exports = mongoose.model('fabricarchieve', FabricArchieveSchema);

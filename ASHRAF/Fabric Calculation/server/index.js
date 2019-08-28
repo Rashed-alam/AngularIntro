@@ -9,6 +9,8 @@ const items = require('./routes/itemEntryApi');
 const fabricEntry = require('./routes/fabricEntryApi');
 const uom = require('./routes/uomApi'); //importing the routes from api file
 const size = require('./routes/SizeApi');
+const priceCalculation =require('./routes/priceCalculationapi');
+const Currency=require('./routes/currencyapi');
 //setting up of express app 
 const app = express();
 
@@ -30,6 +32,9 @@ app.use('/api/v1/fabrictype',fabrics);
 app.use('/api/v1/item',items);
 app.use('/api/v1/fabricEntry',fabricEntry);
 app.use('/api/v1/sizelist',size);
+app.use('/api/v1/priceCalculation',priceCalculation);
+app.use('/api/v1/currency',Currency);
+
 
 
 //this is for error handling[middleware]

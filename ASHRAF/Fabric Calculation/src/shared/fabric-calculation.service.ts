@@ -59,6 +59,10 @@ export class FabricCalculationService {
     return this.httpcall.get<FabricCalulation[]>(this.url+'/all', headerOption);
   }
 
+  getAllFabricsEntry(refNo):Observable<FabricCalulation[]>{
+    return this.httpcall.post<FabricCalulation[]>(this.url+'/all/'+ refNo, headerOption);
+  }
+
 
     getFabricEntry_ID(){
       return this.httpcall.get(this.url+'/', headerOption);
