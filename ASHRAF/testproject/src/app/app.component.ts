@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TestingserviceService } from 'src/app/testingservice.service';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  data: any = {};
 
-  onSubmit() {
-    alert(JSON.stringify(this.data));
+  constructor(private service: TestingserviceService) { }
+
+  submission(){
+    console.log(this.service.currenttest1.test1);
+    console.log(this.service.currenttest2);
   }
+
 }

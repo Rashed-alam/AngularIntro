@@ -14,15 +14,16 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
 import { DatePipe } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ItemNameService } from '../shared/item-name.service';
-import { FabricCalculationService } from '../shared/fabric-calculation.service';
+
 import { ReportComponent } from './report/report.component';
 import { appRoutes } from './app-routing.module';
 import { SizelistService } from '../shared/sizelist.service';
 import { DirectorApprovalComponent } from './director-approval/director-approval.component';
 import { PriceCalculationComponent } from './price-calculation/price-calculation.component';
 import { CurrencyService } from 'src/shared/currency.service';
-import { PriceCalculationService } from 'src/shared/priceCalculation.service';
- 
+
+import { FabricPriceService } from 'src/shared/fabric-price.service'; 
+import { FabricPriceCalculationComponent } from './fabric-price-calculation/fabric-price-calculation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,7 @@ import { PriceCalculationService } from 'src/shared/priceCalculation.service';
     ReportComponent,
     DirectorApprovalComponent,
     PriceCalculationComponent,
-
+    FabricPriceCalculationComponent
     
   ],
   imports: [
@@ -46,7 +47,7 @@ import { PriceCalculationService } from 'src/shared/priceCalculation.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [BuyersService,UnitofmeasurementService,
     SleeveTypeService,FabricTypeService, DatePipe, 
-    ItemNameService, FabricCalculationService,SizelistService,CurrencyService,PriceCalculationService],
+    ItemNameService,SizelistService,CurrencyService,FabricPriceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

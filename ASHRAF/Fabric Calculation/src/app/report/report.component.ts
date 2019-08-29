@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FabricCalculationService } from 'src/shared/fabric-calculation.service';
+import { FabricPriceService } from 'src/shared/fabric-price.service';
 import { FabricCalulation } from 'src/shared/fabricCalculation.model';
 
 @Component({
@@ -14,7 +14,7 @@ export class ReportComponent implements OnInit {
   referid: string;
   fabricReport: any = [];
 
-  constructor(private Fc: FabricCalculationService) { }
+  constructor(private Fc: FabricPriceService) { }
 
   ngOnInit() {
     this.getallFabricEntries();

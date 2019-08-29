@@ -1,8 +1,8 @@
 import { CurrencyService } from 'src/shared/currency.service';
-import { PriceCalculationService } from 'src/shared/priceCalculation.service';
+import { FabricPriceService } from 'src/shared/fabric-price.service';
 import { PriceCalculation } from 'src/shared/priceCalculation.model';
 import { FabricCalulation } from 'src/shared/fabricCalculation.model';
-import { FabricCalculationService } from 'src/shared/fabric-calculation.service';
+// import { FabricCalculationService } from 'src/shared/fabric-calculation.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -40,7 +40,7 @@ export class PriceCalculationComponent implements OnInit {
   referid: string;
 
 
-  constructor(private DP: DatePipe, private Fc: FabricCalculationService, public Pc: PriceCalculationService, public CU: CurrencyService) { }
+  constructor(private DP: DatePipe, private Fc: FabricPriceService, public Pc: FabricPriceService, public CU: CurrencyService) { }
 
   ngOnInit() {
     const datewithtime = this.DP.transform(this.archievedate, "medium");

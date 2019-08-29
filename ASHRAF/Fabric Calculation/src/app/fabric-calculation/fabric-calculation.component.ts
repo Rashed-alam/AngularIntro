@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
 import { ItemNameService } from 'src/shared/item-name.service';
 import { NgForm } from '@angular/forms';
 import { Items } from 'src/shared/item.model';
-import { FabricCalculationService } from 'src/shared/fabric-calculation.service';
+import { FabricPriceService } from 'src/shared/fabric-price.service';
 import { FabricCalulation } from 'src/shared/fabricCalculation.model';
 import { SizelistService } from 'src/shared/sizelist.service';
 import { SizeList } from 'src/shared/sizelist.model';
@@ -58,7 +58,7 @@ export class FabricCalculationComponent implements OnInit {
         private ft: FabricTypeService,
         private DP: DatePipe,
         private In: ItemNameService,
-        private Fc: FabricCalculationService,
+        private Fc: FabricPriceService,
         private Sl: SizelistService,
         private router : Router
         ) { }
