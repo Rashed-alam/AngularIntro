@@ -19,6 +19,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { BlogComponent } from './blog/blog.component';
 import { BlogService } from './shared/blog.service';
+import { KnittingComponent } from './knitting/knitting.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BlogService } from './shared/blog.service';
     UserProfileComponent,
     SignInComponent,
     DashboardComponent,
-    BlogComponent
+    BlogComponent,
+    KnittingComponent
   ],
   imports: [
     BrowserModule,

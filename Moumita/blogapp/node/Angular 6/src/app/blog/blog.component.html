@@ -13,8 +13,6 @@
           </div>
         <!-- </div> -->
 
-          
-         
           <!-- <div class="col-md-4"> -->
              <label >Detail</label> 
                <textarea class="form-control" rows="3" [(ngModel)]="blog.post_detail" name="text3" placeholder="Detail"   ></textarea>
@@ -24,10 +22,10 @@
                  <label class="input-group-text" style="background-color: black; color: whitesmoke" >Privacy</label>
                  </div>
                       <label class="btn active">
-                    <input type="radio" #rdo1 ="ngModel"  value="p" checked name="option"   [(ngModel)]="blog.post_privacy" id="option1"  > Public
+                    <input type="radio" #rdo1 ="ngModel"  value="p" checked name="option" [(ngModel)]="blog.post_privacy" id="option1"  > Public
                   </label>
                   <label class="btn">
-                      <input type="radio" #rdo1="ngModel" name="option" value="pr"  [(ngModel)]="blog.post_privacy"  id="option1" > Private
+                      <input type="radio" #rdo1="ngModel" value="pr" name="option" [(ngModel)]="blog.post_privacy"  id="option1" > Private
                     </label>
                     <div class ="row">
                      <div class="col-md-12">
@@ -39,7 +37,6 @@
                           <option value="1">select</option>
                           <option value="dhk">Dhaka</option>
                           <option value="ctg">Chittagong</option>
-                           <option value="ctg">Chittagong</option>
                           <option value="rgp">Rangpur</option>
                           <option value="dnj">Dinajpur</option>
                         </select> 

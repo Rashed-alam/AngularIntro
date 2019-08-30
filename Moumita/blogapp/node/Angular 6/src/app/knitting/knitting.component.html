@@ -1,0 +1,194 @@
+<form #targetForm="ngForm" id="targetForm" > 
+
+<div class="wrapper">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                  <fieldset>
+                      <legend>Knitting Maching Target Entry Form</legend>
+                      <table class="table table-bordered">
+                          <!-- <thead>
+                            <tr>
+                              <td colspan="3">
+                                  <h2 class="text-center">Abloom Design Ltd </h2>
+                                </td>
+                            </tr>
+                          </thead> -->
+                          
+                          <tbody>
+                            <tr>
+                            
+                                <td>
+                                    <input type="text" class="form-control-sm" placeholder="Season:" >
+                              <td>
+                                  <input type="text" class="form-control" placeholder="Order Date:" >
+                                 
+                              </td>
+                            </tr>
+
+                            <tr>
+                              
+                              <td>  <input type="text" class="form-control" placeholder="Order No:" > </td>
+                              <td>  <input type="text" class="form-control" placeholder="Order Qty:" > </td>
+                              <!-- <td><input type="text" class="form-control" placeholder="Lead Time"></td> -->
+                            </tr>
+                            <tr>
+                              
+                                <td><input type="text" class="form-control" placeholder="Style#"></td>
+                             
+                                <td> <input type="text" class="form-control" placeholder="Delivery Date:"></td>
+                              </tr>
+                              <tr>
+                              
+                                  <td colspan="2"><input type="text" class="form-control" placeholder="User"></td>
+                               
+                                </tr>
+                            <tr>
+                              
+                              <td colspan="2"><input type="text" class="form-control" placeholder="Description"></td>
+                           
+                            </tr>
+                          </tbody>
+                        </table>
+    
+    
+                      
+                                 <div class="target_form">
+                                        <div class="row justify-content-md-center">
+                                          <div class="col-md-10">
+                                              <fieldset>
+                                                  <legend>Target Form</legend>
+                                                      <div class="row mb-2">
+                                                          <div class="col-4">Machine Name</div>
+                                                          <div class="col-8">
+                                                              <select class="custom-select" name="machineList"  >
+                                                                  <option value="1">Machine List</option>
+                                                                  <option value="2">1</option>
+                                                                  <option value="3">1</option>
+                                                                  <option value="4">3</option>
+                                                                  <option value="5">4</option>
+                                                                </select> 
+                                                          </div>
+                                                        </div> 
+                                                        <div class="row mb-2">
+                                                          <div class="col-4">Operator Name</div>
+                                                          <div class="col-6">
+                                                            <select class="custom-select" name="operatorList">
+                                                                <option value="1">Operator List</option>
+                                                                <option value="2">1</option>
+                                                                <option value="3">1</option>
+                                                                <option value="4">3</option>
+                                                                <option value="5">4</option>
+
+                                                            </select>
+                                                          </div>
+                                                          <div class="col-2">
+                                                          <button type="submit" class= "btn btn-lg-primary">Add</button>
+                                                          </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                          <div class="col-4">Date</div>
+                                                          <div class="col-8">
+                                                              <input type="text" class="form-control" placeholder="date">
+                                                          </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">Shift</div>
+                                                            <div class="col-8">
+                                                                    <select class="custom-select" name="shift">
+                                                                    <option value="1">shift</option>
+                                                                    <option value="2">8 hr = 1 shift</option>
+                                                                    <option value="3">16 hr = 2 shift</option>
+                                                                    </select>
+                                                            </div>
+                                                          </div>
+                                                          <div class="row mb-2">
+                                                              <div class="col-4">Roll</div>
+                                                              <div class="col-8">
+                                                                  <input type="text" class="form-control" placeholder="Roll">
+                                                              </div>
+                                                              </div>
+                                                              <div class="row mb-2">
+                                                                  <div class="col-4">Production</div>
+                                                                  <div class="col-5">
+                                                                      <input type="text" class="form-control" placeholder="Production">
+                                                                  </div>
+                                                                  <div class="col-3">
+                                                                      <select class="custom-select" name="kg Au">
+                                                                      <option value="1">p</option>
+                                                                      <option value="2"> 1 </option>
+                                                                      <option value="3">2</option>
+                                                                      </select>
+                                                              </div>
+
+                                                                  </div>
+                                                                  <div class="row mb-2">
+                                                                      <div class="col-4">Balance</div>
+                                                                      <div class="col-5">
+                                                                          <input type="text" class="form-control" placeholder="Auto">
+                                                                      </div>
+                                                                      <div class="col-3">
+                                                                          <select class="custom-select" name="Auto">
+                                                                          <option value="1">p</option>
+                                                                          <option value="2"> 1 </option>
+                                                                          <option value="3">2</option>
+                                                                          </select>
+                                                                  </div>
+    
+                                                                      </div>
+                                                                    
+                                                                    <div class="row mb-2">
+                                                                      <div class="col-4"></div>
+                                                                      <div class="col-4">
+                                                                          <button type="submit" class= "btn btn-primary mr-2" >Report</button>
+                                                                    
+                                                                          <button type="submit" class= "btn btn-secondary">Save</button>
+                                                                          </div>
+                                                                          <div class="col-4"></div>
+                                                                      </div>
+                                                                    
+
+
+                                                              </fieldset>
+                                                          
+                                                        
+                    
+                                                      
+
+<!-- <div class="row">
+  <div class= "col-md-12">1
+
+    <div class="row">2
+      <div class="col-md-12">
+    <div class="col-md-8">2.1
+jkk
+  </div>
+  <div class="col-md-4">2.2
+mnbnm
+  </div>
+  </div>
+
+  </div>
+
+
+<div class="row">3
+  <div class="col-md-12">
+  <div class="col-md-4">3.1
+
+  </div>
+  <div class="col-md-4">3.2
+
+  </div>
+  <div class="col-md-4">3.3
+</div>
+  </div>
+  </div>
+  <div class="row">4
+
+
+  </div>
+
+</div>
+
+</div> -->
+

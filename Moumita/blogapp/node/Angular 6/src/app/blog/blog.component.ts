@@ -36,9 +36,7 @@ getUser(){
     form.reset();
   }
   createPost(){
-this.blogService.createPost(this.blog).subscribe(
- 
-)
+     this.blogService.createPost(this.blog).subscribe()
   }
   selectArea(){
      
@@ -105,7 +103,7 @@ updateUserBlog(blog: Blog){
    }
    else{
      this.blogService.updateUserBlog(this.blog).subscribe()
-     this.updateEnable=false;
+      this.updateEnable=false;
    }
 
   }

@@ -6,6 +6,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { BlogComponent } from './blog/blog.component';
+import { KnittingComponent } from './knitting/knitting.component';
 
 export const appRoutes: Routes = [
     {
@@ -24,5 +25,8 @@ export const appRoutes: Routes = [
     },
     {
         path: '', component: UserComponent,
+    },
+    {
+        path:'kin', component: KnittingComponent,
     }
 ];
