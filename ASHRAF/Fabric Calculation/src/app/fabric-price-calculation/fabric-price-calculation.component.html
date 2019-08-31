@@ -147,7 +147,7 @@
                                         <div class="input-group-prepend">
                                           <label class="input-group-text" for="inputGroupSelect01">Waste Percentage:</label>
                                         </div>
-                                        <input type="text" class="form-control" id="inputEmail3" maxlength="4" placeholder="%" style="width: 30%"
+                                        <input type="text" pattern="[0-9]" title="Three digit input" class="form-control" id="inputEmail3" minlength="1" placeholder="%" style="width: 30%"
                                          name="fabricpriceservice.currentFabricCalc.waste_percentage" [(ngModel)]="fabricpriceservice.currentFabricCalc.waste_percentage" required>
                                         
                                       </div>
@@ -156,7 +156,7 @@
                                           <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect01">Bottom:</label>
                                           </div>
-                                          <input type="text" class="form-control" id="inputPassword3" maxlength="6" placeholder="input" style="width: 17%" 
+                                          <input type="text" pattern="[0-9]" title="Three digit input" class="form-control" id="inputPassword3" minlength="2" placeholder="input" style="width: 17%" 
                                           name="fabricpriceservice.currentFabricCalc.bottom" [(ngModel)]="fabricpriceservice.currentFabricCalc.bottom">
                                           <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.bottom_unit_of_measurement" 
                                           [(ngModel)]="fabricpriceservice.currentFabricCalc.bottom_unit_of_measurement" >
@@ -168,7 +168,7 @@
                                             <div class="input-group-prepend">
                                               <label class="input-group-text" for="inputGroupSelect01">Hood:</label>
                                             </div>
-                                            <input type="text" class="form-control" id="inputPassword3" maxlength="6" placeholder="input" style="width: 22%" 
+                                            <input type="text" pattern="[0-9]" title="Three digit input" class="form-control" id="inputPassword3" minlength="2" placeholder="input" style="width: 22%" 
                                             name="fabricpriceservice.currentFabricCalc.hood" [(ngModel)]="fabricpriceservice.currentFabricCalc.hood" >
                                             <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.hood_unit_of_measurement" 
                                             [(ngModel)]="fabricpriceservice.currentFabricCalc.hood_unit_of_measurement" >
@@ -180,7 +180,7 @@
                                               <div class="input-group-prepend">
                                                 <label class="input-group-text" for="inputGroupSelect01">2/1 Thigh:</label>
                                               </div>
-                                              <input type="text" class="form-control" id="inputPassword3" maxlength="6" placeholder="input" style="width: 15%" 
+                                              <input type="text" pattern="[0-9]" title="Three digit input"class="form-control" id="inputPassword3" minlength="2" placeholder="input" style="width: 15%" 
                                               name="fabricpriceservice.currentFabricCalc.thigh" [(ngModel)]="fabricpriceservice.currentFabricCalc.thigh" >
                                                   <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.thigh_unit_of_measurement" 
                                                   [(ngModel)]="fabricpriceservice.currentFabricCalc.thigh_unit_of_measurement" >
@@ -192,7 +192,7 @@
                                                 <div class="input-group-prepend">
                                                   <label class="input-group-text" for="inputGroupSelect01">Pocket:</label>
                                                 </div>
-                                                <input type="text" class="form-control" id="inputPassword3" maxlength="6" placeholder="input" style="width: 22%" 
+                                                <input type="text" pattern="[0-9]" title="Three digit input" class="form-control" id="inputPassword3" minlength="2" placeholder="input" style="width: 22%" 
                                                 name="fabricpriceservice.currentFabricCalc.pocket" [(ngModel)]="fabricpriceservice.currentFabricCalc.pocket" >
                                                   <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.pocket_unit_of_measurement" 
                                                   [(ngModel)]="fabricpriceservice.currentFabricCalc.pocket_unit_of_measurement" >
@@ -204,7 +204,7 @@
                                                   <div class="input-group-prepend">
                                                     <label class="input-group-text" for="inputGroupSelect01">Chest:</label>
                                                   </div>
-                                                  <input type="text" class="form-control" id="chest" maxlength="6" placeholder="input" style="width: 37%" 
+                                                  <input type="text" pattern="[0-9]" title="Three digit input" class="form-control" id="chest" minlength="2" placeholder="input" style="width: 37%" 
                                                   name="fabricpriceservice.currentFabricCalc.chest" [(ngModel)]="fabricpriceservice.currentFabricCalc.chest">
                                                   <select class="custom-select" style="width:40%" name="fabricpriceservice.currentFabricCalc.chest_unit_of_measurement" 
                                                   [(ngModel)]="fabricpriceservice.currentFabricCalc.chest_unit_of_measurement">
@@ -216,7 +216,7 @@
                                                   <div class="input-group-prepend">
                                                     <label class="input-group-text" for="inputGroupSelect01">Length:</label>
                                                   </div>
-                                                  <input type="text" class="form-control" id="length" maxlength="6" placeholder="input" style="width: 22%" 
+                                                  <input type="text" pattern="[0-9]" title="Three digit input" class="form-control" id="length" minlength="2" placeholder="input" style="width: 22%" 
                                                   name="fabricpriceservice.currentFabricCalc.length" [(ngModel)]="fabricpriceservice.currentFabricCalc.length">
                                                   <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.length_unit_of_measurement" 
                                                   [(ngModel)]="fabricpriceservice.currentFabricCalc.length_unit_of_measurement" >
@@ -229,7 +229,7 @@
                                                   <div class="input-group-prepend">
                                                     <label class="input-group-text" for="inputGroupSelect01">Sleeve:</label>
                                                   </div>
-                                                  <input type="text" class="form-control" id="inputPassword3" maxlength="6" placeholder="input" style="width: 24%" 
+                                                  <input type="text" pattern="[0-9]" title="Three digit input" class="form-control" id="inputPassword3" minlength="2" placeholder="input" style="width: 24%" 
                                                   name="fabricpriceservice.currentFabricCalc.sleeve" [(ngModel)]="fabricpriceservice.currentFabricCalc.sleeve">
                                                   <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.sleeve_unit_of_measurement" 
                                                   [(ngModel)]="fabricpriceservice.currentFabricCalc.sleeve_unit_of_measurement">
@@ -274,7 +274,7 @@
                                         <div class="input-group-prepend">
                                                 <div class="input-group-text">Fabric Unit Price:</div>
                                               </div>
-                                    <input type="text" id="refNo" class="form-control" style="width: 30%" name="fabricpriceservice.calculatePrice.fabric_unit_price"
+                                    <input type="number" id="refNo" class="form-control" style="width: 30%" name="fabricpriceservice.calculatePrice.fabric_unit_price"
                                         [(ngModel)]="fabricpriceservice.calculatePrice.fabric_unit_price" required> 
                                     <select name="currencyName" id="Currency" #cur (click)="setCurrency(cur.value)">
                                         <option *ngFor="let i of newcurrency">
@@ -296,7 +296,7 @@
                                         <div class="input-group-prepend">
                                                 <div class="input-group-text">RIM:</div>
                                               </div>
-                                    <input type="text" id="refNo" class="form-control" style="width: 30%"
+                                    <input type="number" id="refNo" class="form-control" style="width: 30%"
                                         [(ngModel)]="fabricpriceservice.calculatePrice.rib" required>
                                     <a style="padding: 6px;"> {{setcurrency}}</a>
             
@@ -306,7 +306,7 @@
                                         <div class="input-group-prepend">
                                                 <div class="input-group-text">CM:</div>
                                               </div>
-                                    <input type="text" id="refNo" class="form-control" style="width: 30%"
+                                    <input type="number" id="refNo" class="form-control" style="width: 30%"
                                         [(ngModel)]="fabricpriceservice.calculatePrice.cm" required>
                                     <a style="padding: 6px;"> {{setcurrency}}</a>
                                 </div>
@@ -315,7 +315,7 @@
                                         <div class="input-group-prepend">
                                                 <div class="input-group-text">TRIM:</div>
                                               </div>
-                                    <input type="text" id="refNo" class="form-control" style="width: 30%"
+                                    <input type="number" id="refNo" class="form-control" style="width: 30%"
                                         [(ngModel)]="fabricpriceservice.calculatePrice.trim" required>
                                     <a style="padding: 6px;"> {{setcurrency}}</a>
                                 </div>
@@ -325,7 +325,7 @@
                                         <div class="input-group-prepend">
                                                 <div class="input-group-text">Print:</div>
                                               </div>
-                                    <input type="text" id="refNo" class="form-control" style="width: 30%"
+                                    <input type="number" id="refNo" class="form-control" style="width: 30%"
                                         [(ngModel)]="fabricpriceservice.calculatePrice.print" required>
                                     <a style="padding: 6px;"> {{setcurrency}}</a>
                                 </div>
@@ -335,7 +335,7 @@
                                         <div class="input-group-prepend">
                                                 <div class="input-group-text">DOC:</div>
                                               </div>
-                                    <input type="text" id="refNo" class="form-control" style="width: 30%"
+                                    <input type="number" id="refNo" class="form-control" style="width: 30%"
                                         [(ngModel)]="fabricpriceservice.calculatePrice.doc" required>
                                     <a style="padding: 6px;"> {{setcurrency}}</a>
             
@@ -406,73 +406,72 @@
   </div>
     </div>
 
+    <div class="alert alert-danger" role="alert" *ngIf="showdeletemessage" style="align-content: center;">
+        Entry Deleted.
+      </div>
+                
+                      <div class="card-header">
+                          <h2 style="text-align: center;">Entry List</h2>
+                      </div>
+              
+                          <table class="table table-bordered" style="font-size: 12px;">
+                              <thead>
+                                  <tr>
+                                      <th scope="col">No.</th>
+                                      <th scope="col">Ref-ID</th>
+                                      <th scope="col">Style Code</th>
+                                      <th scope="col">Fabric amount<br>(kg/dozen)</th>
+                                      <th scope="col">Fabric Unit Price</th>
+                                      <th scope="col">Fabric total Price</th>
+                                      <th scope="col">RIB</th>
+                                      <th scope="col">CM</th>
+                                      <th scope="col">TRIM</th>
+                                      <th scope="col">Print</th>
+                                      <th scope="col">DOC</th>
+                                      <th scope="col">Per Dozen Price</th>
+                                      <th scope="col">Per Unit Price</th>
+      
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                   <tr *ngFor="let p of fabricReport,index as i">
+                                      <td>{{i+1}}</td>
+                                      <td>{{p.reference}}</td>
+                                      <td>{{p.stylecode}}</td>
+                                      <td>{{p.fabricamount}}</td>
+                                      <td>{{p.fabricunitprice+p.pricecurrencyunit}}</td>
+                                      <td>{{p.fabrictotalprice+p.pricecurrencyunit }}</td>
+                                      <td>{{p.rib+p.pricecurrencyunit }}</td>
+                                      <td>{{p.cm+p.pricecurrencyunit}}</td>
+                                      <td>{{p.trim+p.pricecurrencyunit}}</td>
+                                      <td>{{p.print+p.pricecurrencyunit}}</td>
+                                      <td>{{p.doc+p.pricecurrencyunit}}</td>
+                                      <td>{{p.perdozenprice+p.pricecurrencyunit}}</td>
+                                      <td>{{p.perunitprice+p.pricecurrencyunit}}</td>
+                                      <td>
+                                          <a class="btn text-success" (click)="edit(p)">
+                                              <i class="fa fa-edit"></i>
+                                          </a>
+      
+                                      </td>
+      
+                                      <td>
+                                          <a class="btn text-danger" (click)="ondelete(p)" data-toggle="modal"
+                                              data-target="#exampleModal">
+                                              <i class="fa fa-trash"></i>
+                                          </a>
+                                      </td>
+      
+                                  </tr> 
+      
+                              </tbody>
+                          </table>
+
 </div>
 <br> <hr>
-<div class="container">
-  <div class="card">
-    <div class="row justify-content-md-center">
-      <div class="col">
-          <div class="card">
-              <div class="card text-center">
-                  <div class="card-header">
-                      <h2>Entry List</h2>
-                      <h4>Currency in {{setcurrency}}</h4>
-                  </div>
-                  <div class="card-body">
-                      <table class="table table-sm table-hover border">
-                          <thead>
-                              <tr>
-                                  <th scope="col">Ref-ID</th>
-                                  <th scope="col">Style Code</th>
-                                  <th scope="col">Fabric amount</th>
-                                  <th scope="col">Fabric Unit Price</th>
-                                  <th scope="col">Fabric total Price</th>
-                                  <th scope="col">RIB</th>
-                                  <th scope="col">CM</th>
-                                  <th scope="col">TRIM</th>
-                                  <th scope="col">Print</th>
-                                  <th scope="col">DOC</th>
-                                  <th scope="col">Per Dozen Price</th>
-                                  <th scope="col">Per Unit Price</th>
-  
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr *ngFor="let p of allprice">
-  
-                                  <td>{{p.calculation_id}}</td>
-                                  <td>{{p.fabric_weight}}</td>
-                                  <td>{{p.fabric_unit_price+' '+p.PriceCurrency_UOM}}</td>
-                                  <td>{{p.fabric_total_price+' '+p.PriceCurrency_UOM }}</td>
-                                  <td>{{p.rib+' '+p.PriceCurrency_UOM }}</td>
-                                  <td>{{p.cm+' '+p.PriceCurrency_UOM}}</td>
-                                  <td>{{p.trim+' '+p.PriceCurrency_UOM}}</td>
-                                  <td>{{p.print+' '+p.PriceCurrency_UOM}}</td>
-                                  <td>{{p.doc+' '+p.PriceCurrency_UOM}}</td>
-                                  <td>{{p.per_dozen_price+' '+p.PriceCurrency_UOM}}</td>
-                                  <td>{{p.per_unit_price+' '+p.PriceCurrency_UOM}}</td>
-                                  <td>
-                                      <a class="btn text-success" (click)="edit(p)">
-                                          <i class="fa fa-edit"></i>
-                                      </a>
-  
-                                  </td>
-  
-                                  <td>
-                                      <a class="btn text-danger" (click)="del(p)" data-toggle="modal"
-                                          data-target="#exampleModal">
-                                          <i class="fa fa-trash"></i>
-                                      </a>
-                                  </td>
-  
-                              </tr>
-  
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  </div>
-</div>
+
+                  
+              
+          
+ 
+

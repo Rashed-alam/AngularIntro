@@ -19,7 +19,7 @@ export class FabricPriceService {
   currentReference = this.reference.asObservable();
 
   url1="http://localhost:3000/api/v1/fabricEntry";
-  url2 = 'http://localhost:3000/api/v1/priceCalculation'
+  url2 = 'http://localhost:3000/api/v1/priceCalculation';
 
   constructor(private httpcall: HttpClient) { }
 // THIS PART IS FOR FABRIC CALCULATION
@@ -77,7 +77,7 @@ export class FabricPriceService {
 
  
 deleteFabricEntry(entry: any): Observable<FabricCalulation[]>{
-  return this.httpcall.delete<FabricCalulation[]>(this.url1+'/delete/'+ entry._id, headerOption);
+  return this.httpcall.delete<FabricCalulation[]>(this.url1+'/delete/'+ entry.reference + '/' + entry.stylecode, headerOption);
 }
 
 
@@ -104,6 +104,8 @@ calculatePrice: PriceCalculation = {
   "fabric_weight": '',
   "fabric_unit_price": '',
   "fabric_total_price": '',
+  "refNo": '',
+  "style_code":'',
   "rib": '',
   "cm": '',
   "trim": '',
@@ -128,8 +130,8 @@ createPost(a: any): Observable<PriceCalculation[]> {
 
   return this.httpcall.post<PriceCalculation[]>(this.url2 + '/new', a, headerOption);
 }
-deleteprice(id): Observable<PriceCalculation[]> {
-  return this.httpcall.delete<PriceCalculation[]>(this.url2 + '/delete/' + id, headerOption);
+deleteprice(o: any): Observable<PriceCalculation[]> {
+  return this.httpcall.delete<PriceCalculation[]>(this.url2 + '/delete/' +  o.reference + '/' + o.stylecode, headerOption);
 }
 updateprice(a: any): Observable<PriceCalculation> {
   return this.httpcall.put<PriceCalculation>(this.url2 + '/edit/' + a._id, a, headerOption);

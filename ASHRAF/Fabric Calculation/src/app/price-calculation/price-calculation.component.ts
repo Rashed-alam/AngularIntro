@@ -186,7 +186,7 @@ export class PriceCalculationComponent implements OnInit {
       this.create(a);
     }
     this.getPrice();
-    this.clearAll();
+    // this.clearAll();
   }
 
 
@@ -211,7 +211,7 @@ export class PriceCalculationComponent implements OnInit {
       }
     );
     this.getPrice();
-    this.clearAll();
+    // this.clearAll();
   }
 
   edit(a) {
@@ -271,7 +271,7 @@ export class PriceCalculationComponent implements OnInit {
 
     });
 
-    this.clearAll();
+    // this.clearAll();
 
   }
 
@@ -295,25 +295,25 @@ export class PriceCalculationComponent implements OnInit {
     }
   }
 
-  clearAll() {
-    this.Pc.calculatePrice = {
-      fabric_unit_price: '',
-      fabric_weight: '',
-      fabric_total_price: '',
-      rib: '',
-      cm: '',
-      trim: '',
-      print: '',
-      doc: '',
-      PriceCurrency_UOM: 'USD',
-      per_dozen_price: '',
-      per_unit_price: '',
-      track_Id: null,
-      changeUser: '',
-      changeDate: '',
-      event: ''
+  // clearAll() {
+  //   this.Pc.calculatePrice = {
+  //     fabric_unit_price: '',
+  //     fabric_weight: '',
+  //     fabric_total_price: '',
+  //     rib: '',
+  //     cm: '',
+  //     trim: '',
+  //     print: '',
+  //     doc: '',
+  //     PriceCurrency_UOM: 'USD',
+  //     per_dozen_price: '',
+  //     per_unit_price: '',
+  //     track_Id: null,
+  //     changeUser: '',
+  //     changeDate: '',
+  //     event: ''
 
-    };
-  }
+  //   };
+  // }
 
 }

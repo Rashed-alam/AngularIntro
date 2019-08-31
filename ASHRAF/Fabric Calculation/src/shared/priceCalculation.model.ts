@@ -3,6 +3,8 @@ export class PriceCalculation {
     fabric_weight: String;
     fabric_unit_price: String;
     fabric_total_price: String;
+    refNo: String
+    style_code:String;
     rib: String;
     cm: String;
     trim: String;

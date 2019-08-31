@@ -9,8 +9,8 @@ const PriceCalcSchema = new mongoose.Schema({
     },
     refNo: { //3
       type: String,
-      required: true,
-      unique: true
+      //required: true,
+      
   },
     style_code: { //5
       type: String,

@@ -11,8 +11,8 @@ const FabricEntrySchema = new mongoose.Schema({
     },
     refNo: { //3
         type: String,
-        required: true,
-        unique: true
+      //  required: true,
+       
     },
     buyer_name: { //4
         type: String,
