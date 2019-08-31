@@ -41,9 +41,9 @@ router.get('/id',function(req,res,next){
     });
 });
  });
- router.delete('/delete/:id',(req,res,next)=>{
+ router.delete('/delete/:refNo/:style_code',(req,res,next)=>{
     
-    PriceCalc.findByIdAndRemove({_id:req.params.id}).then(function(priceCalculation){
+    PriceCalc.findOneAndDelete({refNo:req.params.refNo}&&{style_code:req.params.style_code}).then(function(priceCalculation){
        res.send({priceCalculation}); 
     }).catch(next);
  });

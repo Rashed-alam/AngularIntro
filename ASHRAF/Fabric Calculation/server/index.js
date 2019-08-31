@@ -2,6 +2,9 @@ const express = require('express'); //ekhane express require korar jonno i can u
 const mongoose = require('mongoose'); //importing the mongoose
 const bodyParser = require('body-parser');//setting up of body-parser
 const cors = require('cors'); // for cross platform resource sharing
+
+
+
 const buyer = require('./routes/buyerInfoApi');
 const sleeves = require('./routes/sleeveTypeApi');
 const fabrics = require('./routes/fabricTypeApi');

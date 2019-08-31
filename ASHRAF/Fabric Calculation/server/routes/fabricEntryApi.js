@@ -50,8 +50,8 @@ router.put('/edit/:id',(req,res,next)=>{
   });
   
   //for deleting entries
-  router.delete('/delete/:id',(req,res,next)=>{
-    FabricEntry.findByIdAndRemove({_id: req.params.id}).then(function(fabricentry){
+  router.delete('/delete/:refNo/:style_code',(req,res,next)=>{
+    FabricEntry.findOneAndDelete({refNo:req.params.refNo}&&{style_code:req.params.style_code}).then(function(fabricentry){
        res.send(fabricentry);  
     }).catch(next);
   

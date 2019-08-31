@@ -4,19 +4,28 @@ const PriceCalcSchema = new mongoose.Schema({
  
     fabric_weight: { //3
         type: String,
-       required: true,
+      // required: true,
        // required: "Reference No. cannot be Empty"
     },
+    refNo: { //3
+      type: String,
+      required: true,
+      unique: true
+  },
+    style_code: { //5
+      type: String,
+      default: null
+  },
     fabric_unit_price: { //4
         type: String,
         default: null,
-       required: true
+     //  required: true
     },
    
     fabric_total_price: { //5
         type: String,
       //  default: null,
-        required: true
+        //required: true
     },
     rib: { //6
         type: String,
