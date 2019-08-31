@@ -485,6 +485,7 @@ export class FabricPriceCalculationComponent implements OnInit {
 
   }
 
+  //this is for calculating the price calculation
   calculate2() {
     var FabricAmount: any = 0; //waste percentage
     var FabricUnitPrice: any = 0;
@@ -524,6 +525,7 @@ console.log(this.fabricWeight);
     this.fabricpriceservice.calculatePrice.per_unit_price = step3;
   }
 
+  //for showing the list from price calculation database
   getPrice() {
     this.fabricpriceservice.getallprice().subscribe(
       (data) => {
@@ -533,13 +535,11 @@ console.log(this.fabricWeight);
 
   }
 
-  
-  creat(){
+  //after form submission, this funciton is fired
+  onsubmit(){
    this.fabricpriceservice.currentFabricCalc.fabric_weight = this.fabricWeight;
-  this.fabricpriceservice.createFabricEntry(this.fabricpriceservice.currentFabricCalc).subscribe(
-
-);
-this.fabricpriceservice.createPost(this.fabricpriceservice.calculatePrice).subscribe(
+   this.fabricpriceservice.createFabricEntry(this.fabricpriceservice.currentFabricCalc).subscribe();
+   this.fabricpriceservice.createPost(this.fabricpriceservice.calculatePrice).subscribe(
   res => {
     this.showsuccessmessageforsubmitting = true;
     setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
@@ -549,7 +549,7 @@ this.fabricpriceservice.createPost(this.fabricpriceservice.calculatePrice).subsc
       this.serverErrorMessages = err.error.join('<br/>');
     }
     else
-      this.serverErrorMessages = "";
+      this.serverErrorMessages = "Server Error";
   }
 );
   }
