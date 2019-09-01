@@ -42,7 +42,6 @@ router.get('/id',function(req,res,next){
 });
  });
  router.delete('/delete/:refNo/:style_code',(req,res,next)=>{
-    
     PriceCalc.findOneAndDelete({refNo:req.params.refNo}&&{style_code:req.params.style_code}).then(function(priceCalculation){
        res.send({priceCalculation}); 
     }).catch(next);

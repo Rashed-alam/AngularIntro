@@ -42,8 +42,8 @@ router.get('/',function(req,res,next){
  //for editing existing entries
  router.put('/edit/:refNo/:style_code',(req,res,next)=>{ 
     FabricEntry.findOneAndUpdate({refNo:req.params.refNo} && {style_code:req.params.style_code},req.body).then(function(){ 
-        FabricEntry.findOne({refNo:req.params.refNo}).then(function(fabricentry){ 
-            res.send(fabricentry);
+        FabricEntry.findOne({refNo:req.params.refNo}).then(function(x){ 
+            res.send(x);
         }).catch(next);
     });
   
@@ -61,7 +61,7 @@ router.get('/',function(req,res,next){
   // this is for archieve part
 router.post('/fabricArchieve',(req,res,next)=>{
     FabricArchieve.create(req.body).then(function(f){
-        res.send(f);
+        res.send({f});
     }).catch(next);
    
 });

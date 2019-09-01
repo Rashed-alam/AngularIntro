@@ -56,7 +56,7 @@ export class FabricPriceCalculationComponent implements OnInit {
   JacketSelected: boolean = false;
   ShortsSelected: boolean = false;
   //x: any; //for holding the item name selection click of item name
-  fabricWeight: any;// for holding the fabric weight and sending it to the database
+  fabricWeight = 0;// for holding the fabric weight and sending it to the database
   referid: string;//for holding the refernce number 
   allfab: any;
   allprice: any;
@@ -70,6 +70,7 @@ export class FabricPriceCalculationComponent implements OnInit {
   fabricReport: any = [];
   objectAssign1;
   objectAssign2;
+  hiddingrefIdandStyleCode: boolean = false;
 
 
   constructor(private Bs:BuyersService, 
@@ -109,7 +110,7 @@ export class FabricPriceCalculationComponent implements OnInit {
   }
   //
   onedit(object: any){
-    console.log("on edit button-"+object);
+    this.hiddingrefIdandStyleCode = true;
     this.fabricpriceservice.getobject1(object)
     .subscribe((data:FabricCalulation[])=>{
     this.objectAssign1=data;
@@ -180,24 +181,18 @@ export class FabricPriceCalculationComponent implements OnInit {
     }else{
       pocketsize = this.fabricpriceservice.currentFabricCalc.pocket;
     }
-    
-
     //this part is for calculating the boys tshirt fabric
     var step1 : any = 0;
     step1 = parseFloat(lengthsize) + parseFloat(sleevesize);
-    console.log("Step 1:"+ step1);
     var step2 : any= 0;
     step2 =((step1*parseFloat(chestsize)*2*parseFloat(fabricsize))/(Math.pow(10,7)))*12;
-    console.log("Step 2:"+step2);
     var step3: any = 0;
     step3 = (((wastePercentage)/100)*step2);
-    console.log("Step 3:"+ step3);
     var step4: any = 0;
     step4 = (step2 + step3);
     var convertoFloat; 
     convertoFloat = parseFloat(step4).toFixed(5);
     this.fabricWeight = convertoFloat;//main answer for fabric calculation
-    console.log("Step 4:"+ this.fabricWeight);
     //end of fabric calculation of boys tshirt
   }
 
@@ -378,7 +373,6 @@ export class FabricPriceCalculationComponent implements OnInit {
 
    //this is for deleting an entry from the database
    deleteFabricEntry(f: any){
-     console.log(f);
     var confirmation;
     confirmation= confirm("Are you sure ?");
     if(confirmation == true){
@@ -412,6 +406,8 @@ export class FabricPriceCalculationComponent implements OnInit {
     // this.swapVariableForArchieve.event = this.editevent;
     // this.swapVariableForArchieve._id = null;
       // this.fabricpriceservice.createFabricArchieve(this.swapVariableForArchieve).subscribe(res => {
+        // console.log(FabCal);
+        
     this.fabricpriceservice.updateFabricEntry(FabCal)
     .subscribe((res)=>{
       this.showeditmessage=true;
@@ -598,12 +594,10 @@ export class FabricPriceCalculationComponent implements OnInit {
 
   createAndUpdate2(a: any) {
     console.log("c&u2-"+a.style_code);
-    if (a._id != null) {
-      //console.log('update');
-      this.updateprice(a);
-    } else {
-      // console.log('create');
+    if (a._id == null) {
       this.create(a);
+    } else {
+      this.updateprice(a);
     }
     this.getPrice();
     this.clearAll2();
@@ -660,8 +654,6 @@ export class FabricPriceCalculationComponent implements OnInit {
 
   }
 
-
-
   updateprice(n) {
     // this.calculate2();
     // this.b_old.changeUser = this.changeUser;
@@ -670,13 +662,14 @@ export class FabricPriceCalculationComponent implements OnInit {
     // this.b_old._id = null;
 
     // this.fabricpriceservice.createpriceArchive(this.b_old).subscribe(res => {
+      // console.log(n);
+     
       this.fabricpriceservice.updateprice(n).subscribe(
         res => {
-
-          // console.log(res);
           this.showupdatemessage = true;
           setTimeout(() => this.showupdatemessage = false, 4000);
           this.getPrice();
+          this.clearAll2();
         },
         err => {
 

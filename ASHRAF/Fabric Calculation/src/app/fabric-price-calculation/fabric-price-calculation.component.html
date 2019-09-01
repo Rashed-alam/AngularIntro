@@ -2,7 +2,7 @@
     <div class="card" style="margin-top: 1rem; margin-left: 10rem;margin-right: 10rem;">
         <!-- upper part -->
         <h5 style="text-align: center;"><strong></strong></h5>
-        <div class="card-body" style="margin-bottom: -2rem; margin-top: -1rem;">
+        <div class="card-body" style="margin-bottom: -1.75rem; margin-top: -1rem;">
                 <div class="row">
                   <div class="col-md-3">
                       <div class="form-inline " >
@@ -37,21 +37,22 @@
                       </div>
                   </div>
                   <br> 
-                  <div class="row" style="margin-top:-1rem;">
+                  <div class="row" style="margin-top:-1rem; margin-bottom:-0.5rem;">
                       <div class="col-6" style="margin-left: 0% ">
                           
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                   <div class="input-group-text">Ref. No: </div>
                                 </div>
-                                <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="Enter Reference Number"
-                              name="fabricpriceservice.currentFabricCalc.refNo" [(ngModel)]="fabricpriceservice.currentFabricCalc.refNo" #refNo="ngModel"required>
+                                <input type="text" id="refNo" class="form-control" [disabled]="hiddingrefIdandStyleCode" style="width: 30%" placeholder="Enter Reference Number"
+                              name="fabricpriceservice.currentFabricCalc.refNo" 
+                              [(ngModel)]="fabricpriceservice.currentFabricCalc.refNo" #refNo="ngModel"required>
                               </div>
                       </div>
                     </div>
                     
                     <br>
-                  <div class="row" style="margin-top:-1rem; margin-bottom: 1rem;">
+                  <div class="row" style="margin-top:-1rem; margin-bottom:0.5rem;">
                       <div class="col-10"> 
                       <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -74,7 +75,7 @@
                       <button class="button" class="btn btn-outline-info">New Buyer</button>
                      </div>
                     </div> 
-                    <div class="row">
+                    <div class="row" style="margin-bottom:-0.5rem;">
                       <div class="col-6">
                     <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: -1rem">
                       <div class="input-group-prepend">
@@ -103,12 +104,12 @@
                     </div>
                   </div>
         </div>
-        <hr>
+      
         <!-- end of upper part -->
     <div class="container">
         <div class="row">
         <!--lower left side -->
-        <div class="col" >
+        <div class="col">
                 <div class="card">
                         <div class="card-body">
                                 <h5 class="card-title" style="text-align: center; margin-top: 0rem; padding-bottom: 0%">Fabric Calculation</h5>
@@ -116,7 +117,7 @@
                                       <div class="input-group-prepend">
                                         <div class="input-group-text">Style Code</div>
                                       </div>
-                                      <input type="text" class="form-control" id="style_code" placeholder="Code Number" style="width: 12.5rem" 
+                                      <input type="text" class="form-control" id="style_code" [disabled]="hiddingrefIdandStyleCode" placeholder="Code Number" style="width: 12.5rem" 
                                       name="fabricpriceservice.currentFabricCalc.style_code" [(ngModel)]="fabricpriceservice.currentFabricCalc.style_code" 
                                        #style_code="ngModel" required>
                                     </div>
@@ -156,7 +157,7 @@
                                           <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect01">Bottom:</label>
                                           </div>
-                                          <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="input" style="width: 17%" 
+                                          <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 17%" 
                                           name="fabricpriceservice.currentFabricCalc.bottom" [(ngModel)]="fabricpriceservice.currentFabricCalc.bottom">
                                           <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.bottom_unit_of_measurement" 
                                           [(ngModel)]="fabricpriceservice.currentFabricCalc.bottom_unit_of_measurement" >
@@ -168,7 +169,7 @@
                                             <div class="input-group-prepend">
                                               <label class="input-group-text" for="inputGroupSelect01">Hood:</label>
                                             </div>
-                                            <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="input" style="width: 22%" 
+                                            <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 22%" 
                                             name="fabricpriceservice.currentFabricCalc.hood" [(ngModel)]="fabricpriceservice.currentFabricCalc.hood" >
                                             <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.hood_unit_of_measurement" 
                                             [(ngModel)]="fabricpriceservice.currentFabricCalc.hood_unit_of_measurement" >
@@ -180,7 +181,7 @@
                                               <div class="input-group-prepend">
                                                 <label class="input-group-text" for="inputGroupSelect01">2/1 Thigh:</label>
                                               </div>
-                                              <input type="text" pattern="[0-9]" title="Three digit input"class="form-control" id="inputPassword3" minlength="2" placeholder="input" style="width: 15%" 
+                                              <input type="text" pattern="[0-9]" title="Three digit input"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 15%" 
                                               name="fabricpriceservice.currentFabricCalc.thigh" [(ngModel)]="fabricpriceservice.currentFabricCalc.thigh" >
                                                   <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.thigh_unit_of_measurement" 
                                                   [(ngModel)]="fabricpriceservice.currentFabricCalc.thigh_unit_of_measurement" >
@@ -192,7 +193,7 @@
                                                 <div class="input-group-prepend">
                                                   <label class="input-group-text" for="inputGroupSelect01">Pocket:</label>
                                                 </div>
-                                                <input type="text" class="form-control" id="inputPassword3" minlength="2" placeholder="input" style="width: 22%" 
+                                                <input type="text" class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 22%" 
                                                 name="fabricpriceservice.currentFabricCalc.pocket" [(ngModel)]="fabricpriceservice.currentFabricCalc.pocket" >
                                                   <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.pocket_unit_of_measurement" 
                                                   [(ngModel)]="fabricpriceservice.currentFabricCalc.pocket_unit_of_measurement" >
@@ -204,7 +205,7 @@
                                                   <div class="input-group-prepend">
                                                     <label class="input-group-text" for="inputGroupSelect01">Chest:</label>
                                                   </div>
-                                                  <input type="text"class="form-control" id="chest" minlength="2" placeholder="input" style="width: 37%" 
+                                                  <input type="text"class="form-control" id="chest" minlength="2" placeholder="0" style="width: 37%" 
                                                   name="fabricpriceservice.currentFabricCalc.chest" [(ngModel)]="fabricpriceservice.currentFabricCalc.chest">
                                                   <select class="custom-select" style="width:40%" name="fabricpriceservice.currentFabricCalc.chest_unit_of_measurement" 
                                                   [(ngModel)]="fabricpriceservice.currentFabricCalc.chest_unit_of_measurement">
@@ -216,7 +217,7 @@
                                                   <div class="input-group-prepend">
                                                     <label class="input-group-text" for="inputGroupSelect01">Length:</label>
                                                   </div>
-                                                  <input type="text"class="form-control" id="length" minlength="2" placeholder="input" style="width: 22%" 
+                                                  <input type="text"class="form-control" id="length" minlength="2" placeholder="0" style="width: 22%" 
                                                   name="fabricpriceservice.currentFabricCalc.length" [(ngModel)]="fabricpriceservice.currentFabricCalc.length">
                                                   <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.length_unit_of_measurement" 
                                                   [(ngModel)]="fabricpriceservice.currentFabricCalc.length_unit_of_measurement" >
@@ -229,7 +230,7 @@
                                                   <div class="input-group-prepend">
                                                     <label class="input-group-text" for="inputGroupSelect01">Sleeve:</label>
                                                   </div>
-                                                  <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="input" style="width: 24%" 
+                                                  <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 24%" 
                                                   name="fabricpriceservice.currentFabricCalc.sleeve" [(ngModel)]="fabricpriceservice.currentFabricCalc.sleeve">
                                                   <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.sleeve_unit_of_measurement" 
                                                   [(ngModel)]="fabricpriceservice.currentFabricCalc.sleeve_unit_of_measurement">
@@ -387,7 +388,7 @@
     <div class="col-md-auto" style="margin-bottom: 1rem;">
             <button type="button" class="btn btn-success" style="margin-left: 1rem; "
             (click)="onsubmit()">Save</button>
-        <button type="button" class="btn btn-danger" style="margin-left: 1rem;">Cancel</button>
+        <button type="button" class="btn btn-danger" style="margin-left: 1rem;">Clear</button>
     </div>
     <div class="col col-lg-2">
      

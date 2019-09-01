@@ -81,9 +81,9 @@ deleteFabricEntry(entry: any): Observable<FabricCalulation[]>{
 }
 
 
-updateFabricEntry(entry : any): Observable<FabricCalulation> {
-  console.log(entry.style_code);
-  return this.httpcall.put<FabricCalulation>(this.url1+'/edit/'+ entry.refNo + '/' + entry.style_code, entry, headerOption);
+updateFabricEntry(entry : any): Observable<FabricCalulation[]> {
+  console.log(JSON.stringify(entry));
+  return this.httpcall.put<FabricCalulation[]>(this.url1+'/edit/'+ entry.refNo + '/' + entry.style_code, entry, headerOption);
 }
 
 createFabricArchieve(fab: FabricCalulation): Observable<FabricCalulation> {
@@ -139,9 +139,9 @@ createPost(a: any): Observable<PriceCalculation[]> {
 deleteprice(o: any): Observable<PriceCalculation[]> {
   return this.httpcall.delete<PriceCalculation[]>(this.url2 + '/delete/' +  o.reference + '/' + o.stylecode, headerOption);
 }
-updateprice(a: any): Observable<PriceCalculation> {
-  console.log(a.style_code);
-  return this.httpcall.put<PriceCalculation>(this.url2 + '/edit/' + a.refNo + '/'+ a.style_code, a, headerOption);
+updateprice(a: any): Observable<PriceCalculation[]> {
+  console.log(JSON.stringify(a));
+  return this.httpcall.put<PriceCalculation[]>(this.url2 + '/edit/' + a.refNo + '/'+ a.style_code, a, headerOption);
 }
 createpriceArchive(b: any): Observable<PriceCalculation[]> {
   return this.httpcall.post<PriceCalculation[]>(this.url2 + '/priceArchieve', b, headerOption);
