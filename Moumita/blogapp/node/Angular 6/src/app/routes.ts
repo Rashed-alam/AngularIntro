@@ -24,9 +24,9 @@ export const appRoutes: Routes = [
         path: 'blog', component: BlogComponent
     },
     {
-        path: '', component: UserComponent,
+        path: 'a', component: UserComponent,
     },
     {
-        path:'kin', component: KnittingComponent,
+        path:'', component: KnittingComponent,
     }
 ];

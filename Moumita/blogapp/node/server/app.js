@@ -3,12 +3,14 @@ require('./models/db');
 require('./config/passportConfig');
 
 
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 const rtsIndex = require('./routes/index.router');
 const blog = require('./routes/blogApi');
+const knitting = require('./routes/knittingApi');
 
 var app = express();
 
@@ -18,6 +20,7 @@ app.use(cors());
 app.use(passport.initialize());
 app.use('/api', rtsIndex);
 app.use('/blog',blog);
+app.use(knitting);
 
 
 // error handler
