@@ -7,7 +7,7 @@ const PriceArchiveSchema = new mongoose.Schema({
       // required: true,
        // required: "Reference No. cannot be Empty"
     },
-    fabric_unit_price: { //4
+    fabric_unit_price: { //4 
         type: String,
         default: null,
       // required: true
