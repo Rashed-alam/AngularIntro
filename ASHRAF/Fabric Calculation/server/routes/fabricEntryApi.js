@@ -40,9 +40,9 @@ router.get('/',function(req,res,next){
  });
 
  //for editing existing entries
-router.put('/edit/:id',(req,res,next)=>{ 
-    FabricEntry.findByIdAndUpdate({_id: req.params.id},req.body).then(function(){ 
-        FabricEntry.findOne({_id:req.params.id}).then(function(fabricentry){ 
+ router.put('/edit/:refNo/:style_code',(req,res,next)=>{ 
+    FabricEntry.findOneAndUpdate({refNo:req.params.refNo} && {style_code:req.params.style_code},req.body).then(function(){ 
+        FabricEntry.findOne({refNo:req.params.refNo}).then(function(fabricentry){ 
             res.send(fabricentry);
         }).catch(next);
     });
@@ -71,12 +71,21 @@ router.get('/allFabricArchieve',(req,res,next)=>{
         res.send(f);
     }).catch(next);
 });
-
+//for getting all the list from database by using reference no
 router.post('/all/:refNo',(req,res,next)=>{ 
     FabricEntry.find({"refNo": req.params.refNo}).then(function(fabricentry){
        res.send(fabricentry);
     }).catch(next);
   });
+
+
+//for getting the list using ref. no and style code for editing
+  router.post('/update/:refNo/:style_code',(req,res,next)=>{ 
+    FabricEntry.find({refNo:req.params.refNo}&&{style_code:req.params.style_code}).then(function(fabricentry){
+       res.send(fabricentry);
+    }).catch(next);
+  });
+
 
 
 /** this will export all the routes we have written on top 

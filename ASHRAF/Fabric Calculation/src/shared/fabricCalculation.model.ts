@@ -1,14 +1,14 @@
 export class FabricCalulation{
     
     fabricEntry_id: number;//1
-    mailDate: String;//2
-    entryDate: String;//3
-    refNo: String;//4
-    buyer_name: String;//5
-    style_code: String;//6
-    style_item_name: String;//7
-    style_sleeve_type: String;//8
-    size: String;//9
+    mailDate: string;//2
+    entryDate: string;//3
+    refNo: string;//4
+    buyer_name: string;//5
+    style_code: string;//6
+    style_item_name: string;//7
+    style_sleeve_type: string;//8
+    size: string;//9
     fabrics: number;//10
     chest: number;//11
     length: number;//12
@@ -18,16 +18,16 @@ export class FabricCalulation{
     bottom: number;//16
     thigh: number;//17
     pocket: number;//18
-    pocket_unit_of_measurement: String;//19
-    thigh_unit_of_measurement: String;//20
-    bottom_unit_of_measurement: String;//21
-    hood_unit_of_measurement: String;//22
-    length_unit_of_measurement: String;//23
-    chest_unit_of_measurement: String;//24
-    sleeve_unit_of_measurement: String;//25
-    fabric_weight:String;//26
-    track_Id: Number;//27
-    changeUser: String;//28
-    changeDate: String;//29
-    event:String;//30
+    pocket_unit_of_measurement: string;//19
+    thigh_unit_of_measurement: string;//20
+    bottom_unit_of_measurement: string;//21
+    hood_unit_of_measurement: string;//22
+    length_unit_of_measurement: string;//23
+    chest_unit_of_measurement: string;//24
+    sleeve_unit_of_measurement: string;//25
+    fabric_weight:string;//26
+    track_Id: number;//27
+    changeUser: string;//28
+    changeDate: string;//29
+    event:string;//30
 }

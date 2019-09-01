@@ -49,24 +49,6 @@ router.get('/id',function(req,res,next){
  });
 
 
- router.put('/edit/:id',(req,res,next)=>{
-    //find by unique id then edit the blog
-    PriceCalc.findByIdAndUpdate({_id:req.params.id},req.body).then(function(){
-        PriceCalc.findOne({_id:req.params.id}).then(function(priceCalculation){
-          res.send(priceCalculation);
-       });
-      
-    }).catch((err,doc) => { 
-        if (!err)
-        res.send(doc);
-    else {
-        if (err.code == 11000)
-            res.status(422).send(['Can not add new size.Duplicate entry found here.']);
-        else
-            return next(err);
-    }
-        });
- });
 
  router.post('/priceArchieve',(req,res,next)=>{
     priceArchive.create(req.body).then(function(f){
@@ -74,4 +56,24 @@ router.get('/id',function(req,res,next){
     }).catch(next);
    
 });
+
+//for editing
+router.post('/update/:refNo/:style_code',(req,res,next)=>{ 
+    PriceCalc.find({refNo:req.params.refNo}&&{style_code:req.params.style_code}).then(function(priceCalculation){
+       res.send(priceCalculation);
+    }).catch(next);
+  });
+  
+//for editing the list
+router.put('/edit/:refNo/:style_code',(req,res,next)=>{
+    //find by unique id then edit the blog
+    PriceCalc.findOneAndUpdate({refNo:req.params.refNo}  && {style_code:req.params.style_code},req.body).then(function(){
+        PriceCalc.findOne({refNo:req.params.refNo}).then(function(priceCalculation){
+          res.send(priceCalculation);
+       });
+      
+    }).catch(next);
+ });
+ 
+
 module.exports = router;

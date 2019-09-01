@@ -82,7 +82,8 @@ deleteFabricEntry(entry: any): Observable<FabricCalulation[]>{
 
 
 updateFabricEntry(entry : any): Observable<FabricCalulation> {
-  return this.httpcall.put<FabricCalulation>(this.url1+'/edit/'+ entry._id, entry, headerOption);
+  console.log(entry.style_code);
+  return this.httpcall.put<FabricCalulation>(this.url1+'/edit/'+ entry.refNo + '/' + entry.style_code, entry, headerOption);
 }
 
 createFabricArchieve(fab: FabricCalulation): Observable<FabricCalulation> {
@@ -97,6 +98,11 @@ getFabricArchieve(): Observable<FabricCalulation[]>{
 passReferenceNumber(refId){
   this.reference.next(refId);
 }
+//for editing
+getobject1(entry):Observable<FabricCalulation[]>{
+  return this.httpcall.post<FabricCalulation[]>(this.url1+'/update/'+entry.reference+'/'+entry.stylecode, headerOption);
+}
+
 
 //THIS PART IS FOR PRICE CALCULATIN
 calculatePrice: PriceCalculation = {
@@ -134,10 +140,16 @@ deleteprice(o: any): Observable<PriceCalculation[]> {
   return this.httpcall.delete<PriceCalculation[]>(this.url2 + '/delete/' +  o.reference + '/' + o.stylecode, headerOption);
 }
 updateprice(a: any): Observable<PriceCalculation> {
-  return this.httpcall.put<PriceCalculation>(this.url2 + '/edit/' + a._id, a, headerOption);
+  console.log(a.style_code);
+  return this.httpcall.put<PriceCalculation>(this.url2 + '/edit/' + a.refNo + '/'+ a.style_code, a, headerOption);
 }
 createpriceArchive(b: any): Observable<PriceCalculation[]> {
   return this.httpcall.post<PriceCalculation[]>(this.url2 + '/priceArchieve', b, headerOption);
+}
+
+//for editing
+getobject2(entry):Observable<PriceCalculation[]>{
+  return this.httpcall.post<PriceCalculation[]>(this.url2+'/update/'+entry.reference+'/'+entry.stylecode, headerOption);
 }
 
 }

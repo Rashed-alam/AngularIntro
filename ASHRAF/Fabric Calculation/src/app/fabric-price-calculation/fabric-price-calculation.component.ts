@@ -68,6 +68,8 @@ export class FabricPriceCalculationComponent implements OnInit {
   newcurrency;
   setcurrency;
   fabricReport: any = [];
+  objectAssign1;
+  objectAssign2;
 
 
   constructor(private Bs:BuyersService, 
@@ -105,9 +107,26 @@ export class FabricPriceCalculationComponent implements OnInit {
     this.fabricpriceservice.calculatePrice.PriceCurrency_UOM = this.setcurrency;
    
   }
+  //
+  onedit(object: any){
+    console.log("on edit button-"+object);
+    this.fabricpriceservice.getobject1(object)
+    .subscribe((data:FabricCalulation[])=>{
+    this.objectAssign1=data;
+    this.fabricpriceservice.currentFabricCalc = Object.assign({},this.objectAssign1[0]);
+    });
 
+    
+    this.fabricpriceservice.getobject2(object)
+    .subscribe((data:PriceCalculation[])=>{
+    this.objectAssign2=data;
+    this.fabricpriceservice.calculatePrice = Object.assign({},this.objectAssign2[0]);
+    });
+    
+    
+  }
   
-  //this function is for calculating the fabric weight
+  //this function is for calculating the fabric weight01744514237
   calculate1(){
     var wastePercentage: any= 0; //waste percentage
     var chestsize: any= 0;
@@ -327,10 +346,6 @@ export class FabricPriceCalculationComponent implements OnInit {
     event:''
     }
   }
-
-
-
-
 //this is for adding new size into the list
   AddNewSize(s: SizeList){
     this.Sl.createSize(s)
@@ -391,25 +406,26 @@ export class FabricPriceCalculationComponent implements OnInit {
 
 
   //this is for updating any entry from database
-  updateFabricEntry(FabCal: FabricCalulation){
-    this.swapVariableForArchieve.changeUser = this.changeUser;
-    this.swapVariableForArchieve.changeDate = this.archievedate;
-    this.swapVariableForArchieve.event = this.editevent;
-    this.swapVariableForArchieve._id = null;
-      this.fabricpriceservice.createFabricArchieve(this.swapVariableForArchieve).subscribe(res => {
-            this.fabricpriceservice.updateFabricEntry(FabCal)
-    .subscribe((data)=>{
+  updateFabricEntry(FabCal: any){
+    // this.swapVariableForArchieve.changeUser = this.changeUser;
+    // this.swapVariableForArchieve.changeDate = this.archievedate;
+    // this.swapVariableForArchieve.event = this.editevent;
+    // this.swapVariableForArchieve._id = null;
+      // this.fabricpriceservice.createFabricArchieve(this.swapVariableForArchieve).subscribe(res => {
+    this.fabricpriceservice.updateFabricEntry(FabCal)
+    .subscribe((res)=>{
       this.showeditmessage=true;
       setTimeout(()=>this.showeditmessage=false,4000);
       this.getallFabricEntries();
-      // this.clearAll();
+      this.clearAll1();
     });
-    });
+    // });
    
   }
 
   //this is for checking if the blog is to be created or updated
   createAndUpdate1(key: any){
+    console.log("c&u1-"+key.style_code);
     if(key._id  == null){
       this.createFabric(key);
     }
@@ -509,7 +525,7 @@ export class FabricPriceCalculationComponent implements OnInit {
     var step2;
     var step3: any = 0;
 
-console.log(this.fabricWeight);
+// console.log(this.fabricWeight);
 
     this.fabricpriceservice.calculatePrice.fabric_weight = this.fabricWeight
     FabricAmount = this.fabricpriceservice.calculatePrice.fabric_weight;
@@ -520,7 +536,7 @@ console.log(this.fabricWeight);
 
 
     this.fabricpriceservice.calculatePrice.fabric_total_price = step1.toFixed(3);
-    console.log(this.fabricpriceservice.calculatePrice.fabric_total_price);
+    // console.log(this.fabricpriceservice.calculatePrice.fabric_total_price);
 
     Rib = this.fabricpriceservice.calculatePrice.rib;
     TRIM = this.fabricpriceservice.calculatePrice.trim;
@@ -551,21 +567,18 @@ console.log(this.fabricWeight);
    this.fabricpriceservice.currentFabricCalc.fabric_weight = this.fabricWeight;
    this.fabricpriceservice.calculatePrice.refNo = this.fabricpriceservice.currentFabricCalc.refNo;
    this.fabricpriceservice.calculatePrice.style_code  = this.fabricpriceservice.currentFabricCalc.style_code; 
-   this.createFabric(this.fabricpriceservice.currentFabricCalc);
-   this.create(this.fabricpriceservice.calculatePrice);
-  
+
+    this.createAndUpdate1(this.fabricpriceservice.currentFabricCalc);
+    this.createAndUpdate2(this.fabricpriceservice.calculatePrice);
+    
   }
 
   //
   ondelete(object: any){
    this.deleteFabricEntry(object);
    this.del(object);
-  //  console.log(object);
-  //  console.log(this.fabricpriceservice.currentFabricCalc);
-  //  console.log(this.fabricpriceservice.calculatePrice)
-
-    
   }
+
 
 
   getId() {
@@ -584,16 +597,16 @@ console.log(this.fabricWeight);
   }
 
   createAndUpdate2(a: any) {
-    // console.log(currentEmployee);
+    console.log("c&u2-"+a.style_code);
     if (a._id != null) {
       //console.log('update');
       this.updateprice(a);
     } else {
-      console.log('create');
+      // console.log('create');
       this.create(a);
     }
     this.getPrice();
-    // this.clearAll2();
+    this.clearAll2();
   }
 
 
@@ -622,7 +635,9 @@ console.log(this.fabricWeight);
   }
 
   edit(a) {
+    // console.log(a);
     this.fabricpriceservice.calculatePrice = Object.assign({}, a);
+    // console.log(a);
     this.getPrice();
     this.b_old = a;
   }
@@ -648,17 +663,17 @@ console.log(this.fabricWeight);
 
 
   updateprice(n) {
-    this.calculate2();
-    this.b_old.changeUser = this.changeUser;
-    this.b_old.changeDate = this.archievedate;
-    this.b_old.event = this.editevent;
-    this.b_old._id = null;
+    // this.calculate2();
+    // this.b_old.changeUser = this.changeUser;
+    // this.b_old.changeDate = this.archievedate;
+    // this.b_old.event = this.editevent;
+    // this.b_old._id = null;
 
-    this.fabricpriceservice.createpriceArchive(this.b_old).subscribe(res => {
+    // this.fabricpriceservice.createpriceArchive(this.b_old).subscribe(res => {
       this.fabricpriceservice.updateprice(n).subscribe(
         res => {
 
-          console.log(res);
+          // console.log(res);
           this.showupdatemessage = true;
           setTimeout(() => this.showupdatemessage = false, 4000);
           this.getPrice();
@@ -674,7 +689,7 @@ console.log(this.fabricWeight);
         }
       );
 
-    });
+    // });
 
     // this.clearAll();
 
