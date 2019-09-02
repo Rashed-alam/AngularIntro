@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TestingserviceService } from 'src/app/testingservice.service';
+
 
 @Component({
   selector: 'app-root',
@@ -8,11 +8,8 @@ import { TestingserviceService } from 'src/app/testingservice.service';
 })
 export class AppComponent {
 
-  constructor(private service: TestingserviceService) { }
+  constructor() { }
 
-  submission(){
-    console.log(this.service.currenttest1.test1);
-    console.log(this.service.currenttest2);
-  }
+ 
 
 }

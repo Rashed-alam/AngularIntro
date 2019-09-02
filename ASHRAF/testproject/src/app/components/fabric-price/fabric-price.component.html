@@ -1,0 +1,43 @@
+<div class="container">
+        <form name="form" (ngSubmit)="f.form.valid && AddNew(service.currentItem)" #f="ngForm" novalidate>
+                <div class="form-row align-items-center">
+                  <div class="col-sm-7">
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Name:</div>
+                      </div>
+                      <input type="text" id="name"class="form-control" minlength="2" name="service.currentItem.name"
+                      [(ngModel)]="service.currentItem.name" #name="ngModel" required>
+                    </div>
+                  </div>
+                  <div class="col-sm-7">
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">NID:</div>
+                      </div>
+                      <input type="text" id="name"class="form-control" minlength="2" name="service.currentItem.nid"
+                      [(ngModel)]="service.currentItem.nid" #nid="ngModel" required>
+                    </div>
+                  </div>
+                  <div class="col-sm-7">
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Address:</div>
+                      </div>
+                      <input type="text" id="house"class="form-control" placeholder="house" minlength="2" name="service.currentItem.address[0].house"
+                      [(ngModel)]="service.currentItem.address[0].house" #house="ngModel" required>
+                      <input type="text" id="flat"class="form-control" placeholder="flat" minlength="2" name="service.currentItem.address[0].flat"
+                      [(ngModel)]="service.currentItem.address[0].flat" #flat="ngModel" required>
+                    </div>
+                  </div>
+
+                </div>
+                   <div class="modal-footer">
+          
+                    <button type="submit" class="btn btn-success" [disabled]="!f.form.valid">Add</button>
+                    <button type="submit" class="btn btn-secondary" (click)="clearAll()">Clear All</button>
+                  </div>
+
+                   
+                  </form>
+</div>

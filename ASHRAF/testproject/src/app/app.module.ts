@@ -1,19 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { TestingserviceService } from 'src/app/testingservice.service';
+import { FabricPriceComponent } from './components/fabric-price/fabric-price.component';
+import { FabricPriceServiceService} from 'src/app/services/fabric-price-service.service';
+// import { FormArray, FormBuilder } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FabricPriceComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
+    // FormArray,
+    // FormBuilder
   ],
-  providers: [TestingserviceService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [FabricPriceServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
