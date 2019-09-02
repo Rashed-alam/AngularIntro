@@ -56,7 +56,7 @@ export class FabricPriceCalculationComponent implements OnInit {
   JacketSelected: boolean = false;
   ShortsSelected: boolean = false;
   //x: any; //for holding the item name selection click of item name
-  fabricWeight = 0;// for holding the fabric weight and sending it to the database
+  fabricWeight;// for holding the fabric weight and sending it to the database
   referid: string;//for holding the refernce number 
   allfab: any;
   allprice: any;
