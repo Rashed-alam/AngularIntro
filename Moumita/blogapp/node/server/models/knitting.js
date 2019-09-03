@@ -4,13 +4,19 @@ const Schema = mongoose.Schema;
 const KnittingSchema = new Schema({
 
     refNo: {
-        type: Number
+        type: Number,
+        required: "Fill up this block"
     },
     orderNo: {
-        type: Number
+        type: Number,
+        required: "Fill up this block"
     },
     style: {
         type: String
+    },
+    buyer:{
+        type: String,
+        required: "input buyer name"
     },
     machineName:{
         type: String
@@ -24,11 +30,13 @@ const KnittingSchema = new Schema({
     shift:{
         type: String
     },
-    capacity:{
-        type:Number
+    ptarget:{
+        type:Number,
+    
     },
     production:{
-        type: Number
+        type: Number,
+    
     },
     remarks:{
         type:String
@@ -37,6 +45,9 @@ const KnittingSchema = new Schema({
         type:Number
     },
     balance:{
+        type:Number
+    },
+    extra:{
         type:Number
     }
 

@@ -24,12 +24,13 @@ export class KnittingService {
     operatorName: '',
     date: '',
     shift: '',
-    // capacity: null,
+    buyer: '',
     production: null,
     ptarget:null, 
     remarks: '',
     roll: null,
-    balance: null
+    balance: null,
+    extra: null
 
    }
 

@@ -9,11 +9,14 @@ export class Knitting {
     operatorName: string;
     date: string;
     shift: string;
-    // capacity: number;
+    buyer:string;
     production: number;
     ptarget:number;
     remarks: string;
     roll: number;
-    balance: number
+    balance: number;
+    extra: number
+
+    
 
 }

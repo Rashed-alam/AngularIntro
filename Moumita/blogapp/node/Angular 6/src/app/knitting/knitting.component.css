@@ -12,8 +12,31 @@ legend{
     width: auto;
     font-size: 16px;
 }
+
+.bg_color_one{
+    background: #c3d2d6;
+}
+.bg_color_two{
+    background: #8e8d8d;
+}
+.custom_button{
+    display: flex;
+    justify-content: flex-end;
+}
 /* global css */
 
-.wrapper .target_form{
+.knitting_balance .target_form{
     padding: 2% 0 4% 0;
 }
+
+.knitting_balance table td{
+    border: none;
+    padding: 3px;
+}
+
+.knitting_balance .child_fieldset{
+    color: #fff;
+    font-size: 14px;
+    white-space: nowrap;
+}
+

@@ -1,33 +1,26 @@
- <!-- <form #targetForm="ngForm" id="targetForm" >  -->
-<div class="row">
-  <div class="col-3">
-
-  </div>
-  <div class="col-md-6">
-    <div class="wrapper">
-      <div class="container">
-        <!-- <div class="card"> -->
-        <!-- <div class="card-body"> -->
-        <fieldset>
-          <legend>Knitting Maching Target Entry Form</legend>
-          <table class="table table-bordered">
-
-
+<div class="knitting_balance">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-6 bg_color_one">
+        <fieldset class="parent_fieldset">
+          <legend class="font-italic">Knitting Maching Target Entry Form</legend>
+          <table class="table table-bordered ">
             <tbody>
               <tr>
 
                 <td>
-                  <input type="text" #season="ngModel" class="form-control"  [(ngModel)]="knitting.season" name="season"
+                  <input type="text" #season="ngModel" class="form-control" [(ngModel)]="knitting.season" name="season"
                     placeholder="Season:">
                 <td>
-                  <input type="text" class="form-control"  [(ngModel)]="knitting.orderdate" name="orderdate" placeholder="Order Date:">
+                  <input type="text" class="form-control" [(ngModel)]="knitting.orderdate" name="orderdate"
+                    placeholder="Order Date:">
 
                 </td>
               </tr>
 
               <tr>
                 <td><select class="custom-select" [(ngModel)]="knitting.orderNo" name="orderNo">
-                    <option value="1">Order No:</option>
+                    <option value="">Order No:</option>
                     <option value="2">1</option>
                     <option value="3">1</option>
                     <option value="4">3</option>
@@ -71,41 +64,44 @@
               </tr>
             </tbody>
           </table>
-
-
-
-
-
           <div class="target_form">
             <div class="row justify-content-md-center">
-              <div class="col-md-10">
-                <fieldset>
-                  <legend>Target Form</legend>
+              <div class="col-md-10 bg_color_two">
+                <fieldset class="child_fieldset">
+                  <legend class="font-italic">Target Form</legend>
                   <div class="row mb-2">
-                    <div class="col-4">Machine Name</div>
+                    <div class="col-4 text-right">Machine Name</div>
                     <div class="col-8">
                       <select class="custom-select" [(ngModel)]="knitting.machineName" name="machineList">
                         <option value="1">Machine List</option>
                         <option value="2">1</option>
-                        <option value="3">1</option>
+                        <option value="3">2</option>
                         <option value="4">3</option>
                         <option value="5">4</option>
                       </select>
-                      production target of this machine <input type="text" class="form-control" [(ngModel)]="knitting.ptarget" placeholder="">
+                     <!-- <input type="text" class="form-control" [(ngModel)]="knitting.ptarget" placeholder="Target"> -->
                     </div>
                   </div>
+                  
+                  <div class="row mb-2">
+                      <div class="col-4 text-right">Production Target</div>
+                      <div class="col-8">
+                        <input type="text"  class="form-control" [(ngModel)]="knitting.ptarget" name="ptarget"
+                          placeholder="Target">
+                      </div>
+                    </div>
 
                   <div class="row mb-2">
-                    <div class="col-4">Per-Shift Capacity</div>
+                    <div class="col-4 text-right">Per-Shift Capacity</div>
                     <div class="col-8">
                       <input type="text" readonly class="form-control" [(ngModel)]="knitting.capacity" name="capacity"
-                        placeholder="2500kg">
+                        placeholder="250kg">
                     </div>
                   </div>
 
 
                   <div class="row mb-2">
-                    <div class="col-4">Operator Name</div>
+                    <div class="col-4 text-right">Operator Name</div>
                     <div class="col-5">
                       <select class="custom-select" [(ngModel)]="knitting.operatorName" name="operatorList">
                         <option value="1">Operator List</option>
@@ -118,17 +114,18 @@
                     </div>
 
                     <div class="col-3">
-                      <button type="submit" class="btn ">Add</button>
+                      <button type="submit" class="btn btn-info">Add</button>
                     </div>
                   </div>
                   <div class="row mb-2">
-                    <div class="col-4">Date</div>
+                    <div class="col-4 text-right">Date</div>
                     <div class="col-8">
-                      <input type="text" class="form-control" [(ngModel)]="knitting.date" name="data"  placeholder="date">
+                      <input type="text" class="form-control" [(ngModel)]="knitting.date" name="data"
+                        placeholder="date">
                     </div>
                   </div>
                   <div class="row mb-2">
-                    <div class="col-4">Shift</div>
+                    <div class="col-4 text-right">Shift</div>
                     <div class="col-8">
                       <select class="custom-select" [(ngModel)]="knitting.shift" name="shift">
                         <option value="0">shift</option>
@@ -140,38 +137,34 @@
 
 
                   <div class="row mb-2">
-                    <div class="col-4">Production</div>
+                    <div class="col-4 text-right">Production</div>
                     <div class="col-5">
                       <input type="text" class="form-control" [(ngModel)]="knitting.production"
                         placeholder="Production">
                     </div>
                     <div class="col-3">
                       <button type="submit" class="btn btn-success" (click)="getBalance()">+/-</button>
-                      <!-- <select class="custom-select" name="kg Au">
-                                                                      <option value="1">p</option>
-                                                                      <option value="2"> 1 </option>
-                                                                      <option value="3">2</option>
-                                                                      </select> -->
                     </div>
 
                   </div>
                   <div class="row mb-2">
-                    <div class="col-4">Balance</div>
-                    <div class="col-5">
-                      <input type="text" readonly class="form-control" [(ngModel)]="knitting.balance" name="balance">
+                    <div class="col-4 text-right">Balance</div>
+                    <div class="col-4">
+                      <input type="text" readonly class="form-control" [(ngModel)]="knitting.balance" name="balance" placeholder="Amount">
                     </div>
-                    <div class="col-3">
-                      <select class="custom-select" name="Auto">
+                    <div class="col-4">
+                        <input type="text" readonly class="form-control" [(ngModel)]="knitting.extra" name="extra" placeholder="Extra">
+                      <!-- <select class="custom-select" name="Auto">
                         <option value="1">B</option>
                         <option value="2"> 1 </option>
                         <option value="3">2</option>
-                      </select>
+                      </select> -->
                     </div>
 
                   </div>
 
                   <div class="row mb-2">
-                    <div class="col-4">Roll</div>
+                    <div class="col-4 text-right">Roll</div>
                     <div class="col-8">
                       <input type="text" class="form-control" [(ngModel)]="knitting.roll" name="roll"
                         placeholder="Roll">
@@ -179,34 +172,25 @@
                   </div>
 
                   <div class="row mb-2">
-                    <div class="col-4">Remarks</div>
+                    <div class="col-4 text-right">Remarks</div>
                     <div class="col-8">
-                      <select class="custom-select" [(ngModel)]="knitting.remarks" name="Remarks">
-                        <option value="1">select</option>
-                        <option value="2">1</option>
-                        <option value="3">2</option>
-                      </select>
+                      <input type="text" class="form-control"  [(ngModel)]="knitting.remarks" name="Remarks">
+                        
                     </div>
                   </div>
 
                   <div class="row mb-2">
-                    <div class="col-3"></div>
-                    <div class="col-md-6">
+                    <div class="col-md-12 custom_button">
                       <button type="submit" class="btn btn-primary mr-2" (click)="onClick()">Submit</button>
-
-                      <button type="submit" class="btn btn-secondary">Report</button>
+                      <button type="submit" class="btn btn-danger">Report</button>
                     </div>
-                    <div class="col-4"></div>
                   </div>
-
-
-
                 </fieldset>
               </div>
             </div>
           </div>
-
-
-       <div>
-         
-       </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
