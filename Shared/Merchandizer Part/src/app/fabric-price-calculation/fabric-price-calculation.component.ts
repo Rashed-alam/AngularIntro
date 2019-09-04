@@ -309,11 +309,11 @@ export class FabricPriceCalculationComponent implements OnInit {
   //this is for clearing all the data from the form
   clearAll1(){
     this.fabricpriceservice.currentFabricCalc = {
-        fabricEntry_id: null,
-    mailDate: '',
-    entryDate: '',
-    refNo: '',
-    buyer_name: '',
+        fabricEntry_id: this.fabricpriceservice.currentFabricCalc.fabricEntry_id,
+    mailDate: this.fabricpriceservice.currentFabricCalc.mailDate,
+    entryDate: this.fabricpriceservice.currentFabricCalc.entryDate,
+    refNo: this.fabricpriceservice.currentFabricCalc.refNo,
+    buyer_name: this.fabricpriceservice.currentFabricCalc.buyer_name,
     style_code: '',
     style_item_name: '',
     style_sleeve_type: '',

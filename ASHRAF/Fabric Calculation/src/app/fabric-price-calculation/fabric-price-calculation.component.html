@@ -1,4 +1,5 @@
 <div class="container">
+  
     <div class="card" style="margin-top: 1rem; margin-left: 10rem;margin-right: 10rem;">
         <!-- upper part -->
         <h5 style="text-align: center;"><strong></strong></h5>
@@ -21,7 +22,7 @@
                                <input type="text" id="mailDate" name="fabricpriceservice.currentFabricCalc.mailDate" [(ngModel)]="fabricpriceservice.currentFabricCalc.mailDate"
                                 placeholder="{{today}}" 
                                style="width: 50%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
-                               class="form-control" #mailDate="ngModel" required>
+                               class="form-control" #mailDate="ngModel" >
                               </div>
                   </div>
                   <div class="col-md-4">
@@ -32,7 +33,7 @@
                                   <label for="formGroupExampleInput"> Entry Date: </label>
                                   <input type="text" id="entryDate" placeholder="{{today}}" name="fabricpriceservice.currentFabricCalc.entryDate" [(ngModel)]="fabricpriceservice.currentFabricCalc.entryDate"
                                   style="width: 50%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
-                                  class="form-control" #entryDate="ngModel" required>
+                                  class="form-control" #entryDate="ngModel" >
                                   </div>
                       </div>
                   </div>
@@ -46,7 +47,7 @@
                                 </div>
                                 <input type="text" id="refNo" class="form-control" [disabled]="hiddingrefIdandStyleCode" style="width: 30%" placeholder="Enter Reference Number"
                               name="fabricpriceservice.currentFabricCalc.refNo" 
-                              [(ngModel)]="fabricpriceservice.currentFabricCalc.refNo" #refNo="ngModel"required>
+                              [(ngModel)]="fabricpriceservice.currentFabricCalc.refNo" #refNo="ngModel">
                               </div>
                       </div>
                     </div>
@@ -60,7 +61,7 @@
                         </div>
                         <select class="custom-select" id="buyer_name" style="width: 5rem;"  name="fabricpriceservice.currentFabricCalc.buyer_name" 
                         [(ngModel)]="fabricpriceservice.currentFabricCalc.buyer_name" #buyer_name="ngModel" 
-                        required>
+                        >
                           <option value="{{b.name}}" *ngFor="let b of allBuyers">{{b.name}} | Address: {{b.house}},{{b.road}},{{b.area}} </option>
                     
                         </select> 
@@ -82,7 +83,7 @@
                         <label class="input-group-text" for="inputGroupSelect01">Size:</label>
                       </div>
                       <select class="custom-select" id="size" name="fabricpriceservice.currentFabricCalc.size"
-                       [(ngModel)]="fabricpriceservice.currentFabricCalc.size" #size="ngModel" required>
+                       [(ngModel)]="fabricpriceservice.currentFabricCalc.size" #size="ngModel" >
                        
                           <option value="{{s.size_name}}" *ngFor="let s of allSize">{{s.size_name}}</option>
                         </select>
@@ -97,7 +98,7 @@
                           <label class="input-group-text" for="inputGroupSelect01">Fabrics:</label>
                         </div>
                         <select class="custom-select" style="width: 70%" id="fabrics" name="fabricpriceservice.currentFabricCalc.fabrics" 
-                        [(ngModel)]="fabricpriceservice.currentFabricCalc.fabrics" #fabrics="ngModel" required>
+                        [(ngModel)]="fabricpriceservice.currentFabricCalc.fabrics" #fabrics="ngModel" >
                             <option value="{{f.fabric_name}}" *ngFor="let f of allFabricType">GSM-{{f.fabric_name}}</option>
                           </select>
                       </div>  
@@ -119,7 +120,7 @@
                                       </div>
                                       <input type="text" class="form-control" id="style_code" [disabled]="hiddingrefIdandStyleCode" placeholder="Code Number" style="width: 12.5rem" 
                                       name="fabricpriceservice.currentFabricCalc.style_code" [(ngModel)]="fabricpriceservice.currentFabricCalc.style_code" 
-                                       #style_code="ngModel" required>
+                                       #style_code="ngModel" >
                                     </div>
                     
                                     <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
@@ -127,7 +128,7 @@
                                         <label class="input-group-text" for="inputGroupSelect01">Item Name:</label>
                                       </div>
                                       <select class="custom-select" id="itemName" style="width: 64%;" name="fabricpriceservice.currentFabricCalc.style_item_name"
-                                       [(ngModel)]="fabricpriceservice.currentFabricCalc.style_item_name" #itemName="ngModel" (click)="selectSwitch(itemName.value)" required>
+                                       [(ngModel)]="fabricpriceservice.currentFabricCalc.style_item_name" #itemName="ngModel" (click)="selectSwitch(itemName.value)" >
                                         <option value="{{i.itemName}}" *ngFor="let i of allItems">{{i.itemName}}</option>
                                       </select>
                                     </div>
@@ -149,7 +150,7 @@
                                           <label class="input-group-text" for="inputGroupSelect01">Waste Percentage:</label>
                                         </div>
                                         <input type="text" class="form-control" id="inputEmail3" minlength="1" placeholder="%" style="width: 30%"
-                                         name="fabricpriceservice.currentFabricCalc.waste_percentage" [(ngModel)]="fabricpriceservice.currentFabricCalc.waste_percentage" required>
+                                         name="fabricpriceservice.currentFabricCalc.waste_percentage" [(ngModel)]="fabricpriceservice.currentFabricCalc.waste_percentage" >
                                         
                                       </div>
                                     
@@ -276,7 +277,7 @@
                                                 <div class="input-group-text">Fabric Unit Price:</div>
                                               </div>
                                     <input type="number" id="refNo" class="form-control" style="width: 30%" name="fabricpriceservice.calculatePrice.fabric_unit_price"
-                                        [(ngModel)]="fabricpriceservice.calculatePrice.fabric_unit_price" required> 
+                                        [(ngModel)]="fabricpriceservice.calculatePrice.fabric_unit_price" > 
                                     <select name="currencyName" id="Currency" #cur (click)="setCurrency(cur.value)">
                                         <option *ngFor="let i of newcurrency">
                                             {{i.currencyName}}
@@ -298,7 +299,7 @@
                                                 <div class="input-group-text">RIM:</div>
                                               </div>
                                     <input type="number" id="refNo" class="form-control" style="width: 30%"
-                                        [(ngModel)]="fabricpriceservice.calculatePrice.rib" required>
+                                        [(ngModel)]="fabricpriceservice.calculatePrice.rib" >
                                     <a style="padding: 6px;"> {{setcurrency}}</a>
             
             
@@ -308,7 +309,7 @@
                                                 <div class="input-group-text">CM:</div>
                                               </div>
                                     <input type="number" id="refNo" class="form-control" style="width: 30%"
-                                        [(ngModel)]="fabricpriceservice.calculatePrice.cm" required>
+                                        [(ngModel)]="fabricpriceservice.calculatePrice.cm" >
                                     <a style="padding: 6px;"> {{setcurrency}}</a>
                                 </div>
             
@@ -317,7 +318,7 @@
                                                 <div class="input-group-text">TRIM:</div>
                                               </div>
                                     <input type="number" id="refNo" class="form-control" style="width: 30%"
-                                        [(ngModel)]="fabricpriceservice.calculatePrice.trim" required>
+                                        [(ngModel)]="fabricpriceservice.calculatePrice.trim" >
                                     <a style="padding: 6px;"> {{setcurrency}}</a>
                                 </div>
             
@@ -327,7 +328,7 @@
                                                 <div class="input-group-text">Print:</div>
                                               </div>
                                     <input type="number" id="refNo" class="form-control" style="width: 30%"
-                                        [(ngModel)]="fabricpriceservice.calculatePrice.print" required>
+                                        [(ngModel)]="fabricpriceservice.calculatePrice.print" >
                                     <a style="padding: 6px;"> {{setcurrency}}</a>
                                 </div>
             
@@ -337,7 +338,7 @@
                                                 <div class="input-group-text">DOC:</div>
                                               </div>
                                     <input type="number" id="refNo" class="form-control" style="width: 30%"
-                                        [(ngModel)]="fabricpriceservice.calculatePrice.doc" required>
+                                        [(ngModel)]="fabricpriceservice.calculatePrice.doc" >
                                     <a style="padding: 6px;"> {{setcurrency}}</a>
             
                                 </div>
@@ -386,15 +387,18 @@
       
     </div>
     <div class="col-md-auto" style="margin-bottom: 1rem;">
-            <button type="button" class="btn btn-success" style="margin-left: 1rem; "
+            <button type="button" class="btn btn-success" style="margin-left: 1rem;"
             (click)="onsubmit()">Save</button>
         <button type="button" class="btn btn-danger" style="margin-left: 1rem;">Clear</button>
     </div>
+
     <div class="col col-lg-2">
      
     </div>
   </div>
   </div>
+
+
   <div  class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="align-content: center">
     Entry Created successfully.
   </div>
