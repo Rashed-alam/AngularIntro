@@ -6,6 +6,8 @@ import { FabricPriceComponent } from './components/fabric-price/fabric-price.com
 import { FabricPriceServiceService} from 'src/app/services/fabric-price-service.service';
 // import { FormArray, FormBuilder } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import { ReactiveFormsModule } from "@angular/forms";
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
     // FormArray,
     // FormBuilder
   ],
