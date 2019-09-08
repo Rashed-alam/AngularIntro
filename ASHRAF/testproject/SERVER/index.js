@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');//setting up of body-parser
 const cors = require('cors'); // for cross platform resource sharing
 
 const user = require('./routes/userApi');
+const user2 = require('./routes/test-2Api');
+
 const app = express();
 
 
@@ -19,6 +21,7 @@ app.use(bodyParser.json());
 
 
 app.use('/api/user', user);
+app.use('/api/user2',user2);
 
 
 //this is for error handling[middleware]
@@ -29,7 +32,7 @@ app.use(function(err,req,res,next){
 //listening to requests
 app.listen(4000, ()=>{
     console.log('Server has been started at port : 4000');
-    });
+});
 
 
     

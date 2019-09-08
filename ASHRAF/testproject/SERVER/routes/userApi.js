@@ -10,20 +10,18 @@ router.get('/all',(req,res,next)=>{
 });
 router.get('/get/single', function(req, res){
     // get by single stylecode
-    // UserSchema.aggregate([
-    //     { $unwind :'$info'},
-    //     { $match : {'info.phone': "1" }},
+    UserSchema.aggregate([
+        { $unwind :'$info'},
+        { $match : {'info.phone': "1" }},
     
-    //     ]).then(data => {
-    //         res.send(data)
-    //     })
-
+        ]).then(data => {
+            res.send(data)
+        })
 
 //remove data from array by stylecode
-UserSchema.update({_id : '5d70d86212b3d3289c57081a'}, {$pull : {  info : {phone: '1'}}});
+// UserSchema.update({_id : '5d70d86212b3d3289c57081a'}, {$pull : {  info : {phone: '1'}}});
 
 })
-
 
 //POST ER JONNO 
 router.post('/insert/:firstName',(req,res,next)=>{ 
