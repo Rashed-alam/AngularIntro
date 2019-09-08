@@ -1,65 +1,161 @@
 <div class="knitting_balance">
   <div class="container">
     <div class="row justify-content-md-center">
-      <div class="col-md-6 bg_color_one">
+      <div class="col-md-8 bg_color_one">
         <fieldset class="parent_fieldset">
-          <legend class="font-italic">Knitting Maching Target Entry Form</legend>
+          <legend class="font-italic">Machinewise Daily Knitting Status Form</legend>
           <table class="table table-bordered ">
             <tbody>
               <tr>
+                <td>
+                    <div class="row mb-2">
+                        <div class="col-4 text-right">Season:</div>
+                        <div class="col-8">
+                          <!-- <input type="text"  class="form-control" [(ngModel)]="knitting.season" name="season"
+                            placeholder="season"> -->
+                            <select class= "custom-select"  [(ngModel)]="knitting.season" name="season">
+                              <option value="0"></option>
+                              <option value="1">Summer</option>
+                              <option value="2">Winter</option>
+                            </select>
+                        </div>
+                      </div>
+                      </td>
+                   
+                  <!-- <input type="text" #season="ngModel" class="form-control" [(ngModel)]="knitting.season" name="season"
+                    placeholder="Season:"> -->
+                <td>
 
-                <td>
-                  <input type="text" #season="ngModel" class="form-control" [(ngModel)]="knitting.season" name="season"
-                    placeholder="Season:">
-                <td>
-                  <input type="text" class="form-control" [(ngModel)]="knitting.orderdate" name="orderdate"
-                    placeholder="Order Date:">
+                    <div class="row mb-2">
+                        <div class="col-4 text-right">Order Date:</div>
+                        <div class="col-8">
+                          <input type="date" readonly class="form-control" [(ngModel)]="knitting.orderdate" name="orderdate">
+                        </div>
+                      </div>
+<!-- 
+                  <input type="text" class="form-control" [(ngModel)]="knitting.orderdate" name="text"
+                    placeholder="Order Date: "> -->
 
                 </td>
               </tr>
 
               <tr>
-                <td><select class="custom-select" [(ngModel)]="knitting.orderNo" name="orderNo">
+                <td>
+                    <div class="row mb-2">
+                        <div class="col-4 text-right">Order No:</div>
+                        <div class="col-8">
+                          <select class="custom-select" [(ngModel)]="knitting.orderNo" name="orderNo">
                     <option value="">Order No:</option>
                     <option value="2">1</option>
-                    <option value="3">1</option>
+                    <option value="3">2</option>
                     <option value="4">3</option>
                     <option value="5">4</option>
                   </select>
+                  </div>
+                  </div>
                 </td>
 
-                <td> <input type="text" class="form-control" [(ngModel)]="knitting.orQty" name="orQty"
-                    placeholder="Order Qty:"> </td>
+                <td> 
+                    <div class="row mb-2">
+                        <div class="col-4 text-right">Order Quantity:</div>
+                        <div class="col-8">
+                  <input type="text" readonly class="form-control"  [(ngModel)]="knitting.orQty" name="orQty"
+                    placeholder="Order Qty:"> 
+                  </div>
+                  </div>
+                  </td>
 
               </tr>
               <tr>
+                <td>
+                  <div class="row mb-2">
+                      <div class="col-4 text-right">Style:</div>
+                      <div class="col-8">
 
-                <td><input type="text" class="form-control" [(ngModel)]="knitting.style" name="style"
-                    placeholder="Style#"></td>
+                <input type="text" readonly class="form-control"  [(ngModel)]="knitting.style" name="style">
+                </div>
+                </div>
 
-                <td> <input type="text" class="form-control" [(ngModel)]="knitting.dDate" name="dDate"
-                    placeholder="Delivery Date:"></td>
+                  </td>
 
-              </tr>
-              <tr>
-
-                <td><input type="text" class="form-control" [(ngModel)]="knitting.refNo" name="refNo"
-                    placeholder="Ref No:"></td>
-
-                <td> <input type="text" class="form-control" [(ngModel)]="knitting.leadDate" name="leadDate"
-                    placeholder="Lead Date:"></td>
-
-              </tr>
-              <tr>
-
-                <td colspan="2"><input type="text" class="form-control" [(ngModel)]="knitting.buyer" name="buyer"
-                    placeholder="Buyer:"></td>
+                <td> 
+                    <div class="row mb-2">
+                        <div class="col-4 text-right">Delivery Date:</div>
+                        <div class="col-8"> 
+                  <input type="date" readonly class="form-control"  [(ngModel)]="knitting.dDate" name="dDate">
+                  </div>
+                  </div>
+                  </td>
 
               </tr>
               <tr>
+                <td>
+                  <div class="row mb-2">
+                      <div class="col-4 text-right">Reference No:</div>
+                      <div class="col-8">
+                <input type="text" readonly class="form-control"  [(ngModel)]="knitting.refNo" name="refNo">
+                    
+                </div>
+                </div>
+                  </td>
 
-                <td colspan="2"><input type="text" class="form-control" [(ngModel)]="knitting.description"
-                    name="description" placeholder="Description:"></td>
+                <td>
+                    <div class="row mb-2">
+                        <div class="col-4 text-right">Lead Date:</div>
+                        <div class="col-8">
+                  <input type="date" readonly class="form-control"  [(ngModel)]="knitting.leadDate" name="leadDate">
+                  <!-- <input type="text" name="date" value="{{myDate | date}}"> -->
+                    
+                  </div>
+                  </div>
+                  </td>
+
+              </tr>
+
+              <!-- <tr>
+                  <td>
+                    <div class="row mb-2">
+                        <div class="col-4 text-right">Buyer:</div>
+                        <div class="col-8">
+                  <input type="text" class="form-control" [(ngModel)]="knitting.buyer" name="buyer">
+                      
+                  </div>
+                  </div>
+                    </td>
+  
+                  <td>
+                      <div class="row mb-2">
+                          <div class="col-4 text-right">Description:</div>
+                          <div class="col-8">
+                    <input type="text" class="form-control" [(ngModel)]="knitting.description" name="Description">
+                      
+                    </div>
+                    </div>
+                    </td>
+  
+                </tr> -->
+              <tr>
+                  <td colspan="2">
+                  <div class="row mb-2">
+                      <div class="col-2 text-right">Buyer:</div>
+                      <div class="col-10">
+               <input type="text" readonly class="form-control"  [(ngModel)]="knitting.buyer" name="buyer">
+                     
+                </div>
+                </div>
+                  </td>
+
+              </tr>
+              <tr>
+                  <td colspan="2">
+                  <div class="row mb-2">
+                      <div class="col-2 text-right">Description:</div>
+                      <div class="col-10"> 
+
+               <input type="text" readonly class="form-control"  [(ngModel)]="knitting.description" name="description" >
+                </div>
+                </div>
+                  </td>
 
               </tr>
             </tbody>
@@ -71,7 +167,7 @@
                   <legend class="font-italic">Target Form</legend>
                   <div class="row mb-2">
                     <div class="col-4 text-right">Machine Name</div>
-                    <div class="col-8">
+                    <div class="col-5">
                       <select class="custom-select" [(ngModel)]="knitting.machineName" name="machineList">
                         <option value="1">Machine List</option>
                         <option value="2">1</option>
@@ -85,15 +181,19 @@
                   
                   <div class="row mb-2">
                       <div class="col-4 text-right">Production Target</div>
-                      <div class="col-8">
-                        <input type="text"  class="form-control" [(ngModel)]="knitting.ptarget" name="ptarget"
+                      <div class="col-3">
+                        <input type="text"  readonly class="form-control" [(ngModel)]="knitting.ptarget" name="ptarget"
                           placeholder="Target">
+                      </div>
+                      <div class="col-2">
+                        <input type="text" class="form-control" readonly placeholder="kg">
+
                       </div>
                     </div>
 
                   <div class="row mb-2">
                     <div class="col-4 text-right">Per-Shift Capacity</div>
-                    <div class="col-8">
+                    <div class="col-5">
                       <input type="text" readonly class="form-control" [(ngModel)]="knitting.capacity" name="capacity"
                         placeholder="250kg">
                     </div>
@@ -102,31 +202,33 @@
 
                   <div class="row mb-2">
                     <div class="col-4 text-right">Operator Name</div>
-                    <div class="col-5">
+                    <div class="col-3">
                       <select class="custom-select" [(ngModel)]="knitting.operatorName" name="operatorList">
                         <option value="1">Operator List</option>
                         <option value="2">1</option>
-                        <option value="3">1</option>
+                        <option value="3">2</option>
                         <option value="4">3</option>
                         <option value="5">4</option>
 
                       </select>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-2">
                       <button type="submit" class="btn btn-info">Add</button>
                     </div>
                   </div>
                   <div class="row mb-2">
                     <div class="col-4 text-right">Date</div>
                     <div class="col-8">
-                      <input type="text" class="form-control" [(ngModel)]="knitting.date" name="data"
-                        placeholder="date">
+                      <!-- {{myDate | date}} -->
+                       <!-- <input type="date" class="form-control" [(ngModel)]="knitting.date" name="date" 
+                        >  -->
+                        <input type="text" [(ngModel)]="knitting.date" name="date">
                     </div>
                   </div>
                   <div class="row mb-2">
                     <div class="col-4 text-right">Shift</div>
-                    <div class="col-8">
+                    <div class="col-5">
                       <select class="custom-select" [(ngModel)]="knitting.shift" name="shift">
                         <option value="0">shift</option>
                         <option value="1">8 hr = 1 shift</option>
@@ -135,46 +237,51 @@
                     </div>
                   </div>
 
-
-                  <div class="row mb-2">
-                    <div class="col-4 text-right">Production</div>
-                    <div class="col-5">
-                      <input type="text" class="form-control" [(ngModel)]="knitting.production"
-                        placeholder="Production">
-                    </div>
-                    <div class="col-3">
-                      <button type="submit" class="btn btn-success" (click)="getBalance()">+/-</button>
-                    </div>
-
-                  </div>
-                  <div class="row mb-2">
-                    <div class="col-4 text-right">Balance</div>
-                    <div class="col-4">
-                      <input type="text" readonly class="form-control" [(ngModel)]="knitting.balance" name="balance" placeholder="Amount">
-                    </div>
-                    <div class="col-4">
-                        <input type="text" readonly class="form-control" [(ngModel)]="knitting.extra" name="extra" placeholder="Extra">
-                      <!-- <select class="custom-select" name="Auto">
-                        <option value="1">B</option>
-                        <option value="2"> 1 </option>
-                        <option value="3">2</option>
-                      </select> -->
-                    </div>
-
-                  </div>
-
                   <div class="row mb-2">
                     <div class="col-4 text-right">Roll</div>
-                    <div class="col-8">
+                    <div class="col-5">
                       <input type="text" class="form-control" [(ngModel)]="knitting.roll" name="roll"
                         placeholder="Roll">
                     </div>
                   </div>
 
+
+                  <div class="row mb-2">
+                    <div class="col-4 text-right">Production</div>
+                    <div class="col-5">
+                      <input type="text" class="form-control" [(ngModel)]="knitting.production" (change)="getBalance()"
+                        placeholder="Production">
+                    </div>
+                    <!-- <div class="col-3">
+                      <button type="submit" class="btn btn-success" (click)="getBalance()">+/-</button>
+                    </div> -->
+
+                  </div>
+                  <div class="row mb-2">
+                    <div class="col-4 text-right">Balance</div>
+                    <div class="col-5">
+                      <input type="text" readonly class="form-control" [(ngModel)]="knitting.balance" name="balance" placeholder="Balance">
+                    </div>
+                    <!-- <div class="col-4">
+                        <input type="text" readonly class="form-control" [(ngModel)]="knitting.extra" name="extra" placeholder="Extra">
+                      
+                    </div> -->
+
+                  </div>
+
+                  <div class="row mb-2">
+                      <div class="col-4 text-right">Extra</div>
+                      <div class="col-5">
+                        <input type="text" readonly class="form-control" [(ngModel)]="knitting.extra" name="extra" placeholder="Extra">
+                      </div>
+                    </div>
+
+                  
+
                   <div class="row mb-2">
                     <div class="col-4 text-right">Remarks</div>
-                    <div class="col-8">
-                      <input type="text" class="form-control"  [(ngModel)]="knitting.remarks" name="Remarks">
+                    <div class="col-5">
+                      <textarea class="form-control"  [(ngModel)]="knitting.remarks" name="Remarks"></textarea>
                         
                     </div>
                   </div>

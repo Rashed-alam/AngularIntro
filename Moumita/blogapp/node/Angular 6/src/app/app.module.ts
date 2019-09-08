@@ -20,6 +20,7 @@ import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { BlogComponent } from './blog/blog.component';
 import { BlogService } from './shared/blog.service';
 import { KnittingComponent } from './knitting/knitting.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,9 +41,9 @@ import { KnittingComponent } from './knitting/knitting.component';
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
+  useClass: AuthInterceptor, 
     multi: true
-  },AuthGuard,UserService, BlogService],
+  },AuthGuard,UserService, BlogService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -21,7 +21,7 @@ legend{
 }
 .custom_button{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 /* global css */
 
@@ -40,3 +40,7 @@ legend{
     white-space: nowrap;
 }
 
+.knitting_balance .parent_fieldset{
+    font-size: 14px;
+    white-space: nowrap;
+}
