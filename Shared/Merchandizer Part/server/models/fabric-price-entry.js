@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const FabricPriceEntrySchema = new mongoose.Schema({
-    referenceId: {type: String, required: true},
+    referenceId: {type: String, required: true,unique: true},
     mailDate:{type: String, default:null},
     entryDate:{type: String, default:null},
     buyerName:{type: String, default: null},
@@ -32,7 +32,6 @@ const FabricPriceEntrySchema = new mongoose.Schema({
         perUnitPrice:{type:String}
     }]
 })
-
 
 FabricPriceEntrySchema.plugin(AutoIncrement, { inc_field: 'auto_id' }); 
 module.exports = mongoose.model('fabric-price-entry', FabricPriceEntrySchema);
