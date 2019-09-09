@@ -17,6 +17,6 @@ export class Knitting {
     balance: number;
     extra: number
 
-    
+
 
 }

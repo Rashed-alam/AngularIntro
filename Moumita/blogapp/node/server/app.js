@@ -11,6 +11,7 @@ const passport = require('passport');
 const rtsIndex = require('./routes/index.router');
 const blog = require('./routes/blogApi');
 const knitting = require('./routes/knittingApi');
+const order = require('./routes/orderApi');
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use(passport.initialize());
 app.use('/api', rtsIndex);
 app.use('/blog',blog);
 app.use(knitting);
+app.use(order);
 
 
 // error handler
