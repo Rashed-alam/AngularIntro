@@ -1,0 +1,46 @@
+/* global css */
+fieldset{
+    border-width: .5px;
+    border-style: groove;
+    border-color: threedface;
+    border-image: initial;
+    border-color: #000;
+    padding: 0 15px;
+}
+
+legend{
+    width: auto;
+    font-size: 16px;
+}
+
+.bg_color_one{
+    background: #c3d2d6;
+}
+.bg_color_two{
+    background: #8e8d8d;
+}
+.custom_button{
+    display: flex;
+    justify-content: center;
+}
+/* global css */
+
+.knitting_balance .target_form{
+    padding: 2% 0 4% 0;
+}
+
+.knitting_balance table td{
+    border: none;
+    padding: 3px;
+}
+
+.knitting_balance .child_fieldset{
+    color: #fff;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.knitting_balance .parent_fieldset{
+    font-size: 14px;
+    white-space: nowrap;
+}
