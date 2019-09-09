@@ -21,9 +21,10 @@ import { SizelistService } from '../shared/sizelist.service';
 import { DirectorApprovalComponent } from './director-approval/director-approval.component';
 import { PriceCalculationComponent } from './price-calculation/price-calculation.component';
 import { CurrencyService } from 'src/shared/currency.service';
-
+import { FabricPriceServiceService} from 'src/app/services/fabric-price-service.service'; 
 import { FabricPriceService } from 'src/shared/fabric-price.service'; 
 import { FabricPriceCalculationComponent } from './fabric-price-calculation/fabric-price-calculation.component';
+import { FabricPriceComponent } from './components/fabric-price/fabric-price.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { FabricPriceCalculationComponent } from './fabric-price-calculation/fabr
     ReportComponent,
     DirectorApprovalComponent,
     PriceCalculationComponent,
-    FabricPriceCalculationComponent
+    FabricPriceCalculationComponent,
+    FabricPriceComponent
     
   ],
   imports: [
@@ -47,7 +49,7 @@ import { FabricPriceCalculationComponent } from './fabric-price-calculation/fabr
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [BuyersService,UnitofmeasurementService,
     SleeveTypeService,FabricTypeService, DatePipe, 
-    ItemNameService,SizelistService,CurrencyService,FabricPriceService],
+    ItemNameService,SizelistService,CurrencyService,FabricPriceService,FabricPriceServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

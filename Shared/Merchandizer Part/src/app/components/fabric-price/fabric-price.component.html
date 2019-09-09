@@ -1,0 +1,53 @@
+<!-- FOR SHOWING ALL THE ENTRIES IN THE TABLE -->
+<table class="table table-bordered" style="font-size: 12px;">
+    <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Ref-ID</th>
+            <th scope="col">Style Code</th>
+            <th scope="col">Fabric amount<br>(kg/dozen)</th>
+            <th scope="col">Fabric Unit Price</th>
+            <th scope="col">Fabric total Price</th>
+            <th scope="col">RIB</th>
+            <th scope="col">CM</th>
+            <th scope="col">TRIM</th>
+            <th scope="col">Print</th>
+            <th scope="col">DOC</th>
+            <th scope="col">Per Dozen Price</th>
+            <th scope="col">Per Unit Price</th>
+
+        </tr>
+    </thead>
+    <tbody>
+         <tr *ngFor="let p of allEntry,index as i">
+            <td>{{i+1}}</td>
+            <td>{{p.referenceId}}</td>
+            <td>{{p.fabricPriceInformation[0].styleCode}}</td>
+            <td>{{p.fabricPriceInformation[0].fabricWeight}}</td>
+            <td>{{p.fabricPriceInformation[0].fabricUnitPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].fabricTotalPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].rimPrice+p.fabricPriceInformation[0].currency }}</td>
+            <td>{{p.fabricPriceInformation[0].cmPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].trimPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].printPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].docPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].perDozenPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].perUnitPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>
+                <a class="btn text-success" (click)="onedit(p)">
+                    <i class="fa fa-edit"></i>
+                </a>
+
+            </td>
+
+            <td>
+                <a class="btn text-danger" (click)="ondelete(p)" >
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+
+        </tr> 
+
+    </tbody>
+</table>
+<!-- END OF THE TABLE -->
