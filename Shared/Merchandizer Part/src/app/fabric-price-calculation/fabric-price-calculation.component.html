@@ -2,7 +2,7 @@
     <div class="card" style="margin-top: 1rem; margin-left: 10rem;margin-right: 10rem;">
         <!-- upper part -->
         <h5 style="text-align: center;"><strong></strong></h5>
-        <div class="card-body" style="margin-bottom: -1.75rem; margin-top: -1rem;">
+        <div class="card-body" style="margin-bottom: 0rem; margin-top: -1rem;">
                 <div class="row">
                   <div class="col-md-3">
                       <div class="form-inline " >
@@ -104,15 +104,14 @@
                     </div>
                   </div>
         </div>
-      
         <!-- end of upper part -->
-    <div class="container">
+        <div class="container">
         <div class="row">
         <!--lower left side -->
         <div class="col">
                 <div class="card">
                         <div class="card-body">
-                                <h5 class="card-title" style="text-align: center; margin-top: 0rem; padding-bottom: 0%">Fabric Calculation</h5>
+                                <h5 class="card-title" style="text-align: center; margin-top: 0rem; margin-bottom: 0rem">Fabric Calculation</h5>
                                     <div class="input-group mb-2">
                                       <div class="input-group-prepend">
                                         <div class="input-group-text">Style Code</div>
@@ -140,128 +139,122 @@
                                           <option value="{{s.Sleeve_name}}" *ngFor="let s of allSleeveType">{{s.Sleeve_name}}</option>
                                         </select>
                                       </div>
-                                </div>
-                               <br>
-                               <h5 style="text-align: center; padding-bottom: 0%">Measurements</h5>
-                        <div class="card-body" style="margin-bottom: -1rem; margin-top: -1rem">
-                                    <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
-                                        <div class="input-group-prepend">
-                                          <label class="input-group-text" for="inputGroupSelect01">Waste Percentage:</label>
-                                        </div>
-                                        <input type="text" class="form-control" id="inputEmail3" minlength="1" placeholder="%" style="width: 30%"
-                                         name="fabricpriceservice.currentFabricCalc.waste_percentage" [(ngModel)]="fabricpriceservice.currentFabricCalc.waste_percentage" required>
-                                        
-                                      </div>
-                                    
-                                      <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="JacketSelected">
+
+                                      <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
                                           <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Bottom:</label>
+                                            <label class="input-group-text" for="inputGroupSelect01">Waste Percentage:</label>
                                           </div>
-                                          <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 17%" 
-                                          name="fabricpriceservice.currentFabricCalc.bottom" [(ngModel)]="fabricpriceservice.currentFabricCalc.bottom">
-                                          <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.bottom_unit_of_measurement" 
-                                          [(ngModel)]="fabricpriceservice.currentFabricCalc.bottom_unit_of_measurement" >
-                                              
-                                              <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
-                                            </select>
+                                          <input type="text" class="form-control" id="inputEmail3" minlength="1" placeholder="%" style="width: 30%"
+                                           name="fabricpriceservice.currentFabricCalc.waste_percentage" [(ngModel)]="fabricpriceservice.currentFabricCalc.waste_percentage" required>
+                                          
                                         </div>
+                                      
                                         <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="JacketSelected">
                                             <div class="input-group-prepend">
-                                              <label class="input-group-text" for="inputGroupSelect01">Hood:</label>
+                                              <label class="input-group-text" for="inputGroupSelect01">Bottom:</label>
                                             </div>
-                                            <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 22%" 
-                                            name="fabricpriceservice.currentFabricCalc.hood" [(ngModel)]="fabricpriceservice.currentFabricCalc.hood" >
-                                            <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.hood_unit_of_measurement" 
-                                            [(ngModel)]="fabricpriceservice.currentFabricCalc.hood_unit_of_measurement" >
+                                            <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 17%" 
+                                            name="fabricpriceservice.currentFabricCalc.bottom" [(ngModel)]="fabricpriceservice.currentFabricCalc.bottom">
+                                            <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.bottom_unit_of_measurement" 
+                                            [(ngModel)]="fabricpriceservice.currentFabricCalc.bottom_unit_of_measurement" >
                                                 
                                                 <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                                               </select>
                                           </div>
-                                          <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="ShortsSelected">
+                                          <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="JacketSelected">
                                               <div class="input-group-prepend">
-                                                <label class="input-group-text" for="inputGroupSelect01">2/1 Thigh:</label>
+                                                <label class="input-group-text" for="inputGroupSelect01">Hood:</label>
                                               </div>
-                                              <input type="text" pattern="[0-9]" title="Three digit input"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 15%" 
-                                              name="fabricpriceservice.currentFabricCalc.thigh" [(ngModel)]="fabricpriceservice.currentFabricCalc.thigh" >
-                                                  <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.thigh_unit_of_measurement" 
-                                                  [(ngModel)]="fabricpriceservice.currentFabricCalc.thigh_unit_of_measurement" >
-                                                      
-                                                      <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
-                                                    </select>
+                                              <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 22%" 
+                                              name="fabricpriceservice.currentFabricCalc.hood" [(ngModel)]="fabricpriceservice.currentFabricCalc.hood" >
+                                              <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.hood_unit_of_measurement" 
+                                              [(ngModel)]="fabricpriceservice.currentFabricCalc.hood_unit_of_measurement" >
+                                                  
+                                                  <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                                </select>
                                             </div>
                                             <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="ShortsSelected">
                                                 <div class="input-group-prepend">
-                                                  <label class="input-group-text" for="inputGroupSelect01">Pocket:</label>
+                                                  <label class="input-group-text" for="inputGroupSelect01">2/1 Thigh:</label>
                                                 </div>
-                                                <input type="text" class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 22%" 
-                                                name="fabricpriceservice.currentFabricCalc.pocket" [(ngModel)]="fabricpriceservice.currentFabricCalc.pocket" >
-                                                  <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.pocket_unit_of_measurement" 
-                                                  [(ngModel)]="fabricpriceservice.currentFabricCalc.pocket_unit_of_measurement" >
-                                                      
-                                                      <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
-                                                    </select>
+                                                <input type="text" pattern="[0-9]" title="Three digit input"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 15%" 
+                                                name="fabricpriceservice.currentFabricCalc.thigh" [(ngModel)]="fabricpriceservice.currentFabricCalc.thigh" >
+                                                    <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.thigh_unit_of_measurement" 
+                                                    [(ngModel)]="fabricpriceservice.currentFabricCalc.thigh_unit_of_measurement" >
+                                                        
+                                                        <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                                      </select>
                                               </div>
-                                              <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected">
+                                              <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="ShortsSelected">
                                                   <div class="input-group-prepend">
-                                                    <label class="input-group-text" for="inputGroupSelect01">Chest:</label>
+                                                    <label class="input-group-text" for="inputGroupSelect01">Pocket:</label>
                                                   </div>
-                                                  <input type="text"class="form-control" id="chest" minlength="2" placeholder="0" style="width: 37%" 
-                                                  name="fabricpriceservice.currentFabricCalc.chest" [(ngModel)]="fabricpriceservice.currentFabricCalc.chest">
-                                                  <select class="custom-select" style="width:40%" name="fabricpriceservice.currentFabricCalc.chest_unit_of_measurement" 
-                                                  [(ngModel)]="fabricpriceservice.currentFabricCalc.chest_unit_of_measurement">
-                                                     
-                                                      <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
-                                                    </select>
+                                                  <input type="text" class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 22%" 
+                                                  name="fabricpriceservice.currentFabricCalc.pocket" [(ngModel)]="fabricpriceservice.currentFabricCalc.pocket" >
+                                                    <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.pocket_unit_of_measurement" 
+                                                    [(ngModel)]="fabricpriceservice.currentFabricCalc.pocket_unit_of_measurement" >
+                                                        
+                                                        <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                                      </select>
                                                 </div>
-                                              <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected || ShortsSelected">
-                                                  <div class="input-group-prepend">
-                                                    <label class="input-group-text" for="inputGroupSelect01">Length:</label>
-                                                  </div>
-                                                  <input type="text"class="form-control" id="length" minlength="2" placeholder="0" style="width: 22%" 
-                                                  name="fabricpriceservice.currentFabricCalc.length" [(ngModel)]="fabricpriceservice.currentFabricCalc.length">
-                                                  <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.length_unit_of_measurement" 
-                                                  [(ngModel)]="fabricpriceservice.currentFabricCalc.length_unit_of_measurement" >
-                                                      
-                                                      <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
-                                                    </select>
-                                                </div>
-                                          
-                                              <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected">
-                                                  <div class="input-group-prepend">
-                                                    <label class="input-group-text" for="inputGroupSelect01">Sleeve:</label>
-                                                  </div>
-                                                  <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 24%" 
-                                                  name="fabricpriceservice.currentFabricCalc.sleeve" [(ngModel)]="fabricpriceservice.currentFabricCalc.sleeve">
-                                                  <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.sleeve_unit_of_measurement" 
-                                                  [(ngModel)]="fabricpriceservice.currentFabricCalc.sleeve_unit_of_measurement">
-                                                    
-                                                      <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
-                                                    </select>
-                                                </div>
-                                              
-                                                <button type="button" class="btn btn-outline-info" style="margin-left: 13rem;" (click)="calculate1()" *ngIf="BoysTshirtSelected || JacketSelected || ShortsSelected">
-                                                    Calculate
-                                                   </button>
-                                                <div class="input-group mb-3" style="margin-bottom: rem; margin-top: 1rem">
+                                                <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected">
                                                     <div class="input-group-prepend">
-                                                      <label class="input-group-text" for="inputGroupSelect01">Fabric Weight</label>
+                                                      <label class="input-group-text" for="inputGroupSelect01">Chest:</label>
                                                     </div>
-                                                    <input type="text" class="form-control"  disabled style="width: 24%;" 
-                                                    name="fabricWeight" [(ngModel)]="fabricWeight">kg/per dozen
+                                                    <input type="text"class="form-control" id="chest" minlength="2" placeholder="0" style="width: 37%" 
+                                                    name="fabricpriceservice.currentFabricCalc.chest" [(ngModel)]="fabricpriceservice.currentFabricCalc.chest">
+                                                    <select class="custom-select" style="width:40%" name="fabricpriceservice.currentFabricCalc.chest_unit_of_measurement" 
+                                                    [(ngModel)]="fabricpriceservice.currentFabricCalc.chest_unit_of_measurement">
+                                                       
+                                                        <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                                      </select>
                                                   </div>
-                      
-                                               
-                      
-                                </div>
+                                                <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected || ShortsSelected">
+                                                    <div class="input-group-prepend">
+                                                      <label class="input-group-text" for="inputGroupSelect01">Length:</label>
+                                                    </div>
+                                                    <input type="text"class="form-control" id="length" minlength="2" placeholder="0" style="width: 22%" 
+                                                    name="fabricpriceservice.currentFabricCalc.length" [(ngModel)]="fabricpriceservice.currentFabricCalc.length">
+                                                    <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.length_unit_of_measurement" 
+                                                    [(ngModel)]="fabricpriceservice.currentFabricCalc.length_unit_of_measurement" >
+                                                        
+                                                        <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                                      </select>
+                                                  </div>
+                                            
+                                                <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="BoysTshirtSelected || JacketSelected">
+                                                    <div class="input-group-prepend">
+                                                      <label class="input-group-text" for="inputGroupSelect01">Sleeve:</label>
+                                                    </div>
+                                                    <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 24%" 
+                                                    name="fabricpriceservice.currentFabricCalc.sleeve" [(ngModel)]="fabricpriceservice.currentFabricCalc.sleeve">
+                                                    <select class="custom-select" style="width: auto" name="fabricpriceservice.currentFabricCalc.sleeve_unit_of_measurement" 
+                                                    [(ngModel)]="fabricpriceservice.currentFabricCalc.sleeve_unit_of_measurement">
+                                                      
+                                                        <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                                      </select>
+                                                  </div>
+                                                
+                                                  <button type="button" class="btn btn-outline-info" style="margin-left: 13rem;" (click)="calculate1()" *ngIf="BoysTshirtSelected || JacketSelected || ShortsSelected">
+                                                      Calculate
+                                                     </button>
+                                                  <div class="input-group mb-3" style="margin-bottom: rem; margin-top: 1rem">
+                                                      <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="inputGroupSelect01">Fabric Weight</label>
+                                                      </div>
+                                                      <input type="text" class="form-control"  disabled style="width: 24%;" 
+                                                      name="fabricWeight" [(ngModel)]="fabricWeight">kg/per dozen
+                                                    </div>
+                        </div>
                 </div>
         </div>
         <!-- end of lower left side -->
         <!-- lower right side -->
         <div class="col" >
                 <div class="card">
-                        <h5 class="card-title" style="text-align: center; margin-top: 1rem; margin-bottom:-2rem;">Price Calculation</h5>
+                        <h5 class="card-title" style="text-align: center; margin-top: 1rem; margin-bottom:-1rem;">Price Calculation</h5>
                         <div class="card-body" style="max-width: 21rem; margin-bottom:-0.5rem;">
-                                <div class="row" style="margin-top:1rem">
+                                <!-- <div class="row" style="margin-top:1rem">
                                     <div class="input-group mb-2" style="margin-left:1rem; ">
                                                 <div class="input-group-prepend">
                                                   <div class="input-group-text">Fabric Amount:</div>
@@ -269,7 +262,7 @@
                                                 <input type="text" id="refNo" class="form-control" style="width: 30%"
                                         value="{{fabricWeight}}kg/dozen" style="width: 40%" readonly>
                                               </div>
-                                </div>
+                                </div> -->
             
                                 <div class="input-group mb-2">
                                         <div class="input-group-prepend">
@@ -378,8 +371,8 @@
         </div>
         <!-- end of lower right side -->
     </div>
-</div>
-<hr>
+  </div>
+  <hr>
     <div class="container">
   <div class="row justify-content-md-center">
     <div class="col col-lg-2">
@@ -406,7 +399,7 @@
     Something went wrong, try again later.
   </div>
     </div>
-
+  
     <div class="alert alert-danger" role="alert" *ngIf="showdeletemessage" style="align-content: center;">
         Entry Deleted.
       </div>
@@ -466,12 +459,8 @@
       
                               </tbody>
                           </table>
-
-</div>
-<br> <hr>
-
-                  
-              
-          
- 
-
+  
+  </div>
+  
+  
+                
