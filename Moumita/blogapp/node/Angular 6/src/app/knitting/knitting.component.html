@@ -44,7 +44,7 @@
                     <div class="row mb-2">
                         <div class="col-4 text-right">Order No:</div>
                         <div class="col-8">
-                          <select class="custom-select" [(ngModel)]="knitting.orderNo" name="orderNo">
+                          <select class="custom-select" [(ngModel)]="knitting.orderNo" (change)= getValue() name="orderNo">
                     <option value="">Order No:</option>
                     <option value="2">1</option>
                     <option value="3">2</option>
@@ -64,7 +64,6 @@
                   </div>
                   </div>
                   </td>
-
               </tr>
               <tr>
                 <td>
@@ -191,13 +190,25 @@
                       </div>
                     </div>
 
-                  <div class="row mb-2">
+                    <div class="row mb-2">
+                      <div class="col-4 text-right">Per-Shift Capacity</div>
+                      <div class="col-3">
+                        <input type="text"  readonly class="form-control" [(ngModel)]="knitting.capacity" name="capacity"
+                          placeholder="250">
+                      </div>
+                      <div class="col-2">
+                        <input type="text" class="form-control" readonly placeholder="kg">
+
+                      </div>
+                    </div>
+
+                  <!-- <div class="row mb-2">
                     <div class="col-4 text-right">Per-Shift Capacity</div>
                     <div class="col-5">
                       <input type="text" readonly class="form-control" [(ngModel)]="knitting.capacity" name="capacity"
                         placeholder="250kg">
                     </div>
-                  </div>
+                  </div> -->
 
 
                   <div class="row mb-2">

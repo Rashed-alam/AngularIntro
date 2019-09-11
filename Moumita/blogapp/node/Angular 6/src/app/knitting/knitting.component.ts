@@ -4,6 +4,8 @@ import { KnittingService } from '../shared/Knitting.service';
  import {Knitting} from '../shared/knitting';
  import { send } from 'q';
  import { DatePipe } from '@angular/common';
+ import {Order} from '../shared/order';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-knitting',
@@ -27,6 +29,7 @@ export class KnittingComponent implements OnInit {
    this.knitting.date = this.datePipe.transform(this.myDate, 'dd-MM-yyyy');
   }
   createTarget(){
+  
     this.knittingService.createTarget(this.knitting).subscribe()
  }
  sendTo(){
@@ -38,6 +41,15 @@ export class KnittingComponent implements OnInit {
     // alert('machine slow')
   }
   }
+
+  getValue(){
+//console.log(this.knitting.orderNo)
+ this.knittingService.getData(this.knitting.Order).subscribe(data =>{
+   console.log(data)
+ });
+  }
+
+
 
  getBalance(){
 
