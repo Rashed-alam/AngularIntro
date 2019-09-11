@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { BuyersService } from 'src/shared/buyers.service';
-import { Buyers } from 'src/shared/buyers.model';
+import { BuyersService } from 'src/app/services/buyers.service';
+import { Buyers } from 'src/app/models/buyers.model';
 import { UnitofmeasurementService } from 'src/shared/unitofmeasurement.service';
 import { UoM } from 'src/shared/unitofmeasurement.model';
 import { Sleeves } from 'src/shared/sleeves.model';
 import { SleeveTypeService } from 'src/shared/sleeve-type.service';
-import { FabricType } from 'src/shared/fabric-type.model';
-import { FabricTypeService } from 'src/shared/fabric-type.service';
+import { FabricType } from 'src/app/models/fabric-type.model';
+import { FabricTypeService } from 'src/app/services/fabric-type.service';
 import { DatePipe } from '@angular/common';
-import { ItemNameService } from 'src/shared/item-name.service';
+import { ItemNameService } from 'src/app/services/item-name.service';
 import { NgForm } from '@angular/forms';
-import { Items } from 'src/shared/item.model';
+import { Items } from 'src/app/models/item.model';
 import { FabricPriceService } from 'src/shared/fabric-price.service';
 import { FabricCalulation } from 'src/shared/fabricCalculation.model';
-import { SizelistService } from 'src/shared/sizelist.service';
-import { SizeList } from 'src/shared/sizelist.model';
+import { SizelistService } from 'src/app/services/sizelist.service';
+import { SizeList } from 'src/app/models/sizelist.model';
 import { Router } from "@angular/router";
 import { parseDate } from 'ngx-bootstrap';
 

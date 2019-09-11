@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { FabricType } from './fabric-type.model';
+import { FabricType } from '../models/fabric-type.model';
 
 const headerOption = {
   headers: new HttpHeaders({ 'Content-Type' : 'application/json' })

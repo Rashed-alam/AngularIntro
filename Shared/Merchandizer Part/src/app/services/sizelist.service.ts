@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SizeList } from './sizelist.model';
+import { SizeList } from '../models/sizelist.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
