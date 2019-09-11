@@ -1,4 +1,111 @@
+<div class="container">
+    <div class="card" style="margin-top: 1rem; margin-left: 5rem;margin-right: 5rem;">
+        <!-- UPPER PART- BASIC INFORMATION -->
+        <div class="card-body" style="margin-bottom: 0rem; margin-top: -1rem;">
+            <div class="row">
+              <div class="col-md-3">
+                  <div class="form-inline " >
+         
+                      <label >ID: </label>
+                     <input class="form-control" type="text" placeholder="" style="width: 40%;padding-left:1rem;" disabled>
+                    </div>
+              </div>
 
+              <div class="col-md-4">
+                <div class="form-inline">
+            <!-- <input type="text" name="dateRangeStartDate" #txtVoucherDate1ID="ngModel" [(ngModel)]="dateRangeStartDate"
+                           style="width: 100%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+                           class="form-control" [minDate]="minDate" [maxDate]="maxDate"> -->
+                          <label for="formGroupExampleInput"> Mail Date: </label>
+                           <input type="text" id="mailDate" name="fabricpriceservice.currentFabricCalc.mailDate" [(ngModel)]="fabricpriceservice.currentFabricCalc.mailDate"
+                            placeholder="{{today}}" 
+                           style="width: 50%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+                           class="form-control" #mailDate="ngModel" required>
+                          </div>
+              </div>
+              <div class="col-md-4">
+                    <div class="form-inline">
+                <!-- <input type="text" name="dateRangeStartDate" #txtVoucherDate1ID="ngModel" [(ngModel)]="dateRangeStartDate"
+                               style="width: 100%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+                               class="form-control" [minDate]="minDate" [maxDate]="maxDate"> -->
+                              <label for="formGroupExampleInput"> Entry Date: </label>
+                              <input type="text" id="entryDate" placeholder="{{today}}" name="fabricpriceservice.currentFabricCalc.entryDate" [(ngModel)]="fabricpriceservice.currentFabricCalc.entryDate"
+                              style="width: 50%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+                              class="form-control" #entryDate="ngModel" required>
+                              </div>
+                  </div>
+              </div>
+              <br> 
+              <div class="row" style="margin-top:-1rem; margin-bottom:-0.5rem;">
+                  <div class="col-6" style="margin-left: 0% ">
+                      
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">Ref. No: </div>
+                            </div>
+                            <input type="text" id="refNo" class="form-control" [disabled]="hiddingrefIdandStyleCode" style="width: 30%" placeholder="Enter Reference Number"
+                          name="fabricpriceservice.currentFabricCalc.refNo" 
+                          [(ngModel)]="fabricpriceservice.currentFabricCalc.refNo" #refNo="ngModel"required>
+                          </div>
+                  </div>
+                </div>
+                
+                <br>
+              <div class="row" style="margin-top:-1rem; margin-bottom:0.5rem;">
+                  <div class="col-10"> 
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Buyer Name:</label>
+                    </div>
+                    <select class="custom-select" id="buyer_name" style="width: 5rem;"  name="fabricpriceservice.currentFabricCalc.buyer_name" 
+                    [(ngModel)]="fabricpriceservice.currentFabricCalc.buyer_name" #buyer_name="ngModel" 
+                    required>
+                      <option value="{{b.name}}" *ngFor="let b of allBuyers">{{b.name}} | Address: {{b.house}},{{b.road}},{{b.area}} </option>
+                
+                    </select> 
+        
+                  
+                  </div>
+                  <!-- <p style="margin-left: 7rem; margin-top: -1rem; margin-bottom: 3rem;">Address:</p> -->
+                  
+                  
+                </div>
+                 <div class="col-2" style="margin-left: -1rem;">
+                  <button class="button" class="btn btn-outline-info">New Buyer</button>
+                 </div>
+                </div> 
+                <div class="row" style="margin-bottom:-0.5rem;">
+                  <div class="col-6">
+                <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: -1rem">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Size:</label>
+                  </div>
+                  <select class="custom-select" id="size" name="fabricpriceservice.currentFabricCalc.size"
+                   [(ngModel)]="fabricpriceservice.currentFabricCalc.size" #size="ngModel" required>
+                   
+                      <option value="{{s.size_name}}" *ngFor="let s of allSize">{{s.size_name}}</option>
+                    </select>
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">
+                        New Size
+                       </button>
+                </div>
+              </div>
+              <div class="col-6" style="margin-top: -2rem;">
+                <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Fabrics:</label>
+                    </div>
+                    <select class="custom-select" style="width: 70%" id="fabrics" name="fabricpriceservice.currentFabricCalc.fabrics" 
+                    [(ngModel)]="fabricpriceservice.currentFabricCalc.fabrics" #fabrics="ngModel" required>
+                        <option value="{{f.fabric_name}}" *ngFor="let f of allFabricType">GSM-{{f.fabric_name}}</option>
+                      </select>
+                  </div>  
+                </div>
+              </div>
+    </div>
+        <!-- END OF UPPER PART -->
+    </div>
+</div>
 
 
 <!-- FOR SHOWING ALL THE ENTRIES IN THE TABLE -->

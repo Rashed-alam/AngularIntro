@@ -144,6 +144,28 @@ router.put('/update/:referenceId/:styleCode',function(req,res,next){
 });
 });
 
+//this part is for fetching back the entry AUtoID from database
+router.get('/',function(req,res,next){
+    FabricPriceEntrySchema.find({},('auto_id')).sort({"auto_id":-1}).limit(1)
+    .then(data => {
+        var l = data.length;
+        if(l>0){
+            const FabricID = Number( data[0].auto_id + 1);
+            res.send({FabricID});
+            
+        } else {
+            const FabricID = Number(1); // can change 
+           res.send({FabricID});
+          
+        }
+    }).catch(err => {
+    res.status(500).send({
+        message: err.message || "Error while getting Server Data"
+    });
+});
+ });
+
+
 
 
 

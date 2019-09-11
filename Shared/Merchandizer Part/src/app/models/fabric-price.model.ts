@@ -1,4 +1,5 @@
 export class FabricPriceModel{
+    auto_id: String;
     mailDate : string;
     entryDate : string;
     buyerName : string;

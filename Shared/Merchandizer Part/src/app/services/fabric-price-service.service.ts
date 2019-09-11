@@ -17,6 +17,7 @@ export class FabricPriceServiceService {
   constructor(private httpcall: HttpClient) { }
 
   currentEntry: FabricPriceModel = {
+    auto_id: '',
     mailDate : '',
     entryDate : '',
     buyerName : '',
@@ -64,4 +65,9 @@ export class FabricPriceServiceService {
   deleteEntry(entry: FabricPriceModel): Observable<FabricPriceModel[]>{
     return this.httpcall.delete<FabricPriceModel[]>(this.url1+'/delete/'+ entry.referenceId + '/' + entry.fabricPriceInformation[0].styleCode, headerOption);
   }
+
+  getFabricEntry_ID(){
+    return this.httpcall.get(this.url1+'/', headerOption);
+  }
+
 }
