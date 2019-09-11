@@ -1,5 +1,6 @@
-<form name="mainform" (ngSubmit)="mainform.form.valid && onsubmit(FabPriService.currentEntry)" #mainform="ngForm" novalidate>
+
 <div class="container">
+    <form name="mainform" (ngSubmit)="onsubmit(FabPriService.currentEntry)" #mainform="ngForm" novalidate>
     <div class="card" style="margin-top: 1rem; margin-left: 5rem;margin-right: 5rem;">
         <!-- UPPER PART- BASIC INFORMATION -->
         <div class="card-body" style="margin-bottom: -1rem; margin-top: -1rem;">
@@ -392,10 +393,10 @@
           </div>
         <!-- END OF LOWER PART -->
         <div class="row">
-          <div class="col"><button type="button" class="btn btn-success" style="margin-left: 22rem; "
+          <div class="col"><button type="submit" class="btn btn-success" style="margin-left: 25rem; "
             [disabled]="mainform.form.pristine || mainform.form.invalid">Save</button>
        </div>
-          <div class="col"> <button type="button" class="btn btn-danger" style="margin-left: -2rem;"
+          <div class="col"> <button type="button" class="btn btn-danger" style="margin-left: -1rem;"
             (click)="clearAll()">Clear All</button></div>
         </div>
     </div>
@@ -409,8 +410,9 @@
       <div  class="alert alert-danger" role="alert" *ngIf="serverErrorMessages" style="align-content: center">
         Something went wrong, try again later. Thank you. 
       </div>
+    </form>
 </div>
-</form>
+
 <br>
 <br>
 <!-- FOR SHOWING ALL THE ENTRIES IN THE TABLE -->
@@ -437,17 +439,17 @@
          <tr *ngFor="let p of allEntry,index as i">
             <td>{{i+1}}</td>
             <td>{{p.referenceId}}</td>
-            <td>{{p.fabricPriceInformation[i].styleCode}}</td>
-            <td>{{p.fabricPriceInformation[i].fabricWeight}}</td>
-            <td>{{p.fabricPriceInformation[i].fabricUnitPrice+p.fabricPriceInformation[i].currency}}</td>
-            <td>{{p.fabricPriceInformation[i].fabricTotalPrice+p.fabricPriceInformation[i].currency}}</td>
-            <td>{{p.fabricPriceInformation[i].rimPrice+p.fabricPriceInformation[i].currency }}</td>
-            <td>{{p.fabricPriceInformation[i].cmPrice+p.fabricPriceInformation[i].currency}}</td>
-            <td>{{p.fabricPriceInformation[i].trimPrice+p.fabricPriceInformation[i].currency}}</td>
-            <td>{{p.fabricPriceInformation[i].printPrice+p.fabricPriceInformation[i].currency}}</td>
-            <td>{{p.fabricPriceInformation[i].docPrice+p.fabricPriceInformation[i].currency}}</td>
-            <td>{{p.fabricPriceInformation[i].perDozenPrice+p.fabricPriceInformation[i].currency}}</td>
-            <td>{{p.fabricPriceInformation[i].perUnitPrice+p.fabricPriceInformation[i].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].styleCode}}</td>
+            <td>{{p.fabricPriceInformation[0].fabricWeight}}</td>
+            <td>{{p.fabricPriceInformation[0].fabricUnitPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].fabricTotalPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].rimPrice+p.fabricPriceInformation[0].currency }}</td>
+            <td>{{p.fabricPriceInformation[0].cmPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].trimPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].printPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].docPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].perDozenPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].perUnitPrice+p.fabricPriceInformation[0].currency}}</td>
             <td>
                 <a class="btn text-success" (click)="onedit(p)">
                     <i class="fa fa-edit"></i>

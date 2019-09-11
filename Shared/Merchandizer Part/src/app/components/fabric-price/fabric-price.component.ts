@@ -36,6 +36,8 @@ export class FabricPriceComponent implements OnInit {
   fabricWeight: any;
   newcurrency;
   setcurrency;
+  showsuccessmessageforsubmitting: boolean = false;
+  serverErrorMessages: any = false;
 
   constructor(public FabPriService: FabricPriceServiceService,
               private DP: DatePipe,
@@ -245,7 +247,7 @@ export class FabricPriceComponent implements OnInit {
     var step2;
     var step3: any = 0;
 
-console.log(this.fabricWeight);
+// console.log(this.fabricWeight);
 
     this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight = this.fabricWeight
     FabricAmount = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight ;
@@ -306,7 +308,24 @@ console.log(this.fabricWeight);
   }
 
   //after the form is submitted, 
-  onsubmit(){
-    
+  onsubmit(entry: any){
+    console.log(entry);
+    this.FabPriService.createEntry(entry)
+    .subscribe(
+      res => {
+        this.showsuccessmessageforsubmitting = true;
+        setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
+        console.log(res);
+        // this.getallFabricEntries();
+        this.clearAll();
+        // this.router.navigateByUrl('/price');
+      },
+      err => {
+        if (err.status === 422) {
+          this.serverErrorMessages = err.error.join('<br/>');
+        }
+        else
+          this.serverErrorMessages = "";
+      });
   }
 }
