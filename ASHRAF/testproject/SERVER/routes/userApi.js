@@ -43,17 +43,17 @@ router.post('/insert/:firstName',(req,res,next)=>{
 });
 
   //for deleting entries
-router.delete('/delete/:firstName/:phone',(req,res,next)=>{
-    UserSchema.findOne({firstName: req.params.firstName}).then(function(a){
-        console.log(a.info);
-      // UserSchema.update({_id : '5d70cd353ce91035504e1e87'}, {$pull : {  info : {phone: '1'}}});
-        UserSchema.findOneAndDelete([{phone:req.params.phone}]).then(function(x){
-         console.log(x);
+router.delete('/delete/',(req,res,next)=>{
+    // UserSchema.findOne({firstName: req.params.firstName}).then(function(a){
+    //     console.log(a.info);
+      UserSchema.update({'info.phone' : '123'}, {$pull : [{  'info.phone' : '123'},{'info.address' : 'malibagh'}]});
+       // UserSchema.findOneAndDelete([{phone:req.params.phone}]).then(function(x){
+        //  console.log(x);
             // UserSchema.deleteOne(x).then(function(b){
             //     res.send("deleted");
             // })
-        })
-    }).catch(next);
+//         })
+//     }).catch(next);
 });
 
-module.exports = router; 
+module.exports = router;
