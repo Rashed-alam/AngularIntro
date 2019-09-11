@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BuyersService } from 'src/app/services/buyers.service';
 import { Buyers } from 'src/app/models/buyers.model';
-import { UnitofmeasurementService } from 'src/shared/unitofmeasurement.service';
-import { UoM } from 'src/shared/unitofmeasurement.model';
+import { UnitofmeasurementService } from 'src/app/services/unitofmeasurement.service';
+import { UoM } from 'src/app/models/unitofmeasurement.model';
 import { Sleeves } from 'src/shared/sleeves.model';
 import { SleeveTypeService } from 'src/shared/sleeve-type.service';
 import { FabricType } from 'src/app/models/fabric-type.model';
@@ -16,7 +16,7 @@ import { SizelistService } from 'src/app/services/sizelist.service';
 import { SizeList } from 'src/app/models/sizelist.model';
 import { Router } from "@angular/router";
 import { parseDate } from 'ngx-bootstrap';
-import { CurrencyService } from 'src/shared/currency.service';
+import { CurrencyService } from 'src/app/services/currency.service';
 import { FabricPriceService } from 'src/shared/fabric-price.service';
 import { PriceCalculation } from 'src/shared/priceCalculation.model';
 
@@ -463,7 +463,7 @@ export class FabricPriceCalculationComponent implements OnInit {
   setCurrency(w) {
     this.setcurrency = w;
     this.fabricpriceservice.calculatePrice.PriceCurrency_UOM = this.setcurrency;
-    console.log(this.fabricpriceservice.calculatePrice.PriceCurrency_UOM);
+    // console.log(this.fabricpriceservice.calculatePrice.PriceCurrency_UOM);
   }
 
   onEnter(value: any) {

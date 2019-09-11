@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { FabricCalculationComponent } from './fabric-calculation/fabric-calculation.component';
 import { BuyersService } from './services/buyers.service';
-import { UnitofmeasurementService } from '../shared/unitofmeasurement.service';
+import { UnitofmeasurementService } from './services/unitofmeasurement.service';
 import { SleeveTypeService } from '../shared/sleeve-type.service';
 import { FabricTypeService } from './services/fabric-type.service';
 import { BsDatepickerModule } from 'ngx-bootstrap';
@@ -20,7 +20,7 @@ import { appRoutes } from './app-routing.module';
 import { SizelistService } from './services/sizelist.service';
 import { DirectorApprovalComponent } from './director-approval/director-approval.component';
 import { PriceCalculationComponent } from './price-calculation/price-calculation.component';
-import { CurrencyService } from 'src/shared/currency.service';
+import { CurrencyService } from 'src/app/services/currency.service';
 import { FabricPriceServiceService} from 'src/app/services/fabric-price-service.service'; 
 import { FabricPriceService } from 'src/shared/fabric-price.service'; 
 

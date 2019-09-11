@@ -1,7 +1,8 @@
+<form name="mainform" (ngSubmit)="mainform.form.valid && onsubmit(FabPriService.currentEntry)" #mainform="ngForm" novalidate>
 <div class="container">
     <div class="card" style="margin-top: 1rem; margin-left: 5rem;margin-right: 5rem;">
         <!-- UPPER PART- BASIC INFORMATION -->
-        <div class="card-body" style="margin-bottom: 0rem; margin-top: -1rem;">
+        <div class="card-body" style="margin-bottom: -1rem; margin-top: -1rem;">
             <div class="row">
               <div class="col-md-3">
                   <div class="form-inline " >
@@ -101,8 +102,8 @@
        </div>
         <!-- END OF UPPER PART -->
         <!-- MIDDLE PART- FABRIC CALCULATION -->
-            <div class="card" style="margin-top: -1rem;">
-                    <div class="card-body">
+            <div class="card" >
+                    <div class="card-body" style="margin-top: -1rem; margin-bottom:-2rem;">
                             <h5 class="card-title" style="text-align: left; margin-top: 0rem; margin-bottom: 1rem">Fabric Calculation</h5>
                             <div class="row">
                                 <div class="col">
@@ -205,9 +206,9 @@
                                                   <label class="input-group-text" for="inputGroupSelect01">Chest:</label>
                                                 </div>
                                                 <input type="text"class="form-control" id="chest" minlength="2" placeholder="0"
-                                                name="FabPriService.currentEntry.chest" [(ngModel)]="FabPriService.currentEntry.chest">
-                                                <select class="custom-select"  name="FabPriService.currentEntry.chest_unit_of_measurement" 
-                                                [(ngModel)]="FabPriService.currentEntry.chest_unit_of_measurement">
+                                                name="FabPriService.currentEntry.fabricPriceInformation[0].chestSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].chestSize">
+                                                <select class="custom-select"  name="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" 
+                                                [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" required>
                                                    
                                                     <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                                                   </select>
@@ -219,9 +220,9 @@
                                                   <label class="input-group-text" for="inputGroupSelect01">Length:</label>
                                                 </div>
                                                 <input type="text"class="form-control" id="length" minlength="2" placeholder="0" 
-                                                name="FabPriService.currentEntry.length" [(ngModel)]="FabPriService.currentEntry.length">
-                                                <select class="custom-select"  name="FabPriService.currentEntry.length_unit_of_measurement" 
-                                                [(ngModel)]="FabPriService.currentEntry.length_unit_of_measurement" >
+                                                name="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize">
+                                                <select class="custom-select"  name="FabPriService.currentEntry.fabricPriceInformation[0].lengthUom" 
+                                                [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].lengthUom" required>
                                                     
                                                     <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                                                   </select>
@@ -233,9 +234,9 @@
                                                   <label class="input-group-text" for="inputGroupSelect01">Sleeve:</label>
                                                 </div>
                                                 <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" 
-                                                name="FabPriService.currentEntry.sleeve" [(ngModel)]="FabPriService.currentEntry.sleeve">
-                                                <select class="custom-select" name="FabPriService.currentEntry.sleeve_unit_of_measurement" 
-                                                [(ngModel)]="FabPriService.currentEntry.sleeve_unit_of_measurement">
+                                                name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize">
+                                                <select class="custom-select" name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom" 
+                                                [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom" required>
                                                   
                                                     <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
                                                   </select>
@@ -264,10 +265,154 @@
                     </div>
             </div>
         <!-- END OF MIDDLE PART- FABRIC CALCULATION -->
+        <!-- LOWER PART- PRICE CALCULATION -->
+          <div class="card">  
+              
+              <div class="card-body" style="margin-bottom: -1rem; margin-top: -1rem;">
+                  <h5 class="card-title" style="text-align: left; margin-top: 0rem; margin-bottom:1rem;">Price Calculation</h5>
+                  <div class="row">
+                    <div class="col">
+                      <div class="input-group mb-2" style="margin-left: 0rem;">
+                          <div class="input-group-prepend">
+                                  <div class="input-group-text">Fabric Unit Price:</div>
+                                </div>
+                      <input type="text" id="refNo" class="form-control" name="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice"
+                          [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" required> 
+                      
+                    </div>
+                  </div>
+                    <div class="col">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                    <div class="input-group-text">Currency:</div>
+                                  </div>
+                                  <select class="custom-select" name="FabPriService.currentEntry.fabricPriceInformation[0].currency" 
+                                  [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].currency" id="Currency"
+                                   #cur (click)="setCurrency(cur.value)" required>
+                                      <option *ngFor="let i of newcurrency">
+                                          {{i.currencyName}}
+                                      </option>
+                                  </select>
+                        
+                      </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                    <div class="input-group-text">Fabric Total Price:</div>
+                                  </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                            value="{{FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice}}" disabled>
+                        <a style="padding: 6px;"> {{setcurrency}}</a>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="row" style="margin-top: 0rem;">
+                      <div class="col">
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                      <div class="input-group-text">RIM:</div>
+                                    </div>
+                          <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                          name="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice"
+                              [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                    <div class="input-group-text">CM:</div>
+                                  </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                        name="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice"
+                            [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice" required>
+                    </div>
+                  </div>
+                  <div class="col">
+                      <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                                  <div class="input-group-text">TRIM:</div>
+                                </div>
+                      <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                      name="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice"
+                          [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice" required>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                                <div class="input-group-text">Print:</div>
+                              </div>
+                    <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                    name="FabPriService.currentEntry.fabricPriceInformation[0].printPrice"
+                        [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].printPrice" required>
+                </div>
+              </div>
+              <div class="col">
+                  <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                              <div class="input-group-text">DOC:</div>
+                            </div>
+                  <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                  name="FabPriService.currentEntry.fabricPriceInformation[0].docPrice"
+                      [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].docPrice" required>
+              </div>
+            </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                      <div class="input-group-text">Per Dozen Price:</div>
+                                    </div>
+                      <input type="text" id="refNo" class="form-control" style="width: 30%"
+                           value="{{FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice}}" readonly="">
+                      <a style="padding: 6px;"> {{setcurrency}}</a>
+                  </div>
+                      </div>
+                      <div class="col">
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                      <div class="input-group-text">Per Unit Price:</div>
+                                    </div>
+                          <input type="text" id="refNo" class="form-control" style="width: 30%; "
+                               value="{{FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice}}" readonly="">
+                          <a style="padding: 6px;"> {{setcurrency}}</a>
+                      </div>
+                      </div>
+                      <div class="col">
+                          <button type="button" class="btn btn-outline-info" style="margin-left: 8rem;margin-bottom: 1rem;"
+                           (click)="calculatePrice()">
+                              Calculate
+                             </button>
+                      </div>
+                    </div>
+             </div>
+          </div>
+        <!-- END OF LOWER PART -->
+        <div class="row">
+          <div class="col"><button type="button" class="btn btn-success" style="margin-left: 22rem; "
+            [disabled]="mainform.form.pristine || mainform.form.invalid">Save</button>
+       </div>
+          <div class="col"> <button type="button" class="btn btn-danger" style="margin-left: -2rem;"
+            (click)="clearAll()">Clear All</button></div>
+        </div>
     </div>
+    <div  class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="align-content: center">
+        Entry Created successfully.
+      </div>
+      
+      <div  class="alert alert-success" role="alert" *ngIf="showeditmessage" style="align-content: center">
+        Entry Edited successfully. Data Saved.
+      </div>
+      <div  class="alert alert-danger" role="alert" *ngIf="serverErrorMessages" style="align-content: center">
+        Something went wrong, try again later. Thank you. 
+      </div>
 </div>
-
-
+</form>
+<br>
+<br>
 <!-- FOR SHOWING ALL THE ENTRIES IN THE TABLE -->
 <table class="table table-bordered" style="font-size: 12px;">
     <thead>

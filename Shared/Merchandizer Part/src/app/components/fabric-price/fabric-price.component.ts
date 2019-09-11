@@ -11,6 +11,9 @@ import { FabricType } from 'src/app/models/fabric-type.model';
 import { ItemNameService } from 'src/app/services/item-name.service';
 import { FabricTypeService } from 'src/app/services/fabric-type.service';
 import { Items } from 'src/app/models/item.model';
+import { UnitofmeasurementService } from 'src/app/services/unitofmeasurement.service';
+import { UoM } from 'src/app/models/unitofmeasurement.model';
+import { CurrencyService } from 'src/app/services/currency.service';
 
 @Component({
   selector: 'app-fabric-price',
@@ -29,13 +32,19 @@ export class FabricPriceComponent implements OnInit {
   BoysTshirtSelected: boolean = false;
   JacketSelected: boolean = false;
   ShortsSelected: boolean = false;
+  allUoM: UoM[];
+  fabricWeight: any;
+  newcurrency;
+  setcurrency;
 
   constructor(public FabPriService: FabricPriceServiceService,
               private DP: DatePipe,
               private Bs:BuyersService,
               private Sl: SizelistService,
               private ft: FabricTypeService,
-              private In: ItemNameService,) { }
+              private In: ItemNameService,
+              private Ums:UnitofmeasurementService,
+              public CU: CurrencyService,) { }
 
   ngOnInit() {
     const present = this.DP.transform(this.today, "dd-MM-yyyy");
@@ -46,6 +55,8 @@ export class FabricPriceComponent implements OnInit {
     this.getAllSize();
     this.getAllFabrics();
     this.getAllItems();
+    this.getAllUms();
+    this.getCurrencylist();
   }
   //GET FUNCTION
   getAll(){
@@ -141,49 +152,49 @@ export class FabricPriceComponent implements OnInit {
     var thighsize: any = 0;
     var pocketsize: any = 0;
     var fabricsize: any= 0;// for gsm value
-    wastePercentage = this.fabricpriceservice.currentFabricCalc.waste_percentage;
-    fabricsize = this.fabricpriceservice.currentFabricCalc.fabrics;
+    wastePercentage = this.FabPriService.currentEntry.fabricPriceInformation[0].wastePercentage;
+    fabricsize = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricType;
     //conversion from inch to cm
-    if(this.fabricpriceservice.currentFabricCalc.chest_unit_of_measurement=='Inch'){
-      chestsize = this.fabricpriceservice.currentFabricCalc.chest*2.54;
+    if(this.FabPriService.currentEntry.fabricPriceInformation[0].chestUom=='Inch'){
+     chestsize = parseInt(this.FabPriService.currentEntry.fabricPriceInformation[0].chestSize) * 2.54;
     }else{
-      chestsize = this.fabricpriceservice.currentFabricCalc.chest;
+      chestsize = this.FabPriService.currentEntry.fabricPriceInformation[0].chestSize;
     }
-    if(this.fabricpriceservice.currentFabricCalc.thigh_unit_of_measurement=='Inch'){
-      thighsize = this.fabricpriceservice.currentFabricCalc.thigh*2.54;
+    // if(this.FabPriService.currentEntry.thigh_unit_of_measurement=='Inch'){
+    //   thighsize = this.FabPriService.currentEntry.thigh*2.54;
+    // }else{
+    //   thighsize = this.FabPriService.currentEntry.thigh;
+    // }
+
+    if(this.FabPriService.currentEntry.fabricPriceInformation[0].lengthUom=='Inch'){
+      lengthsize = parseInt(this.FabPriService.currentEntry.fabricPriceInformation[0].lengthSize)*2.54;
     }else{
-      thighsize = this.fabricpriceservice.currentFabricCalc.thigh;
+      lengthsize = this.FabPriService.currentEntry.fabricPriceInformation[0].lengthSize;
     }
 
-    if(this.fabricpriceservice.currentFabricCalc.length_unit_of_measurement=='Inch'){
-      lengthsize = this.fabricpriceservice.currentFabricCalc.length*2.54;
+    if(this.FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom=='Inch'){
+      sleevesize = parseInt(this.FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize)*2.54;
     }else{
-      lengthsize = this.fabricpriceservice.currentFabricCalc.length;
+      sleevesize = this.FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize;
     }
 
-    if(this.fabricpriceservice.currentFabricCalc.sleeve_unit_of_measurement=='Inch'){
-      sleevesize = this.fabricpriceservice.currentFabricCalc.sleeve*2.54;
-    }else{
-      sleevesize = this.fabricpriceservice.currentFabricCalc.sleeve;
-    }
+    // if(this.FabPriService.currentEntry.hood_unit_of_measurement=='Inch'){
+    //   hoodsize = this.FabPriService.currentEntry.hood*2.54;
+    // }else{
+    //   hoodsize = this.FabPriService.currentEntry.hood;
+    // }
 
-    if(this.fabricpriceservice.currentFabricCalc.hood_unit_of_measurement=='Inch'){
-      hoodsize = this.fabricpriceservice.currentFabricCalc.hood*2.54;
-    }else{
-      hoodsize = this.fabricpriceservice.currentFabricCalc.hood;
-    }
-
-    if(this.fabricpriceservice.currentFabricCalc.bottom_unit_of_measurement=='Inch'){
-      bottomsize = this.fabricpriceservice.currentFabricCalc.bottom*2.54;
-    }else{
-      bottomsize = this.fabricpriceservice.currentFabricCalc.bottom;
-    }
+    // if(this.FabPriService.currentEntry.bottom_unit_of_measurement=='Inch'){
+    //   bottomsize = this.FabPriService.currentEntry.bottom*2.54;
+    // }else{
+    //   bottomsize = this.FabPriService.currentEntry.bottom;
+    // }
     
-    if(this.fabricpriceservice.currentFabricCalc.pocket_unit_of_measurement=='Inch'){
-      pocketsize = this.fabricpriceservice.currentFabricCalc.pocket*2.54;
-    }else{
-      pocketsize = this.fabricpriceservice.currentFabricCalc.pocket;
-    }
+    // if(this.FabPriService.currentEntry.pocket_unit_of_measurement=='Inch'){
+    //   pocketsize = this.FabPriService.currentEntry.pocket*2.54;
+    // }else{
+    //   pocketsize = this.FabPriService.currentEntry.pocket;
+    // }
     //this part is for calculating the boys tshirt fabric
     var step1 : any = 0;
     step1 = parseFloat(lengthsize) + parseFloat(sleevesize);
@@ -198,7 +209,104 @@ export class FabricPriceComponent implements OnInit {
     this.fabricWeight = convertoFloat;//main answer for fabric calculation
     //end of fabric calculation of boys tshirt
   }
+  //this is for getting all the units of measurement from database
+  getAllUms(){
+    this.Ums.getAllUoM()
+    .subscribe(
+       (data : UoM[]) =>{
+         this.allUoM = data;
+       });
+  }
+  //currency list
+  getCurrencylist(): void {
+    this.CU.getAllCurrency()
+      .subscribe(data => {
+        this.newcurrency = data;
+        //console.log(data);
+      })
 
+  }
+  setCurrency(w) {
+    this.setcurrency = w;
+    this.FabPriService.currentEntry.fabricPriceInformation[0].currency= this.setcurrency;
+  }
+  //this is for calculating the price calculation
+  calculatePrice() {
+    var FabricAmount: any = 0; //waste percentage
+    var FabricUnitPrice: any = 0;
+    var FabricTotalPrize: any = 0;
+    var Rib: any = 0;
+    var CM: any = 0;
+    var TRIM: any = 0;
+    var Print: any = 0;
+    var Doc: any = 0;
+    var Fa;
+    var step1: any = 0;
+    var step2;
+    var step3: any = 0;
+
+console.log(this.fabricWeight);
+
+    this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight = this.fabricWeight
+    FabricAmount = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight ;
+    FabricUnitPrice = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice;
+    step1 = (parseFloat(FabricAmount) * parseFloat(FabricUnitPrice))
+    this.FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice = step1.toFixed(3);
+    // console.log(this.fabricpriceservice.calculatePrice.fabric_total_price);
+    Rib = this.FabPriService.currentEntry.fabricPriceInformation[0].rimPrice;
+    TRIM = this.FabPriService.currentEntry.fabricPriceInformation[0].trimPrice;
+    CM = this.FabPriService.currentEntry.fabricPriceInformation[0].cmPrice;
+    Print = this.FabPriService.currentEntry.fabricPriceInformation[0].printPrice;
+    Doc = this.FabPriService.currentEntry.fabricPriceInformation[0].docPrice;
+    //console.log(this.fabricpriceservice.calculatePrice);
+    step2 = (step1 + parseFloat(Rib) + parseFloat(TRIM) + parseFloat(CM) + parseFloat(Print) + parseFloat(Doc)).toFixed(3);
+    this.FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice = step2;
+    step3 = (step2 / 12).toFixed(3);
+    this.FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice = step3;
+  }
   
+  //this will clear/wipe out all the fields from the form
+  clearAll(){
+    this.FabPriService.currentEntry={
+      auto_id: '',
+      mailDate : '',
+      entryDate : '',
+      buyerName : '',
+      size : '',
+      referenceId : '',
+      fabricPriceInformation : [  {
+              styleCode : '',
+              fabricType : '',
+              itemName : '',
+              wastePercentage : '',
+              chestSize : '',
+              chestUom:'',
+              lengthSize : '',
+              lengthUom:'',
+              sleeveSize : '',
+              sleeveUom:'',
+              hoodSize : '',
+              bottomSize : '',
+              thighSize : '',
+              pocketSize : '',
+              fabricWeight : '',
+              currency : '',
+              fabricUnitPrice : '',
+              fabricTotalPrice : '',
+              rimPrice : '',
+              cmPrice : '',
+              trimPrice : '',
+              printPrice : '',
+              docPrice : '',
+              perDozenPrice : '',
+              perUnitPrice : '',
+          }
+      ]
+    }
+  }
 
+  //after the form is submitted, 
+  onsubmit(){
+    
+  }
 }

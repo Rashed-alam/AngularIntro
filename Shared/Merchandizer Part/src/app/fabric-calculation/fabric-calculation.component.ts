@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BuyersService } from 'src/app/services/buyers.service';
 import { Buyers } from 'src/app/models/buyers.model';
-import { UnitofmeasurementService } from 'src/shared/unitofmeasurement.service';
-import { UoM } from 'src/shared/unitofmeasurement.model';
+import { UnitofmeasurementService } from 'src/app/services/unitofmeasurement.service';
+import { UoM } from 'src/app/models/unitofmeasurement.model';
 import { Sleeves } from 'src/shared/sleeves.model';
 import { SleeveTypeService } from 'src/shared/sleeve-type.service';
 import { FabricType } from 'src/app/models/fabric-type.model';

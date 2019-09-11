@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UoM } from './unitofmeasurement.model';
+import { UoM } from '../models/unitofmeasurement.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 

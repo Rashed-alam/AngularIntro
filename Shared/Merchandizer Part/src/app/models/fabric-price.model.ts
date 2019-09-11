@@ -11,8 +11,11 @@ export class FabricPriceModel{
             itemName : string;
             wastePercentage : string;
             chestSize : string;
+            chestUom:string;
             lengthSize : string;
+            lengthUom: string;
             sleeveSize : string;
+            sleeveUom: string;
             hoodSize : string;
             bottomSize : string;
             thighSize : string;
