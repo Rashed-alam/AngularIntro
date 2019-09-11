@@ -1,6 +1,6 @@
 
 <div class="container">
-    <form name="mainform" (ngSubmit)="onsubmit(FabPriService.currentEntry)" #mainform="ngForm" novalidate>
+    <form name="mainform" (ngSubmit)="mainform.form.valid && onsubmit(FabPriService.currentEntry)" #mainform="ngForm" novalidate>
     <div class="card" style="margin-top: 1rem; margin-left: 5rem;margin-right: 5rem;">
         <!-- UPPER PART- BASIC INFORMATION -->
         <div class="card-body" style="margin-bottom: -1rem; margin-top: -1rem;">
@@ -290,9 +290,8 @@
                                   <select class="custom-select" name="FabPriService.currentEntry.fabricPriceInformation[0].currency" 
                                   [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].currency" id="Currency"
                                    #cur (click)="setCurrency(cur.value)" required>
-                                      <option *ngFor="let i of newcurrency">
-                                          {{i.currencyName}}
-                                      </option>
+                                    <!-- <option option selected>...</option>    -->
+                                      <option value="{{i.currencyName}}" selected *ngFor="let i of newcurrency"> {{i.currencyName}}</option>
                                   </select>
                         
                       </div>
