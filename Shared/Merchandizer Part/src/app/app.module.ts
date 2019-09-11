@@ -6,24 +6,26 @@ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { FabricCalculationComponent } from './fabric-calculation/fabric-calculation.component';
-import { BuyersService } from '../shared/buyers.service';
-import { UnitofmeasurementService } from '../shared/unitofmeasurement.service';
+import { BuyersService } from './services/buyers.service';
+import { UnitofmeasurementService } from './services/unitofmeasurement.service';
 import { SleeveTypeService } from '../shared/sleeve-type.service';
-import { FabricTypeService } from '../shared/fabric-type.service';
+import { FabricTypeService } from './services/fabric-type.service';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { DatePipe } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ItemNameService } from '../shared/item-name.service';
+import { ItemNameService } from './services/item-name.service';
 
 import { ReportComponent } from './report/report.component';
 import { appRoutes } from './app-routing.module';
-import { SizelistService } from '../shared/sizelist.service';
+import { SizelistService } from './services/sizelist.service';
 import { DirectorApprovalComponent } from './director-approval/director-approval.component';
 import { PriceCalculationComponent } from './price-calculation/price-calculation.component';
-import { CurrencyService } from 'src/shared/currency.service';
-
+import { CurrencyService } from 'src/app/services/currency.service';
+import { FabricPriceServiceService} from 'src/app/services/fabric-price-service.service'; 
 import { FabricPriceService } from 'src/shared/fabric-price.service'; 
+
 import { FabricPriceCalculationComponent } from './fabric-price-calculation/fabric-price-calculation.component';
+import { FabricPriceComponent } from './components/fabric-price/fabric-price.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,8 @@ import { FabricPriceCalculationComponent } from './fabric-price-calculation/fabr
     ReportComponent,
     DirectorApprovalComponent,
     PriceCalculationComponent,
-    FabricPriceCalculationComponent
+    FabricPriceCalculationComponent,
+    FabricPriceComponent
     
   ],
   imports: [
@@ -47,7 +50,7 @@ import { FabricPriceCalculationComponent } from './fabric-price-calculation/fabr
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [BuyersService,UnitofmeasurementService,
     SleeveTypeService,FabricTypeService, DatePipe, 
-    ItemNameService,SizelistService,CurrencyService,FabricPriceService],
+    ItemNameService,SizelistService,CurrencyService,FabricPriceService,FabricPriceServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

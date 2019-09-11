@@ -1,4 +1,0 @@
-{"_id":{"$oid":"5d60d8a98fba7834101d8fbd"},"size_name":"A","size_id":{"$numberInt":"1"},"__v":{"$numberInt":"0"}}
-{"_id":{"$oid":"5d60d8ae8fba7834101d8fbe"},"size_name":"B","size_id":{"$numberInt":"2"},"__v":{"$numberInt":"0"}}
-{"_id":{"$oid":"5d60d8b38fba7834101d8fbf"},"size_name":"C","size_id":{"$numberInt":"3"},"__v":{"$numberInt":"0"}}
-{"_id":{"$oid":"5d60dad48fba7834101d8fce"},"size_id":{"$numberInt":"4"},"size_name":"DD","__v":{"$numberInt":"0"}}

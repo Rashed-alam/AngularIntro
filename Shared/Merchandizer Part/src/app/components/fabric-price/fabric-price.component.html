@@ -1,0 +1,469 @@
+
+<div class="container">
+    <form name="mainform" (ngSubmit)="mainform.form.valid && onsubmit(FabPriService.currentEntry)" #mainform="ngForm" novalidate>
+    <div class="card" style="margin-top: 1rem; margin-left: 5rem;margin-right: 5rem;">
+        <!-- UPPER PART- BASIC INFORMATION -->
+        <div class="card-body" style="margin-bottom: -1rem; margin-top: -1rem;">
+            <div class="row">
+              <div class="col-md-3">
+                  <div class="form-inline " >
+         
+                      <label >ID: </label>
+                     <input class="form-control" type="text" placeholder="{{autoID}}" style="width: 40%;padding-left:1rem;" disabled>
+                    </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-inline">
+            <!-- <input type="text" name="dateRangeStartDate" #txtVoucherDate1ID="ngModel" [(ngModel)]="dateRangeStartDate"
+                           style="width: 100%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+                           class="form-control" [minDate]="minDate" [maxDate]="maxDate"> -->
+                          <label for="formGroupExampleInput"> Mail Date: </label>
+                           <input type="text" id="mailDate" name="FabPriService.currentEntry.mailDate" [(ngModel)]="FabPriService.currentEntry.mailDate"
+                            placeholder="{{today}}" 
+                           style="width: 50%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+                           class="form-control" #mailDate="ngModel" required>
+                          </div>
+              </div>
+              <div class="col-md-4">
+                    <div class="form-inline">
+                <!-- <input type="text" name="dateRangeStartDate" #txtVoucherDate1ID="ngModel" [(ngModel)]="dateRangeStartDate"
+                               style="width: 100%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+                               class="form-control" [minDate]="minDate" [maxDate]="maxDate"> -->
+                              <label for="formGroupExampleInput"> Entry Date: </label>
+                              <input type="text" id="entryDate" placeholder="{{today}}" name="FabPriService.currentEntry.entryDate" 
+                              [(ngModel)]="FabPriService.currentEntry.entryDate"
+                              style="width: 50%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+                              class="form-control" #entryDate="ngModel" required>
+                              </div>
+              </div>
+              </div>
+              <br> 
+              <div class="row" style="margin-top:-1rem; margin-bottom:-0.5rem;">
+                  <div class="col-6" style="margin-left: 0% ">
+                      
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">Ref. No: </div>
+                            </div>
+                            <input type="text" id="refNo" class="form-control" [disabled]="hiddingrefIdandStyleCode" style="width: 30%" placeholder="Enter Reference Number"
+                          name="FabPriService.currentEntry.referenceId" 
+                          [(ngModel)]="FabPriService.currentEntry.referenceId" #referenceId="ngModel" required>
+                          </div>
+                  </div>
+                </div>
+                <br>
+              <div class="row" style="margin-top:-1rem; margin-bottom:0.5rem;">
+                  <div class="col-10"> 
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Buyer Name:</label>
+                    </div>
+                    <select class="custom-select" id="buyerName" style="width: 5rem;"  name="FabPriService.currentEntry.buyerName" 
+                    [(ngModel)]="FabPriService.currentEntry.buyerName" #buyerName="ngModel" 
+                    required>
+                      <option value="{{b.name}}" *ngFor="let b of allBuyers">{{b.name}} | Address: {{b.house}},{{b.road}},{{b.area}} </option>
+                    </select> 
+                  </div>
+                  <!-- <p style="margin-left: 7rem; margin-top: -1rem; margin-bottom: 3rem;">Address:</p> -->
+                  
+                  
+                </div>
+                 <div class="col-2" style="margin-left: -1rem;">
+                  <button class="button" class="btn btn-outline-info">New Buyer</button>
+                 </div>
+                </div> 
+                <div class="row" style="margin-bottom:-0.5rem;">
+                  <div class="col-6">
+                <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: -1rem">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Size:</label>
+                  </div>
+                  <select class="custom-select" id="size" name="FabPriService.currentEntry.size"
+                   [(ngModel)]="FabPriService.currentEntry.size" #size="ngModel" required>
+                   
+                      <option value="{{s.size_name}}" *ngFor="let s of allSize">{{s.size_name}}</option>
+                    </select>
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">
+                        New Size
+                       </button>
+                </div>
+              </div>
+              <div class="col-6" style="margin-top: -2rem;">
+                <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Fabrics:</label>
+                    </div>
+                    <select class="custom-select" style="width: 70%" id="fabrics" name="FabPriService.currentEntry.fabricPriceInformation[0].fabricType" 
+                    [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].fabricType" #fabrics="ngModel" required>
+                        <option value="{{f.fabric_name}}" *ngFor="let f of allFabricType">GSM-{{f.fabric_name}}</option>
+                      </select>
+                  </div>  
+                </div>
+              </div>
+       </div>
+        <!-- END OF UPPER PART -->
+        <!-- MIDDLE PART- FABRIC CALCULATION -->
+            <div class="card" >
+                    <div class="card-body" style="margin-top: -1rem; margin-bottom:-2rem;">
+                            <h5 class="card-title" style="text-align: left; margin-top: 0rem; margin-bottom: 1rem">Fabric Calculation</h5>
+                            <div class="row">
+                                <div class="col">
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <div class="input-group-text">Style Code</div>
+                                  </div>
+                                  <input type="text" class="form-control" id="style_code" [disabled]="hiddingrefIdandStyleCode" placeholder="Code Number"  
+                                  name="FabPriService.currentEntry.fabricPriceInformation[0].styleCode" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].styleCode" 
+                                   #styleCode="ngModel" required>
+                                  </div>
+                                </div >
+                                <div class="col" >
+                                    <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Item Name:</label>
+                                  </div>
+                                  <select class="custom-select" id="itemName" name="FabPriService.currentEntry.fabricPriceInformation[0].itemName"
+                                   [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].itemName" #itemName="ngModel" (click)="selectSwitch(itemName.value)" required>
+                                    <option value="{{i.itemName}}" *ngFor="let i of allItems">{{i.itemName}}</option>
+                                  </select>
+                                  </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                          <label class="input-group-text" for="inputGroupSelect01">Waste Percentage:</label>
+                                        </div>
+                                        <input type="text" class="form-control" id="inputEmail3" minlength="1" placeholder="%" style="width: 30%"
+                                         name="FabPriService.currentEntry.fabricPriceInformation[0].wastePercentage" 
+                                         [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].wastePercentage" required>
+                                        
+                                      </div>
+                                </div>
+                            </div>
+                                <!-- <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="JacketSelected">
+                                    <div class="input-group-prepend">
+                                      <label class="input-group-text" for="inputGroupSelect01">Sleeve Type:</label>
+                                    </div>
+                                    <select class="custom-select" style="width: 63%;" id="style_sleeve_type" name="FabPriService.currentEntry.style_sleeve_type"
+                                     [(ngModel)]="FabPriService.currentEntry.style_sleeve_type" #style_sleeve_type="ngModel">
+                                      <option value="{{s.Sleeve_name}}" *ngFor="let s of allSleeveType">{{s.Sleeve_name}}</option>
+                                    </select>
+                                  </div> -->
+
+                                  
+                                  
+                                    <!-- <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="JacketSelected">
+                                        <div class="input-group-prepend">
+                                          <label class="input-group-text" for="inputGroupSelect01">Bottom:</label>
+                                        </div>
+                                        <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 17%" 
+                                        name="FabPriService.currentEntry.bottom" [(ngModel)]="FabPriService.currentEntry.bottom">
+                                        <select class="custom-select" style="width: auto" name="FabPriService.currentEntry.bottom_unit_of_measurement" 
+                                        [(ngModel)]="FabPriService.currentEntry.bottom_unit_of_measurement" >
+                                            
+                                            <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                          </select>
+                                      </div> -->
+                                      <!-- <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="JacketSelected">
+                                          <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect01">Hood:</label>
+                                          </div>
+                                          <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 22%" 
+                                          name="FabPriService.currentEntry.hood" [(ngModel)]="FabPriService.currentEntry.hood" >
+                                          <select class="custom-select" style="width: auto" name="FabPriService.currentEntry.hood_unit_of_measurement" 
+                                          [(ngModel)]="FabPriService.currentEntry.hood_unit_of_measurement" >
+                                              
+                                              <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                            </select>
+                                        </div> -->
+                                        <!-- <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="ShortsSelected">
+                                            <div class="input-group-prepend">
+                                              <label class="input-group-text" for="inputGroupSelect01">2/1 Thigh:</label>
+                                            </div>
+                                            <input type="text" pattern="[0-9]" title="Three digit input"class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 15%" 
+                                            name="FabPriService.currentEntry.thigh" [(ngModel)]="FabPriService.currentEntry.thigh" >
+                                                <select class="custom-select" style="width: auto" name="FabPriService.currentEntry.thigh_unit_of_measurement" 
+                                                [(ngModel)]="FabPriService.currentEntry.thigh_unit_of_measurement" >
+                                                    
+                                                    <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                                  </select>
+                                          </div> -->
+                                          <!-- <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem" *ngIf="ShortsSelected">
+                                              <div class="input-group-prepend">
+                                                <label class="input-group-text" for="inputGroupSelect01">Pocket:</label>
+                                              </div>
+                                              <input type="text" class="form-control" id="inputPassword3" minlength="2" placeholder="0" style="width: 22%" 
+                                              name="FabPriService.currentEntry.pocket" [(ngModel)]="FabPriService.currentEntry.pocket" >
+                                                <select class="custom-select" style="width: auto" name="FabPriService.currentEntry.pocket_unit_of_measurement" 
+                                                [(ngModel)]="FabPriService.currentEntry.pocket_unit_of_measurement" >
+                                                    
+                                                    <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                                  </select>
+                                            </div> -->
+                                            <div class="row">
+                                              <div class="col">
+                                            <div class="input-group mb-3" *ngIf="BoysTshirtSelected || JacketSelected">
+                                                <div class="input-group-prepend">
+                                                  <label class="input-group-text" for="inputGroupSelect01">Chest:</label>
+                                                </div>
+                                                <input type="text"class="form-control" id="chest" minlength="2" placeholder="0"
+                                                name="FabPriService.currentEntry.fabricPriceInformation[0].chestSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].chestSize">
+                                                <select class="custom-select"  name="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" 
+                                                [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" required>
+                                                   
+                                                    <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                                  </select>
+                                              </div>
+                                            </div>
+                                            <div class="col">
+                                            <div class="input-group mb-3"  *ngIf="BoysTshirtSelected || JacketSelected || ShortsSelected">
+                                                <div class="input-group-prepend">
+                                                  <label class="input-group-text" for="inputGroupSelect01">Length:</label>
+                                                </div>
+                                                <input type="text"class="form-control" id="length" minlength="2" placeholder="0" 
+                                                name="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize">
+                                                <select class="custom-select"  name="FabPriService.currentEntry.fabricPriceInformation[0].lengthUom" 
+                                                [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].lengthUom" required>
+                                                    
+                                                    <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                                  </select>
+                                              </div>
+                                            </div>
+                                            <div class="col">
+                                            <div class="input-group mb-3"  *ngIf="BoysTshirtSelected || JacketSelected">
+                                                <div class="input-group-prepend">
+                                                  <label class="input-group-text" for="inputGroupSelect01">Sleeve:</label>
+                                                </div>
+                                                <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" 
+                                                name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize">
+                                                <select class="custom-select" name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom" 
+                                                [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom" required>
+                                                  
+                                                    <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
+                                                  </select>
+                                              </div>
+                                            </div>
+                                            </div>
+                                            <div class="row">
+                                              <div class="col">
+                                                  <div class="input-group mb-3" >
+                                                      <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="inputGroupSelect01">Fabric Weight</label>
+                                                      </div>
+                                                      <input type="text" class="form-control"  disabled 
+                                                      name="fabricWeight" [(ngModel)]="fabricWeight">kg/per dozen
+                                                    </div>
+                                              </div>
+                                              <div class="col">
+                                                  <button type="button" class="btn btn-outline-info" (click)="calculateFabricWeight()"
+                                                   *ngIf="BoysTshirtSelected || JacketSelected || ShortsSelected">
+                                                      Calculate
+                                                     </button>
+                                              </div>
+                                            </div>
+                                              
+                                             
+                    </div>
+            </div>
+        <!-- END OF MIDDLE PART- FABRIC CALCULATION -->
+        <!-- LOWER PART- PRICE CALCULATION -->
+          <div class="card">  
+              
+              <div class="card-body" style="margin-bottom: -1rem; margin-top: -1rem;">
+                  <h5 class="card-title" style="text-align: left; margin-top: 0rem; margin-bottom:1rem;">Price Calculation</h5>
+                  <div class="row">
+                    <div class="col">
+                      <div class="input-group mb-2" style="margin-left: 0rem;">
+                          <div class="input-group-prepend">
+                                  <div class="input-group-text">Fabric Unit Price:</div>
+                                </div>
+                      <input type="text" id="refNo" class="form-control" name="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice"
+                          [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" required> 
+                      
+                    </div>
+                  </div>
+                    <div class="col">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                    <div class="input-group-text">Currency:</div>
+                                  </div>
+                                  <select class="custom-select" name="FabPriService.currentEntry.fabricPriceInformation[0].currency" 
+                                  [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].currency" id="Currency"
+                                   #cur (click)="setCurrency(cur.value)" required>
+                                    <!-- <option option selected>...</option>    -->
+                                      <option value="{{i.currencyName}}" selected *ngFor="let i of newcurrency"> {{i.currencyName}}</option>
+                                  </select>
+                        
+                      </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                    <div class="input-group-text">Fabric Total Price:</div>
+                                  </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                            value="{{FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice}}" disabled>
+                        <a style="padding: 6px;"> {{setcurrency}}</a>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="row" style="margin-top: 0rem;">
+                      <div class="col">
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                      <div class="input-group-text">RIM:</div>
+                                    </div>
+                          <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                          name="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice"
+                              [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                    <div class="input-group-text">CM:</div>
+                                  </div>
+                        <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                        name="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice"
+                            [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice" required>
+                    </div>
+                  </div>
+                  <div class="col">
+                      <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                                  <div class="input-group-text">TRIM:</div>
+                                </div>
+                      <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                      name="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice"
+                          [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice" required>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                                <div class="input-group-text">Print:</div>
+                              </div>
+                    <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                    name="FabPriService.currentEntry.fabricPriceInformation[0].printPrice"
+                        [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].printPrice" required>
+                </div>
+              </div>
+              <div class="col">
+                  <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                              <div class="input-group-text">DOC:</div>
+                            </div>
+                  <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                  name="FabPriService.currentEntry.fabricPriceInformation[0].docPrice"
+                      [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].docPrice" required>
+              </div>
+            </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                      <div class="input-group-text">Per Dozen Price:</div>
+                                    </div>
+                      <input type="text" id="refNo" class="form-control" style="width: 30%"
+                           value="{{FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice}}" readonly="">
+                      <a style="padding: 6px;"> {{setcurrency}}</a>
+                  </div>
+                      </div>
+                      <div class="col">
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                      <div class="input-group-text">Per Unit Price:</div>
+                                    </div>
+                          <input type="text" id="refNo" class="form-control" style="width: 30%; "
+                               value="{{FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice}}" readonly="">
+                          <a style="padding: 6px;"> {{setcurrency}}</a>
+                      </div>
+                      </div>
+                      <div class="col">
+                          <button type="button" class="btn btn-outline-info" style="margin-left: 8rem;margin-bottom: 1rem;"
+                           (click)="calculatePrice()">
+                              Calculate
+                             </button>
+                      </div>
+                    </div>
+             </div>
+          </div>
+        <!-- END OF LOWER PART -->
+        <div class="row">
+          <div class="col"><button type="submit" class="btn btn-success" style="margin-left: 25rem; "
+            [disabled]="mainform.form.pristine || mainform.form.invalid">Save</button>
+       </div>
+          <div class="col"> <button type="button" class="btn btn-danger" style="margin-left: -1rem;"
+            (click)="clearAll()">Clear All</button></div>
+        </div>
+    </div>
+    <div  class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="align-content: center">
+        Entry Created successfully.
+      </div>
+      
+      <div  class="alert alert-success" role="alert" *ngIf="showeditmessage" style="align-content: center">
+        Entry Edited successfully. Data Saved.
+      </div>
+      <div  class="alert alert-danger" role="alert" *ngIf="serverErrorMessages" style="align-content: center">
+        Something went wrong, try again later. Thank you. 
+      </div>
+    </form>
+</div>
+
+<br>
+<br>
+<!-- FOR SHOWING ALL THE ENTRIES IN THE TABLE -->
+<table class="table table-bordered" style="font-size: 12px;">
+    <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Ref-ID</th>
+            <th scope="col">Style Code</th>
+            <th scope="col">Fabric amount<br>(kg/dozen)</th>
+            <th scope="col">Fabric Unit Price</th>
+            <th scope="col">Fabric total Price</th>
+            <th scope="col">RIB</th>
+            <th scope="col">CM</th>
+            <th scope="col">TRIM</th>
+            <th scope="col">Print</th>
+            <th scope="col">DOC</th>
+            <th scope="col">Per Dozen Price</th>
+            <th scope="col">Per Unit Price</th>
+
+        </tr>
+    </thead>
+    <tbody>
+         <tr *ngFor="let p of allEntry,index as i">
+            <td>{{i+1}}</td>
+            <td>{{p.referenceId}}</td>
+            <td>{{p.fabricPriceInformation[0].styleCode}}</td>
+            <td>{{p.fabricPriceInformation[0].fabricWeight}}</td>
+            <td>{{p.fabricPriceInformation[0].fabricUnitPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].fabricTotalPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].rimPrice+p.fabricPriceInformation[0].currency }}</td>
+            <td>{{p.fabricPriceInformation[0].cmPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].trimPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].printPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].docPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].perDozenPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.fabricPriceInformation[0].perUnitPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>
+                <a class="btn text-success" (click)="onedit(p)">
+                    <i class="fa fa-edit"></i>
+                </a>
+
+            </td>
+
+            <td>
+                <a class="btn text-danger" (click)="ondelete(p)" >
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+
+        </tr> 
+
+    </tbody>
+</table>
+<!-- END OF THE TABLE -->

@@ -6,7 +6,7 @@ import { ReportComponent } from './report/report.component';
 import { DirectorApprovalComponent } from './director-approval/director-approval.component';
 import { PriceCalculationComponent } from './price-calculation/price-calculation.component';
 import { FabricPriceCalculationComponent } from './fabric-price-calculation/fabric-price-calculation.component';
-
+import {FabricPriceComponent} from 'src/app/components/fabric-price/fabric-price.component';
 
 export const appRoutes: Routes =[{
   path:'fabric', component:FabricCalculationComponent
@@ -22,6 +22,9 @@ export const appRoutes: Routes =[{
 },
 {
   path:'', component: FabricPriceCalculationComponent
+},
+{ 
+  path:'test', component:FabricPriceComponent
 }
 
 ];

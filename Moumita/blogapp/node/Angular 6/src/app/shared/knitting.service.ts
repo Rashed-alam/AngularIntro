@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { Knitting} from './knitting';
+import {Order} from './order';
 
 const headerOption = {
   headers: new HttpHeaders({ 'Content-Type' : 'application/json' })
@@ -42,6 +43,10 @@ export class KnittingService {
    }
    createTarget(knitting : Knitting): Observable<Knitting> {
     return this.httpcall.post<Knitting>(this.Url+'/api/v1/postKnittingMachineTarget', knitting , headerOption);
+  } 
+
+  getData(orderNo): Observable<[Order]>{
+    return this.httpcall.get<[Order]>(this.Url+'api/v1/getOrder/'+orderNo, headerOption);
   }
 
 }

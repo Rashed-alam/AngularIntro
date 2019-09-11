@@ -14,6 +14,7 @@ const uom = require('./routes/uomApi'); //importing the routes from api file
 const size = require('./routes/SizeApi');
 const priceCalculation =require('./routes/priceCalculationapi');
 const Currency=require('./routes/currencyapi');
+const FabricPriceEntry= require('./routes/fabric-price-entry-Api');
 //setting up of express app 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use('/api/v1/fabricEntry',fabricEntry);
 app.use('/api/v1/sizelist',size);
 app.use('/api/v1/priceCalculation',priceCalculation);
 app.use('/api/v1/currency',Currency);
+app.use('/api/v1/FabricPriceEntry',FabricPriceEntry);
 
 
 

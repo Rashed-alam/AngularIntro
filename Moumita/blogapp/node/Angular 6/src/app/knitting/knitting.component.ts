@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { KnittingService } from '../shared/Knitting.service';
  import {Knitting} from '../shared/knitting';
-import { send } from 'q';
+ import { send } from 'q';
+ import { DatePipe } from '@angular/common';
+ import {Order} from '../shared/order';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-knitting',
@@ -10,44 +13,73 @@ import { send } from 'q';
   styleUrls: ['./knitting.component.css']
 })
 export class KnittingComponent implements OnInit {
-  // knittingService: any;
-  knitting:any={};
  
+  knitting:any={};
 
+  myDate = new Date();
+  
 
-
-  constructor(private knittingService:KnittingService, private router: Router) { 
+  constructor(private knittingService:KnittingService, private router: Router, private datePipe: DatePipe ) { 
 
   }
 
   ngOnInit() {
 
+  
+   this.knitting.date = this.datePipe.transform(this.myDate, 'dd-MM-yyyy');
   }
   createTarget(){
+  
     this.knittingService.createTarget(this.knitting).subscribe()
  }
  sendTo(){
-   this.knitting.extra= this.knitting.ptarget- this.knitting.shift*this.knitting.production
+   this.knitting.extra= this.knitting.production - this.knitting.ptarget
  }
+
+ capacity(){
+  if(this.knitting.production<this.knitting.shift* 250){
+    // alert('machine slow')
+  }
+  }
+
+  getValue(){
+//console.log(this.knitting.orderNo)
+ this.knittingService.getData(this.knitting.Order).subscribe(data =>{
+   console.log(data)
+ });
+  }
+
+
 
  getBalance(){
 
-if(this.knitting.production>this.knitting.ptarget){
-this.sendTo();
-}
+
 // console.log(this.knitting.shift);
-else if(this.knitting.shift == undefined){
+  if(this.knitting.shift == undefined){
   alert('please select shift')
 }
 
-else if(this.knitting.ptarget-this.knitting.shift*this.knitting.production==0){
-  //this.knitting.ptarget =0;
-  this.knitting.balance= this.knitting.ptarget-this.knitting.shift*this.knitting.production
+else if(this.knitting.production>this.knitting.ptarget){
+  this.sendTo();
+  // alert('Machine works Faster')
+ }
+
+else if (this.knitting.production == 0){
+  alert('Technical Problem')
+}
+
+else if(this.knitting.ptarget-this.knitting.production==0){
+  
+  this.knitting.balance= this.knitting.ptarget-this.knitting.production
 
   alert('Target Complete')
 }
 else{
-  console.log('balance cal',this.knitting.balance= this.knitting.ptarget-this.knitting.shift*this.knitting.production)
+ 
+  console.log('balance cal',this.knitting.balance= this.knitting.ptarget- this.knitting.production)
+  this.capacity();
+ 
+  
 }
 
 }

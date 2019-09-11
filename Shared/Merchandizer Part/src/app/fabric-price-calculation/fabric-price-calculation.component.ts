@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { BuyersService } from 'src/shared/buyers.service';
-import { Buyers } from 'src/shared/buyers.model';
-import { UnitofmeasurementService } from 'src/shared/unitofmeasurement.service';
-import { UoM } from 'src/shared/unitofmeasurement.model';
+import { BuyersService } from 'src/app/services/buyers.service';
+import { Buyers } from 'src/app/models/buyers.model';
+import { UnitofmeasurementService } from 'src/app/services/unitofmeasurement.service';
+import { UoM } from 'src/app/models/unitofmeasurement.model';
 import { Sleeves } from 'src/shared/sleeves.model';
 import { SleeveTypeService } from 'src/shared/sleeve-type.service';
-import { FabricType } from 'src/shared/fabric-type.model';
-import { FabricTypeService } from 'src/shared/fabric-type.service';
+import { FabricType } from 'src/app/models/fabric-type.model';
+import { FabricTypeService } from 'src/app/services/fabric-type.service';
 import { DatePipe } from '@angular/common';
-import { ItemNameService } from 'src/shared/item-name.service';
+import { ItemNameService } from 'src/app/services/item-name.service';
 import { NgForm } from '@angular/forms';
-import { Items } from 'src/shared/item.model';
+import { Items } from 'src/app/models/item.model';
 import { FabricCalulation } from 'src/shared/fabricCalculation.model';
-import { SizelistService } from 'src/shared/sizelist.service';
-import { SizeList } from 'src/shared/sizelist.model';
+import { SizelistService } from 'src/app/services/sizelist.service';
+import { SizeList } from 'src/app/models/sizelist.model';
 import { Router } from "@angular/router";
 import { parseDate } from 'ngx-bootstrap';
-import { CurrencyService } from 'src/shared/currency.service';
+import { CurrencyService } from 'src/app/services/currency.service';
 import { FabricPriceService } from 'src/shared/fabric-price.service';
 import { PriceCalculation } from 'src/shared/priceCalculation.model';
 
@@ -127,7 +127,7 @@ export class FabricPriceCalculationComponent implements OnInit {
     
   }
   
-  //this function is for calculating the fabric weight01744514237
+  //this function is for calculating the fabric weight
   calculate1(){
     var wastePercentage: any= 0; //waste percentage
     var chestsize: any= 0;
@@ -463,7 +463,7 @@ export class FabricPriceCalculationComponent implements OnInit {
   setCurrency(w) {
     this.setcurrency = w;
     this.fabricpriceservice.calculatePrice.PriceCurrency_UOM = this.setcurrency;
-    console.log(this.fabricpriceservice.calculatePrice.PriceCurrency_UOM);
+    // console.log(this.fabricpriceservice.calculatePrice.PriceCurrency_UOM);
   }
 
   onEnter(value: any) {
