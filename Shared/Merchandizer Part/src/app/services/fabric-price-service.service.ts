@@ -62,8 +62,8 @@ export class FabricPriceServiceService {
     return this.httpcall.post<FabricPriceModel>(this.url1+'/new/'+fabcal.referenceId, fabcal , headerOption);
   }
   //EDIT
-  updateEntry(entry : any): Observable<FabricPriceModel[]> {
-    return this.httpcall.put<FabricPriceModel[]>(this.url1+'/update/'+ entry.referenceId + '/' + entry.styleCode, entry, headerOption);
+  updateEntry(entry: FabricPriceModel): Observable<FabricPriceModel[]> {
+    return this.httpcall.put<FabricPriceModel[]>(this.url1+'/update/'+ entry.referenceId + '/' + entry.fabricPriceInformation[0].styleCode, entry, headerOption);
   }
   //DELETE
   deleteEntry(entry): Observable<FabricPriceModel[]>{
@@ -79,6 +79,9 @@ export class FabricPriceServiceService {
     return this.httpcall.get(this.url1+'/allref', headerOption);
   }
 
-  
+  //FOR GETTING OBJECT FROM DB FOR EDIT IT ON FRONT END FORM
+  getByStyleCode(a: any){
+    return this.httpcall.post(this.url1+'/get/'+a.styleCode, headerOption);
+  }
 
 }

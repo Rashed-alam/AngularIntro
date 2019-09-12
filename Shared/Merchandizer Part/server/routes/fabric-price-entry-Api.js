@@ -71,6 +71,16 @@ router.post('/all/:referenceId', (req, res, next) => {
     }).catch(next);
 });
 
+//GET BY STYLECODE TO EDIT
+router.post('/get/:styleCode', (req, res, next) => {
+    FabricPriceEntrySchema.aggregate([
+        { $unwind:'$fabricPriceInformation'},
+        {$match:{'fabricPriceInformation.styleCode': req.params.styleCode }}
+    ]).then(function(a){
+        res.send(a)
+    })
+});
+
 //DELETE
 router.delete('/delete/:referenceId/:styleCode',function(req,res,next){
     FabricPriceEntrySchema.findOne({referenceId:req.params.referenceId}).then(function(a){

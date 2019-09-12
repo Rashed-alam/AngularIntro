@@ -43,6 +43,7 @@ export class FabricPriceComponent implements OnInit {
   showeditmessage: boolean = false;
   allReference: any;
   entryShowList: any;
+  temporaryDataStorage: any;
 
   constructor(public FabPriService: FabricPriceServiceService,
               private DP: DatePipe,
@@ -75,7 +76,7 @@ export class FabricPriceComponent implements OnInit {
     });
   }
   //CREATE AND UPDATE FUNCTION
-  onsubmit(key: any){
+  onsubmit(key){
     if(key._id  == null){
       this.create(key);
     }
@@ -109,13 +110,23 @@ export class FabricPriceComponent implements OnInit {
     this.FabPriService.updateEntry(entry)
     .subscribe((res)=>{
       this.showeditmessage=true;
-      setTimeout(()=>this.showeditmessage=false,4000);
       this.clearAll();
-    })
+      setTimeout(()=>this.showeditmessage=false,4000);
+     // console.log(res);
+    });
   }
-  //EDIT
+
+  //ASSIGNING OBJECT FROM DATABASE TO THE FRONTEND FORM
   onedit(entry: any){
-    this.FabPriService.currentEntry = Object.assign({},entry);
+    this.FabPriService.getByStyleCode(entry)
+    .subscribe((res)=>{
+      this.temporaryDataStorage = res;
+      // console.log(res);
+      this.FabPriService.currentEntry = Object.assign({},this.temporaryDataStorage[0]);
+      this.FabPriService.currentEntry.fabricPriceInformation[0] = Object.assign({},this.temporaryDataStorage[0].fabricPriceInformation);
+      // console.log(this.FabPriService.currentEntry);
+    });
+    
   }
   //DELETE FUNCTION
   ondelete(item: any){
