@@ -409,13 +409,39 @@
       <div  class="alert alert-danger" role="alert" *ngIf="serverErrorMessages" style="align-content: center">
         Something went wrong, try again later. Thank you. 
       </div>
+      <div class="alert alert-danger" role="alert" *ngIf="showdeletemessage" style="align-content: center;">
+          Entry Deleted.
+        </div>
+                
     </form>
 </div>
+<br>
 
 <br>
-<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+   
+    </div>
+    <div class="col-sm">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                    <div class="input-group-text">Search by Reference:</div>
+                  </div>
+                  <select class="custom-select" (click)="SearchByReference($event.target.value)" >
+                       <option option selected>...</option>   
+                      <option value="{{i}}" *ngFor="let i of allReference"> {{i}}</option>
+                  </select>
+        
+      </div>
+    </div>
+    <div class="col-sm">
+    
+    </div>
+  </div>
+</div>
 <!-- FOR SHOWING ALL THE ENTRIES IN THE TABLE -->
-<table class="table table-bordered" style="font-size: 12px;">
+<table class="table table-sm" style="font-size: 12px;">
     <thead>
         <tr>
             <th scope="col">No.</th>
@@ -435,20 +461,20 @@
         </tr>
     </thead>
     <tbody>
-         <tr *ngFor="let p of allEntry,index as i">
+         <tr *ngFor="let p of entryShowList,index as i">
             <td>{{i+1}}</td>
             <td>{{p.referenceId}}</td>
-            <td>{{p.fabricPriceInformation[0].styleCode}}</td>
-            <td>{{p.fabricPriceInformation[0].fabricWeight}}</td>
-            <td>{{p.fabricPriceInformation[0].fabricUnitPrice+p.fabricPriceInformation[0].currency}}</td>
-            <td>{{p.fabricPriceInformation[0].fabricTotalPrice+p.fabricPriceInformation[0].currency}}</td>
-            <td>{{p.fabricPriceInformation[0].rimPrice+p.fabricPriceInformation[0].currency }}</td>
-            <td>{{p.fabricPriceInformation[0].cmPrice+p.fabricPriceInformation[0].currency}}</td>
-            <td>{{p.fabricPriceInformation[0].trimPrice+p.fabricPriceInformation[0].currency}}</td>
-            <td>{{p.fabricPriceInformation[0].printPrice+p.fabricPriceInformation[0].currency}}</td>
-            <td>{{p.fabricPriceInformation[0].docPrice+p.fabricPriceInformation[0].currency}}</td>
-            <td>{{p.fabricPriceInformation[0].perDozenPrice+p.fabricPriceInformation[0].currency}}</td>
-            <td>{{p.fabricPriceInformation[0].perUnitPrice+p.fabricPriceInformation[0].currency}}</td>
+            <td>{{p.styleCode}}</td>
+            <td>{{p.fabricWeight}}</td>
+            <td>{{p.fabricUnitPrice}}</td>
+            <td>{{p.fabricTotalPrice}}</td>
+            <td>{{p.rimPrice}}</td>
+            <td>{{p.cmPrice}}</td>
+            <td>{{p.trimPrice}}</td>
+            <td>{{p.printPrice}}</td>
+            <td>{{p.docPrice}}</td>
+            <td>{{p.perDozenPrice}}</td>
+            <td>{{p.perUnitPrice}}</td>
             <td>
                 <a class="btn text-success" (click)="onedit(p)">
                     <i class="fa fa-edit"></i>
@@ -460,10 +486,11 @@
                 <a class="btn text-danger" (click)="ondelete(p)" >
                     <i class="fa fa-trash"></i>
                 </a>
-            </td>
-
+            </td> 
+           
         </tr> 
 
     </tbody>
 </table>
+
 <!-- END OF THE TABLE -->

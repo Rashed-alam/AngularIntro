@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import {FabricPriceModel } from 'src/app/models/fabric-price.model';
+import { Reference } from '@angular/compiler/src/render3/r3_ast';
 
 const headerOption = {
   headers: new HttpHeaders({ 'Content-Type' : 'application/json' })
@@ -52,25 +53,30 @@ export class FabricPriceServiceService {
         }
     ]
   }
-  //GET ALL
-  getAllEntries(): Observable<FabricPriceModel[]>{
-    return this.httpcall.get<FabricPriceModel[]>(this.url1+'/all', headerOption);
+  //GET ALL by reference
+  getAllEntries(reference: any): Observable<FabricPriceModel[]>{
+    return this.httpcall.post<FabricPriceModel[]>(this.url1+'/all/'+ reference, headerOption);
   }
   //POST
   createEntry(fabcal : FabricPriceModel): Observable<FabricPriceModel> {
     return this.httpcall.post<FabricPriceModel>(this.url1+'/new/'+fabcal.referenceId, fabcal , headerOption);
   }
   //EDIT
-  updateEntry(entry : FabricPriceModel): Observable<FabricPriceModel[]> {
-    return this.httpcall.put<FabricPriceModel[]>(this.url1+'/update/'+ entry.referenceId + '/' + entry.fabricPriceInformation[0].styleCode, entry, headerOption);
+  updateEntry(entry : any): Observable<FabricPriceModel[]> {
+    return this.httpcall.put<FabricPriceModel[]>(this.url1+'/update/'+ entry.referenceId + '/' + entry.styleCode, entry, headerOption);
   }
   //DELETE
-  deleteEntry(entry: FabricPriceModel): Observable<FabricPriceModel[]>{
-    return this.httpcall.delete<FabricPriceModel[]>(this.url1+'/delete/'+ entry.referenceId + '/' + entry.fabricPriceInformation[0].styleCode, headerOption);
+  deleteEntry(entry): Observable<FabricPriceModel[]>{
+    return this.httpcall.delete<FabricPriceModel[]>(this.url1+'/delete/'+ entry.referenceId + '/' + entry.styleCode, headerOption);
   }
   //GET AUTO GENERATED ID FROM DATABASE
   getFabricEntry_ID(){
     return this.httpcall.get(this.url1+'/', headerOption);
+  }
+  
+  //GET REFERENCE LIST FROM DATABASE
+  getAllReferences(){
+    return this.httpcall.get(this.url1+'/allref', headerOption);
   }
 
   

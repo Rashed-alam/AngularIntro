@@ -58,42 +58,46 @@ router.post('/new/:referenceId',(req,res,next)=>{
 });
 });
 
-//GET any particular 
-router.get('/get', function(req, res){
-    // get by single stylecode
-    FabricPriceEntrySchema.aggregate([
-        { $unwind :'$info'},
-        { $match : {'info.flat': "c2" }},
-    
-        ]).then(data => {
-            res.send(data)
-        })
-});
-
-//GET ALL
-router.get('/all',(req,res,next)=>{ 
-    FabricPriceEntrySchema.find({}).then(function(fabricentry){
-        res.send(fabricentry);
+// //GET ALL entries by reference
+router.post('/all/:referenceId', (req, res, next) => {
+    FabricPriceEntrySchema.findOne({ referenceId: req.params.referenceId }).then(function (a) {
+        var alldata = JSON.parse(JSON.stringify(a.fabricPriceInformation));
+        var ref = a.referenceId;
+        for(i=0;i<alldata.length;i++){
+            alldata[i].referenceId=ref;
+        }
+        res.send(alldata);
+  
     }).catch(next);
 });
 
 //DELETE
 router.delete('/delete/:referenceId/:styleCode',function(req,res,next){
     FabricPriceEntrySchema.findOne({referenceId:req.params.referenceId}).then(function(a){
+        var lengthofA= a.fabricPriceInformation.length;
+
+        if(lengthofA>1){
     var array = a.fabricPriceInformation;
     var l = a.fabricPriceInformation.length;
     for(let i=0; i<array.length; i++){
         console.log('check='+ array[i].styleCode);
         if(a.fabricPriceInformation[i].styleCode == req.params.styleCode){
-           console.log('ok')
+        //    console.log('ok')
             array.splice(i,1);
         }
     }
     a.fabricPriceInformation = array;
     a.save().then(function(a){
-        res.send(a);
+        res.send("deleted");
     }).catch(next);
-})
+}
+    else{
+        FabricPriceEntrySchema.findOneAndDelete({refNo:req.params.refNo}).then(function(fabricentry){
+            res.send(fabricentry);  
+         }).catch(next);
+    }
+});
+    
 });
 
 //EDIT
@@ -171,6 +175,20 @@ router.get('/',function(req,res,next){
 });
  });
 
+//fetching the list of reference IDs created
+router.get('/allref', (req, res, next) => {
+    FabricPriceEntrySchema.find({}).then(function (a) {
+        var allref = [];
+        var l = a.length;
+        for (i = 0; i < l; i++) {
+            // console.log('check ' + a[i].referenceId);
+
+            allref.push(a[i].referenceId);
+        }
+        // console.log('check ' + allref);
+        res.send(allref);
+    }).catch(next);
+});
 
 
 
