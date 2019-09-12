@@ -49,10 +49,15 @@ export class FabricPriceServiceService {
         }
     ]
   }
-  //GET ALL
+
   getAllEntries(): Observable<FabricPriceModel[]>{
     return this.httpcall.get<FabricPriceModel[]>(this.url1+'/all', headerOption);
   }
+    //GET ALL for report
+  getAllref(): Observable<FabricPriceModel[]>{
+    return this.httpcall.get<FabricPriceModel[]>(this.url1+'/allref', headerOption);
+  }
+  
   //POST
   createEntry(fabcal : FabricPriceModel): Observable<FabricPriceModel> {
     return this.httpcall.post<FabricPriceModel>(this.url1+'/new/'+fabcal.referenceId, fabcal , headerOption);
