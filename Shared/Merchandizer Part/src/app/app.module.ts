@@ -26,6 +26,8 @@ import { FabricPriceService } from 'src/shared/fabric-price.service';
 
 import { FabricPriceCalculationComponent } from './fabric-price-calculation/fabric-price-calculation.component';
 import { FabricPriceComponent } from './components/fabric-price/fabric-price.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,8 @@ import { FabricPriceComponent } from './components/fabric-price/fabric-price.com
     HttpClientModule,
     BsDatepickerModule.forRoot(),
     NgbModule,
-    FormsModule
+    FormsModule,
+   
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

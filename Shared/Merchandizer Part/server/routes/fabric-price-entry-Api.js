@@ -90,7 +90,7 @@ router.delete('/delete/:referenceId/:styleCode',function(req,res,next){
     var array = a.fabricPriceInformation;
     var l = a.fabricPriceInformation.length;
     for(let i=0; i<array.length; i++){
-        console.log('check='+ array[i].styleCode);
+      //  console.log('check='+ array[i].styleCode);
         if(a.fabricPriceInformation[i].styleCode == req.params.styleCode){
         //    console.log('ok')
             array.splice(i,1);
@@ -102,7 +102,7 @@ router.delete('/delete/:referenceId/:styleCode',function(req,res,next){
     }).catch(next);
 }
     else{
-        FabricPriceEntrySchema.findOneAndDelete({refNo:req.params.refNo}).then(function(fabricentry){
+        FabricPriceEntrySchema.findOneAndDelete({referenceId:req.params.referenceId}).then(function(fabricentry){
             res.send(fabricentry);  
          }).catch(next);
     }

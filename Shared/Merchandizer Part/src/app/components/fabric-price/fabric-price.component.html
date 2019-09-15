@@ -113,7 +113,9 @@
                                     <div class="input-group-text">Style Code</div>
                                   </div>
                                   <input type="text" class="form-control" id="style_code" [disabled]="hiddingrefIdandStyleCode" placeholder="Code Number"  
-                                  name="FabPriService.currentEntry.fabricPriceInformation[0].styleCode" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].styleCode" 
+                                  name="FabPriService.currentEntry.fabricPriceInformation[0].styleCode"
+                                style="text-transform: uppercase;"
+                                   [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].styleCode" 
                                    #styleCode="ngModel" required>
                                   </div>
                                 </div >
@@ -251,7 +253,8 @@
                                                         <label class="input-group-text" for="inputGroupSelect01">Fabric Weight</label>
                                                       </div>
                                                       <input type="text" class="form-control"  disabled 
-                                                      name="fabricWeight" [(ngModel)]="fabricWeight">kg/per dozen
+                                                      name="FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight" 
+                                                      [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight">kg/per dozen
                                                     </div>
                                               </div>
                                               <div class="col">
@@ -301,9 +304,8 @@
                             <div class="input-group-prepend">
                                     <div class="input-group-text">Fabric Total Price:</div>
                                   </div>
-                        <input type="text" id="refNo" class="form-control" style="width: 30%"
+                        <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="0 {{setcurrency}}"
                             value="{{FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice}}" disabled>
-                        <a style="padding: 6px;"> {{setcurrency}}</a>
                     </div>
                     </div>
                     </div>
@@ -313,7 +315,7 @@
                               <div class="input-group-prepend">
                                       <div class="input-group-text">RIM:</div>
                                     </div>
-                          <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                          <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="0 {{setcurrency}}"
                           name="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice"
                               [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice" required>
                       </div>
@@ -324,7 +326,7 @@
                                     <div class="input-group-text">CM:</div>
                                   </div>
                         <input type="text" id="refNo" class="form-control" style="width: 30%" 
-                        name="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice"
+                        name="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice" placeholder="0 {{setcurrency}}"
                             [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice" required>
                     </div>
                   </div>
@@ -333,7 +335,7 @@
                           <div class="input-group-prepend">
                                   <div class="input-group-text">TRIM:</div>
                                 </div>
-                      <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                      <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="0 {{setcurrency}}"
                       name="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice"
                           [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice" required>
                   </div>
@@ -343,7 +345,7 @@
                         <div class="input-group-prepend">
                                 <div class="input-group-text">Print:</div>
                               </div>
-                    <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                    <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="0 {{setcurrency}}"
                     name="FabPriService.currentEntry.fabricPriceInformation[0].printPrice"
                         [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].printPrice" required>
                 </div>
@@ -353,7 +355,7 @@
                       <div class="input-group-prepend">
                               <div class="input-group-text">DOC:</div>
                             </div>
-                  <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                  <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="0 {{setcurrency}}"
                   name="FabPriService.currentEntry.fabricPriceInformation[0].docPrice"
                       [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].docPrice" required>
               </div>
@@ -367,8 +369,8 @@
                                       <div class="input-group-text">Per Dozen Price:</div>
                                     </div>
                       <input type="text" id="refNo" class="form-control" style="width: 30%"
-                           value="{{FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice}}" readonly="">
-                      <a style="padding: 6px;"> {{setcurrency}}</a>
+                           value="{{FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice}} {{setcurrency}}" readonly="">
+             
                   </div>
                       </div>
                       <div class="col">
@@ -377,8 +379,8 @@
                                       <div class="input-group-text">Per Unit Price:</div>
                                     </div>
                           <input type="text" id="refNo" class="form-control" style="width: 30%; "
-                               value="{{FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice}}" readonly="">
-                          <a style="padding: 6px;"> {{setcurrency}}</a>
+                               value="{{FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice}} {{setcurrency}}" readonly="">
+                   
                       </div>
                       </div>
                       <div class="col">

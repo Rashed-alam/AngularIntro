@@ -16,6 +16,7 @@ import { UoM } from 'src/app/models/unitofmeasurement.model';
 import { CurrencyService } from 'src/app/services/currency.service';
 import { all } from 'q';
 
+
 @Component({
   selector: 'app-fabric-price',
   templateUrl: './fabric-price.component.html',
@@ -34,7 +35,6 @@ export class FabricPriceComponent implements OnInit {
   JacketSelected: boolean = false;
   ShortsSelected: boolean = false;
   allUoM: UoM[];
-  fabricWeight: any;
   newcurrency;
   setcurrency;
   showsuccessmessageforsubmitting: boolean = false;
@@ -44,6 +44,7 @@ export class FabricPriceComponent implements OnInit {
   allReference: any;
   entryShowList: any;
   temporaryDataStorage: any;
+  hiddingrefIdandStyleCode: boolean = false;
 
   constructor(public FabPriService: FabricPriceServiceService,
               private DP: DatePipe,
@@ -52,7 +53,8 @@ export class FabricPriceComponent implements OnInit {
               private ft: FabricTypeService,
               private In: ItemNameService,
               private Ums:UnitofmeasurementService,
-              public CU: CurrencyService,) { }
+              public CU: CurrencyService,
+              ) { }
 
   ngOnInit() {
     const present = this.DP.transform(this.today, "dd-MM-yyyy");
@@ -67,6 +69,7 @@ export class FabricPriceComponent implements OnInit {
     this.getReferences();
     this.clearAll();
   }
+ 
   //GET FUNCTION
   SearchByReference(a){
     this.FabPriService.getAllEntries(a)
@@ -86,13 +89,13 @@ export class FabricPriceComponent implements OnInit {
   }
   //POST FUNCTION
   create(entry: any){
-    console.log(entry);
+    this.FabPriService.currentEntry.fabricPriceInformation[0].styleCode = entry.fabricPriceInformation[0].styleCode.toUpperCase();
     this.FabPriService.createEntry(entry)
     .subscribe(
       res => {
         this.showsuccessmessageforsubmitting = true;
         setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
-        // this.getallFabricEntries();
+        this.hiddingrefIdandStyleCode = true;
         this.softClear();
         this.getReferences();
         // this.router.navigateByUrl('/price');
@@ -107,6 +110,7 @@ export class FabricPriceComponent implements OnInit {
   }
   //UPDATE FUNCTION
   update(entry: any){
+ 
     this.FabPriService.updateEntry(entry)
     .subscribe((res)=>{
       this.showeditmessage=true;
@@ -118,6 +122,7 @@ export class FabricPriceComponent implements OnInit {
 
   //ASSIGNING OBJECT FROM DATABASE TO THE FRONTEND FORM
   onedit(entry: any){
+    this.hiddingrefIdandStyleCode = true;
     this.FabPriService.getByStyleCode(entry)
     .subscribe((res)=>{
       this.temporaryDataStorage = res;
@@ -135,9 +140,9 @@ export class FabricPriceComponent implements OnInit {
     if(confirmation == true){
       this.FabPriService.deleteEntry(item).subscribe((data) =>{
         this.showdeletemessage=true;
-        this.getReferences();
-        this.SearchByReference(item);
         setTimeout(()=>this.showdeletemessage=false,4000);
+        this.getReferences();
+        
         
       });
      }
@@ -272,9 +277,11 @@ export class FabricPriceComponent implements OnInit {
     step3 = (((wastePercentage)/100)*step2);
     var step4: any = 0;
     step4 = (step2 + step3);
+    console.log(step4);
     var convertoFloat; 
     convertoFloat = parseFloat(step4).toFixed(5);
-    this.fabricWeight = convertoFloat;//main answer for fabric calculation
+    console.log(convertoFloat);
+    this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight = convertoFloat;//main answer for fabric calculation
     //end of fabric calculation of boys tshirt
   }
   //this is for getting all the units of measurement from database
@@ -315,7 +322,7 @@ export class FabricPriceComponent implements OnInit {
 
 // console.log(this.fabricWeight);
 
-    this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight = this.fabricWeight
+   // this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight = this.fabricWeight
     FabricAmount = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight ;
     FabricUnitPrice = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice;
     step1 = (parseFloat(FabricAmount) * parseFloat(FabricUnitPrice))
