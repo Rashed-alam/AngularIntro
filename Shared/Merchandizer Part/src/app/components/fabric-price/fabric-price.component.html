@@ -1,30 +1,30 @@
 
 <div class="container">
     <form name="mainform" (ngSubmit)="mainform.form.valid && onsubmit(FabPriService.currentEntry)" #mainform="ngForm" novalidate>
-    <div class="card" style="margin-top: 1rem; margin-left: 5rem;margin-right: 5rem;">
+    <div class="card" style="margin-top: 1rem; margin-left: 15rem;margin-right: 15rem;">
         <!-- UPPER PART- BASIC INFORMATION -->
         <div class="card-body" style="margin-bottom: -1rem; margin-top: -1rem;">
             <div class="row">
-              <div class="col-md-3">
+              <div class="col">
                   <div class="form-inline " >
          
                       <label >ID: </label>
-                     <input class="form-control" type="text" placeholder="{{autoID}}" style="width: 40%;padding-left:1rem;" disabled>
+                     <input class="form-control" type="text" placeholder="{{autoID}}" style="width: 35%;padding-left:1rem;" disabled>
                     </div>
               </div>
-              <div class="col-md-4">
-                <div class="form-inline">
+              <div class="col">
+                <div class="">
             <!-- <input type="text" name="dateRangeStartDate" #txtVoucherDate1ID="ngModel" [(ngModel)]="dateRangeStartDate"
                            style="width: 100%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
                            class="form-control" [minDate]="minDate" [maxDate]="maxDate"> -->
                           <label for="formGroupExampleInput"> Mail Date: </label>
                            <input type="text" id="mailDate" name="FabPriService.currentEntry.mailDate" [(ngModel)]="FabPriService.currentEntry.mailDate"
                             placeholder="{{today}}" 
-                           style="width: 50%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+                           style="width: 49%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
                            class="form-control" #mailDate="ngModel" required>
                           </div>
               </div>
-              <div class="col-md-4">
+              <div class="col">
                     <div class="form-inline">
                 <!-- <input type="text" name="dateRangeStartDate" #txtVoucherDate1ID="ngModel" [(ngModel)]="dateRangeStartDate"
                                style="width: 100%;"  readonly bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
@@ -32,11 +32,14 @@
                               <label for="formGroupExampleInput"> Entry Date: </label>
                               <input type="text" id="entryDate" placeholder="{{today}}" name="FabPriService.currentEntry.entryDate" 
                               [(ngModel)]="FabPriService.currentEntry.entryDate"
-                              style="width: 50%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+                              style="width: 49%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
                               class="form-control" #entryDate="ngModel" required>
                               </div>
               </div>
+              <div class="col">
+            </div>
               </div>
+              
               <br> 
               <div class="row" style="margin-top:-1rem; margin-bottom:-0.5rem;">
                   <div class="col-6" style="margin-left: 0% ">
