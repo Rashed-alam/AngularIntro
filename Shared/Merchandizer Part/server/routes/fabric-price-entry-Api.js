@@ -221,6 +221,20 @@ router.get('/', function (req, res, next) {
         });
 });
 
+//fetching the list of reference IDs created
+router.get('/allref', (req, res, next) => {
+    FabricPriceEntrySchema.find({}).then(function (a) {
+        var allref = [];
+        var l = a.length;
+        for (i = 0; i < l; i++) {
+            // console.log('check ' + a[i].referenceId);
+
+            allref.push(a[i].referenceId);
+        }
+        // console.log('check ' + allref);
+        res.send(allref);
+    }).catch(next);
+});
 
 
 

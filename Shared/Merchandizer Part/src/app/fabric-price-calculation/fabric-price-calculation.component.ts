@@ -119,19 +119,19 @@ export class FabricPriceCalculationComponent implements OnInit {
 
 
     this.fabricpriceservice.getobject2(object)
-      .subscribe((data: PriceCalculation[]) => {
-        this.objectAssign2 = data;
-        this.fabricpriceservice.calculatePrice = Object.assign({}, this.objectAssign2[0]);
-      });
-
-
+    .subscribe((data:PriceCalculation[])=>{
+    this.objectAssign2=data;
+    this.fabricpriceservice.calculatePrice = Object.assign({},this.objectAssign2[0]);
+    });
+    
+    
   }
-
+  
   //this function is for calculating the fabric weight
-  calculate1() {
-    var wastePercentage: any = 0; //waste percentage
-    var chestsize: any = 0;
-    var lengthsize: any = 0;
+  calculate1(){
+    var wastePercentage: any= 0; //waste percentage
+    var chestsize: any= 0;
+    var lengthsize: any= 0 ;
     var sleevesize: any = 0;
     var hoodsize: any = 0;
     var bottomsize: any = 0;
