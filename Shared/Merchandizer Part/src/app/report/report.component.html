@@ -1,57 +1,317 @@
-
-
 <!-- <table class="table table-bordered" style="width: 78%; margin-left: 8rem; text-align: center; margin-top: 1rem;font-size: 15px; border: 5px solid #dee2e6; position: relative;">
    
   </table> -->
-  <!-- <h2>Reference:{{referid}}</h2> -->
-  <!-- <h5>Date:</h5> -->
-  <div class="col-6" style="margin-top: 1srem;">
-    <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect01">Reference No:</label>
-        </div>
-        <select class="custom-select" style="width: 70%" id="fabrics" name="fabricpriceservice.currentFabricCalc.fabrics" 
-        required>
-            <option value="{{f.fabric_name}}" *ngFor="let f of AllReference">Reference-{{f}}</option>
-          </select>
-      </div>  
+<!-- <h2>Reference:{{referid}}</h2> -->
+<!-- <h5>Date:</h5> -->
+<div class="col-6" style="margin-top: 1srem;">
+  <div class="input-group mb-3" style="margin-bottom: 4rem; margin-top: 1rem">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01">Reference No:</label>
     </div>
+    <select class="custom-select" style="width: 70%" id="fabrics" (click)="getreportdata($event.target.value)">
+      <option *ngFor="let f of AllReference">{{f}}</option>
 
-    <table class="table table-bordered" style="width: 100%; margin-left: 0rem; text-align: left; margin-top: 1rem;font-size: 12px; border: 5px solid #dee2e6; position: relative;">
-      <thead>
-        <tr>
-          <th scope="col">Sl.</th>
-          <th scope="col">Buyer</th>
-          <th scope="col">Reference No</th>
-          <th scope="col">Style No.</th>
-          <th scope="col">Description</th>
-          <th scope="col">FOB Price</th>
-          <th scope="col">Remarks</th>
-           
-          <!-- <th scope="col">Remarks</th>
+    </select>
+  </div>
+</div>
+
+<table class="table table-bordered"
+  style="width: 100%; margin-left: 0rem; text-align: left; margin-top: 1rem;font-size: 12px; border: 5px solid #dee2e6; position: relative;">
+  <thead>
+    <tr>
+      <th scope="col">Sl.</th>
+      <th scope="col">Buyer</th>
+      <th scope="col">Style No.</th>
+      <th scope="col">Description</th>
+      <th scope="col">FOB Price</th>
+      <th scope="col">Remarks</th>
+      <th scope="col">Approval</th>
+
+      <!-- <th scope="col">Remarks</th>
           <th scope="col">Revised FOB Price</th>
           <th scope="col">Remarks</th>
           <th scope="col">Revised FOB Price</th>  -->
-         
-        </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let entry of FabricCalc,index as i">
-            <td>{{i+1}}</td>
-            <td>{{entry.buyerName}}</td>
-            <td>{{entry.referenceId}}</td>
-            <td>{{entry}}</td>
-            <td>Description</td>
-          
-            <td>{{entry}}</td>
-            <td>des</td>
-            <!-- <td><input type="text"> ({{entry.date | date :  "dd-MM-yyyy"}})</td>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let entry of fabricReport,index as i">
+      <td>{{i+1}}</td>
+      <td>{{entry.buyerName}}</td>
+      <td><a class="btn text-danger" (click)="getDataForReview(entry)" data-toggle="modal"
+          data-target="#exampleModal">{{entry.styleCode}}</a></td>
+      <td>{{entry.itemName}}</td>
+      <td>{{entry.perUnitPrice}}</td>
+      <td>{{entry.remarks}}</td>
+      <td><input type="checkbox" name="vehicle1" value=" Approval"
+          style="margin-top:0rem; margin-bottom:1rem; margin-left:1rem;"></td>
+      <!-- <td><input type="text"> ({{entry.date | date :  "dd-MM-yyyy"}})</td>
             <td>{{entry.FOB}}</td>
             <td><input type="text"> ({{entry.date | date :  "dd-MM-yyyy"}})</td>
             <td>{{entry.SFOB}}</td> -->
-           
-          
-           </tr>
-      </tbody>
-    </table>
 
+
+    </tr>
+  </tbody>
+</table>
+<!------Modal-->
+
+<form name="form2" #form2="ngForm" novalidate>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">Details of Order </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+
+          <div class="row">
+            <div class="col-md-6">
+              <h5 style="text-align: center;"><strong> Basic Information </strong></h5>
+
+              <div class="card">
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="input-group mb-3" style=" margin-left: 1em;">
+                      Mail Date: {{ reviewReport.mailDate}}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group mb-3"  style=" margin-right: 1em;">
+                      Entry Date: {{ reviewReport.entryDate}}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="input-group mb-3"
+                      style="margin-bottom: 0rem; margin-top: 0rem; width:75%; margin-left: 1em;">
+                      Reference No: {{ reviewReport.referenceId}}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row" style="margin-top: 0rem; ">
+
+                  <div class="col">
+                    <div class="input-group mb-3"
+                      style="margin-bottom: 0rem; margin-top: 0rem; width:75%; margin-left: 1em;">
+                      Style: {{ reviewReport.styleCode}}
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row" style="margin-top: 0rem; ">
+                  <div class="col-sm">
+                    <div class="input-group mb-3"
+                      style="margin-bottom: 0rem; margin-top: 0rem; width:75%; margin-left: 1em;">
+                      Buyer Name: {{ reviewReport.buyerName}}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="row" style="margin-top: -1rem; ">
+                    <div class="col-sm">
+                      <div class="input-group mb-3"
+                        style="margin-bottom: 0rem; margin-top: 0rem; width:75%; margin-left: 1em;">
+                        Style:{{reviewReport.styleCode}}
+                      </div>
+                    </div>
+                    <div class="col-sm">
+                      <div class="input-group mb-3"
+                        style="margin-bottom: 0rem; margin-top: 0rem; width:62%; margin-left: 6rem;">
+                        Chest:{{reviewReport.chestSize}}
+                      </div>
+                    </div>
+      
+                    <div class="col-sm">
+      
+                    </div>
+                  </div> -->
+
+                <div class="row" style="margin-top: 0rem; ">
+                  <div class="col-sm">
+                    <div class="input-group mb-3"
+                      style="margin-bottom: 0rem; margin-top: 0rem; width:75%; margin-left: 1em;">
+                      Size: {{ reviewReport.size}}
+                    </div>
+                  </div>
+                  <!-- <div class="col-sm">
+                      <div class="input-group mb-3"
+                        style="margin-bottom: 0rem; margin-top: 0rem; width:62%; margin-left: 6rem;">
+                        Length:{{reviewReport.lengthSize}}
+                      </div>
+                    </div> -->
+
+                </div>
+
+                <div class="row" style="margin-top: 0rem;margin-bottom: 0rem; ">
+                  <div class="col">
+                    <div class="input-group mb-3"
+                      style="margin-bottom: 0rem; margin-top: 0rem; width:5%; margin-left: 1em;">
+                      Fabrics:{{reviewReport.fabricType}}
+                    </div>
+                  </div>
+                  <!-- <div class="col-sm">
+                      <div class="input-group mb-3"
+                        style="margin-bottom: 1rem; margin-top: 0rem; width:62%; margin-left: 6rem;">
+                        Sleeve:{{reviewReport.sleeveSize}}
+                      </div>
+                    </div> -->
+
+                  <div class="col-sm">
+
+                  </div>
+                </div>
+              </div>
+              <br>
+
+            </div>
+            <div class="col-md-6">
+              <h5 style="text-align: center;"><strong>Price Calculation Breakdown</strong></h5>
+
+              <div class="row justify-content-md-center">
+                <div class="card" width="25%">
+                  <h6 style="text-align: center;"><b>Price Calculation-</b></h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p style="margin-top:0rem; margin-bottom:0rem; margin-left:1rem;">Fabric Amount:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" name="name" style="width: 50%"
+                        [(ngModel)]="Fc.currentEntry.fabricPriceInformation[0].fabricWeight" #name="ngModel" readonly>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p style="margin-top:0rem; margin-bottom:0rem; margin-left:1rem;">Unit Price:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" name="unitprice" style="width: 50%"
+                        (keyup)="calculateWithkeyUp($event.target.value)"
+                        [(ngModel)]="Fc.currentEntry.fabricPriceInformation[0].fabricUnitPrice" #unitprice="ngModel"
+                        required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p style="margin-top:0rem; margin-bottom:0rem; margin-left:1rem;">Fabric Total Price:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" name="totalprice" style="width: 50%"
+                        [(ngModel)]="Fc.currentEntry.fabricPriceInformation[0].fabricTotalPrice" #totalprice="ngModel"
+                        readonly>
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p style="margin-top:0rem; margin-bottom:0rem; margin-left:1rem;">RIB :</p>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" name="ribprice" style="width: 50%"
+                        (keyup)="calculateWithkeyUp($event.target.value)"
+                        [(ngModel)]="Fc.currentEntry.fabricPriceInformation[0].rimPrice" #ribprice="ngModel" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p style="margin-top:0rem; margin-bottom:0rem; margin-left:1rem;">CM :</p>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" name="cmprice" style="width: 50%"
+                        (keyup)="calculateWithkeyUp($event.target.value)"
+                        [(ngModel)]="Fc.currentEntry.fabricPriceInformation[0].cmPrice" #cmprice="ngModel" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p style="margin-top:0rem; margin-bottom:0rem; margin-left:1rem;">Trim :</p>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" name="trimprice" style="width: 50%"
+                        (keyup)="calculateWithkeyUp($event.target.value)"
+                        [(ngModel)]="Fc.currentEntry.fabricPriceInformation[0].trimPrice" #trimprice="ngModel" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p style="margin-top:0rem; margin-bottom:0rem; margin-left:1rem;">PRINT :</p>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" name="printprice" style="width: 50%"
+                        (keyup)="calculateWithkeyUp($event.target.value)"
+                        [(ngModel)]="Fc.currentEntry.fabricPriceInformation[0].printPrice" #printprice="ngModel"
+                        required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p style="margin-top:0rem; margin-bottom:0rem; margin-left:1rem;">DOC :</p>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" name="docprice" style="width: 50%"
+                         (keyup)="calculateWithkeyUp($event.target.value)"
+                        [(ngModel)]="Fc.currentEntry.fabricPriceInformation[0].docPrice" #docprice="ngModel" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p style="margin-top:0rem; margin-bottom:0rem; margin-left:1rem;">Price per dozen:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" name="perdozenprice" style="width: 50%"
+                        [(ngModel)]="Fc.currentEntry.fabricPriceInformation[0].perDozenPrice" #perdozenprice="ngModel"
+                        readonly>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p style="margin-top:0rem; margin-bottom:0rem; margin-left:1rem;">Price per unit:</p>
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" name="perunitprice" style="width: 50%"
+                        [(ngModel)]="Fc.currentEntry.fabricPriceInformation[0].perUnitPrice" #perunitprice="ngModel"
+                        readonly>
+                    </div>
+                  </div>
+                  <!-- <p style="margin-top:0rem; margin-bottom:0rem; margin-left:1rem;">Price per dozen:
+                      {{reviewReport.perDozenPrice}}</p>
+                    <p style="margin-top:0rem; margin-bottom:0rem; margin-left:1rem;">Price per unit:
+                      {{reviewReport.perUnitPrice}}</p> -->
+                 
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="">Remarks</span>
+                      </div>
+                      <input type="text" class="form-control" name="remarks" placeholder="add comments"
+                        [(ngModel)]="Fc.currentEntry.fabricPriceInformation[0].remarks" #remarks="ngModel">
+                    </div>
+                 
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit"  class="btn btn-success"  style="margin-left: 7rem;"
+        [disabled]="form2.form.pristine || form2.form.invalid" (click)="updatePricecalc(Fc.currentEntry)" data-dismiss="modal" >Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+</form>

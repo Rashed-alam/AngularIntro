@@ -45,7 +45,7 @@ router.post('/new/:referenceId', (req, res, next) => {
                 }, { multi: true },
                 function (err, result) {
                     if (err) {
-                        console.log('ERROR: ' + err);
+                      //  console.log('ERROR: ' + err);
                         res.send({ 'error': 'An error has occurred' });
                     } else {
                         res.send(result);
@@ -56,42 +56,31 @@ router.post('/new/:referenceId', (req, res, next) => {
     });
 });
 
-//GET any particular 
-router.get('/get', function (req, res) {
-    // get by single stylecode
+//GET any particular by style code
+router.post('/get/:styleCode', (req, res, next) => {
     FabricPriceEntrySchema.aggregate([
-        { $unwind: '$info' },
-        { $match: { 'info.flat': "c2" } },
-
-    ]).then(data => {
-        res.send(data)
+        { $unwind:'$fabricPriceInformation'},
+        {$match:{'fabricPriceInformation.styleCode': req.params.styleCode }}
+    ]).then(function(a){
+        res.send(a)
     })
 });
 
 //GET ALL
 router.get('/all/:referenceId', (req, res, next) => {
     FabricPriceEntrySchema.findOne({ referenceId: req.params.referenceId }).then(function (a) {
-        var alldata = a.fabricPriceInformation;
+        var alldata = JSON.parse(JSON.stringify(a.fabricPriceInformation));
+
+        //var buyername = JSON.parse(JSON.stringify(a.buyerName));
         var buyername = a.buyerName;
-        alldata.push("buyerName", 'buyername');
+        for (i = 0; i < alldata.length; i++) {
+            alldata[i].buyerName = buyername;
+            alldata[i].referenceId = a.referenceId;
+        }
 
-        // console.log('check'+a.fabricPriceInformation);
-        l = alldata.length;
-        console.log('check' + l);
-        //    for(let i=0; i<l; i++){
-        //        alldata[i]["buyerName"] = "x";
-        //    }
-        // alldata.forEach(function(e){
-        //    // if(typeof e ==="object"){
-        //         e["buyerName"]="gfsdhg";
-        //    // }
-        // })
-        //alldata.map(x => x.Add = "7")
-
-        //  const arr = alldata.map(x => Object.assign({},alldata,{"buyerName":"afsana"}))
-        // alldata.push(a.buyerName);
+      //  console.log(alldata);
         res.send(alldata);
-        console.log(alldata);
+
     }).catch(next);
 });
 
@@ -102,13 +91,41 @@ router.get('/allref', (req, res, next) => {
         var allref = [];
         var l = a.length;
         for (i = 0; i < l; i++) {
-            console.log('check ' + a[i].referenceId);
+         //   console.log('check ' + a[i].referenceId);
 
             allref.push(a[i].referenceId);
         }
-        console.log('check ' + allref);
+     //   console.log('check ' + allref);
         res.send(allref);
     }).catch(next);
+});
+
+// get object by reference id and style code
+router.post('/review/:referenceId/:styleCode', function (req, res, next) {
+    FabricPriceEntrySchema.findOne({ referenceId: req.params.referenceId }).then(function (a) {
+        var array = a.fabricPriceInformation;
+        var k = JSON.parse(JSON.stringify(a.fabricPriceInformation));
+        //  var l = a.fabricPriceInformation.length;
+        for (let i = 0; i < k.length; i++) {
+            // console.log('check='+ array[i].styleCode);
+            if (k[i].styleCode == req.params.styleCode) {
+
+                var v = JSON.parse(JSON.stringify(k[i]));
+                v.buyerName = a.buyerName;
+                v.referenceId = a.referenceId;
+                v.buyerName = a.buyerName;
+                v.mailDate = a.mailDate;
+                v.entryDate = a.entryDate;
+                v.size = a.size;
+               // console.log(v);
+                res.send(v);
+            }
+            else {
+             //   console.log('not found');
+            }
+        }
+
+    })
 });
 
 //DELETE
@@ -117,9 +134,9 @@ router.delete('/delete/:referenceId/:styleCode', function (req, res, next) {
         var array = a.fabricPriceInformation;
         var l = a.fabricPriceInformation.length;
         for (let i = 0; i < array.length; i++) {
-            console.log('check=' + array[i].styleCode);
+        //    console.log('check=' + array[i].styleCode);
             if (a.fabricPriceInformation[i].styleCode == req.params.styleCode) {
-                console.log('ok')
+           //     console.log('ok')
                 array.splice(i, 1);
             }
         }
@@ -167,13 +184,14 @@ router.put('/update/:referenceId/:styleCode', function (req, res, next) {
                     "fabricPriceInformation.$.printPrice": req.body.fabricPriceInformation[0].printPrice,
                     "fabricPriceInformation.$.docPrice": req.body.fabricPriceInformation[0].docPrice,
                     "fabricPriceInformation.$.perDozenPrice": req.body.fabricPriceInformation[0].perDozenPrice,
-                    "fabricPriceInformation.$.perUnitPrice": req.body.fabricPriceInformation[0].perUnitPrice
+                    "fabricPriceInformation.$.perUnitPrice": req.body.fabricPriceInformation[0].perUnitPrice,
+                    "fabricPriceInformation.$.remarks": req.body.fabricPriceInformation[0].remarks
 
                 }
             },
             function (err, result) {
                 if (err) {
-                    console.log('ERROR: ' + err);
+                //    console.log('ERROR: ' + err);
                     res.send({ 'error': 'An error has occurred' });
                 } else {
                     res.send(result);
@@ -207,4 +225,4 @@ router.get('/', function (req, res, next) {
 
 
 
-module.exports = router; 
+module.exports = router;

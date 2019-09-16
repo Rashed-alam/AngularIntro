@@ -1,4 +1,4 @@
-import { CurrencyService } from 'src/shared/currency.service';
+import { CurrencyService } from 'src/app/services/currency.service';
 import { FabricPriceService } from 'src/shared/fabric-price.service';
 import { PriceCalculation } from 'src/shared/priceCalculation.model';
 import { FabricCalulation } from 'src/shared/fabricCalculation.model';
