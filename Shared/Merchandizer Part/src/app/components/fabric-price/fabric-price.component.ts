@@ -66,28 +66,11 @@ export class FabricPriceComponent implements OnInit {
     this.getAllItems();
     this.getAllUms();
     this.getCurrencylist();
-    this.getReferences();
+    //this.getReferences();
     this.clearAll();
   }
  
-  //GET FUNCTION
-  SearchByReference(a){
-    this.FabPriService.getAllEntries(a)
-    .subscribe(
-    (data)=>{
-      this.entryShowList = data;
-    });
-  }
-  //CREATE AND UPDATE FUNCTION
-  onsubmit(key){
-    if(key._id  == null){
-      this.create(key);
-    }
-    else{
-      this.update(key);
-    }
-  }
-  //POST FUNCTION
+
   create(entry: any){
     this.FabPriService.currentEntry.fabricPriceInformation[0].styleCode = entry.fabricPriceInformation[0].styleCode.toUpperCase();
     this.FabPriService.createEntry(entry)
@@ -96,8 +79,8 @@ export class FabricPriceComponent implements OnInit {
         this.showsuccessmessageforsubmitting = true;
         setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
         this.hiddingrefIdandStyleCode = true;
-        this.softClear();
-        this.getReferences();
+        //this.softClear();
+        //this.getReferences();
         // this.router.navigateByUrl('/price');
       },
       err => {
@@ -121,18 +104,18 @@ export class FabricPriceComponent implements OnInit {
   }
 
   //ASSIGNING OBJECT FROM DATABASE TO THE FRONTEND FORM
-  onedit(entry: any){
-    this.hiddingrefIdandStyleCode = true;
-    this.FabPriService.getByStyleCode(entry)
-    .subscribe((res)=>{
-      this.temporaryDataStorage = res;
-      // console.log(res);
-      this.FabPriService.currentEntry = Object.assign({},this.temporaryDataStorage[0]);
-      this.FabPriService.currentEntry.fabricPriceInformation[0] = Object.assign({},this.temporaryDataStorage[0].fabricPriceInformation);
-      // console.log(this.FabPriService.currentEntry);
-    });
+  // onedit(entry: any){
+  //   this.hiddingrefIdandStyleCode = true;
+  //   this.FabPriService.getByStyleCode(entry)
+  //   .subscribe((res)=>{
+  //     this.temporaryDataStorage = res;
+  //     // console.log(res);
+  //     this.FabPriService.currentEntry = Object.assign({},this.temporaryDataStorage[0]);
+  //     this.FabPriService.currentEntry.fabricPriceInformation[0] = Object.assign({},this.temporaryDataStorage[0].fabricPriceInformation);
+  //     // console.log(this.FabPriService.currentEntry);
+  //   });
     
-  }
+  // }
   //DELETE FUNCTION
   ondelete(item: any){
     var confirmation;
@@ -141,7 +124,7 @@ export class FabricPriceComponent implements OnInit {
       this.FabPriService.deleteEntry(item).subscribe((data) =>{
         this.showdeletemessage=true;
         setTimeout(()=>this.showdeletemessage=false,4000);
-        this.getReferences();
+        //this.getReferences();
         
       });
      }
