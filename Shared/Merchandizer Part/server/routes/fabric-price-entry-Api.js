@@ -3,7 +3,7 @@ const router = express.Router();
 const FabricPriceEntrySchema = require('../models/fabric-price-entry');
 
 
-//POST
+//POSTING TO DATABASE
 router.post('/new/:referenceId',(req,res,next)=>{ 
     FabricPriceEntrySchema.findOne({referenceId:req.params.referenceId}).then(function(a){
         if(a == null){
