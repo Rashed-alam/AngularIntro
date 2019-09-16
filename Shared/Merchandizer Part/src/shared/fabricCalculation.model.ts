@@ -1,5 +1,5 @@
-export class FabricCalulation{
-    
+export class FabricCalulation {
+
     fabricEntry_id: number;//1
     mailDate: string;//2
     entryDate: string;//3
@@ -14,7 +14,7 @@ export class FabricCalulation{
     length: number;//12
     sleeve: number;//13
     waste_percentage: number;//14
-    hood:number;//15
+    hood: number;//15
     bottom: number;//16
     thigh: number;//17
     pocket: number;//18
@@ -25,9 +25,9 @@ export class FabricCalulation{
     length_unit_of_measurement: string;//23
     chest_unit_of_measurement: string;//24
     sleeve_unit_of_measurement: string;//25
-    fabric_weight:string;//26
+    fabric_weight: string;//26
     track_Id: number;//27
     changeUser: string;//28
     changeDate: string;//29
-    event:string;//30
+    event: string;//30
 }
