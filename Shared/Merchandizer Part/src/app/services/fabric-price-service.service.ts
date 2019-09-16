@@ -67,7 +67,6 @@ export class FabricPriceServiceService {
   }
   //DELETE
   deleteEntry(entry): Observable<FabricPriceModel[]>{
-    console.log("Delete Service:"+entry.styleCode);
     return this.httpcall.delete<FabricPriceModel[]>(this.url1+'/delete/'+ entry.referenceId + '/' + entry.styleCode, headerOption);
   }
   //GET AUTO GENERATED ID FROM DATABASE

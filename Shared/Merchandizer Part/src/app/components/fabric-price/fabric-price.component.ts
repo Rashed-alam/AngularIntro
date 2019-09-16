@@ -3,7 +3,6 @@ import { FabricPriceServiceService } from 'src/app/services/fabric-price-service
 import { FabricPriceModel } from 'src/app/models/fabric-price.model';
 import { Buyers } from 'src/app/models/buyers.model';
 import { BuyersService } from 'src/app/services/buyers.service';
-import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { SizelistService } from 'src/app/services/sizelist.service';
 import { SizeList } from 'src/app/models/sizelist.model';
@@ -14,7 +13,6 @@ import { Items } from 'src/app/models/item.model';
 import { UnitofmeasurementService } from 'src/app/services/unitofmeasurement.service';
 import { UoM } from 'src/app/models/unitofmeasurement.model';
 import { CurrencyService } from 'src/app/services/currency.service';
-import { all } from 'q';
 
 
 @Component({
@@ -70,7 +68,7 @@ export class FabricPriceComponent implements OnInit {
     this.clearAll();
   }
  
-  //GET FUNCTION
+  //GET FUNCTION For fetching the whole list from database
   SearchByReference(a){
     this.FabPriService.getAllEntries(a)
     .subscribe(
@@ -141,7 +139,7 @@ export class FabricPriceComponent implements OnInit {
       this.showdeletemessage=true;
       setTimeout(()=>this.showdeletemessage=false,4000);
       this.getReferences();
-      
+  
       
     });
    }
@@ -377,7 +375,7 @@ export class FabricPriceComponent implements OnInit {
     ]
     }
   } 
-  //GETTING ALL THE RERERENCE NUMBERS FROM DATABASE
+  //GETTING ALL THE RERERENCE Id's FROM DATABASE
   getReferences(){
     this.FabPriService.getAllReferences()
     .subscribe(
