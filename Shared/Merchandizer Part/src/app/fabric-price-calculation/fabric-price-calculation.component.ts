@@ -28,7 +28,7 @@ import { PriceCalculation } from 'src/shared/priceCalculation.model';
   styleUrls: ['./fabric-price-calculation.component.css']
 })
 export class FabricPriceCalculationComponent implements OnInit {
-  allBuyers: Buyers[];
+  allBuyers: Buyers [];
   allUoM: UoM[];
   allSleeveType: Sleeves[];
   allFabricType: FabricType[];
@@ -36,7 +36,7 @@ export class FabricPriceCalculationComponent implements OnInit {
   FabricCalc: FabricCalulation[];
   PriceCalc: PriceCalculation[];
   allSize: SizeList[];
-  showsuccessmessageforsubmitting: boolean;
+  showsuccessmessageforsubmitting:boolean;
   showsuccessmessageforsize: boolean;
   showsuccessmessage: boolean;
   showupdatemessage: boolean;
@@ -44,15 +44,15 @@ export class FabricPriceCalculationComponent implements OnInit {
   showeditmessage: boolean;
   showdeletemessage: boolean;
   today: any = Date.now(); //for showing today's date
-  archievedate: any = Date.now();// for showing date and time into archieve
+  archievedate: any =Date.now();// for showing date and time into archieve
   autoID: any;
   sizeID: any;
   changeUser = "Ashraf";
   changeDate = this.today;
-  deleteevent = "DELETED";
-  editevent = "EDITED";
+  deleteevent= "DELETED";
+  editevent="EDITED";
   swapVariableForArchieve;
-  BoysTshirtSelected: boolean = false;
+  BoysTshirtSelected: boolean = false; 
   JacketSelected: boolean = false;
   ShortsSelected: boolean = false;
   //x: any; //for holding the item name selection click of item name
@@ -73,22 +73,22 @@ export class FabricPriceCalculationComponent implements OnInit {
   hiddingrefIdandStyleCode: boolean = false;
 
 
-  constructor(private Bs: BuyersService,
-    private Ums: UnitofmeasurementService,
+  constructor(private Bs:BuyersService, 
+    private Ums:UnitofmeasurementService, 
     private St: SleeveTypeService,
     private ft: FabricTypeService,
     private DP: DatePipe,
     private In: ItemNameService,
     private fabricpriceservice: FabricPriceService,
     private Sl: SizelistService,
-    public CU: CurrencyService,
-    private router: Router) { }
+     public CU: CurrencyService,
+    private router : Router) { }
 
   ngOnInit() {
     const present = this.DP.transform(this.today, "dd-MM-yyyy");
     this.today = present;
     const datewithtime = this.DP.transform(this.archievedate, "medium");
-    this.archievedate = datewithtime;
+    this.archievedate= datewithtime;
     this.getAllBuyersList();
     this.getAllSize();
     this.getAllSleeveType();
@@ -100,24 +100,24 @@ export class FabricPriceCalculationComponent implements OnInit {
 
     this.getAllUms();
     this.archievedate = datewithtime;
-    this.fabricpriceservice.currentReference.subscribe(referid => this.referid = referid);
+    this.fabricpriceservice.currentReference.subscribe(referid=> this.referid = referid);
     this.getId();
     this.getPrice();//for getting the list from database
     this.getCurrencylist();
     this.setcurrency = 'USD';
     this.fabricpriceservice.calculatePrice.PriceCurrency_UOM = this.setcurrency;
-
+   
   }
   //
-  onedit(object: any) {
+  onedit(object: any){
     this.hiddingrefIdandStyleCode = true;
     this.fabricpriceservice.getobject1(object)
-      .subscribe((data: FabricCalulation[]) => {
-        this.objectAssign1 = data;
-        this.fabricpriceservice.currentFabricCalc = Object.assign({}, this.objectAssign1[0]);
-      });
+    .subscribe((data:FabricCalulation[])=>{
+    this.objectAssign1=data;
+    this.fabricpriceservice.currentFabricCalc = Object.assign({},this.objectAssign1[0]);
+    });
 
-
+    
     this.fabricpriceservice.getobject2(object)
     .subscribe((data:PriceCalculation[])=>{
     this.objectAssign2=data;
@@ -133,227 +133,227 @@ export class FabricPriceCalculationComponent implements OnInit {
     var chestsize: any= 0;
     var lengthsize: any= 0 ;
     var sleevesize: any = 0;
-    var hoodsize: any = 0;
+    var hoodsize: any= 0;
     var bottomsize: any = 0;
     var thighsize: any = 0;
     var pocketsize: any = 0;
-    var fabricsize: any = 0;// for gsm value
+    var fabricsize: any= 0;// for gsm value
     wastePercentage = this.fabricpriceservice.currentFabricCalc.waste_percentage;
     fabricsize = this.fabricpriceservice.currentFabricCalc.fabrics;
     //conversion from inch to cm
-    if (this.fabricpriceservice.currentFabricCalc.chest_unit_of_measurement == 'Inch') {
-      chestsize = this.fabricpriceservice.currentFabricCalc.chest * 2.54;
-    } else {
+    if(this.fabricpriceservice.currentFabricCalc.chest_unit_of_measurement=='Inch'){
+      chestsize = this.fabricpriceservice.currentFabricCalc.chest*2.54;
+    }else{
       chestsize = this.fabricpriceservice.currentFabricCalc.chest;
     }
-    if (this.fabricpriceservice.currentFabricCalc.thigh_unit_of_measurement == 'Inch') {
-      thighsize = this.fabricpriceservice.currentFabricCalc.thigh * 2.54;
-    } else {
+    if(this.fabricpriceservice.currentFabricCalc.thigh_unit_of_measurement=='Inch'){
+      thighsize = this.fabricpriceservice.currentFabricCalc.thigh*2.54;
+    }else{
       thighsize = this.fabricpriceservice.currentFabricCalc.thigh;
     }
 
-    if (this.fabricpriceservice.currentFabricCalc.length_unit_of_measurement == 'Inch') {
-      lengthsize = this.fabricpriceservice.currentFabricCalc.length * 2.54;
-    } else {
+    if(this.fabricpriceservice.currentFabricCalc.length_unit_of_measurement=='Inch'){
+      lengthsize = this.fabricpriceservice.currentFabricCalc.length*2.54;
+    }else{
       lengthsize = this.fabricpriceservice.currentFabricCalc.length;
     }
 
-    if (this.fabricpriceservice.currentFabricCalc.sleeve_unit_of_measurement == 'Inch') {
-      sleevesize = this.fabricpriceservice.currentFabricCalc.sleeve * 2.54;
-    } else {
+    if(this.fabricpriceservice.currentFabricCalc.sleeve_unit_of_measurement=='Inch'){
+      sleevesize = this.fabricpriceservice.currentFabricCalc.sleeve*2.54;
+    }else{
       sleevesize = this.fabricpriceservice.currentFabricCalc.sleeve;
     }
 
-    if (this.fabricpriceservice.currentFabricCalc.hood_unit_of_measurement == 'Inch') {
-      hoodsize = this.fabricpriceservice.currentFabricCalc.hood * 2.54;
-    } else {
+    if(this.fabricpriceservice.currentFabricCalc.hood_unit_of_measurement=='Inch'){
+      hoodsize = this.fabricpriceservice.currentFabricCalc.hood*2.54;
+    }else{
       hoodsize = this.fabricpriceservice.currentFabricCalc.hood;
     }
 
-    if (this.fabricpriceservice.currentFabricCalc.bottom_unit_of_measurement == 'Inch') {
-      bottomsize = this.fabricpriceservice.currentFabricCalc.bottom * 2.54;
-    } else {
+    if(this.fabricpriceservice.currentFabricCalc.bottom_unit_of_measurement=='Inch'){
+      bottomsize = this.fabricpriceservice.currentFabricCalc.bottom*2.54;
+    }else{
       bottomsize = this.fabricpriceservice.currentFabricCalc.bottom;
     }
-
-    if (this.fabricpriceservice.currentFabricCalc.pocket_unit_of_measurement == 'Inch') {
-      pocketsize = this.fabricpriceservice.currentFabricCalc.pocket * 2.54;
-    } else {
+    
+    if(this.fabricpriceservice.currentFabricCalc.pocket_unit_of_measurement=='Inch'){
+      pocketsize = this.fabricpriceservice.currentFabricCalc.pocket*2.54;
+    }else{
       pocketsize = this.fabricpriceservice.currentFabricCalc.pocket;
     }
     //this part is for calculating the boys tshirt fabric
-    var step1: any = 0;
+    var step1 : any = 0;
     step1 = parseFloat(lengthsize) + parseFloat(sleevesize);
-    var step2: any = 0;
-    step2 = ((step1 * parseFloat(chestsize) * 2 * parseFloat(fabricsize)) / (Math.pow(10, 7))) * 12;
+    var step2 : any= 0;
+    step2 =((step1*parseFloat(chestsize)*2*parseFloat(fabricsize))/(Math.pow(10,7)))*12;
     var step3: any = 0;
-    step3 = (((wastePercentage) / 100) * step2);
+    step3 = (((wastePercentage)/100)*step2);
     var step4: any = 0;
     step4 = (step2 + step3);
-    var convertoFloat;
+    var convertoFloat; 
     convertoFloat = parseFloat(step4).toFixed(5);
     this.fabricWeight = convertoFloat;//main answer for fabric calculation
     //end of fabric calculation of boys tshirt
   }
 
   //this is for selecting which fields to show upon item name selection
-  selectSwitch(x: any) {
-    this.fabricpriceservice.currentFabricCalc.style_item_name = x;
-    if (x == "BoysS/Slv Tshirt") {
-      this.BoysTshirtSelected = true;
-      this.JacketSelected = false;
-      this.ShortsSelected = false;
+  selectSwitch(x: any){
+   this.fabricpriceservice.currentFabricCalc.style_item_name = x;
+    if(x == "BoysS/Slv Tshirt"){
+        this.BoysTshirtSelected = true;
+        this.JacketSelected = false;
+        this.ShortsSelected = false;
     }
-    else if (x == "Jacket") {
+    else if(x =="Jacket"){
       this.BoysTshirtSelected = false;
-      this.JacketSelected = true;
-      this.ShortsSelected = false;
+        this.JacketSelected = true;
+        this.ShortsSelected = false;
     }
-    else {
+    else{
       this.BoysTshirtSelected = false;
-      this.JacketSelected = false;
-      this.ShortsSelected = true;
-    }
+        this.JacketSelected = false;
+        this.ShortsSelected = true;
+    }   
   }
 
   //this is for getting the size id from database
-  getSizeID() {
+  getSizeID(){
     this.Sl.getSizeid()
-      .subscribe(
-        res => {
-          this.sizeID = res['x'];
-        },
-        err => {
-          console.log(err);
-        });
+    .subscribe(
+      res => {
+        this.sizeID = res['x'];
+      },
+      err => {
+        console.log(err);
+      });
   }
-
-  //this part is for fetching the AutoGenerated ID from the database
-  getAutoGeneratedID() {
-    this.fabricpriceservice.getFabricEntry_ID()
-      .subscribe(
-        res => {
-          this.autoID = res['FabricID'];
-        },
-        err => {
-          console.log(err);
-        });
-
+ 
+//this part is for fetching the AutoGenerated ID from the database
+  getAutoGeneratedID(){
+   this.fabricpriceservice.getFabricEntry_ID()
+   .subscribe(
+     res => {
+       this.autoID = res['FabricID'];
+     },
+     err => {
+       console.log(err);
+     }); 
+    
   }
 
   //this is for getting all the buyers list from database
-  getAllBuyersList() {
+  getAllBuyersList(){
     this.Bs.getAllBuyers()
-      .subscribe(
-        (data: Buyers[]) => {
-          this.allBuyers = data;
-        });
+    .subscribe(
+       (data : Buyers[]) =>{
+         this.allBuyers = data;
+       });
   }
 
   //this is for getting all the sizes list from database
-  getAllSize() {
+  getAllSize(){
     this.Sl.getAllSizeList()
-      .subscribe(
-        (data: SizeList[]) => {
-          this.allSize = data;
-        });
+    .subscribe(
+       (data : SizeList[]) =>{
+         this.allSize = data;
+       });
   }
 
   //this is for getting all the types of sleeves from database
-  getAllSleeveType() {
+  getAllSleeveType(){
     this.St.getAllSleevesType()
-      .subscribe(
-        (data: Sleeves[]) => {
-          this.allSleeveType = data;
-        });
+    .subscribe(
+       (data : Sleeves[]) =>{
+         this.allSleeveType = data;
+       });
   }
 
   //this is for getting all the types of fabrics from database
-  getAllFabrics() {
+  getAllFabrics(){
     this.ft.getAllFabricsType()
-      .subscribe(
-        (data: FabricType[]) => {
-          this.allFabricType = data;
-        });
+    .subscribe(
+      (data: FabricType[]) => {
+        this.allFabricType = data;
+      });  
   }
   //this is for getting all the items name from database
-  getAllItems() {
+  getAllItems(){
     this.In.getAllItemNamesList()
-      .subscribe(
-        (data: Items[]) => {
-          this.allItems = data;
-        })
+    .subscribe(
+      (data: Items[])=>{
+        this.allItems = data;
+      })
   }
 
   //this is for creating fabric entry into the database
-  createFabric(f: FabricCalulation) {
-    this.fabricpriceservice.passReferenceNumber(this.fabricpriceservice.currentFabricCalc.refNo);   //passsing the reference number to service
-    f.fabric_weight = this.fabricWeight;
-    this.fabricpriceservice.createFabricEntry(f)
-      .subscribe(
-        res => {
-          this.showsuccessmessageforsubmitting = true;
-          setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
-          this.getallFabricEntries();
-          this.clearAll1();
-          // this.router.navigateByUrl('/price');
-        },
-        err => {
-          if (err.status === 422) {
-            this.serverErrorMessages = err.error.join('<br/>');
-          }
-          else
-            this.serverErrorMessages = "";
-        });
+  createFabric(f: FabricCalulation){
+  this.fabricpriceservice.passReferenceNumber(this.fabricpriceservice.currentFabricCalc.refNo);   //passsing the reference number to service
+   f.fabric_weight=this.fabricWeight;
+   this.fabricpriceservice.createFabricEntry(f)
+   .subscribe(
+    res => {
+      this.showsuccessmessageforsubmitting = true;
+      setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
+      this.getallFabricEntries();
+      this.clearAll1();
+      // this.router.navigateByUrl('/price');
+    },
+    err => {
+      if (err.status === 422) {
+        this.serverErrorMessages = err.error.join('<br/>');
+      }
+      else
+        this.serverErrorMessages = "";
+    });
   }
   //this is for clearing all the data from the form
-  clearAll1() {
+  clearAll1(){
     this.fabricpriceservice.currentFabricCalc = {
-      fabricEntry_id: this.fabricpriceservice.currentFabricCalc.fabricEntry_id,
-      mailDate: this.fabricpriceservice.currentFabricCalc.mailDate,
-      entryDate: this.fabricpriceservice.currentFabricCalc.entryDate,
-      refNo: this.fabricpriceservice.currentFabricCalc.refNo,
-      buyer_name: this.fabricpriceservice.currentFabricCalc.buyer_name,
-      style_code: '',
-      style_item_name: '',
-      style_sleeve_type: '',
-      size: '',
-      fabrics: null,
-      chest: null,
-      length: null,
-      sleeve: null,
-      waste_percentage: null,
-      hood: null,
-      bottom: null,
-      thigh: null,
-      pocket: null,
-      pocket_unit_of_measurement: '',
-      thigh_unit_of_measurement: '',
-      bottom_unit_of_measurement: '',
-      hood_unit_of_measurement: '',
-      fabric_weight: null,
-      length_unit_of_measurement: '',
-      chest_unit_of_measurement: '',
-      sleeve_unit_of_measurement: '',
-      track_Id: null,
-      changeUser: '',
-      changeDate: '',
-      event: ''
+        fabricEntry_id: this.fabricpriceservice.currentFabricCalc.fabricEntry_id,
+    mailDate: this.fabricpriceservice.currentFabricCalc.mailDate,
+    entryDate: this.fabricpriceservice.currentFabricCalc.entryDate,
+    refNo: this.fabricpriceservice.currentFabricCalc.refNo,
+    buyer_name: this.fabricpriceservice.currentFabricCalc.buyer_name,
+    style_code: '',
+    style_item_name: '',
+    style_sleeve_type: '',
+    size: '',
+    fabrics: null,
+    chest: null,
+    length: null,
+    sleeve: null,
+    waste_percentage: null,
+    hood:null,
+    bottom: null,
+    thigh: null,
+    pocket: null,
+    pocket_unit_of_measurement: '',
+    thigh_unit_of_measurement: '',
+    bottom_unit_of_measurement: '',
+    hood_unit_of_measurement: '',
+    fabric_weight:null,
+    length_unit_of_measurement: '',
+    chest_unit_of_measurement: '',
+    sleeve_unit_of_measurement: '',
+    track_Id: null,
+    changeUser: '',
+    changeDate: '',
+    event:''
     }
   }
-  //this is for adding new size into the list
-  AddNewSize(s: SizeList) {
+//this is for adding new size into the list
+  AddNewSize(s: SizeList){
     this.Sl.createSize(s)
-      .subscribe();
-    this.showsuccessmessageforsize = true;
-    setTimeout(() => this.showsuccessmessageforsize = false, 2000);
-    this.clearSize();
-    this.getAllSize();
-
+    .subscribe();
+      this.showsuccessmessageforsize=true;
+      setTimeout(()=>this.showsuccessmessageforsize=false,2000); 
+      this.clearSize();
+      this.getAllSize();
+      
   }
 
   //this is for clearing previous size data
-  clearSize() {
+  clearSize(){
     this.Sl.currentSizeList = {
       size_id: '',
       size_name: ''
@@ -361,82 +361,82 @@ export class FabricPriceCalculationComponent implements OnInit {
   }
 
   //this is for getting all the fabric entries from database
-  getallFabricEntries() {
+  getallFabricEntries(){
 
     this.fabricpriceservice.getAllFabricEntries()
-      .subscribe(
-        (data: FabricCalulation[]) => {
-          this.FabricCalc = data;
-          // console.log("fab-"+JSON.stringify(this.FabricCalc));
-        })
+    .subscribe(
+      (data: FabricCalulation[])=>{
+        this.FabricCalc = data;
+        // console.log("fab-"+JSON.stringify(this.FabricCalc));
+      })  
   }
 
-  //this is for deleting an entry from the database
-  deleteFabricEntry(f: any) {
+   //this is for deleting an entry from the database
+   deleteFabricEntry(f: any){
     var confirmation;
-    confirmation = confirm("Are you sure ?");
-    if (confirmation == true) {
-      f.changeUser = this.changeUser;
-      f.changeDate = this.archievedate;
+    confirmation= confirm("Are you sure ?");
+    if(confirmation == true){
+      f.changeUser= this.changeUser;
+      f.changeDate= this.archievedate;
       f.event = this.deleteevent;
-      // this.fabricpriceservice.createFabricArchieve(f)
-      // .subscribe(res => {
-      this.fabricpriceservice.deleteFabricEntry(f).subscribe((data) => {
-
+    // this.fabricpriceservice.createFabricArchieve(f)
+    // .subscribe(res => {
+      this.fabricpriceservice.deleteFabricEntry(f).subscribe((data) =>{
+        
         this.getallFabricEntries();
-        this.showdeletemessage = true;
-        setTimeout(() => this.showdeletemessage = false, 4000);
-
+        this.showdeletemessage=true;
+        setTimeout(()=>this.showdeletemessage=false,4000);
+        
       });
-      // });
-    }
+   // });
+     }
   }
 
-  editFabricEntry(FabricCalulation) {
-    this.fabricpriceservice.currentFabricCalc = Object.assign({}, FabricCalulation);
+  editFabricEntry(FabricCalulation){
+    this.fabricpriceservice.currentFabricCalc = Object.assign({},FabricCalulation);
     this.getallFabricEntries();
     this.swapVariableForArchieve = FabricCalulation;
   }
 
 
   //this is for updating any entry from database
-  updateFabricEntry(FabCal: any) {
+  updateFabricEntry(FabCal: any){
     // this.swapVariableForArchieve.changeUser = this.changeUser;
     // this.swapVariableForArchieve.changeDate = this.archievedate;
     // this.swapVariableForArchieve.event = this.editevent;
     // this.swapVariableForArchieve._id = null;
-    // this.fabricpriceservice.createFabricArchieve(this.swapVariableForArchieve).subscribe(res => {
-    // console.log(FabCal);
-
+      // this.fabricpriceservice.createFabricArchieve(this.swapVariableForArchieve).subscribe(res => {
+        // console.log(FabCal);
+        
     this.fabricpriceservice.updateFabricEntry(FabCal)
-      .subscribe((res) => {
-        this.showeditmessage = true;
-        setTimeout(() => this.showeditmessage = false, 4000);
-        this.getallFabricEntries();
-        this.clearAll1();
-      });
+    .subscribe((res)=>{
+      this.showeditmessage=true;
+      setTimeout(()=>this.showeditmessage=false,4000);
+      this.getallFabricEntries();
+      this.clearAll1();
+    });
     // });
-
+   
   }
 
   //this is for checking if the blog is to be created or updated
-  createAndUpdate1(key: any) {
-    console.log("c&u1-" + key.style_code);
-    if (key._id == null) {
+  createAndUpdate1(key: any){
+    console.log("c&u1-"+key.style_code);
+    if(key._id  == null){
       this.createFabric(key);
     }
-    else {
+    else{
       this.updateFabricEntry(key);
     }
   }
 
   //this is for getting all the sizes list from database
-  getAllUms() {
+  getAllUms(){
     this.Ums.getAllUoM()
-      .subscribe(
-        (data: UoM[]) => {
-          this.allUoM = data;
-        });
+    .subscribe(
+       (data : UoM[]) =>{
+         this.allUoM = data;
+       });
   }
 
 
@@ -450,7 +450,7 @@ export class FabricPriceCalculationComponent implements OnInit {
 
 
 
-
+  
   //price calculation part starts
   getCurrencylist(): void {
     this.CU.getAllCurrency()
@@ -481,7 +481,7 @@ export class FabricPriceCalculationComponent implements OnInit {
         this.fabricpriceservice.currentFabricCalc.mailDate = this.allfab[0].mailDate;
         this.fabricpriceservice.currentFabricCalc.entryDate = this.allfab[0].entryDate;
         this.fabricpriceservice.currentFabricCalc.fabricEntry_id = this.allfab[0].fabricEntry_id;
-        this.fabricpriceservice.currentFabricCalc.refNo = this.allfab[0].refNo;
+        this.fabricpriceservice.currentFabricCalc.refNo=this.allfab[0].refNo;
         this.fabricpriceservice.currentFabricCalc.buyer_name = this.allfab[0].buyer_name;
         this.fabricpriceservice.currentFabricCalc.style_code = this.allfab[0].style_code;
         this.fabricpriceservice.currentFabricCalc.style_item_name = this.allfab[0].style_item_name;
@@ -496,9 +496,9 @@ export class FabricPriceCalculationComponent implements OnInit {
         this.fabricpriceservice.currentFabricCalc.pocket = this.allfab[0].pocket;
         this.fabricpriceservice.currentFabricCalc.pocket = this.allfab[0].pocket;
         this.fabricpriceservice.currentFabricCalc.fabric_weight = this.allfab[0].fabric_weight;
-
+     
       }
-
+      
       )
     //  this.fabricpriceservice.currentFabricCalc.mailDate=this.allfab[0].mailDate;
     //  console.log(  this.fabricpriceservice.currentFabricCalc.mailDate);
@@ -521,7 +521,7 @@ export class FabricPriceCalculationComponent implements OnInit {
     var step2;
     var step3: any = 0;
 
-    // console.log(this.fabricWeight);
+// console.log(this.fabricWeight);
 
     this.fabricpriceservice.calculatePrice.fabric_weight = this.fabricWeight
     FabricAmount = this.fabricpriceservice.calculatePrice.fabric_weight;
@@ -548,7 +548,7 @@ export class FabricPriceCalculationComponent implements OnInit {
 
   //for showing the list from price calculation database
   getPrice() {
-
+   
     this.fabricpriceservice.getallprice().subscribe(
       (data) => {
         this.PriceCalc = data;
@@ -559,20 +559,20 @@ export class FabricPriceCalculationComponent implements OnInit {
   }
 
   //after form submission of form, this funciton is fired
-  onsubmit() {
-    this.fabricpriceservice.currentFabricCalc.fabric_weight = this.fabricWeight;
-    this.fabricpriceservice.calculatePrice.refNo = this.fabricpriceservice.currentFabricCalc.refNo;
-    this.fabricpriceservice.calculatePrice.style_code = this.fabricpriceservice.currentFabricCalc.style_code;
+  onsubmit(){
+   this.fabricpriceservice.currentFabricCalc.fabric_weight = this.fabricWeight;
+   this.fabricpriceservice.calculatePrice.refNo = this.fabricpriceservice.currentFabricCalc.refNo;
+   this.fabricpriceservice.calculatePrice.style_code  = this.fabricpriceservice.currentFabricCalc.style_code; 
 
     this.createAndUpdate1(this.fabricpriceservice.currentFabricCalc);
     this.createAndUpdate2(this.fabricpriceservice.calculatePrice);
-
+    
   }
 
   //
-  ondelete(object: any) {
-    this.deleteFabricEntry(object);
-    this.del(object);
+  ondelete(object: any){
+   this.deleteFabricEntry(object);
+   this.del(object);
   }
 
 
@@ -593,7 +593,7 @@ export class FabricPriceCalculationComponent implements OnInit {
   }
 
   createAndUpdate2(a: any) {
-    console.log("c&u2-" + a.style_code);
+    console.log("c&u2-"+a.style_code);
     if (a._id == null) {
       this.create(a);
     } else {
@@ -638,18 +638,18 @@ export class FabricPriceCalculationComponent implements OnInit {
 
   //delete and store in archive
   del(p: any) {
-    console.log(p);
+   console.log(p);
     p.changeUser = this.changeUser;
     p.changeDate = this.archievedate;
     p.event = this.deleteevent;
-    // this.fabricpriceservice.createpriceArchive(p).subscribe(res => {
-    this.fabricpriceservice.deleteprice(p).subscribe(
-      res => {
-        this.getPrice();
-        this.showdeletemessage = true;
-        setTimeout(() => this.showdeletemessage = false, 4000);
-      },
-    );
+   // this.fabricpriceservice.createpriceArchive(p).subscribe(res => {
+      this.fabricpriceservice.deleteprice(p).subscribe(
+        res => {
+          this.getPrice();
+          this.showdeletemessage = true;
+          setTimeout(() => this.showdeletemessage = false, 4000);
+        },
+      );
     //});
 
   }
@@ -662,25 +662,25 @@ export class FabricPriceCalculationComponent implements OnInit {
     // this.b_old._id = null;
 
     // this.fabricpriceservice.createpriceArchive(this.b_old).subscribe(res => {
-    // console.log(n);
+      // console.log(n);
+     
+      this.fabricpriceservice.updateprice(n).subscribe(
+        res => {
+          this.showupdatemessage = true;
+          setTimeout(() => this.showupdatemessage = false, 4000);
+          this.getPrice();
+          this.clearAll2();
+        },
+        err => {
 
-    this.fabricpriceservice.updateprice(n).subscribe(
-      res => {
-        this.showupdatemessage = true;
-        setTimeout(() => this.showupdatemessage = false, 4000);
-        this.getPrice();
-        this.clearAll2();
-      },
-      err => {
-
-        if (err.status === 422) {
-          this.serverErrorMessages = err.error.join('<br/>');
+          if (err.status === 422) {
+            this.serverErrorMessages = err.error.join('<br/>');
+          }
+          else {
+            this.serverErrorMessages = 'Something went wrong.Please contact admin';
+          }
         }
-        else {
-          this.serverErrorMessages = 'Something went wrong.Please contact admin';
-        }
-      }
-    );
+      );
 
     // });
 
@@ -695,7 +695,7 @@ export class FabricPriceCalculationComponent implements OnInit {
       fabric_weight: '',
       fabric_total_price: '',
       refNo: '',
-      style_code: '',
+      style_code:'',
       rib: '',
       cm: '',
       trim: '',
@@ -713,39 +713,39 @@ export class FabricPriceCalculationComponent implements OnInit {
   }
 
   //this is for combining contents from fabric and price table
-  mergeTwoTablesTogether() {
-    this.fabricReport = [];
+  mergeTwoTablesTogether(){
+    this.fabricReport =[];
     var l = this.FabricCalc.length;
     var l2 = this.PriceCalc.length;
     // console.log(l,l2);
-    for (let i = 0; i < this.FabricCalc.length; i++) {
-      for (let j = 0; j < this.PriceCalc.length; j++) {
-        if ((this.FabricCalc[i].refNo == this.PriceCalc[j].refNo) && (this.FabricCalc[i].style_code == this.PriceCalc[j].style_code)) {
-          // console.log(this.FabricCalc[i].refNo);
-          this.fabricReport.push({
-            reference: this.FabricCalc[i].refNo,
-            stylecode: this.FabricCalc[i].style_code,
-            fabricamount: this.FabricCalc[i].fabric_weight,
-            fabricunitprice: this.PriceCalc[j].fabric_unit_price,
-            fabrictotalprice: this.PriceCalc[j].fabric_total_price,
-            rib: this.PriceCalc[j].rib,
-            cm: this.PriceCalc[j].cm,
-            trim: this.PriceCalc[j].trim,
-            print: this.PriceCalc[j].print,
-            doc: this.PriceCalc[j].doc,
-            perdozenprice: this.PriceCalc[j].per_dozen_price,
-            perunitprice: this.PriceCalc[j].per_unit_price,
-            pricecurrencyunit: this.PriceCalc[j].PriceCurrency_UOM
-
-          });
-          //console.log('report='+JSON.stringify(this.fabricReport));
+      for(let i=0; i<this.FabricCalc.length; i++){
+        for(let j=0; j<this.PriceCalc.length; j++){
+          if((this.FabricCalc[i].refNo == this.PriceCalc[j].refNo)&&(this.FabricCalc[i].style_code == this.PriceCalc[j].style_code))  {
+            // console.log(this.FabricCalc[i].refNo);
+            this.fabricReport.push({
+              reference: this.FabricCalc[i].refNo,
+              stylecode: this.FabricCalc[i].style_code,
+              fabricamount: this.FabricCalc[i].fabric_weight,
+              fabricunitprice: this.PriceCalc[j].fabric_unit_price,
+              fabrictotalprice: this.PriceCalc[j].fabric_total_price,
+              rib: this.PriceCalc[j].rib,
+              cm: this.PriceCalc[j].cm,
+              trim: this.PriceCalc[j].trim,
+              print: this.PriceCalc[j].print,
+              doc: this.PriceCalc[j].doc,
+              perdozenprice: this.PriceCalc[j].per_dozen_price,
+              perunitprice: this.PriceCalc[j].per_unit_price,
+              pricecurrencyunit: this.PriceCalc[j].PriceCurrency_UOM
+              
+            })  ;
+             //console.log('report='+JSON.stringify(this.fabricReport));
+          }
+          
         }
-
       }
+      //  console.log('report='+JSON.stringify(this.fabricReport));
     }
-    //  console.log('report='+JSON.stringify(this.fabricReport));
-  }
-
+    
 
 
 }

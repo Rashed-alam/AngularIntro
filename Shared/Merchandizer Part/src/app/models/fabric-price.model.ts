@@ -1,5 +1,5 @@
 export class FabricPriceModel{
-    auto_id: String;
+    auto_id: number;
     mailDate : string;
     entryDate : string;
     buyerName : string;
@@ -9,17 +9,17 @@ export class FabricPriceModel{
             styleCode : string;
             fabricType : string;
             itemName : string;
-            wastePercentage : string;
-            chestSize : string;
+            wastePercentage : number;
+            chestSize : number;
             chestUom:string;
-            lengthSize : string;
+            lengthSize : number;
             lengthUom: string;
-            sleeveSize : string;
+            sleeveSize : number;
             sleeveUom: string;
-            hoodSize : string;
-            bottomSize : string;
-            thighSize : string;
-            pocketSize : string;
+            hoodSize : number;
+            bottomSize : number;
+            thighSize : number;
+            pocketSize : number;
             fabricWeight : number;
             currency : string;
             fabricUnitPrice : number;
@@ -31,7 +31,6 @@ export class FabricPriceModel{
             docPrice : number;
             perDozenPrice : number;
             perUnitPrice : number;
-            remarks : string;
         }
     ]
 }

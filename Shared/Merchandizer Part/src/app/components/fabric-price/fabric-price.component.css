@@ -18,20 +18,14 @@
     margin-left: 0%;
   } */
   
-  .row{
-  margin-right: -5rem;
-  margin-left: 0rem;
-  margin-bottom:0.5rem;
-  
-  }
- 
-  .container{
-    margin-left: 15rem;
-    margin-right: auto;
-  }
-
-  .wrapper{
-    margin-left:5rem;
-    margin-right:5rem;
-    font-size: 12px;
-  }
+ .card{
+   margin-left: 15rem;
+   margin-right: 15rem;
+   margin-top:1rem;
+ }
+ .row{
+   padding-left:1rem;
+   padding-right:1rem;
+   padding-top:0rem;
+   padding-bottom:0rem;
+ }
