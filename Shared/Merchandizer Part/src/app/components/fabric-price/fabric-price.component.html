@@ -17,9 +17,9 @@
                 <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Mail Date:</span>
               </div>
               <input type="text" id="mailDate" name="FabPriService.currentEntry.mailDate" [(ngModel)]="FabPriService.currentEntry.mailDate"
-              placeholder="{{today}}" 
+               
              style="width: 50%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
-             class="" #mailDate="ngModel" readonly required>
+             class="form-control" #mailDate="ngModel" readonly  >
             </div>
       </div>
       <div class="col-4">
@@ -27,10 +27,10 @@
               <div class="input-group-prepend">
                 <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Entry Date:</span>
               </div>
-              <input type="text" id="entryDate" placeholder="{{today}}" name="FabPriService.currentEntry.entryDate" 
-                              [(ngModel)]="FabPriService.currentEntry.entryDate"
+              <input type="text" id="entryDate"  name="FabPriService.currentEntry.entryDate" 
+                              [(ngModel)]="FabPriService.currentEntry.entryDate" 
                               style="width: 50%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
-                              class="" #entryDate="ngModel" readonly required>
+                              class="form-control" #eDate="ngModel" readonly >
             </div>
       </div>
     </div>
@@ -107,7 +107,7 @@
                 </div>
                 <select class="" id="itemName" name="FabPriService.currentEntry.fabricPriceInformation[0].itemName" style="width: 55%"
            [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].itemName" #itemName="ngModel" (click)="selectSwitch(itemName.value)" required>
-           <option value=""></option> 
+           <!-- <option value=""></option>  -->
            <option value="{{i.itemName}}" *ngFor="let i of allItems">{{i.itemName}}</option>
           </select>
               </div>
@@ -124,46 +124,61 @@
         </div>
     </div>
     <div class="row" style="margin-top:-0.5rem;">
-        <div class="col-4">
+      <div class="col-3">
+        <div class="input-group input-group-sm mb-3" *ngIf="BoysTshirtSelected || JacketSelected">
+            <div class="input-group-prepend">
+              <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Unit:</span>
+            </div>
+            <select class=""  name="FabPriService.currentEntry.fabricPriceInformation[0].unitOfMeasurement" title="please enter number only"
+            [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].unitOfMeasurement"  #unit (click)="setUnit(unit.value)" required>
+                <option value="cm" selected>Cm</option>
+                <option value="Inch" >Inch</option>
+              </select>
+          </div>
+    </div>
+        <div class="col-3">
             <div class="input-group input-group-sm mb-3" *ngIf="BoysTshirtSelected || JacketSelected">
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Chest:</span>
                 </div>
-                <input type="number" class="" id="chest" minlength="2" placeholder="0" style="width: 30%" step="any" title="please enter number only"
-                name="FabPriService.currentEntry.fabricPriceInformation[0].chestSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].chestSize">
-                <select class=""  name="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" title="please enter number only"
+                <input type="number" class="" id="chest" minlength="2" placeholder="{{setMeasurementUnit}}" style="width: 40%" step="any" title="please enter number only"
+                name="FabPriService.currentEntry.fabricPriceInformation[0].chestSize" 
+                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].chestSize" required>
+                <!-- <select class=""  name="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" title="please enter number only"
                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" required>
                    
                     <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
-                  </select>
+                  </select> -->
               </div>
         </div>
-        <div class="col-4">
+        <div class="col-3">
             <div class="input-group input-group-sm mb-3" *ngIf="BoysTshirtSelected || JacketSelected">
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Length:</span>
                 </div>
-                <input type="number" class="" id="length" minlength="2" placeholder="0" style="width: 30%" step="any" title="please enter number only"
-                name="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize">
-                <select class=""  name="FabPriService.currentEntry.fabricPriceInformation[0].lengthUom" 
+                <input type="number" class="" id="length" minlength="2" placeholder="{{setMeasurementUnit}}" style="width: 40%" step="any" title="please enter number only"
+                name="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize" 
+                [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize" required>
+                <!-- <select class=""  name="FabPriService.currentEntry.fabricPriceInformation[0].lengthUom" 
                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].lengthUom" required>
                     
                     <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
-                  </select>
+                  </select> -->
               </div>
         </div>
-        <div class="col-4">
+        <div class="col-3">
             <div class="input-group input-group-sm mb-3" *ngIf="BoysTshirtSelected || JacketSelected">
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Sleeve:</span>
                 </div>
-                <input type="number"class="" id="inputPassword3" minlength="2" placeholder="0" style="width: 30%" step="any" title="please enter number only"
-                                        name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize">
-                                        <select class="" name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom" 
+                <input type="number"class="" id="inputPassword3" minlength="2" placeholder="{{setMeasurementUnit}}" style="width: 40%" step="any" title="please enter number only"
+                required name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize"
+                (keyup)="calculateFabricWeight()" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize">
+                                        <!-- <select class="" name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom" 
                                         [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom" required>
                                           
                                             <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
-                                          </select>
+                                          </select> -->
               </div>
         </div>
     </div>
@@ -171,7 +186,7 @@
         
         <div class="col-6">
             <div class="input-group input-group-sm mb-3" *ngIf="BoysTshirtSelected || JacketSelected">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend" *ngIf="CalculateButtonPressed">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Fabric Weight: {{FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight}} kg/dozen</span>
                 </div>
                 <!-- <input type="text" class=""  readonly 
@@ -180,12 +195,12 @@
                 > kg/per dozen -->
               </div>
         </div>
-        <div class="col-6">
-            <button type="button" class="btn btn-outline-info" (click)="calculateFabricWeight()"
+        <!-- <div class="col-6">
+            <button type="button" class="btn btn-secondary btn-sm" (click)="calculateFabricWeight()"
             *ngIf="BoysTshirtSelected || JacketSelected || ShortsSelected">
                Calculate
               </button>
-        </div>
+        </div> -->
     </div><hr>
     <h5 style="margin-left: 1rem;margin-top:-1rem;margin-bottom:1rem;text-align: center;">Price Calculation</h5>
     <div class="row" style="margin-top:-0.5rem;">
@@ -195,7 +210,7 @@
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Fabric Unit Price:</span>
                 </div>
                 <input type="number" id="refNo" class="" name="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" 
-                style="width: 30%" pattern="[0-9]{2}" step="any" title="please enter number only"
+                style="width: 30%"  step="any" title="please enter number only"
                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" required> 
               </div>
         </div>
@@ -213,13 +228,15 @@
               </div>
         </div>
         <div class="col-4">
+          
             <div class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="" id="inputGroup-sizing-sm" style="margin-left: -2rem;">Fabric Total Price: {{FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice}} {{setcurrency}} </span>
-                </div>
-                <!-- <input type="text" id="refNo" class="" style="width: 30%" placeholder="0 {{setcurrency}}"
-            value="{{FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice}}" readonly> -->
+              <div class="input-group-prepend" *ngIf="CalculatePriceButtonPressed">
+                <span class="" id="inputGroup-sizing-sm" style="margin-left: -1rem;">Fabric Total Price: {{FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice}}{{setcurrency}} </span>
               </div>
+              <!-- <input type="text" id="refNo" class="" style="width: 30%" placeholder="0 {{setcurrency}}"
+          value="{{FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice}}" readonly> -->
+            </div>
+          
         </div>
     </div>
     <div class="row" style="margin-top:-0.5rem;">
@@ -228,7 +245,7 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Rim:</span>
                 </div>
-                <input type="number" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
+                <input type="number" id="refNo" class="" style="width: 52%" placeholder="{{setcurrency}}"
         name="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice" step="any" title="please enter number only"
             [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice" required> 
               </div>
@@ -238,8 +255,8 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">CM:</span>
                 </div>
-                <input type="number" id="refNo" class="" style="width: 50%"  step="any" title="please enter number only"
-                name="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice" placeholder="0 {{setcurrency}}"
+                <input type="number" id="refNo" class="" style="width: 52%"  step="any" title="please enter number only"
+                name="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice" placeholder="{{setcurrency}}"
                     [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice" required>
               </div>
         </div>
@@ -248,7 +265,7 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Trim:</span>
                 </div>
-                <input type="number" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
+                <input type="number" id="refNo" class="" style="width: 52%" placeholder="{{setcurrency}}"
     name="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice" step="any" title="please enter number only"
         [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice" required>
               </div>
@@ -258,7 +275,7 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Doc:</span>
                 </div>
-                <input type="number" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
+                <input type="number" id="refNo" class="" style="width: 52%" placeholder="{{setcurrency}}"
                 name="FabPriService.currentEntry.fabricPriceInformation[0].docPrice" step="any" title="please enter number only"
                     [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].docPrice" required>
               </div>
@@ -268,37 +285,39 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Print:</span>
                 </div>
-                <input type="number" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
+                <input type="number" id="refNo" class="" style="width: 52%" placeholder="{{setcurrency}}" (keyup)="calculatePrice()"
     name="FabPriService.currentEntry.fabricPriceInformation[0].printPrice" step="any" title="please enter number only"
         [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].printPrice" required>
               </div>
         </div>
     </div>
     <div class="row" style="margin-top:-0.5rem;margin-bottom:-1rem;">
-        <div class="col-5">
+        <div class="col">
             <div class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Per Dozen Price: {{FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice}} {{setcurrency}}</span>
+                <div class="input-group-prepend" *ngIf="CalculatePriceButtonPressed">
+                  <span class="" id="inputGroup-sizing-sm" style="margin-left: 0rem;">Per Dozen Price: {{FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice}} {{setcurrency}}</span>
                 </div>
                 <!-- <input type="text" id="refNo" class="" style="width: 30%"
          value="{{FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice}} {{setcurrency}}" readonly>  -->
               </div>
         </div>
-        <div class="col-5">
+        <div class="col">
             <div class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Per Unit Price: {{FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice}} {{setcurrency}}</span>
+                <div class="input-group-prepend" *ngIf="CalculatePriceButtonPressed">
+                  <span class="" id="inputGroup-sizing-sm" sstyle="margin-left: 0rem;">Per Unit Price: {{FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice}} {{setcurrency}}</span>
                 </div>
                 <!-- <input type="text" id="refNo" class="" style="width: 40%; "
                 value="{{FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice}} {{setcurrency}}" readonly> -->
               </div>
         </div>
-        <div class="col-2">
+
+      
+        <!-- <div class="col-2">
             <button type="button" class="btn btn-outline-info" style="margin-left: -2rem;margin-bottom: 1rem;"
          (click)="calculatePrice()">
             Calculate
            </button>
-        </div>
+        </div> -->
     </div>
     <div class="row" style="margin-top:-0.5rem;margin-bottom:0rem;">
         <div class="col"><button type="submit" class="btn btn-success" style="margin-left: 10rem; "

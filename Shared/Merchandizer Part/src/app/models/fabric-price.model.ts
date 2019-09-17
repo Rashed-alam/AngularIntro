@@ -1,7 +1,7 @@
 export class FabricPriceModel{
     auto_id: number;
-    mailDate : string;
-    entryDate : string;
+    mailDate : Date;
+    entryDate : Date;
     buyerName : string;
     size : string;
     referenceId : string;
@@ -11,11 +11,9 @@ export class FabricPriceModel{
             itemName : string;
             wastePercentage : number;
             chestSize : number;
-            chestUom:string;
             lengthSize : number;
-            lengthUom: string;
             sleeveSize : number;
-            sleeveUom: string;
+            unitOfMeasurement: string;
             hoodSize : number;
             bottomSize : number;
             thighSize : number;

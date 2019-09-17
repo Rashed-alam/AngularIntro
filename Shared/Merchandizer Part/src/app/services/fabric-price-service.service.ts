@@ -19,8 +19,8 @@ export class FabricPriceServiceService {
 
   currentEntry: FabricPriceModel = {
     auto_id: null,
-    mailDate : '',
-    entryDate : '',
+    mailDate : new Date,
+    entryDate : new Date,
     buyerName : '',
     size : '',
     referenceId : '',
@@ -30,11 +30,9 @@ export class FabricPriceServiceService {
             itemName : '',
             wastePercentage : null,
             chestSize : null,
-            chestUom:'',
             lengthSize : null,
-            lengthUom:'',
             sleeveSize : null,
-            sleeveUom:'',
+            unitOfMeasurement: '',
             hoodSize : null,
             bottomSize : null,
             thighSize : null,

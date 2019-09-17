@@ -1,9 +1,9 @@
 .ng-valid[required], .ng-valid.required  {
-    border-bottom: 3px solid #42A948;
+  box-shadow: none;
   }
   
   .ng-invalid:not(form)  {
-    border-bottom: 3px solid #a94442;
+    box-shadow: 0 0 1px 1px red;
   }
 /* 
   .card-body {
@@ -36,3 +36,5 @@
   width: 20px;
   height: 15px;
  } */
+ 
+ 
