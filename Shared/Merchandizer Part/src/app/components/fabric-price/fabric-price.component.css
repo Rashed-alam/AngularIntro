@@ -1,9 +1,9 @@
 .ng-valid[required], .ng-valid.required  {
-    border-bottom: 2px solid #42A948;
+    border-bottom: 3px solid #42A948;
   }
   
   .ng-invalid:not(form)  {
-    border-bottom: 2px solid #a94442;
+    border-bottom: 3px solid #a94442;
   }
 /* 
   .card-body {
@@ -29,3 +29,10 @@
    padding-top:0rem;
    padding-bottom:0rem;
  }
+ /* .inputGroup-sizing-sm{
+  border-radius: 25px;
+  border: 2px solid #609;
+  padding: 20px; 
+  width: 20px;
+  height: 15px;
+ } */

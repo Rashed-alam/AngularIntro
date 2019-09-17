@@ -107,7 +107,8 @@
                 </div>
                 <select class="" id="itemName" name="FabPriService.currentEntry.fabricPriceInformation[0].itemName" style="width: 55%"
            [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].itemName" #itemName="ngModel" (click)="selectSwitch(itemName.value)" required>
-            <option value="{{i.itemName}}" *ngFor="let i of allItems">{{i.itemName}}</option>
+           <option value=""></option> 
+           <option value="{{i.itemName}}" *ngFor="let i of allItems">{{i.itemName}}</option>
           </select>
               </div>
         </div>
@@ -116,8 +117,8 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Wastage:</span>
                 </div>
-                <input type="text" class="" id="inputEmail3" minlength="1" placeholder="%" style="width: 50%"
-                name="FabPriService.currentEntry.fabricPriceInformation[0].wastePercentage" 
+                <input type="number" class="" id="inputEmail3" minlength="1" placeholder="%" style="width: 50%" 
+                name="FabPriService.currentEntry.fabricPriceInformation[0].wastePercentage" step="any" title="please enter number only"
                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].wastePercentage" required>
               </div>
         </div>
@@ -128,9 +129,9 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Chest:</span>
                 </div>
-                <input type="text"class="" id="chest" minlength="2" placeholder="0" style="width: 30%"
+                <input type="number" class="" id="chest" minlength="2" placeholder="0" style="width: 30%" step="any" title="please enter number only"
                 name="FabPriService.currentEntry.fabricPriceInformation[0].chestSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].chestSize">
-                <select class=""  name="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" 
+                <select class=""  name="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" title="please enter number only"
                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" required>
                    
                     <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
@@ -142,7 +143,7 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Length:</span>
                 </div>
-                <input type="text"class="" id="length" minlength="2" placeholder="0" style="width: 30%"
+                <input type="number" class="" id="length" minlength="2" placeholder="0" style="width: 30%" step="any" title="please enter number only"
                 name="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize">
                 <select class=""  name="FabPriService.currentEntry.fabricPriceInformation[0].lengthUom" 
                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].lengthUom" required>
@@ -156,7 +157,7 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Sleeve:</span>
                 </div>
-                <input type="text"class="" id="inputPassword3" minlength="2" placeholder="0" style="width: 30%"
+                <input type="number"class="" id="inputPassword3" minlength="2" placeholder="0" style="width: 30%" step="any" title="please enter number only"
                                         name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize">
                                         <select class="" name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom" 
                                         [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom" required>
@@ -193,8 +194,8 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Fabric Unit Price:</span>
                 </div>
-                <input type="text" id="refNo" class="" name="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" 
-                style="width: 30%"
+                <input type="number" id="refNo" class="" name="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" 
+                style="width: 30%" pattern="[0-9]{2}" step="any" title="please enter number only"
                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" required> 
               </div>
         </div>
@@ -227,8 +228,8 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Rim:</span>
                 </div>
-                <input type="text" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
-        name="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice"
+                <input type="number" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
+        name="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice" step="any" title="please enter number only"
             [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice" required> 
               </div>
         </div>
@@ -237,7 +238,7 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">CM:</span>
                 </div>
-                <input type="text" id="refNo" class="" style="width: 50%" 
+                <input type="number" id="refNo" class="" style="width: 50%"  step="any" title="please enter number only"
                 name="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice" placeholder="0 {{setcurrency}}"
                     [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice" required>
               </div>
@@ -247,8 +248,8 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Trim:</span>
                 </div>
-                <input type="text" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
-    name="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice"
+                <input type="number" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
+    name="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice" step="any" title="please enter number only"
         [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice" required>
               </div>
         </div>
@@ -257,8 +258,8 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Doc:</span>
                 </div>
-                <input type="text" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
-                name="FabPriService.currentEntry.fabricPriceInformation[0].docPrice"
+                <input type="number" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
+                name="FabPriService.currentEntry.fabricPriceInformation[0].docPrice" step="any" title="please enter number only"
                     [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].docPrice" required>
               </div>
         </div>
@@ -267,14 +268,14 @@
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Print:</span>
                 </div>
-                <input type="text" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
-    name="FabPriService.currentEntry.fabricPriceInformation[0].printPrice"
+                <input type="number" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
+    name="FabPriService.currentEntry.fabricPriceInformation[0].printPrice" step="any" title="please enter number only"
         [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].printPrice" required>
               </div>
         </div>
     </div>
     <div class="row" style="margin-top:-0.5rem;margin-bottom:-1rem;">
-        <div class="col-4">
+        <div class="col-5">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Per Dozen Price: {{FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice}} {{setcurrency}}</span>
@@ -283,7 +284,7 @@
          value="{{FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice}} {{setcurrency}}" readonly>  -->
               </div>
         </div>
-        <div class="col-4">
+        <div class="col-5">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
                   <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Per Unit Price: {{FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice}} {{setcurrency}}</span>
@@ -292,8 +293,8 @@
                 value="{{FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice}} {{setcurrency}}" readonly> -->
               </div>
         </div>
-        <div class="col-4">
-            <button type="button" class="btn btn-outline-info" style="margin-left: 2rem;margin-bottom: 1rem;"
+        <div class="col-2">
+            <button type="button" class="btn btn-outline-info" style="margin-left: -2rem;margin-bottom: 1rem;"
          (click)="calculatePrice()">
             Calculate
            </button>
