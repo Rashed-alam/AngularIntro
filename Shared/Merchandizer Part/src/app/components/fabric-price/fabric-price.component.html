@@ -58,7 +58,7 @@
               </div>
         </div>
     </div>
-    <div class="row" style="margin-top:-0.5rem;">
+    <div class="row" style="margin-top:-0.5rem;margin-bottom:-1rem;">
         <div class="col-6">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
@@ -85,8 +85,8 @@
                   </select>
               </div>
         </div>
-    </div>
-    <h5 style="margin-left: 1rem;margin-top:0rem;margin-bottom:1rem;text-align: center;">Fabric Calculation</h5>
+    </div><hr>
+    <h5 style="margin-left: 1rem;margin-top:-1rem;margin-bottom:1rem;text-align: center;">Fabric Calculation</h5>
     <div class="row" style="margin-top:-0.5rem;">
         <div class="col-4">
             <div class="input-group input-group-sm mb-3">
@@ -166,7 +166,7 @@
               </div>
         </div>
     </div>
-    <div class="row" style="margin-top:-0.5rem;">
+    <div class="row" style="margin-top:-0.5rem;margin-bottom:-1rem;">
         
         <div class="col-6">
             <div class="input-group input-group-sm mb-3" *ngIf="BoysTshirtSelected || JacketSelected">
@@ -185,8 +185,8 @@
                Calculate
               </button>
         </div>
-    </div>
-    <h5 style="margin-left: 1rem;margin-top:0rem;margin-bottom:1rem;text-align: center;">Price Calculation</h5>
+    </div><hr>
+    <h5 style="margin-left: 1rem;margin-top:-1rem;margin-bottom:1rem;text-align: center;">Price Calculation</h5>
     <div class="row" style="margin-top:-0.5rem;">
         <div class="col-4">
             <div class="input-group input-group-sm mb-3">
@@ -273,7 +273,7 @@
               </div>
         </div>
     </div>
-    <div class="row" style="margin-top:-0.5rem;">
+    <div class="row" style="margin-top:-0.5rem;margin-bottom:-1rem;">
         <div class="col-4">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
@@ -299,12 +299,15 @@
            </button>
         </div>
     </div>
-    <div class="row" style="margin-top:-0.5rem;margin-bottom:1rem;">
-        <div class="col"><button type="submit" class="btn btn-success" style="margin-left: 15rem; "
-          [disabled]="mainform.form.pristine || mainform.form.invalid">Save</button>
+    <div class="row" style="margin-top:-0.5rem;margin-bottom:0rem;">
+        <div class="col"><button type="submit" class="btn btn-success" style="margin-left: 10rem; "
+          [disabled]="mainform.form.pristine || mainform.form.invalid">Submit</button>
         </div>
         <div class="col"> <button type="button" class="btn btn-danger" style="margin-left: -1rem;"
           (click)="clearAll()">Clear All</button>
+        </div>
+        <div class="col"> <button type="button" class="btn btn-primary" style="margin-left: -6rem;"
+          >Report</button>
         </div>
     </div>
     <div  class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="align-content: center">
