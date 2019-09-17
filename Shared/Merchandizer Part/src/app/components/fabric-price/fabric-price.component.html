@@ -5,32 +5,32 @@
       <div class="col-2">
           <div class="input-group input-group-sm mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">ID:</span>
+                <span class="" id="inputGroup-sizing-sm">ID: {{autoID}}</span>
               </div>
-              <input class="form-control" type="text" placeholder="{{autoID}}" style="width: 10%;" disabled>
+              <!-- <input class="" type="text" placeholder="{{autoID}}" style="width: 10%;" disabled> -->
             </div>
       </div>
       <div class="col-2"></div>
       <div class="col-4">
           <div class="input-group input-group-sm mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Mail Date:</span>
+                <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Mail Date:</span>
               </div>
               <input type="text" id="mailDate" name="FabPriService.currentEntry.mailDate" [(ngModel)]="FabPriService.currentEntry.mailDate"
               placeholder="{{today}}" 
-             style="width: 33%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
-             class="form-control" #mailDate="ngModel" required>
+             style="width: 50%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+             class="" #mailDate="ngModel" readonly required>
             </div>
       </div>
       <div class="col-4">
           <div class="input-group input-group-sm mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Entry Date:</span>
+                <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Entry Date:</span>
               </div>
               <input type="text" id="entryDate" placeholder="{{today}}" name="FabPriService.currentEntry.entryDate" 
                               [(ngModel)]="FabPriService.currentEntry.entryDate"
-                              style="width: 33%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
-                              class="form-control" #entryDate="ngModel" required>
+                              style="width: 50%;" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" 
+                              class="" #entryDate="ngModel" readonly required>
             </div>
       </div>
     </div>
@@ -38,19 +38,19 @@
         <div class="col-6">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Reference No:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Reference No:</span>
                 </div>
-                <input type="text" id="refNo" class="form-control" [disabled]="hiddingrefIdandStyleCode"  placeholder="Enter Reference Number"
-                name="FabPriService.currentEntry.referenceId" 
+                <input type="text" id="refNo" class="" [disabled]="hiddingrefIdandStyleCode"  placeholder="Reference Number"
+                name="FabPriService.currentEntry.referenceId" style="width: 60%;"
                 [(ngModel)]="FabPriService.currentEntry.referenceId" #referenceId="ngModel" required>
               </div>
         </div>
         <div class="col-6">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Size:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 1.25rem;">Size:</span>
                 </div>
-                <select class="custom-select" id="size" name="FabPriService.currentEntry.size" style="width: 30%"
+                <select class="" id="size" name="FabPriService.currentEntry.size" style="width: 50%"
            [(ngModel)]="FabPriService.currentEntry.size" #size="ngModel" required>
            
               <option value="{{s.size_name}}" *ngFor="let s of allSize">{{s.size_name}}</option>
@@ -62,12 +62,12 @@
         <div class="col-6">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Buyer Name:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 1rem;">Buyer Name:</span>
                 </div>
-                <select class="custom-select" id="buyerName"   name="FabPriService.currentEntry.buyerName" 
+                <select class="" id="buyerName"   name="FabPriService.currentEntry.buyerName" style="width: 60%"
                 [(ngModel)]="FabPriService.currentEntry.buyerName" #buyerName="ngModel" 
                 required>
-                  <option value="{{b.name}}" *ngFor="let b of allBuyers">{{b.name}} | Address: {{b.house}},{{b.road}},{{b.area}} </option>
+                  <option value="{{b.name}}" *ngFor="let b of allBuyers">{{b.name}}</option>
                 </select> 
               </div>
 
@@ -77,10 +77,10 @@
         <div class="col-6">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Fabric:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Fabric:</span>
                 </div>
-                <select class="custom-select" style="width: 30%" id="fabrics" name="FabPriService.currentEntry.fabricPriceInformation[0].fabricType" 
-                [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].fabricType" #fabrics="ngModel" required>
+                <select class="" style="width: 30%" id="fabrics" name="FabPriService.currentEntry.fabricPriceInformation[0].fabricType" 
+                [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].fabricType" #fabrics="ngModel" style="width: 50%" required>
                     <option value="{{f.fabric_name}}" *ngFor="let f of allFabricType">GSM-{{f.fabric_name}}</option>
                   </select>
               </div>
@@ -91,11 +91,11 @@
         <div class="col-4">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Style Code:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Style Code:</span>
                 </div>
-                <input type="text" class="form-control" id="style_code" [disabled]="hiddingrefIdandStyleCode" placeholder="Code"  
+                <input type="text" class="" id="style_code"  placeholder="Code"  
                 name="FabPriService.currentEntry.fabricPriceInformation[0].styleCode"
-              style="text-transform: uppercase;"
+              style="text-transform: uppercase;" style="width: 50%"
                  [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].styleCode" 
                  #styleCode="ngModel" required>
               </div>
@@ -103,9 +103,9 @@
         <div class="col-4">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Item Type:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Item Type:</span>
                 </div>
-                <select class="custom-select" id="itemName" name="FabPriService.currentEntry.fabricPriceInformation[0].itemName"
+                <select class="" id="itemName" name="FabPriService.currentEntry.fabricPriceInformation[0].itemName" style="width: 55%"
            [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].itemName" #itemName="ngModel" (click)="selectSwitch(itemName.value)" required>
             <option value="{{i.itemName}}" *ngFor="let i of allItems">{{i.itemName}}</option>
           </select>
@@ -114,9 +114,9 @@
         <div class="col-4">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Wastage:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Wastage:</span>
                 </div>
-                <input type="text" class="form-control" id="inputEmail3" minlength="1" placeholder="%" style="width: 30%"
+                <input type="text" class="" id="inputEmail3" minlength="1" placeholder="%" style="width: 50%"
                 name="FabPriService.currentEntry.fabricPriceInformation[0].wastePercentage" 
                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].wastePercentage" required>
               </div>
@@ -126,11 +126,11 @@
         <div class="col-4">
             <div class="input-group input-group-sm mb-3" *ngIf="BoysTshirtSelected || JacketSelected">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Chest:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Chest:</span>
                 </div>
-                <input type="text"class="form-control" id="chest" minlength="2" placeholder="0"
+                <input type="text"class="" id="chest" minlength="2" placeholder="0" style="width: 30%"
                 name="FabPriService.currentEntry.fabricPriceInformation[0].chestSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].chestSize">
-                <select class="custom-select"  name="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" 
+                <select class=""  name="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" 
                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].chestUom" required>
                    
                     <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
@@ -140,11 +140,11 @@
         <div class="col-4">
             <div class="input-group input-group-sm mb-3" *ngIf="BoysTshirtSelected || JacketSelected">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Length:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Length:</span>
                 </div>
-                <input type="text"class="form-control" id="length" minlength="2" placeholder="0" 
+                <input type="text"class="" id="length" minlength="2" placeholder="0" style="width: 30%"
                 name="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize">
-                <select class="custom-select"  name="FabPriService.currentEntry.fabricPriceInformation[0].lengthUom" 
+                <select class=""  name="FabPriService.currentEntry.fabricPriceInformation[0].lengthUom" 
                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].lengthUom" required>
                     
                     <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
@@ -154,11 +154,11 @@
         <div class="col-4">
             <div class="input-group input-group-sm mb-3" *ngIf="BoysTshirtSelected || JacketSelected">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Sleeve:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Sleeve:</span>
                 </div>
-                <input type="text"class="form-control" id="inputPassword3" minlength="2" placeholder="0" 
+                <input type="text"class="" id="inputPassword3" minlength="2" placeholder="0" style="width: 30%"
                                         name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize">
-                                        <select class="custom-select" name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom" 
+                                        <select class="" name="FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom" 
                                         [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].sleeveUom" required>
                                           
                                             <option value="{{s.Uom_name}}" *ngFor="let s of allUoM">{{s.Uom_name}}</option>
@@ -171,11 +171,12 @@
         <div class="col-6">
             <div class="input-group input-group-sm mb-3" *ngIf="BoysTshirtSelected || JacketSelected">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Fabric Weight:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Fabric Weight: {{FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight}} kg/dozen</span>
                 </div>
-                <input type="text" class="form-control"  disabled 
-                name="FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight" 
-                [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight">kg/per dozen
+                <!-- <input type="text" class=""  readonly 
+                style="width: 25%"
+                placeholder=""
+                > kg/per dozen -->
               </div>
         </div>
         <div class="col-6">
@@ -190,18 +191,19 @@
         <div class="col-4">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Fabric Unit Price:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Fabric Unit Price:</span>
                 </div>
-                <input type="text" id="refNo" class="form-control" name="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice"
+                <input type="text" id="refNo" class="" name="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" 
+                style="width: 30%"
                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" required> 
               </div>
         </div>
         <div class="col-4">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Currency:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Currency:</span>
                 </div>
-                <select class="custom-select" name="FabPriService.currentEntry.fabricPriceInformation[0].currency" 
+                <select class="" name="FabPriService.currentEntry.fabricPriceInformation[0].currency"  style="width: 35%"
                 [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].currency" id="Currency"
                  #cur (click)="setCurrency(cur.value)" required>
                   <!-- <option option selected>...</option>    -->
@@ -212,10 +214,10 @@
         <div class="col-4">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Fabric Total Price:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="margin-left: -2rem;">Fabric Total Price: {{FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice}} {{setcurrency}} </span>
                 </div>
-                <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="0 {{setcurrency}}"
-            value="{{FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice}}" disabled>
+                <!-- <input type="text" id="refNo" class="" style="width: 30%" placeholder="0 {{setcurrency}}"
+            value="{{FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice}}" readonly> -->
               </div>
         </div>
     </div>
@@ -223,9 +225,9 @@
         <div class="col">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Rim:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Rim:</span>
                 </div>
-                <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="0 {{setcurrency}}"
+                <input type="text" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
         name="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice"
             [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice" required> 
               </div>
@@ -233,9 +235,9 @@
         <div class="col">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">CM:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">CM:</span>
                 </div>
-                <input type="text" id="refNo" class="form-control" style="width: 30%" 
+                <input type="text" id="refNo" class="" style="width: 50%" 
                 name="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice" placeholder="0 {{setcurrency}}"
                     [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice" required>
               </div>
@@ -243,9 +245,9 @@
         <div class="col">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Trim:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Trim:</span>
                 </div>
-                <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="0 {{setcurrency}}"
+                <input type="text" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
     name="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice"
         [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice" required>
               </div>
@@ -253,9 +255,9 @@
         <div class="col">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Doc:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Doc:</span>
                 </div>
-                <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="0 {{setcurrency}}"
+                <input type="text" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
                 name="FabPriService.currentEntry.fabricPriceInformation[0].docPrice"
                     [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].docPrice" required>
               </div>
@@ -263,9 +265,9 @@
         <div class="col">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Print:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Print:</span>
                 </div>
-                <input type="text" id="refNo" class="form-control" style="width: 30%" placeholder="0 {{setcurrency}}"
+                <input type="text" id="refNo" class="" style="width: 50%" placeholder="0 {{setcurrency}}"
     name="FabPriService.currentEntry.fabricPriceInformation[0].printPrice"
         [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].printPrice" required>
               </div>
@@ -275,19 +277,19 @@
         <div class="col-4">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Per Dozen Price:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Per Dozen Price: {{FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice}} {{setcurrency}}</span>
                 </div>
-                <input type="text" id="refNo" class="form-control" style="width: 30%"
-         value="{{FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice}} {{setcurrency}}" readonly=""> 
+                <!-- <input type="text" id="refNo" class="" style="width: 30%"
+         value="{{FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice}} {{setcurrency}}" readonly>  -->
               </div>
         </div>
         <div class="col-4">
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Per Unit Price:</span>
+                  <span class="" id="inputGroup-sizing-sm" style="padding-right: 0.5rem;">Per Unit Price: {{FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice}} {{setcurrency}}</span>
                 </div>
-                <input type="text" id="refNo" class="form-control" style="width: 30%; "
-                value="{{FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice}} {{setcurrency}}" readonly="">
+                <!-- <input type="text" id="refNo" class="" style="width: 40%; "
+                value="{{FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice}} {{setcurrency}}" readonly> -->
               </div>
         </div>
         <div class="col-4">
@@ -327,7 +329,7 @@
           <h3 style="text-align: center;">Entry Lists</h3>
           <div class="input-group mb-2">
               <div class="input-group-prepend">
-                      <div class="input-group-text">Search by Reference:</div>
+                      <div class="">Search by Reference:</div>
                     </div>
                     <select class="custom-select" (click)="SearchByReference($event.target.value)" >
                          <option option selected>...</option>   
