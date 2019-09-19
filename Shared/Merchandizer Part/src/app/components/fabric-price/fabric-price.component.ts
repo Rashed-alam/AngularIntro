@@ -312,7 +312,7 @@ export class FabricPriceComponent implements OnInit {
     FabricAmount = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight ;
     FabricUnitPrice = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice;
     step1 = (parseFloat(FabricAmount) * parseFloat(FabricUnitPrice))
-    this.FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice = step1.toFixed(3);
+    this.FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice = step1.toFixed(2);
     // console.log(this.fabricpriceservice.calculatePrice.fabric_total_price);
     Rib = this.FabPriService.currentEntry.fabricPriceInformation[0].rimPrice;
     TRIM = this.FabPriService.currentEntry.fabricPriceInformation[0].trimPrice;
@@ -320,9 +320,9 @@ export class FabricPriceComponent implements OnInit {
     Print = this.FabPriService.currentEntry.fabricPriceInformation[0].printPrice;
     Doc = this.FabPriService.currentEntry.fabricPriceInformation[0].docPrice;
     //console.log(this.fabricpriceservice.calculatePrice);
-    step2 = (step1 + parseFloat(Rib) + parseFloat(TRIM) + parseFloat(CM) + parseFloat(Print) + parseFloat(Doc)).toFixed(3);
+    step2 = (step1 + parseFloat(Rib) + parseFloat(TRIM) + parseFloat(CM) + parseFloat(Print) + parseFloat(Doc)).toFixed(2);
     this.FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice = step2;
-    step3 = (step2 / 12).toFixed(3);
+    step3 = (step2 / 12).toFixed(2);
     this.FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice = step3;
   }
   //THIS CLEARS ALL THE FORM FIELDS

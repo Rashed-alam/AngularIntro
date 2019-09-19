@@ -274,8 +274,8 @@
                                         <div class="col-6" style="white-space: nowrap">
                                             <label for="">Fabric Total Price:</label>
                                         </div>
-                                        <div class="col ml-3 mr-3" style="background-color: yellow;border: 2px solid green;white-space: nowrap">
-                                            {{ FabPriService.currentEntry.fabricPriceInformation[0] .fabricTotalPrice }} {{setcurrency}}
+                                        <div class="col ml-3 mr-3" style="background-color: gray;border: 2px solid black;white-space: nowrap;color: azure">
+                                            {{ FabPriService.currentEntry.fabricPriceInformation[0] .fabricTotalPrice }}{{setcurrency}}
                                         </div>
 
                                     </div>
@@ -284,15 +284,15 @@
                                             <label for="">Per Unit Price:</label>
                                         </div>
                                         <div class="col ml-3 mr-3" style="background-color: yellow;border: 2px solid green;white-space: nowrap">
-                                            {{ FabPriService.currentEntry.fabricPriceInformation[0] .perUnitPrice }} {{setcurrency}}
+                                            {{ FabPriService.currentEntry.fabricPriceInformation[0] .perUnitPrice }}{{setcurrency}}
                                         </div>
                                     </div>
                                     <div class="row" *ngIf="CalculatePriceButtonPressed">
                                         <div class="col-6" style="white-space: nowrap">
                                             <label for="">Per Dozen Price:</label>
                                         </div>
-                                        <div class="col ml-3 mr-3" style="background-color: yellow;border: 2px solid green;white-space: nowrap">
-                                            {{ FabPriService.currentEntry.fabricPriceInformation[0] .perDozenPrice }} {{setcurrency}}
+                                        <div class="col ml-3 mr-3" style="background-color: yellow;border: 2px solid green;white-space: nowrap;">
+                                            {{ FabPriService.currentEntry.fabricPriceInformation[0] .perDozenPrice }}{{setcurrency}}
                                         </div>
                                     </div>
                                 </div>
