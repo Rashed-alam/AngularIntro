@@ -43,6 +43,7 @@ export class FabricPriceComponent implements OnInit {
   allReference: any;
   CalculateButtonPressed: boolean = false;
   entryShowList: any;
+  buyerAddressInfo: any;
   temporaryDataStorage: any;
   hiddingrefIdandStyleCode: boolean = false;
   CalculatePriceButtonPressed: boolean = false;
@@ -178,6 +179,16 @@ export class FabricPriceComponent implements OnInit {
          this.allBuyers = data;
         //  console.log(data);
        });
+  }
+  //this is for getting buyer addresss after selecting buyer from the dropdown list
+  BuyerAddress(a){
+    // console.log(a);
+    this.Bs.getBuyerInformation(a)
+    .subscribe(
+      (data)=>{
+        this.buyerAddressInfo = data;
+        // console.log(data);
+ });
   }
    //this is for getting all the sizes list from database
    getAllSize(){

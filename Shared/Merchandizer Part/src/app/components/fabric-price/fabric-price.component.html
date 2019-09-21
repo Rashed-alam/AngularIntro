@@ -84,11 +84,21 @@
                                 </div>
                             </div>
                             <div class="col-9">
-                                <select class="" id="buyerName" name="FabPriService.currentEntry.buyerName" [(ngModel)]="FabPriService.currentEntry.buyerName" #buyerName="ngModel" required class="w-100">
-                  <option value="{{ b.name }}" *ngFor="let b of allBuyers">{{
+                                <select class="" id="buyerName" name="FabPriService.currentEntry.buyerName" [(ngModel)]="FabPriService.currentEntry.buyerName" (click)="BuyerAddress($event.target.value)" #buyerName="ngModel" required class="w-100">
+                  <option value="{{ b._id }}" *ngFor="let b of allBuyers" >{{
                     b.name
                   }}</option>
                 </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-3 pr-0">
+                                <div class="">
+                                    Buyer Address:
+                                </div>
+                            </div>
+                            <div class="col-9" *ngFor="let p of buyerAddressInfo,index as i">
+                                {{p.house}}, {{p.road}}, {{p.sector}}
                             </div>
                         </div>
                     </div>
@@ -148,7 +158,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col"><label for="">Meas. Unit</label></div>
+                                        <div class="col"><label for="">Measure Unit</label></div>
                                         <div class="col">
                                             <select class="" name="FabPriService.currentEntry.fabricPriceInformation[0].unitOfMeasurement" title="please enter number only" [(ngModel)]="
                             FabPriService.currentEntry.fabricPriceInformation[0]
@@ -162,7 +172,7 @@
                                     <div class="row" *ngIf="BoysTshirtSelected || JacketSelected">
                                         <div class="col"><label for="">Chest Size:</label></div>
                                         <div class="col">
-                                            <input type="number" class="" id="chest" minlength="2" placeholder="{{ setMeasurementUnit }}" step="any" title="please enter number only" name="FabPriService.currentEntry.fabricPriceInformation[0].chestSize" (keyup)="calculateFabricWeight()" [(ngModel)]="
+                                            <input type="number" class="" id="chest" minlength="2" placeholder="{{ setMeasurementUnit }}" step="any" title="please enter number only" name="FabPriService.currentEntry.fabricPriceInformation[0].chestSize"  [(ngModel)]="
                             FabPriService.currentEntry.fabricPriceInformation[0]
                               .chestSize
                           " required />
@@ -171,7 +181,7 @@
                                     <div class="row" *ngIf="BoysTshirtSelected || JacketSelected">
                                         <div class="col"><label for="">Length Size:</label></div>
                                         <div class="col">
-                                            <input type="number" class="" id="length" minlength="2" placeholder="{{ setMeasurementUnit }}" step="any" title="please enter number only" name="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize" (keyup)="calculateFabricWeight()" [(ngModel)]="
+                                            <input type="number" class="" id="length" minlength="2" placeholder="{{ setMeasurementUnit }}" step="any" title="please enter number only" name="FabPriService.currentEntry.fabricPriceInformation[0].lengthSize"  [(ngModel)]="
                             FabPriService.currentEntry.fabricPriceInformation[0]
                               .lengthSize
                           " required />
@@ -205,69 +215,64 @@
                                 <div class="pricediv">
                                     <h5>Price Calculation</h5>
                                     <div class="row">
-                                        <div class="col-6" style="white-space: nowrap">
-                                            <label for="">Fabric Unit Price:</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="number" id="refNo" class="" name="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" step="any" title="please enter number only" [(ngModel)]="
-                            FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" style="width: 100%" required />
-
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
                                         <div class="col-6"><label for="">Currency: </label></div>
                                         <div class="col-6">
-                                            <select class="" name="FabPriService.currentEntry.fabricPriceInformation[0].currency" [(ngModel)]="
-                                            FabPriService.currentEntry.fabricPriceInformation[0]
-                                              .currency
-                                          " id="Currency" #cur (click)="setCurrency(cur.value)" required>
+                                            <select class="" name="FabPriService.currentEntry.fabricPriceInformation[0].currency" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].currency" id="Currency" #cur (click)="setCurrency(cur.value)"  style="width: 70%" required>
                                           <!-- <option option selected>...</option>    -->
-                                          <option 
-                                            value="{{ i.currencyName }}"
-                                            selected
-                                            *ngFor="let i of newcurrency" style="width: 106%;
-                                            height: 95%;
-                                            margin-left: -1rem;"
-                                          >
-                                            {{ i.currencyName }}</option
+                                          <option value="{{ i.currencyName }}" selected *ngFor="let i of newcurrency" >
+                                            {{ i.currencyName }}
+                                            </option
                                           >
                                         </select>
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <div class="col-6" style="white-space: nowrap">
+                                            <label for="">Fabric Unit Price:</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="number" id="refNo" class="" name="FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" step="any" title="please enter number only" [(ngModel)]="
+                            FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice" style="width: 70%" required />
+                            <span>{{setcurrency}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-6"><label for="">CM Price: </label></div>
                                         <div class="col-6">
-                                            <input type="number" id="refNo" class="" step="any" title="please enter number only" name="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice" placeholder="{{setcurrency}}" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice"
-                                                required>
+                                            <input type="number" id="refNo" class="" step="any" title="please enter number only" name="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice"  [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].cmPrice"
+                                                style="width: 70%;" required>
+                                                <span>{{setcurrency}}</span>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-6"><label for="">RIM Price:</label></div>
                                         <div class="col-6">
-                                            <input type="number" id="refNo" class="" placeholder="{{setcurrency}}" name="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice" step="any" title="please enter number only" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice"
-                                                required>
+                                            <input type="number" id="refNo" class="" name="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice" step="any" title="please enter number only" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].rimPrice"
+                                                style="width: 70%"required>
+                                                <span>{{setcurrency}}</span>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-6"><label for="">TRIM Price:</label></div>
                                         <div class="col-6">
-                                            <input type="number" id="refNo" class="" placeholder="{{setcurrency}}" name="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice" step="any" title="please enter number only" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice"
+                                            <input type="number" id="refNo" style="width: 70%"  name="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice" step="any" title="please enter number only" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].trimPrice"
                                                 required>
+                                                <span>{{setcurrency}}</span>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-6"><label for="">DOC Price:</label></div>
                                         <div class="col-6">
-                                            <input type="number" id="refNo" class="" placeholder="{{setcurrency}}" name="FabPriService.currentEntry.fabricPriceInformation[0].docPrice" step="any" title="please enter number only" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].docPrice"
+                                            <input type="number" id="refNo" class="" style="width: 70%" name="FabPriService.currentEntry.fabricPriceInformation[0].docPrice" step="any" title="please enter number only" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].docPrice"
                                                 required>
+                                                <span>{{setcurrency}}</span>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-6"><label for="">PRINT Price:</label></div>
                                         <div class="col-6">
-                                            <input type="number" id="refNo" class="" placeholder="{{setcurrency}}" (keyup)="calculatePrice()" name="FabPriService.currentEntry.fabricPriceInformation[0].printPrice" step="any" title="please enter number only" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].printPrice"
-                                                required>
+                                            <input type="number" id="refNo" class="" style="width: 70%" (keyup)="calculatePrice()" name="FabPriService.currentEntry.fabricPriceInformation[0].printPrice" step="any" title="please enter number only" [(ngModel)]="FabPriService.currentEntry.fabricPriceInformation[0].printPrice"
+                                                required><span>{{setcurrency}}</span>
                                         </div>
                                     </div>
                                     <div class="row" *ngIf="CalculatePriceButtonPressed">
@@ -275,7 +280,8 @@
                                             <label for="">Fabric Total Price:</label>
                                         </div>
                                         <div class="col ml-3 mr-3" style="background-color: gray;border: 2px solid black;white-space: nowrap;color: azure">
-                                            {{ FabPriService.currentEntry.fabricPriceInformation[0] .fabricTotalPrice }}{{setcurrency}}
+                                            {{ FabPriService.currentEntry.fabricPriceInformation[0] .fabricTotalPrice }} 
+                                            <span>{{setcurrency}}</span>
                                         </div>
 
                                     </div>
@@ -284,7 +290,8 @@
                                             <label for="">Per Unit Price:</label>
                                         </div>
                                         <div class="col ml-3 mr-3" style="background-color: yellow;border: 2px solid green;white-space: nowrap">
-                                            {{ FabPriService.currentEntry.fabricPriceInformation[0] .perUnitPrice }}{{setcurrency}}
+                                            {{ FabPriService.currentEntry.fabricPriceInformation[0] .perUnitPrice }} 
+                                            <span>{{setcurrency}}</span>
                                         </div>
                                     </div>
                                     <div class="row" *ngIf="CalculatePriceButtonPressed">
@@ -292,7 +299,8 @@
                                             <label for="">Per Dozen Price:</label>
                                         </div>
                                         <div class="col ml-3 mr-3" style="background-color: yellow;border: 2px solid green;white-space: nowrap;">
-                                            {{ FabPriService.currentEntry.fabricPriceInformation[0] .perDozenPrice }}{{setcurrency}}
+                                            {{ FabPriService.currentEntry.fabricPriceInformation[0] .perDozenPrice }} 
+                                            <span>{{setcurrency}}</span>
                                         </div>
                                     </div>
                                 </div>

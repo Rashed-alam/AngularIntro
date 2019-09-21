@@ -42,8 +42,8 @@ export class BuyersService {
   }
 
   //this is for getting a certain buyer informaiton frorm database according to that ID
-  getBuyerInformation(buyer: Buyers): Observable<Buyers[]>{
-    return this.httpcall.get<Buyers[]>(this.url+'/'+ buyer._id, headerOption);
+  getBuyerInformation(_id): Observable<Buyers[]>{
+    return this.httpcall.get<Buyers[]>(this.url+'/'+ _id, headerOption);
    
   }
   
