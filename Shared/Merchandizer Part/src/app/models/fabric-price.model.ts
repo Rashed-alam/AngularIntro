@@ -7,7 +7,7 @@ export class FabricPriceModel{
     referenceId : string;
     fabricPriceInformation : [  {
             styleCode : string;
-            fabricType : string;
+            fabricType : number;
             itemName : string;
             wastePercentage : number;
             chestSize : number;

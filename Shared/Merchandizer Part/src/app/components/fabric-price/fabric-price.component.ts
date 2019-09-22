@@ -46,7 +46,7 @@ export class FabricPriceComponent implements OnInit {
   buyerAddressInfo: any;
   temporaryDataStorage: any;
   hiddingrefIdandStyleCode: boolean = false;
-  CalculatePriceButtonPressed: boolean = false;
+
 
   constructor(public FabPriService: FabricPriceServiceService,
               private DP: DatePipe,
@@ -71,7 +71,8 @@ export class FabricPriceComponent implements OnInit {
     this.getReferences();
     this.clearAll();
   }
- 
+ //referenceNo: any;
+
   //GET FUNCTION For fetching the whole list from database
   SearchByReference(a){
     this.FabPriService.getAllEntries(a)
@@ -147,15 +148,16 @@ export class FabricPriceComponent implements OnInit {
 }
  //DELETE FUNCTION
  ondelete(item: any){
+   var ref = item.referenceId;
   var confirmation;
   confirmation= confirm("Are you sure ?");
   if(confirmation == true){
     this.FabPriService.deleteEntry(item).subscribe((data) =>{
+      console.log(data);
       this.showdeletemessage=true;
       setTimeout(()=>this.showdeletemessage=false,4000);
       this.getReferences();
-  
-      
+      this.SearchByReference(ref);
     });
    }
 }
@@ -236,54 +238,6 @@ export class FabricPriceComponent implements OnInit {
          this.ShortsSelected = true;
      }   
    }
-    //this function is for calculating the fabric weight
-  calculateFabricWeight(){
-    this.CalculateButtonPressed = true;
-    var wastePercentage: any= 0; //waste percentage
-    var chestsize: number= 0;
-    var lengthsize: any= 0 ;
-    var sleevesize: any = 0;
-    var hoodsize: any= 0;
-    var bottomsize: any = 0;
-    var thighsize: any = 0;
-    var pocketsize: any = 0;
-    var fabricsize: any= 0;// for gsm value
-    wastePercentage = this.FabPriService.currentEntry.fabricPriceInformation[0].wastePercentage;
-    fabricsize = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricType;
-    //conversion from inch to cm
-    if(this.FabPriService.currentEntry.fabricPriceInformation[0].unitOfMeasurement=='Inch'){
-     chestsize = (this.FabPriService.currentEntry.fabricPriceInformation[0].chestSize) * 2.54;
-     lengthsize = (this.FabPriService.currentEntry.fabricPriceInformation[0].lengthSize)*2.54;
-     sleevesize = (this.FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize)*2.54;
-    }else{
-      chestsize = this.FabPriService.currentEntry.fabricPriceInformation[0].chestSize;
-      lengthsize = this.FabPriService.currentEntry.fabricPriceInformation[0].lengthSize;
-      sleevesize = this.FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize;
-    }
-    //this part is for calculating the boys tshirt fabric
-    var step1 : any = 0;
-    step1 = parseFloat(lengthsize) + parseFloat(sleevesize);
-    var step2 : any= 0;
-    step2 =((step1*(chestsize)*2*parseFloat(fabricsize))/(Math.pow(10,7)))*12;
-    var step3: any = 0;
-    step3 = (((wastePercentage)/100)*step2);
-    var step4: any = 0;
-    step4 = (step2 + step3);
-    console.log(step4);
-    var convertoFloat; 
-    convertoFloat = parseFloat(step4).toFixed(5);
-    console.log(convertoFloat);
-    this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight = convertoFloat;//main answer for fabric calculation
-    //end of fabric calculation of boys tshirt
-  }
-  //this is for getting all the units of measurement from database
-  // getAllUms(){
-  //   this.Ums.getAllUoM()
-  //   .subscribe(
-  //      (data : UoM[]) =>{
-  //        this.allUoM = data;
-  //      });
-  // }
   //currency list
   getCurrencylist(): void {
     this.CU.getAllCurrency()
@@ -297,44 +251,10 @@ export class FabricPriceComponent implements OnInit {
     this.setcurrency = w;
     this.FabPriService.currentEntry.fabricPriceInformation[0].currency= this.setcurrency;
   }
+  //For setting the measurement unit from the form
   setUnit(a){
     this.setMeasurementUnit= a;
     this.FabPriService.currentEntry.fabricPriceInformation[0].unitOfMeasurement = this.setMeasurementUnit;
-  }
-  //this is for calculating the price calculation
-  calculatePrice() {
-    this.CalculatePriceButtonPressed = true;
-    var FabricAmount: any = 0; //waste percentage
-    var FabricUnitPrice: any = 0;
-    var FabricTotalPrize: any = 0;
-    var Rib: any = 0;
-    var CM: any = 0;
-    var TRIM: any = 0;
-    var Print: any = 0;
-    var Doc: any = 0;
-    var Fa;
-    var step1: any = 0;
-    var step2;
-    var step3: any = 0;
-
-// console.log(this.fabricWeight);
-
-   // this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight = this.fabricWeight
-    FabricAmount = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight ;
-    FabricUnitPrice = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice;
-    step1 = (parseFloat(FabricAmount) * parseFloat(FabricUnitPrice))
-    this.FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice = step1.toFixed(2);
-    // console.log(this.fabricpriceservice.calculatePrice.fabric_total_price);
-    Rib = this.FabPriService.currentEntry.fabricPriceInformation[0].rimPrice;
-    TRIM = this.FabPriService.currentEntry.fabricPriceInformation[0].trimPrice;
-    CM = this.FabPriService.currentEntry.fabricPriceInformation[0].cmPrice;
-    Print = this.FabPriService.currentEntry.fabricPriceInformation[0].printPrice;
-    Doc = this.FabPriService.currentEntry.fabricPriceInformation[0].docPrice;
-    //console.log(this.fabricpriceservice.calculatePrice);
-    step2 = (step1 + parseFloat(Rib) + parseFloat(TRIM) + parseFloat(CM) + parseFloat(Print) + parseFloat(Doc)).toFixed(2);
-    this.FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice = step2;
-    step3 = (step2 / 12).toFixed(2);
-    this.FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice = step3;
   }
   //THIS CLEARS ALL THE FORM FIELDS
   clearAll(){
@@ -348,7 +268,7 @@ export class FabricPriceComponent implements OnInit {
     referenceId : '',
     fabricPriceInformation : [  {
             styleCode : '',
-            fabricType : '',
+            fabricType : null,
             itemName : '',
             wastePercentage : null,
             chestSize : null,
@@ -395,7 +315,7 @@ export class FabricPriceComponent implements OnInit {
       referenceId : this.FabPriService.currentEntry.referenceId,
       fabricPriceInformation : [  {
               styleCode : '',
-              fabricType : '',
+              fabricType : null,
               itemName : '',
               wastePercentage : null,
               chestSize : null,
@@ -420,6 +340,82 @@ export class FabricPriceComponent implements OnInit {
           }
       ]
     }
+  }
+  //for doing all the fabric-price calculation
+  calculation(){
+       //FABRIC WEIGHT CALCULATION PART
+       this.CalculateButtonPressed = true;
+       var wastePercentage: number= 0; //waste percentage
+       var chestsize: number= 0;
+       var lengthsize: number= 0 ;
+       var sleevesize: number = 0;
+       var fabricsize: number= 0;// for gsm value
+   
+       wastePercentage = this.FabPriService.currentEntry.fabricPriceInformation[0].wastePercentage;
+       fabricsize = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricType;
+   
+       //conversion from inch to cm
+       if(this.FabPriService.currentEntry.fabricPriceInformation[0].unitOfMeasurement=='Inch'){
+        chestsize = (this.FabPriService.currentEntry.fabricPriceInformation[0].chestSize) * 2.54;
+        lengthsize = (this.FabPriService.currentEntry.fabricPriceInformation[0].lengthSize)*2.54;
+        sleevesize = (this.FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize)*2.54;
+       }else{
+         chestsize = this.FabPriService.currentEntry.fabricPriceInformation[0].chestSize;
+         lengthsize = this.FabPriService.currentEntry.fabricPriceInformation[0].lengthSize;
+         sleevesize = this.FabPriService.currentEntry.fabricPriceInformation[0].sleeveSize;
+       }
+   
+       //this part is for calculating the boys tshirt fabric
+       var step1 : number = 0;
+       step1 = (lengthsize + sleevesize);
+       var step2 : number= 0;
+       step2 =((step1*(chestsize)*2*(fabricsize))/(Math.pow(10,7)))*12;
+       var step3: number = 0;
+       step3 = (((wastePercentage)/100)*step2);
+       var step4: number = 0;
+       step4 = (step2 + step3);
+       var convertoFloat; 
+       convertoFloat = (step4).toFixed(5);
+       this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight = convertoFloat;//main answer for fabric calculation
+       //end of fabric calculation of boys tshirt
+   
+   //END OF FABRIC WEIGHT CALCULATION PART
+
+
+   //PRICE CALCULATION
+   var FabricAmount: number = 0; //waste percentage
+   var FabricUnitPrice: number = 0;
+   var FabricTotalPrize: number = 0;
+   var Rib: number = 0;
+   var CM: number = 0;
+   var TRIM: number = 0;
+   var Print: number = 0;
+   var Doc: number = 0;
+   var step5: number = 0;
+   var step6;
+   var step7: number = 0;
+
+   FabricAmount = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricWeight ;
+   FabricUnitPrice = this.FabPriService.currentEntry.fabricPriceInformation[0].fabricUnitPrice;
+   step5 = ((FabricAmount) * (FabricUnitPrice));
+   var con1: any = 0;
+   con1 = step5.toFixed(2);
+   this.FabPriService.currentEntry.fabricPriceInformation[0].fabricTotalPrice = con1;
+
+   Rib = this.FabPriService.currentEntry.fabricPriceInformation[0].rimPrice;
+   TRIM = this.FabPriService.currentEntry.fabricPriceInformation[0].trimPrice;
+   CM = this.FabPriService.currentEntry.fabricPriceInformation[0].cmPrice;
+   Print = this.FabPriService.currentEntry.fabricPriceInformation[0].printPrice;
+   Doc = this.FabPriService.currentEntry.fabricPriceInformation[0].docPrice;
+   step6 = (step1 + (Rib) + (TRIM) + (CM) + (Print) + (Doc));
+   var con2: any= 0;
+   con2 = step6.toFixed(2);
+   this.FabPriService.currentEntry.fabricPriceInformation[0].perDozenPrice = con2;
+   step7 = (step6 / 12);
+   var con3: any= 0;
+   con3 = step7.toFixed(2);
+   this.FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice = con3;
+   //END OF PRICE CALCULATION
   }
 
   

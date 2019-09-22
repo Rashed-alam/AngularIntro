@@ -9,7 +9,7 @@ const FabricPriceEntrySchema = new mongoose.Schema({
     size:{type: String},
     fabricPriceInformation:[{
         styleCode: {type: String, default:null},
-        fabricType:{type:String, default:null},
+        fabricType:{type:Number, default:null},
         itemName:{type:String, default:null},
         wastePercentage:{type: Number, default:null},
         chestSize:{type:Number, default:null},

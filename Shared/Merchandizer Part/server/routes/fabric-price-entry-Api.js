@@ -61,13 +61,19 @@ router.post('/new/:referenceId',(req,res,next)=>{
 // //GET ALL entries by reference
 router.post('/all/:referenceId', (req, res, next) => {
     FabricPriceEntrySchema.findOne({ referenceId: req.params.referenceId }).then(function (a) {
+        if(a != null){
         var alldata = JSON.parse(JSON.stringify(a.fabricPriceInformation));
         var ref = a.referenceId;
+        // console.log(alldata);
         for(i=0;i<alldata.length;i++){
             alldata[i].referenceId=ref;
         }
         res.send(alldata);
-  
+    }
+    else{
+           var x = [];
+        res.send(x);
+    }
     }).catch(next);
 });
 
@@ -98,12 +104,12 @@ router.delete('/delete/:referenceId/:styleCode',function(req,res,next){
     }
     a.fabricPriceInformation = array;
     a.save().then(function(a){
-        res.send("deleted");
+        res.send({"message":"ENTRY SUCCESSFULLY DELETED"});
     }).catch(next);
 }
     else{
         FabricPriceEntrySchema.findOneAndDelete({referenceId:req.params.referenceId}).then(function(fabricentry){
-            res.send(fabricentry);  
+            res.send({"message":"ENTRY SUCCESSFULLY DELETED"});  
          }).catch(next);
     }
 });

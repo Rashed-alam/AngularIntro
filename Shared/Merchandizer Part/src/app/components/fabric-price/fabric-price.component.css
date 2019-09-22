@@ -8,7 +8,9 @@
     border-left-width: 5px;
     border-left-color: red;
 }
-
+span {
+    content: "\2759";
+  }
 
 /* 
 

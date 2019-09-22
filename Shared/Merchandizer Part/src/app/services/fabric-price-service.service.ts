@@ -26,7 +26,7 @@ export class FabricPriceServiceService {
     referenceId : '',
     fabricPriceInformation : [  {
             styleCode : '',
-            fabricType : '',
+            fabricType : null,
             itemName : '',
             wastePercentage : null,
             chestSize : null,
@@ -64,8 +64,8 @@ export class FabricPriceServiceService {
     return this.httpcall.put<FabricPriceModel[]>(this.url1+'/update/'+ entry.referenceId + '/' + entry.fabricPriceInformation[0].styleCode, entry, headerOption);
   }
   //DELETE
-  deleteEntry(entry): Observable<FabricPriceModel[]>{
-    return this.httpcall.delete<FabricPriceModel[]>(this.url1+'/delete/'+ entry.referenceId + '/' + entry.styleCode, headerOption);
+  deleteEntry(entry){
+    return this.httpcall.delete(this.url1+'/delete/'+ entry.referenceId + '/' + entry.styleCode, headerOption);
   }
   //GET AUTO GENERATED ID FROM DATABASE
   getFabricEntry_ID(){
