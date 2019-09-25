@@ -1,0 +1,286 @@
+<div class="wrap_item">
+    <div class="container" style="font-size:14px;font-weight: 500;">
+        <form name="machineform" (ngSubmit)="machineform.form.valid && createAndUpdate(MachineCapacity.currentMachine)" #machineform="ngForm" novalidate>
+
+            <div class="row justify-content-md-center">
+                <div class="col-6">
+                    <div class="card capacity_form">
+                        <div class="card-header">
+                            <h3 class="text-center"> Machine Capacity Form</h3>
+                            <p style="text-align: center;color: red;"><span>&#9755; Red Marked fields cannot be left empty. &#9754;</span></p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 pl-5"><label for="">Machine Name:</label></div>
+                                <div class="col-6 pl-0">
+                                    <input type="text" style="text-transform: uppercase;text-align: center;
+                                    text-align-last: center;" title="Enter a Valid name" minlength="5" maxlength="15" name="MachineCapacity.currentMachine.machineName" [(ngModel)]="MachineCapacity.currentMachine.machineName" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pl-5">
+                                    <label for="">Machine Guage:</label></div>
+                                <div class="col-6 pl-0">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="number" style="text-align: center;
+                                            text-align-last: center;" (keyup)="calculation()" title="Enter a Valid Number" minlength="1" maxlength="3" name="MachineCapacity.currentMachine.machineGauge" [(ngModel)]="MachineCapacity.currentMachine.machineGauge"
+                                                required>
+                                        </div>
+                                        <div class="col">
+                                            <!-- <select class="custom-select"  style="text-align: center;
+                                                        text-align-last: center;" disabled>
+                                                            <option selected></option>
+                                                            <option value="1"></option>
+                                                           
+                                                          </select> -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pl-5"><label for="">Machine Diameter:</label></div>
+                                <div class="col-6 pl-0">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="number" style="text-align: center;
+                                            text-align-last: center;" (keyup)="calculation()" title="Enter a Valid Number" minlength="1" maxlength="3" name="MachineCapacity.currentMachine.machineDiameter" [(ngModel)]="MachineCapacity.currentMachine.machineDiameter"
+                                                required>
+                                        </div>
+                                        <div class="col-6"><select class="custom-select" style="text-align: center;
+                                                        text-align-last: center;">
+                                                            <option selected value="inch">inch</option>
+                                                            <option value="cm">cm</option>
+                                                           
+                                                          </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pl-5"><label for="">Machine Cylinder RPM:</label></div>
+                                <div class="col-6 pl-0">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="number" style="text-align: center;
+                                            text-align-last: center;" (keyup)="calculation()" title="Enter a Valid Number" minlength="1" maxlength="3" name="MachineCapacity.currentMachine.machineCylinderRpm" [(ngModel)]="MachineCapacity.currentMachine.machineCylinderRpm"
+                                                required>
+                                        </div>
+                                        <div class="col">
+                                            <!-- <select class="custom-select"  style="text-align: center;
+                                                        text-align-last: center;" disabled>
+                                                            <option selected></option>
+                                                            <option value=""></option>
+                                                           
+                                                          </select> -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pl-5"><label for="">Loop Length:</label></div>
+                                <div class="col-6 pl-0">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="number" style="text-align: center;
+                                            text-align-last: center;" (keyup)="calculation()" title="Enter a Valid Number" minlength="1" maxlength="3" name="MachineCapacity.currentMachine.loopLength" [(ngModel)]="MachineCapacity.currentMachine.loopLength"
+                                                required>
+                                        </div>
+                                        <div class="col"><select class="custom-select" style="text-align: center;
+                                                        text-align-last: center;">
+                                                            <option selected value="mm">mm</option>
+                                                            <option value="cm">cm</option>
+                                                           
+                                                          </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pl-5"><label for="">Number of Feeder:</label></div>
+                                <div class="col-6 pl-0">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="number" style="text-align: center;
+                                            text-align-last: center;" (keyup)="calculation()" title="Enter a Valid Number" minlength="1" maxlength="3" name="MachineCapacity.currentMachine.feederNumber" [(ngModel)]="MachineCapacity.currentMachine.feederNumber"
+                                                required>
+                                        </div>
+                                        <div class="col">
+                                            <!-- <select class="custom-select" disabled >
+                                                            <option selected></option>
+                                                            <option value=""></option>
+                                                           
+                                                          </select> -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pl-5"><label for="">Yarn Count:</label></div>
+                                <div class="col-6 pl-0">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="number" (keyup)="calculation()" style="text-align: center;
+                                            text-align-last: center;" title="Enter a Valid Number" minlength="1" maxlength="3" name="MachineCapacity.currentMachine.yarnCount" [(ngModel)]="MachineCapacity.currentMachine.yarnCount" required>
+
+                                        </div>
+                                        <div class="col"><select class="custom-select" style="text-align: center;
+                                                        text-align-last: center;">
+                                                            <option selected value="tex">tex</option>
+                                                           
+                                                           
+                                                          </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pl-5"><label for="">Efficiency:</label></div>
+                                <div class="col-6 pl-0">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="number" title="Enter a Valid Number" style="text-align: center;
+                                            text-align-last: center;" (keyup)="calculation()" minlength="1" maxlength="3" name="MachineCapacity.currentMachine.efficiency" [(ngModel)]="MachineCapacity.currentMachine.efficiency" required>
+
+                                        </div>
+                                        <div class="col"><select class="custom-select" style="text-align: center;
+                                                        text-align-last: center;">
+                                                            <option selected>%</option>
+                                                            
+                                                           
+                                                          </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pl-5"><label for="">Time:</label></div>
+                                <div class="col-6 pl-0">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="number" (keyup)="calculation()" style="text-align: center;
+                                            text-align-last: center;" title="Enter a Valid Number" minlength="1" maxlength="3" name="MachineCapacity.currentMachine.time" [(ngModel)]="MachineCapacity.currentMachine.time" required>
+
+                                        </div>
+                                        <div class="col"><select class="custom-select" style="text-align: center;
+                                                        text-align-last: center;">
+                                                            <option selected value="hours">hours</option>
+                                                            
+                                                           
+                                                          </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pl-5"><label class="custom_lable" for="">Fabric Length:</label></div>
+                                <div class="col-3 pl-0" style="text-align: center;
+                                text-align-last: center;background-color: yellow;border: 2px solid green;white-space: nowrap;" step="0.02" *ngIf="calculationButtonPressed">
+                                    {{ MachineCapacity.currentMachine.fabricLengthCapacityPerShift }}
+                                    <label *ngIf="lengthUnit">cm</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pl-5"><label class="custom_lable" for="">Fabric Weight:</label></div>
+                                <div class="col-3 pl-0" style="text-align: center;
+                                text-align-last: center;background-color: yellow;border: 2px solid green;white-space: nowrap;padding-left: 0;" step="0.02" *ngIf="calculationButtonPressed">
+                                    {{ MachineCapacity.currentMachine.fabricWeightCapacityPerShift }}
+                                    <label *ngIf="weightUnit">kg per shift</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="foote_button">
+                                <button type="submit" class="btn btn-primary" [disabled]="machineform.form.pristine || machineform.form.invalid"> Submit</button>
+                                <button type="button" class="btn btn-danger" (click)="clearAll()"> Clear </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br>
+        <div class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="align-content: center">
+            Entry Created successfully.
+        </div>
+
+        <div class="alert alert-success" role="alert" *ngIf="showeditmessage" style="align-content: center">
+            Entry Edited successfully. Data Saved.
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="serverErrorMessages" style="align-content: center">
+            Server Error. Please try Later.
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="showdeletemessage" style="align-content: center;">
+            Machine Entry Deleted.
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="showDuplicateErrorMessage" style="align-content: center;">
+            Duplicate Machine name found. please change it.
+        </div>
+    </div>
+</div>
+
+
+<hr>
+<div class="container">
+    <div class="row justify-content-md-center">
+
+        <div class="col-md-auto">
+            <div class="row">
+                <div class="col-8">
+                    <label for="">Search by Machine:</label>
+                </div>
+                <div class="col-4">
+                    <select name="" (change)="SearchByMachineName($event.target.value)">
+                        <option selected></option>
+                        <option value="{{machine}}" *ngFor="let machine of machineNames">{{machine}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-sm" style="text-align: center;">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Machine Name</th>
+                            <th scope="col">Efficiency</th>
+                            <th scope="col">Feeder No.</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Fabric Weight</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of showMachineInfo,index as i">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{p.machineName}}</td>
+                            <td>{{p.efficiency}}</td>
+                            <td>{{p.feederNumber}}</td>
+                            <td>{{p.time}}</td>
+                            <td>{{p.fabricWeightCapacityPerShift}}</td>
+                            <td>
+                                <a class="btn text-success" (click)="edit(p)">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a class="btn text-danger" (click)="delete(p)">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<hr>
