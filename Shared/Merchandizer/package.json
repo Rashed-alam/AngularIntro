@@ -29,7 +29,7 @@
     "bootstrap-datepicker": "^1.9.0",
     "font-awesome": "^4.7.0",
     "html2canvas": "^1.0.0-rc.5",
-    "jspdf": "^1.5.3",
+    "jspdf": "^1.4.1",
     "ngx-bootstrap": "^5.1.0",
     "npm-git-install": "^0.3.0",
     "npm-upgrade": "^2.0.2",
