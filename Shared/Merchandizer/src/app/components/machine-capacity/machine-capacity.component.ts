@@ -1,6 +1,8 @@
 import { Component, OnInit,ɵConsole  } from '@angular/core';
 import {MachineCapacityModel} from 'src/app/models/machineCapacity.model';
 import { MachineCapacityService} from 'src/app/services/machine-capacity.service';
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-machine-capacity',
@@ -179,4 +181,39 @@ export class MachineCapacityComponent implements OnInit {
       }); 
      
    }
+
+
+
+
+   //PDF 
+   public captureScreen() {
+
+    var data = document.getElementById('fullReport');
+    //data.style.visibility = "visible";
+    data.style.display = "block";
+    html2canvas(data,{scale:2}).then(canvas => {
+      // Few necessary setting options  
+      var imgWidth = 208;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+
+
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
+
+
+      var position = 10;
+      pdf.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight)
+
+      //pdf.save('MYPdf.pdf'); // Generated PDF   
+
+      var blob = pdf.output("blob");
+      window.open(URL.createObjectURL(blob));
+      data.style.display = "none";
+      //this.resetForm();     
+
+    });
+
+  }
 }
