@@ -14,7 +14,7 @@ export class BuyersService {
   url = "http://localhost:3000/api/v1/buyer";
 
   currentBuyer: Buyers ={
-    _id : '',
+    
     email : '',
     house : '',
     road : '',
@@ -23,14 +23,16 @@ export class BuyersService {
     binNo : null,
     eTin : '',
     tds : null,
-    area : '',
-    sisterConcern : '',
+    nid: null,
     name : '',
     mobileNo : '',
-    bid : null,
     buyerId : null,
-    buyerCode : null
+    buyerCode : null,
+    upazila: '',
+    district: ''
   }
+ 
+
 
   constructor(private httpcall: HttpClient) { }
 
@@ -42,8 +44,8 @@ export class BuyersService {
   }
 
   //this is for getting a certain buyer informaiton frorm database according to that ID
-  getBuyerInformation(_id): Observable<Buyers[]>{
-    return this.httpcall.get<Buyers[]>(this.url+'/'+ _id, headerOption);
+  getBuyerInformation(buyerCode): Observable<Buyers[]>{
+    return this.httpcall.get<Buyers[]>(this.url+'/'+ buyerCode, headerOption);
    
   }
   

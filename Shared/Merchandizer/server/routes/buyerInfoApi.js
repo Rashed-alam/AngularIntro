@@ -4,7 +4,7 @@ const BuyerInfo = require("../models/buyerInfo");
 
 // INSERT BuyerInfo
 
-router.post('/insert', function (req, res) {
+router.post('/insert', function(req, res) {
 
     const binfo = new BuyerInfo({
 
@@ -19,8 +19,10 @@ router.post('/insert', function (req, res) {
         binNo: req.body.binNo,
         eTin: req.body.eTin,
         // tds: req.body.tds,
-        tds: req.body.tds== true?1:0,
-        sisterConcern: req.body.sisterConcern,
+        tds: req.body.tds == true ? 1 : 0,
+        nid: req.body.nid,
+        upazila: req.body.upazila,
+        district: req.body.district,
 
 
     })
@@ -35,20 +37,20 @@ router.post('/insert', function (req, res) {
 
 // GET all  BuyerInfo
 
-router.get('/all', function (req, res) {
-    BuyerInfo.find({}).sort({ _id: -1 }).exec(function (err, alldatas) {
-        if (err) return res.json(err);
-        res.send(alldatas);
+router.get('/all', function(req, res) {
+    BuyerInfo.find({}).sort({ _id: -1 }).exec(function(err, alldatas) {
+            if (err) return res.json(err);
+            res.send(alldatas);
 
-    })
-    //res.send("get all BuyerInfo")
+        })
+        //res.send("get all BuyerInfo")
 });
 
 
 // Get a Buyer information from the database
 
-router.get('/:id', (req, res, next)=> {
-    BuyerInfo.find({ _id: req.params.id }).then(function(x){
+router.get('/:buyerCode', (req, res, next) => {
+    BuyerInfo.find({ buyerCode: req.params.buyerCode }).then(function(x) {
         res.send(x);
     }).catch(next);
 });
@@ -56,7 +58,7 @@ router.get('/:id', (req, res, next)=> {
 
 
 // UPDATE 
-router.put('/:id', function (req, res) {
+router.put('/:id', function(req, res) {
     BuyerInfo.findOneAndUpdate({ buyerId: req.params.id }, { $set: req.body }, (err, BuyerInfo) => {
         if (err) return res.json(err);
         res.json(BuyerInfo);
@@ -68,13 +70,13 @@ router.put('/:id', function (req, res) {
 
 
 // DELETE Buyer
-router.delete('/:id', function (req, res) {
+router.delete('/:id', function(req, res) {
 
     BuyerInfo.deleteOne({ buyerId: req.params.id }, (err, data) => {
-        if (err) return res.json(err);
-        res.send(data);
-    })
-    //res.send("delete buyer")
+            if (err) return res.json(err);
+            res.send(data);
+        })
+        //res.send("delete buyer")
 })
 
 

@@ -1,4 +1,5 @@
 export class MachineCapacityModel{
+    machine_id: number;
     machineName: string;
     machineGauge: number;
     machineDiameter: number;

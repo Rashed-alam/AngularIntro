@@ -63,9 +63,13 @@ router.post('/all/:referenceId', (req, res, next) => {
         if (a != null) {
             var alldata = JSON.parse(JSON.stringify(a.fabricPriceInformation));
             var ref = a.referenceId;
-            // console.log(alldata);
+            var bName = a.buyerName;
+            var bCode = a.buyerCode;
             for (i = 0; i < alldata.length; i++) {
                 alldata[i].referenceId = ref;
+                alldata[i].buyerName = bName;
+                alldata[i].buyerCode = bCode;
+
             }
             res.send(alldata);
         } else {

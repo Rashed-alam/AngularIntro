@@ -17,6 +17,7 @@ export class MachineCapacityService {
 
 
   currentMachine: MachineCapacityModel = {
+    machine_id: null,
     machineName: '',
     machineGauge: null,
     machineDiameter: null,
@@ -29,30 +30,32 @@ export class MachineCapacityService {
     fabricLengthCapacityPerShift: null,
     fabricWeightCapacityPerShift: null
   }
-    //GET all Machines names only
-    getAllMachines(): Observable<MachineCapacityModel[]>{
-      return this.httpcall.get<MachineCapacityModel[]>(this.url1+'/getAllMachineNames', headerOption);
-    }
+    
     //POST
     createEntry(machine : MachineCapacityModel): Observable<MachineCapacityModel> {
       return this.httpcall.post<MachineCapacityModel>(this.url1+'/post', machine , headerOption);
     }
 
-    //GET MACHINE's INFORMATION BY SELECTING MACHINE NAME FROM DROPDOWN LIST
-    getAllEntriesByMachineName(name: any): Observable<MachineCapacityModel[]>{
-    return this.httpcall.post<MachineCapacityModel[]>(this.url1+'/all/'+ name, headerOption);
-  }
+     //GET MACHINE's INFORMATION BY SELECTING MACHINE NAME FROM DROPDOWN LIST
+     getAllEntriesByMachineName(machine_id): Observable<MachineCapacityModel[]>{
+      return this.httpcall.post<MachineCapacityModel[]>(this.url1+'/all/'+ machine_id, headerOption);
+    }
+
     //EDIT
     updateEntry(entry: MachineCapacityModel): Observable<MachineCapacityModel[]> {
-      return this.httpcall.put<MachineCapacityModel[]>(this.url1+'/edit/'+ entry.machineName, entry, headerOption);
+      return this.httpcall.put<MachineCapacityModel[]>(this.url1+'/edit/'+ entry.machine_id, entry, headerOption);
     }
     //DELETE
     deleteEntry(entry){
-      return this.httpcall.delete(this.url1+'/delete/'+ entry.machineName, headerOption);
+      return this.httpcall.delete(this.url1+'/delete/'+ entry.machine_id, headerOption);
     }
     //GET all Machines 
     getAll(): Observable<MachineCapacityModel[]>{
       return this.httpcall.get<MachineCapacityModel[]>(this.url1+'/allMachineDetails', headerOption);
     }
+  //get machine_id from database
+    getMachine_Id(){
+    return this.httpcall.get(this.url1+'/id', headerOption);
+  }
 
 }

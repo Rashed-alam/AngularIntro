@@ -11,6 +11,12 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
+                                <div class="col-6 pl-5"><label for="">Machine Id:</label></div>
+                                <div class="col-6 pl-0">
+                                    <input type="text" style="text-align: center;text-align-last: center; width: 44%" placeholder="{{ autoID }}" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-6 pl-5"><label for="">Machine Name:</label></div>
                                 <div class="col-6 pl-0">
                                     <input type="text" style="text-transform: uppercase;text-align: center;
@@ -234,18 +240,22 @@
 
         <div class="col-md-auto">
             <div class="row">
-                <div class="col-8">
-                    <label for="">Search by Machine:</label>
+                <div class="col-4">
+
                 </div>
                 <div class="col-4">
+                    <label for=""> Search by Machine:</label>
                     <select name="" (change)="SearchByMachineName($event.target.value)">
-                        <option selected></option>
-                        <option value="{{machine}}" *ngFor="let machine of machineNames">{{machine}}</option>
-                    </select>
+                                <option selected></option>
+                                <option value="{{machine.machine_id}}" *ngFor="let machine of Machine">{{machine.machineName}}</option>
+                            </select>
+                </div>
+                <div class="col-4">
+
                 </div>
             </div>
-            <div class="row">
-                <table class="table table-sm" style="text-align: center;">
+            <div class="row" *ngIf="viewOption">
+                <table class="table table-bordered" style="text-align: center;">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -255,6 +265,8 @@
                             <th scope="col">Time</th>
                             <th scope="col">Fabric Weight</th>
                             <th scope="col">Action</th>
+                            <th scope="col">Operation</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -273,6 +285,7 @@
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
+                            <td>Print</td>
                         </tr>
 
                     </tbody>
@@ -284,3 +297,31 @@
 
 </div>
 <hr>
+<br>
+
+
+<div class="container" *ngIf="viewOption">
+    <div class="row justify-content-md-center">
+
+        <div class="col-md-auto">
+            <div class="card" style="line-height: normal;" *ngFor="let p of showMachineInfo">
+                <div class="card-body">
+                    <h5 class="card-title">Machine Name: <i>{{p.machineName}}</i> </h5>
+                    <p>Gauge: {{p.machineGauge}} inch</p>
+                    <p>Diameter: {{p.machineDiameter}}</p>
+                    <p>Cylinder RPM: {{p.machineCylinderRpm}}</p>
+                    <p>Loop Length: {{p.loopLength}} mm</p>
+                    <p>Number of Feeder: {{p.feederNumber}}</p>
+                    <p>Yarn Count: {{p.yarnCount}} tex</p>
+                    <p>Efficiency: {{p.efficiency}} %</p>
+                    <p>Time: {{p.time}} hours</p>
+                    <p><strong>Fabric Weight: {{p.fabricWeightCapacityPerShift}} kg per shift</strong></p>
+                    <p><strong>Fabric Length: {{p.fabricLengthCapacityPerShift}} cm</strong></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br>

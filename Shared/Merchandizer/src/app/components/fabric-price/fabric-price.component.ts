@@ -15,7 +15,6 @@ import { Items } from 'src/app/models/item.model';
   styleUrls: ['./fabric-price.component.css']
 })
 export class FabricPriceComponent implements OnInit {
-
   allEntry: FabricPriceModel[];
   today: any = Date.now(); 
   autoID: any;
@@ -43,6 +42,8 @@ export class FabricPriceComponent implements OnInit {
   defaultWastePercentage: any = 20;
   defaultCurrency: any = "USD";
   defaultUnitofMeasurement : any = "cm";
+  name: any;
+   buyerCode:any;
 
   constructor(public FabPriService: FabricPriceServiceService,
               private DP: DatePipe,
@@ -88,8 +89,11 @@ export class FabricPriceComponent implements OnInit {
   }
  //POST FUNCTION
  create(entry: any){
+    this.FabPriService.currentEntry.buyerCode = this.buyerAddressInfo[0].buyerCode;
+    this.FabPriService.currentEntry.buyerName = this.buyerAddressInfo[0].name;
    this.FabPriService.currentEntry.fabricPriceInformation[0].unitOfMeasurement = this.defaultUnitofMeasurement;
    this.FabPriService.currentEntry.fabricPriceInformation[0].currency = this.defaultCurrency;
+   this.FabPriService.currentEntry.referenceId = entry.referenceId.toUpperCase();
   this.FabPriService.currentEntry.fabricPriceInformation[0].styleCode = entry.fabricPriceInformation[0].styleCode.toUpperCase();
   this.FabPriService.createEntry(entry)
   .subscribe(
@@ -123,19 +127,27 @@ export class FabricPriceComponent implements OnInit {
   }
  //ASSIGNING OBJECT FROM DATABASE TO THE FRONTEND FORM
  onedit(entry: any){
+   console.log(entry);
   this.hiddingrefIdandStyleCode = true;
+  this.CalculateButtonPressed = true;
   this.FabPriService.getByStyleCode(entry)
   .subscribe((res)=>{
     this.temporaryDataStorage = res;
-    // console.log(res);
     this.FabPriService.currentEntry = Object.assign({},this.temporaryDataStorage[0]);
     this.FabPriService.currentEntry.entryDate = new Date(this.FabPriService.currentEntry.entryDate);
     this.FabPriService.currentEntry.mailDate = new Date(this.FabPriService.currentEntry.mailDate);
     this.FabPriService.currentEntry.fabricPriceInformation[0] = Object.assign({},this.temporaryDataStorage[0].fabricPriceInformation);
-    
+    // this.name = this.FabPriService.currentEntry.buyerName;
+    // this.buyerCode =this.FabPriService.currentEntry.buyerCode;
+    // this.getBuyerForEdit(this.buyerCode);
   });
   
+  
 }
+// getBuyerForEdit(buyerCode){
+//   let x =this.allBuyers.find(x=>x.buyerCode ==buyerCode);
+//   this.FabPriService.currentEntry.buyerName=x.name;
+// }
  //DELETE FUNCTION
  ondelete(item: any){
    var ref = item.referenceId;
@@ -170,17 +182,17 @@ export class FabricPriceComponent implements OnInit {
     .subscribe(
        (data : Buyers[]) =>{
          this.allBuyers = data;
-        //  console.log(data);
+         console.log(this.allBuyers);
        });
   }
   //this is for getting buyer addresss after selecting buyer from the dropdown list
   BuyerAddress(a){
-    // console.log(a);
+    console.log(a);
+    //this.getBuyerForEdit(a);
     this.Bs.getBuyerInformation(a)
     .subscribe(
       (data)=>{
         this.buyerAddressInfo = data;
-        // console.log(data);
  });
   }
    //this is for getting all the types of fabrics from database
@@ -244,7 +256,6 @@ export class FabricPriceComponent implements OnInit {
          this.ShortsSelected = true;
      }   
    }
- 
   setCurrency(w) {
     this.setcurrency = w;
     this.FabPriService.currentEntry.fabricPriceInformation[0].currency= this.setcurrency;
@@ -263,6 +274,7 @@ export class FabricPriceComponent implements OnInit {
     mailDate : new Date,
     entryDate : new Date,
     buyerName : '',
+    buyerCode:'',
     size : '',
     referenceId : '',
     fabricPriceInformation : [  {
@@ -310,6 +322,7 @@ export class FabricPriceComponent implements OnInit {
       mailDate : this.FabPriService.currentEntry.mailDate,
       entryDate : this.FabPriService.currentEntry.entryDate,
       buyerName : this.FabPriService.currentEntry.buyerName,
+      buyerCode: this.FabPriService.currentEntry.buyerCode,
       size : this.FabPriService.currentEntry.size,
       referenceId : this.FabPriService.currentEntry.referenceId,
       fabricPriceInformation : [  {
@@ -417,6 +430,5 @@ export class FabricPriceComponent implements OnInit {
    this.FabPriService.currentEntry.fabricPriceInformation[0].perUnitPrice = con3;
    //END OF PRICE CALCULATION
   }
-
   
 }

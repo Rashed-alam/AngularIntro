@@ -3,6 +3,7 @@ export class FabricPriceModel{
     mailDate : Date;
     entryDate : Date;
     buyerName : string;
+    buyerCode: string;
     size : string;
     referenceId : string;
     fabricPriceInformation : [  {

@@ -16,5 +16,5 @@ const MachineCapacityModelSchema = new mongoose.Schema({
 
 })
 
-MachineCapacityModelSchema.plugin(AutoIncrement, { inc_field: 'entry_id' });
+MachineCapacityModelSchema.plugin(AutoIncrement, { inc_field: 'machine_id' });
 module.exports = mongoose.model('machine-capacity', MachineCapacityModelSchema);

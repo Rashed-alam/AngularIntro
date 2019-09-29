@@ -22,6 +22,7 @@ export class FabricPriceServiceService {
     mailDate : new Date,
     entryDate : new Date,
     buyerName : '',
+    buyerCode: '',
     size : '',
     referenceId : '',
     fabricPriceInformation : [  {

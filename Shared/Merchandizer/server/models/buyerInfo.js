@@ -49,10 +49,21 @@ const BuyerInfoSchema = new mongoose.Schema({
     },
 
 
-    sisterConcern: {
+    nid: {
         type: Number,
         default: 0
     },
+
+    upazila: {
+        type: String,
+        default: null
+    },
+    district: {
+        type: String,
+        default: null
+    },
+
+
 
 
 })

@@ -20,9 +20,9 @@ router.post('/post', (req, res, next) => {
 });
 
 //EDIT
-router.put('/edit/:machineName', (req, res, next) => {
-    MachineCapacityModelSchema.findOneAndUpdate({ machineName: req.params.machineName }, req.body).then(function() {
-        MachineCapacityModelSchema.findOne({ machineName: req.params.machineName }).then(function(x) {
+router.put('/edit/:machine_id', (req, res, next) => {
+    MachineCapacityModelSchema.findOneAndUpdate({ machine_id: req.params.machine_id }, req.body).then(function() {
+        MachineCapacityModelSchema.findOne({ machine_id: req.params.machine_id }).then(function(x) {
             res.send({ "message": "Machine Information Updated Sucessfully" });
         }).catch(next);
     });
@@ -30,8 +30,8 @@ router.put('/edit/:machineName', (req, res, next) => {
 });
 
 //DELETE
-router.delete('/delete/:machineName', (req, res, next) => {
-    MachineCapacityModelSchema.findOneAndDelete({ machineName: req.params.machineName }).then(function(fabricentry) {
+router.delete('/delete/:machine_id', (req, res, next) => {
+    MachineCapacityModelSchema.findOneAndDelete({ machine_id: req.params.machine_id }).then(function(fabricentry) {
         res.send({ "message": "Machine Information Deleted Sucessfully" });
     }).catch(next);
 
@@ -50,8 +50,8 @@ router.get('/getAllMachineNames', (req, res, next) => {
 });
 
 //GET MACHINES INFO FROM MACHINE LIST
-router.post('/all/:machineName', (req, res, next) => {
-    MachineCapacityModelSchema.find({ "machineName": req.params.machineName }).then(function(a) {
+router.post('/all/:machine_id', (req, res, next) => {
+    MachineCapacityModelSchema.find({ "machine_id": req.params.machine_id }).then(function(a) {
         if (a != null) {
             res.send(a);
         } else {
@@ -66,6 +66,27 @@ router.get('/allMachineDetails', (req, res, next) => {
     MachineCapacityModelSchema.find({}).then(function(fabricentry) {
         res.send(fabricentry);
     }).catch(next);
+});
+
+//GET AUTO_ID
+router.get('/id', function(req, res, next) {
+    MachineCapacityModelSchema.find({}, ('machine_id')).sort({ "machine_id": -1 }).limit(1)
+        .then(data => {
+            var l = data.length;
+            if (l > 0) {
+                const MachineID = Number(data[0].machine_id + 1);
+                res.send({ MachineID });
+
+            } else {
+                const MachineID = Number(1); // can change 
+                res.send({ MachineID });
+
+            }
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Error while getting Server Data"
+            });
+        });
 });
 
 
