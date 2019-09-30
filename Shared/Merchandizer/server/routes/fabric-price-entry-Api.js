@@ -129,6 +129,7 @@ router.put('/update/:referenceId/:styleCode', function(req, res, next) {
                     "mailDate": req.body.mailDate,
                     "entryDate": req.body.entryDate,
                     "buyerName": req.body.buyerName,
+                    "buyerCode": req.body.buyerCode,
                     "size": req.body.size,
                     "fabricPriceInformation.$.styleCode": req.body.fabricPriceInformation[0].styleCode,
                     "fabricPriceInformation.$.fabricType": req.body.fabricPriceInformation[0].fabricType,

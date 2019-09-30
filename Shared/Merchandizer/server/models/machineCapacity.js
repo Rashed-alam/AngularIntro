@@ -11,6 +11,7 @@ const MachineCapacityModelSchema = new mongoose.Schema({
     yarnCount: { type: Number },
     efficiency: { type: Number },
     time: { type: Number },
+    knitting: { type: String },
     fabricWeightCapacityPerShift: { type: Number },
     fabricLengthCapacityPerShift: { type: Number }
 

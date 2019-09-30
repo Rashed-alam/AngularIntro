@@ -116,7 +116,8 @@ export class FabricPriceComponent implements OnInit {
 }
   //UPDATE FUNCTION
   update(entry: any){
- 
+    this.FabPriService.currentEntry.buyerCode = this.buyerAddressInfo[0].buyerCode;
+    this.FabPriService.currentEntry.buyerName = this.buyerAddressInfo[0].name;
     this.FabPriService.updateEntry(entry)
     .subscribe((res)=>{
       this.showeditmessage=true;
@@ -137,9 +138,9 @@ export class FabricPriceComponent implements OnInit {
     this.FabPriService.currentEntry.entryDate = new Date(this.FabPriService.currentEntry.entryDate);
     this.FabPriService.currentEntry.mailDate = new Date(this.FabPriService.currentEntry.mailDate);
     this.FabPriService.currentEntry.fabricPriceInformation[0] = Object.assign({},this.temporaryDataStorage[0].fabricPriceInformation);
-    // this.name = this.FabPriService.currentEntry.buyerName;
-    // this.buyerCode =this.FabPriService.currentEntry.buyerCode;
-    // this.getBuyerForEdit(this.buyerCode);
+    // this.FabPriService.currentEntry.buyerCode = this.buyerAddressInfo[0].buyerCode;
+    // this.FabPriService.currentEntry.buyerName = this.buyerAddressInfo[0].name;
+   
   });
   
   

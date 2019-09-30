@@ -38,16 +38,16 @@ router.delete('/delete/:machine_id', (req, res, next) => {
 });
 
 //GET ALL THE NAMES OF MACHINE
-router.get('/getAllMachineNames', (req, res, next) => {
-    MachineCapacityModelSchema.find({}).then(function(a) {
-        var allNames = [];
-        var l = a.length;
-        for (i = 0; i < l; i++) {
-            allNames.push(a[i].machineName);
-        }
-        res.send(allNames);
-    }).catch(next);
-});
+// router.get('/getAllMachineNames', (req, res, next) => {
+//     MachineCapacityModelSchema.find({}).then(function(a) {
+//         var allNames = [];
+//         var l = a.length;
+//         for (i = 0; i < l; i++) {
+//             allNames.push(a[i].machineName);
+//         }
+//         res.send(allNames);
+//     }).catch(next);
+// });
 
 //GET MACHINES INFO FROM MACHINE LIST
 router.post('/all/:machine_id', (req, res, next) => {

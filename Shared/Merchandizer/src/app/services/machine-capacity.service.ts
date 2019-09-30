@@ -27,6 +27,7 @@ export class MachineCapacityService {
     yarnCount: null,
     efficiency: null,
     time:null,
+    knitting:'',
     fabricLengthCapacityPerShift: null,
     fabricWeightCapacityPerShift: null
   }

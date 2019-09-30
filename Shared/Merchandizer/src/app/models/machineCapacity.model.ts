@@ -9,6 +9,7 @@ export class MachineCapacityModel{
     yarnCount: number;
     efficiency: number;
     time:number;
+    knitting: string;
     fabricLengthCapacityPerShift: number;
     fabricWeightCapacityPerShift: number;
 }

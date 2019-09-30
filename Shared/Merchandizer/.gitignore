@@ -9,7 +9,6 @@
 
 # dependencies
 /node_modules
-/MongoDb+Nodejs/mongo-data
 
 # profiling files
 chrome-profiler-events.json
@@ -45,8 +44,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-*.cmd
-RASHED/Newproject/server/node_modules/.bin/rc
-RASHED/Newproject/server/node_modules/.bin/semver
-RASHED/Newproject/server/node_modules/abbrev/LICENSE
-*.md

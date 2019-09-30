@@ -85,9 +85,9 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <select title="please select one" style="text-align: center;text-align-last: center;" id="buyerName" name="FabPriService.currentEntry.buyerCode" [(ngModel)]="FabPriService.currentEntry.buyerCode" (change)="BuyerAddress($event.target.value)" #buyerName="ngModel"
-                                    required class="w-100">
-                  <option [value]="b.buyerCode" *ngFor="let b of allBuyers">{{b.name}}</option>
+                                <select title="please select one" style="text-align: center;text-align-last: center;" name="FabPriService.currentEntry.buyerCode" [(ngModel)]="FabPriService.currentEntry.buyerCode" (change)="BuyerAddress($event.target.value)" #buyerName="ngModel" required
+                                    class="w-100">
+                  <option value="{{b.buyerCode}}" *ngFor="let b of allBuyers">{{b.name}}</option>
                         </select>
                             </div>
                             <div class="col-3 pl-0">

@@ -187,6 +187,22 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-6 pl-5"><label for="">Knitting Type:</label></div>
+                                <div class="col-6 pl-0">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" style="text-align: center;
+                                                text-align-last: center;" title="Enter a Valid text" minlength="1" maxlength="10" name="MachineCapacity.currentMachine.knitting" [(ngModel)]="MachineCapacity.currentMachine.knitting" required>
+
+                                        </div>
+                                        <div class="col">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-6 pl-5"><label class="custom_lable" for="">Fabric Length:</label></div>
                                 <div class="col-3 pl-0" style="text-align: center;
                                 text-align-last: center;background-color: yellow;border: 2px solid green;white-space: nowrap;" step="0.02" *ngIf="calculationButtonPressed">
@@ -254,6 +270,7 @@
 
                 </div>
             </div>
+
             <div class="row" *ngIf="viewOption">
                 <table class="table table-bordered" style="text-align: center;">
                     <thead>
@@ -265,7 +282,7 @@
                             <th scope="col">Time</th>
                             <th scope="col">Fabric Weight</th>
                             <th scope="col">Action</th>
-                            <th scope="col">Operation</th>
+
 
                         </tr>
                     </thead>
@@ -285,7 +302,7 @@
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
-                            <td>Print</td>
+
                         </tr>
 
                     </tbody>
@@ -299,29 +316,31 @@
 <hr>
 <br>
 
+<div>
+    <div class="container" *ngIf="viewOption">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="card" style="line-height: normal;" *ngFor="let p of showMachineInfo">
+                    <div class="card-body" id="content">
+                        <h5 class="card-title">Machine Name: <i>{{p.machineName}}</i> </h5>
+                        <p>Gauge: {{p.machineGauge}} inch</p>
+                        <p>Diameter: {{p.machineDiameter}}</p>
+                        <p>Cylinder RPM: {{p.machineCylinderRpm}}</p>
+                        <p>Loop Length: {{p.loopLength}} mm</p>
+                        <p>Number of Feeder: {{p.feederNumber}}</p>
+                        <p>Yarn Count: {{p.yarnCount}} tex</p>
+                        <p>Efficiency: {{p.efficiency}} %</p>
+                        <p>Time: {{p.time}} hours</p>
+                        <p>Knitting: {{p.knitting}}</p>
+                        <p><strong>Fabric Weight: {{p.fabricWeightCapacityPerShift}} kg per shift</strong></p>
+                        <p><strong>Fabric Length: {{p.fabricLengthCapacityPerShift}} cm</strong></p>
 
-<div class="container" *ngIf="viewOption">
-    <div class="row justify-content-md-center">
-
-        <div class="col-md-auto">
-            <div class="card" style="line-height: normal;" *ngFor="let p of showMachineInfo">
-                <div class="card-body">
-                    <h5 class="card-title">Machine Name: <i>{{p.machineName}}</i> </h5>
-                    <p>Gauge: {{p.machineGauge}} inch</p>
-                    <p>Diameter: {{p.machineDiameter}}</p>
-                    <p>Cylinder RPM: {{p.machineCylinderRpm}}</p>
-                    <p>Loop Length: {{p.loopLength}} mm</p>
-                    <p>Number of Feeder: {{p.feederNumber}}</p>
-                    <p>Yarn Count: {{p.yarnCount}} tex</p>
-                    <p>Efficiency: {{p.efficiency}} %</p>
-                    <p>Time: {{p.time}} hours</p>
-                    <p><strong>Fabric Weight: {{p.fabricWeightCapacityPerShift}} kg per shift</strong></p>
-                    <p><strong>Fabric Length: {{p.fabricLengthCapacityPerShift}} cm</strong></p>
+                        <button type="button" class="btn btn-link" (click)="ViewPdfReport()">Print</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
 </div>
-
 <br>

@@ -1,7 +1,8 @@
-import { Component, OnInit,ɵConsole  } from '@angular/core';
+import { Component, OnInit,ɵConsole,  } from '@angular/core';
 import {MachineCapacityModel} from 'src/app/models/machineCapacity.model';
 import { MachineCapacityService} from 'src/app/services/machine-capacity.service';
-
+import * as jspdf from 'jspdf'; 
+import  html2canvas from 'html2canvas';  
 
 @Component({
   selector: 'app-machine-capacity',
@@ -65,6 +66,7 @@ export class MachineCapacityComponent implements OnInit {
       yarnCount: null,
       efficiency: null,
       time:null,
+      knitting:'',
       fabricLengthCapacityPerShift: null,
       fabricWeightCapacityPerShift: null
     }
@@ -180,5 +182,41 @@ export class MachineCapacityComponent implements OnInit {
       }); 
      
    }
+
+
+
+   //PDF GENERATOR FUNCTION
+   public ViewPdfReport() {
+    const data = document.getElementById('content');
+    data.style.display = 'block';
+    html2canvas(data).then(canvas => {
+      const imgWidth = 180;
+      const pageHeight = 295;
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      let heightLeft = imgHeight;
+
+      const contentDataURL = canvas.toDataURL('image/png');
+     // var doc = new jspdf('p', 'mm');
+      const doc =  new jspdf('p', 'mm', 'a4');
+      let position = 5;
+      let k = 1;
+      doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+    //  doc.setPage(k);
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        k++;
+      //  doc.setPage(k);
+      }
+      const blob = doc.output('blob');
+      window.open(URL.createObjectURL(blob));
+      data.style.display = 'none';
+    });
+  }
+
+   
 
 }
