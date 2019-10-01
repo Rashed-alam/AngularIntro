@@ -18,12 +18,14 @@ import { FabricPriceServiceService} from 'src/app/services/fabric-price-service.
 import { FabricPriceComponent } from './components/fabric-price/fabric-price.component';
 import { MachineCapacityComponent } from './components/machine-capacity/machine-capacity.component';
 import { MachineCapacityService} from 'src/app/services/machine-capacity.service';
+import { CuttingProgramComponent } from './components/cutting-program/cutting-program.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FabricPriceComponent,
-    MachineCapacityComponent
+    MachineCapacityComponent,
+    CuttingProgramComponent
     
   ],
   imports: [

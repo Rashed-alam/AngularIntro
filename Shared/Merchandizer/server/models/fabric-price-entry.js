@@ -8,6 +8,8 @@ const FabricPriceEntrySchema = new mongoose.Schema({
     buyerName: { type: String, default: null },
     buyerCode: { type: Number, default: null },
     size: { type: String },
+    season: { type: String },
+    shipmentDone: { type: Boolean, default: false },
     fabricPriceInformation: [{
         styleCode: { type: String, default: null },
         fabricType: { type: Number, default: null },

@@ -278,6 +278,8 @@ export class FabricPriceComponent implements OnInit {
     buyerCode:'',
     size : '',
     referenceId : '',
+    season : '',
+    shipmentDone: null,
     fabricPriceInformation : [  {
             styleCode : '',
             fabricType : null,
@@ -324,6 +326,8 @@ export class FabricPriceComponent implements OnInit {
       entryDate : this.FabPriService.currentEntry.entryDate,
       buyerName : this.FabPriService.currentEntry.buyerName,
       buyerCode: this.FabPriService.currentEntry.buyerCode,
+      season : this.FabPriService.currentEntry.season,
+     shipmentDone: null,
       size : this.FabPriService.currentEntry.size,
       referenceId : this.FabPriService.currentEntry.referenceId,
       fabricPriceInformation : [  {

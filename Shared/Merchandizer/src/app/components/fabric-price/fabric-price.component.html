@@ -95,14 +95,17 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-3 pr-0">
-                                <div class="">
-                                    Buyer Address:
-                                </div>
+
+                            <div class="col-6 pr-0" *ngFor="let p of buyerAddressInfo,index as i">
+                                Buyer Address: {{p.upazila}}, {{p.district}}
                             </div>
-                            <div class="col-9" *ngFor="let p of buyerAddressInfo,index as i">
-                                {{p.house}}, {{p.road}}, {{p.sector}}
+                            <div class="col-2 pl-5">
+                                <label for="">Season:</label>
                             </div>
+                            <div class="col-3 pl-0">
+                                <input type="text" style="text-align: center;text-align-last: center;" title="please enter text only" placeholder="Season" name="FabPriService.currentEntry.season" [(ngModel)]="FabPriService.currentEntry.season" required class="w-100" />
+                            </div>
+
                         </div>
                     </div>
                     <div class="card-body">

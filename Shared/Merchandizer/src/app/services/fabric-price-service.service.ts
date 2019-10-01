@@ -25,6 +25,8 @@ export class FabricPriceServiceService {
     buyerCode: '',
     size : '',
     referenceId : '',
+    season : '',
+    shipmentDone: false,
     fabricPriceInformation : [  {
             styleCode : '',
             fabricType : null,

@@ -34,12 +34,7 @@
                                                 required>
                                         </div>
                                         <div class="col">
-                                            <!-- <select class="custom-select"  style="text-align: center;
-                                                        text-align-last: center;" disabled>
-                                                            <option selected></option>
-                                                            <option value="1"></option>
-                                                           
-                                                          </select> -->
+
                                         </div>
                                     </div>
 
@@ -282,6 +277,7 @@
                             <th scope="col">Time</th>
                             <th scope="col">Fabric Weight</th>
                             <th scope="col">Action</th>
+                            <th scope="col">Print</th>
 
 
                         </tr>
@@ -302,6 +298,7 @@
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
+                            <td> <button type="button" class="btn btn-link" (click)="ViewPdfReport()">Print</button></td>
 
                         </tr>
 
@@ -334,11 +331,11 @@
                         <p>Knitting: {{p.knitting}}</p>
                         <p><strong>Fabric Weight: {{p.fabricWeightCapacityPerShift}} kg per shift</strong></p>
                         <p><strong>Fabric Length: {{p.fabricLengthCapacityPerShift}} cm</strong></p>
-
                         <button type="button" class="btn btn-link" (click)="ViewPdfReport()">Print</button>
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>

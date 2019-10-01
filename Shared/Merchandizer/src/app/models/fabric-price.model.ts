@@ -6,6 +6,8 @@ export class FabricPriceModel{
     buyerCode: string;
     size : string;
     referenceId : string;
+    season : string;
+    shipmentDone: boolean;
     fabricPriceInformation : [  {
             styleCode : string;
             fabricType : number;
