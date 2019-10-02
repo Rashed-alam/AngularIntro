@@ -1,0 +1,171 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-1">
+                        <div class="col-md-6">
+                            <p>Order No</p>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="custom-select" id="fabrics" (click)="gettotalWeight($event.target.value)">
+                                <option *ngFor="let f of AllReference">{{f}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-md-6">
+                            <p>Fabric Weight</p>
+                        </div>
+                        <div class="col-md-6">
+                            <input value="{{totalweight}}" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-md-6">
+                            <p>Knitting Type</p>       <!-- (click)="gettotalWeight($event.target.value)" -->
+                        </div>
+                        <div class="col-md-6">
+                            <select class="custom-select" id="fabrics" (change)="getavailableMachine($event.target.value)" >
+                                <option *ngFor="let g of knittingType">{{g.knittingType}}</option>
+                         
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Due Amount
+                                </div>
+                                <div class="col-md-6">
+                                    <input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Knitting Amount
+                                </div>
+                                <div class="col-md-6">
+                                    <input>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <!-- <div class="col-md-12">
+                            <button type="button" class="btn btn-primary">select</button>
+                        </div> -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-6" *ngIf="hiddenCard1">
+            <div class="card">
+                <div class="card-header">
+                    <p>List of machines</p>
+                </div>
+                <div class="card-body">
+                    
+                   
+                    <!-- <option *ngFor="let g of availableMachine">{{g.machineName}}</option> -->
+
+                    <div class="row" *ngFor="let g of availableMachine" >
+                        <div class="col-2" (click)="getMachine(g.machineName)">
+                                <input type="checkbox" value="g.machineName" id="g.machine_id" >
+                        </div>
+                        <div class="col-10">
+                                {{g.machineName}}
+                        </div>
+                    </div>                       
+                </div>
+                
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-primary">Edit</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-primary">Select</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card" *ngIf="hiddenCard2">
+                <div class="card-header">
+                    <p>Machine info</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">Machine Name:</div>
+                        <div class="col-6"><input type="text"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">Capacity per shift:</div>
+                        <div class="col-6"><input type="text"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">Efficiency:</div>
+                        <div class="col-6"><input type="text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+                <div class="card">
+                        <div class="card-header">Knitting Machine</div>
+                        <div class="card-body">
+                            <p>Machine No:</p>
+                            <div class="row">
+            
+                                <div class="col-6">Machine Name</div>
+                                <div class="col-6"><input type="text"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">Capacity per Shift</div>
+                                <div class="col-6"><input type="text"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">Efficiency</div>
+                                <div class="col-6"><input type="text"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">Shifts</div>
+                                <div class="col-3"><input type="text"></div>
+                                <div class="col-3"><button>Edit</button></div>
+                            </div>
+            
+                            <div class="row">
+                                <div class="col-6">Start Date</div>
+                                <div class="col-6"><input type="text"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">End date</div>
+                                <div class="col-6"><input type="text"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <button type="button" class="btn btn-primary">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+input,
+select{
+    width: 100%
+}
+/* button{
+    width: 40%;
+    align: right;
+} */
+/* .card
+{
+padding-top: 1rem;
+} */
+button{
+    display: block;
+    margin-left: auto;
+}
+.row{
+    margin-top: 1rem;
+
+}
