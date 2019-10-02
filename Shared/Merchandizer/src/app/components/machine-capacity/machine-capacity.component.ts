@@ -184,7 +184,6 @@ export class MachineCapacityComponent implements OnInit {
    }
 
 
-
    //PDF GENERATOR FUNCTION
    public ViewPdfReport() {
     const data = document.getElementById('content');

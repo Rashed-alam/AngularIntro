@@ -12,8 +12,8 @@
                                 <th colspan="2">Cutting Program Form</th>
                                 <td>
                                     <div class="row">
-                                        <div class="col-4">Season:</div>
-                                        <div class="col-8"><input type="text"></div>
+                                        <div class="col">Season:</div>
+                                        <div class="col"><input type="text"></div>
                                     </div>
                                 </td>
 
@@ -21,21 +21,66 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Buyer:</td>
-                                <td>Ref Id:</td>
-                                <td>Order Date:</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Buyer:</div>
+                                        <div class="col">
+                                            <select name="" id="" style="width: 100%">
+                                                        <option value="" selected></option>
+                                                        <option value="{{a.buyerCode}}" *ngFor="let a of allBuyers">{{a.name}}</option>
+                                          </select>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Ref. No:</div>
+                                        <div class="col">
+                                            <select name="" id="" (change)="getAllInformation($event.target.value)" style="width: 100%">
+                                                <option value="" selected></option>
+                                                <option value="{{a}}" *ngFor="let a of allreferences">{{a}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Order Date:</div>
+                                        <div class="col"><input type="text"></div>
+                                    </div>
+                                </td>
 
                             </tr>
                             <tr>
-                                <td>Style Code:</td>
-                                <td>order Qty</td>
-                                <td>Delivery date</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Style:</div>
+                                        <div class="col"><input type="text"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Order Qty:</div>
+                                        <div class="col"><input type="text"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Delivery Date:</div>
+                                        <div class="col"><input type="text"></div>
+                                    </div>
+                                </td>
 
                             </tr>
                             <tr>
 
                                 <td colspan="2">Description</td>
-                                <td>Lead Time:</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Lead Time:</div>
+                                        <div class="col"><input type="text"></div>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

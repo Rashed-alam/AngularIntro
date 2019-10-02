@@ -19,6 +19,17 @@ const app = express();
 
 //connecting to mongodb
 mongoose.connect('mongodb://localhost/Project');
+// mongoose.connect('mongodb://192.168.1.143:27017/InventoryManagement').then(() => {
+//     console.log('successfully connected');
+// });
+
+// mongoose.connect('mongodb://192.168.1.143:27017/InventoryManagement', { useNewUrlParser: true }).then(() => {
+//     console.log("Successfully connected to the database");
+// }).catch(err => {
+//     console.log('Could not connect to the database. Exiting now...');
+//     process.exit();
+// });
+
 mongoose.Promise = global.Promise;
 
 //this will allow request from any port number or domain
@@ -37,8 +48,6 @@ app.use('/api/v1/MachineCapacity', machineCapacity);
 app.use('/api/v1/sizelist', size);
 app.use('/api/v1/currency', Currency);
 app.use('/api/v1/FabricPriceEntry', FabricPriceEntry);
-
-
 
 //this is for error handling[middleware]
 app.use(function(err, req, res, next) {

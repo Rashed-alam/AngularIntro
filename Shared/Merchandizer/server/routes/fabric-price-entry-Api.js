@@ -38,7 +38,10 @@ router.post('/new/:referenceId', (req, res, next) => {
                             printPrice: req.body.fabricPriceInformation[0].printPrice,
                             docPrice: req.body.fabricPriceInformation[0].docPrice,
                             perDozenPrice: req.body.fabricPriceInformation[0].perDozenPrice,
-                            perUnitPrice: req.body.fabricPriceInformation[0].perUnitPrice
+                            perUnitPrice: req.body.fabricPriceInformation[0].perUnitPrice,
+                            Dremarks: req.body.fabricPriceInformation[0].Dremarks,
+                            Mremarks: req.body.fabricPriceInformation[0].Mremarks,
+                            approval: req.body.fabricPriceInformation[0].approval
                         }],
                     }
                 }, { multi: true },
@@ -153,7 +156,10 @@ router.put('/update/:referenceId/:styleCode', function(req, res, next) {
                     "fabricPriceInformation.$.printPrice": req.body.fabricPriceInformation[0].printPrice,
                     "fabricPriceInformation.$.docPrice": req.body.fabricPriceInformation[0].docPrice,
                     "fabricPriceInformation.$.perDozenPrice": req.body.fabricPriceInformation[0].perDozenPrice,
-                    "fabricPriceInformation.$.perUnitPrice": req.body.fabricPriceInformation[0].perUnitPrice
+                    "fabricPriceInformation.$.perUnitPrice": req.body.fabricPriceInformation[0].perUnitPrice,
+                    "fabricPriceInformation.$.Dremarks": req.body.fabricPriceInformation[0].Dremarks,
+                    "fabricPriceInformation.$.Mremarks": req.body.fabricPriceInformation[0].Mremarks,
+                    "fabricPriceInformation.$.approval": req.body.fabricPriceInformation[0].approval
 
                 }
             },
