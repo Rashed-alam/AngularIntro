@@ -23,6 +23,9 @@ export class CuttingProgramComponent implements OnInit {
     this.getAllreference();
     this.getAllBuyersList();
   }
+
+  type = [{name: "Pro"}, {name: "Suv"}];
+  color = [{name:"blue"}, {name:"red"},{name:"green"}];
  
   //GET ALL REFERENCES LIST
   getAllreference(){

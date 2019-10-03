@@ -25,7 +25,7 @@
                                     <div class="row">
                                         <div class="col">Buyer:</div>
                                         <div class="col">
-                                            <select name="" id="" style="width: 100%">
+                                            <select name="" id="">
                                                         <option value="" selected></option>
                                                         <option value="{{a.buyerCode}}" *ngFor="let a of allBuyers">{{a.name}}</option>
                                           </select>
@@ -86,24 +86,24 @@
                     </table>
                 </div>
             </div>
-
-
             <div class="container">
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-4"><label for="">Code Name:</label></div>
-                                    <div class="col-4"><input type="text"></div>
+                                    <div class="col"><label for="">Color Name:</label></div>
+                                    <div class="col">
+                                        <select name="" id=""><option value=""></option></select>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-4"><label for="">Size:</label></div>
-                                    <div class="col-4"><input type="text"></div>
+                                    <div class="col"><label for="">Size:</label></div>
+                                    <div class="col"><input type="number"></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-4"><label for="">Quantity:</label></div>
-                                    <div class="col-4"><input type="text"></div>
+                                    <div class="col"><label for="">Quantity:</label></div>
+                                    <div class="col"><input type="number"></div>
                                 </div>
                                 <br>
                                 <div class="row">
@@ -117,14 +117,37 @@
                     </div>
                 </div>
             </div>
-            <br>
+
             <div class="container">
                 <div class="row">
                     <div class="col-2 pl-0">Remarks</div>
                     <div class="col-8 pl-5"><input type="text" style="width: 100%"></div>
                 </div>
             </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Color/Size</th>
+                                <th *ngFor="let a of type">{{a.name}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let b of color">
+                                <td *ngFor="let b of color">{{b.name}} <input type="text"></td>
+                            </tr>
 
+                        </tbody>
+                    </table>
+                    <p>This is a Remark <i class="fas fa-edit"></i></p>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="card-footer">
 
         </div>
     </div>

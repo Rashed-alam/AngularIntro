@@ -1,0 +1,19 @@
+        input {
+            width: 100%;
+            height: 20px;
+            text-align: center;
+            text-align-last: center;
+            font-size: 12px;
+        }
+        
+        select {
+            width: 100%;
+            height: 20px;
+            text-align: center;
+            text-align-last: center;
+            font-size: 14px;
+        }
+        
+        h5 {
+            margin-bottom: 0rem;
+        }
