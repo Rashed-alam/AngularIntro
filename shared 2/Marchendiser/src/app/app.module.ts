@@ -30,6 +30,7 @@ import { KnittingFormPlanComponent } from './knitting-form-plan/knitting-form-pl
 import { MarchendiserAprovalComponent } from './marchendiser-aproval/marchendiser-aproval.component';
 
 import{KinttingPlanService} from 'src/shared/kintting-plan.service';
+import { KnittingDyeingProgramComponent } from './knitting-dyeing-program/knitting-dyeing-program.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import{KinttingPlanService} from 'src/shared/kintting-plan.service';
   
     FabricPriceComponent,
     KnittingFormPlanComponent,
-    MarchendiserAprovalComponent
+    MarchendiserAprovalComponent,
+    KnittingDyeingProgramComponent
     
   ],
   imports: [

@@ -323,7 +323,7 @@ export class MarchendiserAprovalComponent implements OnInit {
       subscribe((data) => {
         this.buyerinfo = data;
         console.log(this.buyerinfo);
-getbuyerInfo
+//getbuyerInfo
       });
   }
   getbuyerInfo(k) {

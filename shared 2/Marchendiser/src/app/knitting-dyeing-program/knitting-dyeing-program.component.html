@@ -1,0 +1,182 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h5 style="text-align: center">Abloom Design Limited</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Cutting/Dying Program Form</th>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Season:</div>
+                                        <div class="col"><input type="text"></div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Buyer:</div>
+                                        <div class="col">
+                                            <select name="" id="" style="width: 100%">
+                                                <option value="" selected></option>
+                                                <option value="{{a.buyerCode}}" *ngFor="let a of allBuyers">{{a.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Ref. No:</div>
+                                        <div class="col">
+                                            <select name="" id="" (change)="getAllInformation($event.target.value)"
+                                                style="width: 100%">
+                                                <option value="" selected></option>
+                                                <option value="{{a}}" *ngFor="let a of allreferences">{{a}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Order Date:</div>
+                                        <div class="col"><input type="text"></div>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Style:</div>
+                                        <div class="col"><input type="text"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Order Qty:</div>
+                                        <div class="col"><input type="text"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Delivery Date:</div>
+                                        <div class="col"><input type="text"></div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">Description</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Lead Time:</div>
+                                        <div class="col"><input type="text"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row mb-1">
+                        <div class="col-4">Color Name</div>
+                        <div class="col-6"><input></div>
+
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-4">Knitting Type</div>
+                        <div class="col-6">
+                            <select name="" id="" style="width: 100%">
+                                <option value="" selected>1</option>
+                                <option>2</option>
+
+                            </select></div>
+                        <div class="col-2">
+                            <button>ADD</button>
+                        </div>
+
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-4">Weight</div>
+                        <div class="col-6">
+                            <input type="text">
+                        </div>
+                        <div class="col-2">
+                            <select name="" id="" style="width: 100%">
+                                <option value="" selected>kg</option>
+                                <option></option>
+
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="container">
+    <!-- <table>
+        <template ngFor #lesson [ngForOf]="knittingType" #i="index">
+          <template ngFor #point [ngForOf]="color" #j="index">
+          <tr>{{point}}</tr>
+          </template>
+        </template>
+        </table> -->
+        <!-- <table>
+                <thead>
+                      
+                            <th></th>
+                            <th ng-repeat="let k of knittingType; let l = index "></th>
+                            <tr>
+
+                                    {{k}}
+                         </tr>
+                     </thead>
+            <ng-container *ngFor="let lesson of knittingType; let i = index">
+              <ng-container *ngFor="let point of color; let j = index">
+                <tr>{{point}}</tr>
+              </ng-container>
+            </ng-container>
+        </table> -->
+        <table class="table table-bordered mt-3">
+                <thead>
+                   <tr>
+                       <th>Color/knittingType</th>
+                       <th *ngFor="let lesson of knittingType; let i = index">{{i}} {{lesson}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let point of color; let j = index">
+                      <td>{{j}} {{point}}</td>
+                      <td *ngFor="let lesson of knittingType; let k = index">
+                            <div class="row">
+                                    <div class="col"><input type="text" id="{{j}}{{k}}" value=" "  placeholder="{{j}}{{k}}" ngModel  (keyup)="getvalue($event.target.value,j,k)"></div>
+                                </div>
+                      </td>
+                  </tr>
+                  <button>Submit</button>
+                </tbody>
+              </table>
+</div>

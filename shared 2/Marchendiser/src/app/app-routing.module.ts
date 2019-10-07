@@ -8,6 +8,7 @@ import { PriceCalculationComponent } from './price-calculation/price-calculation
 import { KnittingFormPlanComponent } from './knitting-form-plan/knitting-form-plan.component';
 import { MarchendiserAprovalComponent } from './marchendiser-aproval/marchendiser-aproval.component';
 import {FabricPriceComponent} from 'src/app/components/fabric-price/fabric-price.component';
+import { KnittingDyeingProgramComponent } from './knitting-dyeing-program/knitting-dyeing-program.component';
 
 
 export const appRoutes: Routes =[
@@ -16,6 +17,9 @@ export const appRoutes: Routes =[
 },
 {
   path: 'director', component: DirectorApprovalComponent
+},
+{
+  path: 'knittingAndDyeing', component: KnittingDyeingProgramComponent
 },
 {
   path: 'price', component: PriceCalculationComponent
