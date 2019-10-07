@@ -33,7 +33,10 @@ const FabricPriceEntrySchema = new mongoose.Schema({
         printPrice: { type: Number, default: null },
         docPrice: { type: Number, default: null },
         perDozenPrice: { type: Number, default: null },
-        perUnitPrice: { type: Number, default: null }
+        perUnitPrice: { type: Number, default: null },
+        Dremarks: { type: String, default: null },
+        Mremarks: { type: String, default: null },
+        approval: { type: Boolean, default: false }
     }]
 })
 

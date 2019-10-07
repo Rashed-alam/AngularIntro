@@ -32,6 +32,9 @@ export class FabricPriceModel{
             docPrice : number;
             perDozenPrice : number;
             perUnitPrice : number;
+            Dremarks: String;
+            Mremarks: String;
+            approval: Boolean;
         }
     ]
 }

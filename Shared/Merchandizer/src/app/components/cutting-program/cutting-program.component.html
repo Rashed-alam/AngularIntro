@@ -12,8 +12,8 @@
                                 <th colspan="2">Cutting Program Form</th>
                                 <td>
                                     <div class="row">
-                                        <div class="col-4">Season:</div>
-                                        <div class="col-8"><input type="text"></div>
+                                        <div class="col">Season:</div>
+                                        <div class="col"><input type="text"></div>
                                     </div>
                                 </td>
 
@@ -23,41 +23,51 @@
                             <tr>
                                 <td>
                                     <div class="row">
-                                        <div class="col-4">Season:</div>
-                                        <div class="col-8"><input type="text"></div>
-                                    </div>
-                                </td>
-                                <td>
-                                <div class="row">
-                                        <div class="col-4">Season:</div>
-                                        <div class="col-8"><input type="text"></div>
+                                        <div class="col">Buyer:</div>
+                                        <div class="col">
+                                            <select name="" id="">
+                                                        <option value="" selected></option>
+                                                        <option value="{{a.buyerCode}}" *ngFor="let a of allBuyers">{{a.name}}</option>
+                                          </select>
+                                        </div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="row">
-                                        <div class="col-4">Season:</div>
-                                        <div class="col-8"><input type="text"></div>
+                                        <div class="col">Ref. No:</div>
+                                        <div class="col">
+                                            <select name="" id="" (change)="getAllInformation($event.target.value)" style="width: 100%">
+                                                <option value="" selected></option>
+                                                <option value="{{a}}" *ngFor="let a of allreferences">{{a}}</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">Order Date:</div>
+                                        <div class="col"><input type="text"></div>
 
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
-<div class="row">
-                                        <div class="col-4">Season:</div>
-                                        <div class="col-8"><input type="text"></div>
+                                    <div class="row">
+                                        <div class="col">Style:</div>
+                                        <div class="col"><input type="text"></div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="row">
-                                        <div class="col-4">Season:</div>
-                                        <div class="col-8"><input type="text"></div>
+                                        <div class="col">Order Qty:</div>
+                                        <div class="col"><input type="text"></div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="row">
-                                        <div class="col-4">Season:</div>
-                                        <div class="col-8"><input type="text"></div>
+                                        <div class="col">Delivery Date:</div>
+                                        <div class="col"><input type="text"></div>
                                     </div>
                                 </td>
 
@@ -67,8 +77,8 @@
                                 <td colspan="2">Description</td>
                                 <td>
                                     <div class="row">
-                                        <div class="col-4">Season:</div>
-                                        <div class="col-8"><input type="text"></div>
+                                        <div class="col">Lead Time:</div>
+                                        <div class="col"><input type="text"></div>
                                     </div>
                                 </td>
                             </tr>
@@ -76,6 +86,68 @@
                     </table>
                 </div>
             </div>
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col"><label for="">Color Name:</label></div>
+                                    <div class="col">
+                                        <select name="" id=""><option value=""></option></select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><label for="">Size:</label></div>
+                                    <div class="col"><input type="number"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><label for="">Quantity:</label></div>
+                                    <div class="col"><input type="number"></div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-4 pl-5"><button type="button">Report</button></div>
+                                    <div class="col-4 pl-5"><button type="button">Save</button></div>
+                                    <div class="col-4 pl-5"><button type="button">Clear</button></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-2 pl-0">Remarks</div>
+                    <div class="col-8 pl-5"><input type="text" style="width: 100%"></div>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Color/Size</th>
+                                <th *ngFor="let a of type">{{a.name}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let b of color">
+                                <td *ngFor="let b of color">{{b.name}} <input type="text"></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <p>This is a Remark <i class="fas fa-edit"></i></p>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="card-footer">
+
         </div>
     </div>
-</div>

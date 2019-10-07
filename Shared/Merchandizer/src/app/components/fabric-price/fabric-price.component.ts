@@ -68,6 +68,7 @@ export class FabricPriceComponent implements OnInit {
     .subscribe(
     (data)=>{
       this.entryShowList = data;
+      
     });
   }
   //CREATE AND UPDATE FUNCTION
@@ -303,7 +304,10 @@ export class FabricPriceComponent implements OnInit {
             printPrice : null,
             docPrice : null,
             perDozenPrice : null,
-            perUnitPrice : null
+            perUnitPrice : null,
+            Dremarks: '',
+            Mremarks: '',
+            approval: null
         }
     ]
     }
@@ -353,7 +357,10 @@ export class FabricPriceComponent implements OnInit {
               printPrice : null,
               docPrice : null,
               perDozenPrice : null,
-              perUnitPrice : null
+              perUnitPrice : null,
+              Dremarks: '',
+              Mremarks: '',
+              approval: null
           }
       ]
     }

@@ -50,7 +50,10 @@ export class FabricPriceServiceService {
             printPrice : null,
             docPrice : null,
             perDozenPrice : null,
-            perUnitPrice : null
+            perUnitPrice : null,
+            Dremarks: '',
+            Mremarks: '',
+            approval: null
         }
     ]
   }
