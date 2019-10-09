@@ -19,6 +19,7 @@ export class CuttingProgramComponent implements OnInit {
   buyerOrderReference: any = [];
   AllDetails : any = [];
   tempo: any = [];
+  temp2: any;
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
               private CP:CuttingService) { }
@@ -94,8 +95,13 @@ export class CuttingProgramComponent implements OnInit {
          this.tempo.push(this.AllDetails[i].fabricPriceInformation[j]); 
       }
     }
-    console.log(this.tempo);
+    //console.log(this.AllDetails);
+  }
 
+  OnStyleCodeSelection(s){
+    var marvel = this.tempo.filter(hero=> hero.styleCode == s);
+    this.temp2 = marvel;
+    console.log(this.temp2);
   }
 
 

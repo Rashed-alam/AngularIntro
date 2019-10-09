@@ -13,7 +13,7 @@
                                 <td>
                                     <div class="row">
                                         <div class="col">Season:</div>
-                                        <div class="col"><input type="text" readonly placeholder="{{this.CP.currentCutting.season}}"></div>
+                                        <div class="col" *ngFor="let a of AllDetails">{{a.season}}</div>
                                     </div>
                                 </td>
 
@@ -23,7 +23,7 @@
                             <tr>
                                 <td>
                                     <div class="row">
-                                        <div class="col">Buyer:</div>
+                                        <div class="col">Buyer Name:</div>
                                         <div class="col">
                                             <select name="" id="" style="width: 100%" (change)="OnBuyerSelection($event.target.value)">
                                                         <option selected></option>
@@ -56,7 +56,7 @@
                                     <div class="row">
                                         <div class="col">Style Code:</div>
                                         <div class="col">
-                                            <select name="" id="" style="width: 100%">
+                                            <select name="" id="" style="width: 100%" (change)="OnStyleCodeSelection($event.target.value)">
                                                 <option value="" selected></option>
                                                 <option value="{{a.styleCode}}" *ngFor="let a of tempo">{{a.styleCode}}</option>
                                             </select>
@@ -66,7 +66,7 @@
                                 <td>
                                     <div class="row">
                                         <div class="col">Order Qty:</div>
-                                        <div class="col"><input type="text"></div>
+                                        <div class="col" *ngFor="let a of temp2">{{a.fabricWeight}} kg/per dozen</div>
                                     </div>
                                 </td>
                                 <td>
@@ -80,7 +80,10 @@
                             <tr>
 
                                 <td colspan="2">
-                                    description:
+                                    <div class="row">
+                                        <div class="col-3">Description:</div>
+                                        <div class="col-9" *ngFor="let a of temp2">Item Type: {{a.itemName}}, Fabric Type:{{a.fabricType}} GSM</div>
+                                    </div>
                                 </td>
                                 <td>
                                     <div class="row">
