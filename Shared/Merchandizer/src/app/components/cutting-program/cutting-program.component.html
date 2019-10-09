@@ -13,7 +13,7 @@
                                 <td>
                                     <div class="row">
                                         <div class="col">Season:</div>
-                                        <div class="col"><input type="text"></div>
+                                        <div class="col"><input type="text" readonly placeholder="{{this.CP.currentCutting.season}}"></div>
                                     </div>
                                 </td>
 
@@ -25,9 +25,9 @@
                                     <div class="row">
                                         <div class="col">Buyer:</div>
                                         <div class="col">
-                                            <select name="" id="">
-                                                        <option value="" selected></option>
-                                                        <option value="{{a.buyerCode}}" *ngFor="let a of allBuyers">{{a.name}}</option>
+                                            <select name="" id="" style="width: 100%" (change)="OnBuyerSelection($event.target.value)">
+                                                        <option selected></option>
+                                                        <option value="{{a.buyerCode}}" *ngFor="let a of buyerinfo">{{a.name}}</option>
                                           </select>
                                         </div>
                                     </div>
@@ -36,9 +36,9 @@
                                     <div class="row">
                                         <div class="col">Ref. No:</div>
                                         <div class="col">
-                                            <select name="" id="" (change)="getAllInformation($event.target.value)" style="width: 100%">
+                                            <select name="" id="" style="width: 100%" (change)="OnReferenceIdSelection($event.target.value)">
                                                 <option value="" selected></option>
-                                                <option value="{{a}}" *ngFor="let a of allreferences">{{a}}</option>
+                                                <option value="{{a.referenceId}}" *ngFor="let a of AllReference">{{a.referenceId}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -54,8 +54,13 @@
                             <tr>
                                 <td>
                                     <div class="row">
-                                        <div class="col">Style:</div>
-                                        <div class="col"><input type="text"></div>
+                                        <div class="col">Style Code:</div>
+                                        <div class="col">
+                                            <select name="" id="" style="width: 100%">
+                                                <option value="" selected></option>
+                                                <option value="{{a.styleCode}}" *ngFor="let a of tempo">{{a.styleCode}}</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </td>
                                 <td>
@@ -74,7 +79,9 @@
                             </tr>
                             <tr>
 
-                                <td colspan="2">Description</td>
+                                <td colspan="2">
+                                    description:
+                                </td>
                                 <td>
                                     <div class="row">
                                         <div class="col">Lead Time:</div>
@@ -131,12 +138,15 @@
                         <thead>
                             <tr>
                                 <th scope="col">Color/Size</th>
-                                <th *ngFor="let a of type">{{a.name}}</th>
+                                <th *ngFor="let a of size">{{a}}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let b of color">
-                                <td *ngFor="let b of color">{{b.name}} <input type="text"></td>
+                            <tr *ngFor="let b of color,index as i">
+                                <td>{{b}}</td>
+                                <td *ngFor="let a of size,index as j">
+                                    <input type="text" placeholder="{{i}},{{j}}" (keyup)="catch($event.target.value,i,j)">
+                                </td>
                             </tr>
 
                         </tbody>

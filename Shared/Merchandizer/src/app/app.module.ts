@@ -6,6 +6,7 @@ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BuyersService } from './services/buyers.service';
+import { CuttingService } from 'src/app/services/cutting.service';
 
 import { FabricTypeService } from './services/fabric-type.service';
 import { BsDatepickerModule } from 'ngx-bootstrap';
@@ -40,9 +41,7 @@ import { CuttingProgramComponent } from './components/cutting-program/cutting-pr
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [BuyersService
-    ,FabricTypeService, DatePipe, MachineCapacityService,
-    ItemNameService,FabricPriceServiceService],
+  providers: [BuyersService,FabricTypeService, DatePipe, MachineCapacityService,ItemNameService,FabricPriceServiceService,CuttingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

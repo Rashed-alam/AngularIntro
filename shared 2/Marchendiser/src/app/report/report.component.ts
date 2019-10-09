@@ -140,16 +140,11 @@ export class ReportComponent implements OnInit {
   }
   // table a list a data show kore
   getreportdata(a) {
-    //  console.log(a);
-    // console.log('chkt',this.AllinfoData);
-
     this.Fc.getAllData(a).subscribe(
       (data) => {
         this.fabricReport = data;
         this.bName = this.fabricReport[0].buyerName;
-        //   console.log('cjhk',this.bName);
       }
-
     );
 
 
@@ -321,20 +316,17 @@ export class ReportComponent implements OnInit {
 
       });
   }
+
+  
   getbuyerInfo(k) {
     this.AllReference = [];
     for (let i = 0; i < this.AllinfoData.length; i++) {
-
       if (this.AllinfoData[i].buyerCode === k) {
         this.AllReference.push(this.AllinfoData[i].referenceId);
-        // this.AllReference[i] = this.AllinfoData[i].referenceId;
       }
 
     }
-    console.log(k);
-    //  console.log(this.AllReference[0].buyername);
-    //  console.log('chkt',this.AllinfoData);
-
+   
   }
   getAlldata() {
     this.Fc.getallData()

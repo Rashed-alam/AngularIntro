@@ -88,4 +88,7 @@ export class FabricPriceServiceService {
     return this.httpcall.post(this.url1+'/get/'+a.styleCode, headerOption);
   }
 
+  getEverything(){
+    return this.httpcall.get(this.url1+'/everything',headerOption);
+  }
 }
