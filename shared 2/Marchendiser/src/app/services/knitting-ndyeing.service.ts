@@ -27,6 +27,8 @@ export class KnittingNDyeingService {
   }]
   }
 getdata(m): Observable<knittingNdyeing> {
-  return this.httpcall.post<knittingNdyeing>(this.url1+'/new/'+m.referenceId+'/'+m.styleCode, m , headerOption);
+  console.log(m);
+  //console.log(m.referenceId,m.styleCode);
+  return this.httpcall.post<knittingNdyeing>(this.url1+'/new/'+ m.referenceId+'/'+ m.styleCode, m , headerOption);
 }
 }

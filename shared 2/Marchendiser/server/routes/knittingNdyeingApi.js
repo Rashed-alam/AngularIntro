@@ -5,7 +5,7 @@ const knittingNdyeingType=require('../models/knittingNdyeing');
 router.post('/new/:referenceId/:styleCode', (req, res, next) => {
     console.log(req.body)
     //,styleCode: req.params.styleCode
-    knittingNdyeingType.findOne({ 'referenceId': req.params.referenceId , 'styleCode': req.params.styleCode }).then(function (a) {
+    knittingNdyeingType.findOne({ 'referenceId': req.params.referenceId,'styleCode': req.params.styleCode }).then(function (a) {
         if (a == null) {
             knittingNdyeingType.create(req.body).then(function (a) {
                 console.log(a);

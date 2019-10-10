@@ -25,24 +25,24 @@
                                     <div class="row">
                                         <div class="col">Buyer:</div>
                                         <div class="col">
-                                            <select name="" id="" style="width: 100%">
+                                            <!-- <select name="" id="" style="width: 100%">
                                                 <option value="" selected></option>
                                                 <option value="{{a.buyerCode}}" *ngFor="let a of allBuyers">{{a.name}}
                                                 </option>
-                                            </select>
+                                            </select> -->
                                         </div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="row">
                                         <div class="col">Ref. No:</div>
-                                        <div class="col">
+                                        <!-- <div class="col">
                                             <select name="" id="" (change)="getAllInformation($event.target.value)"
                                                 style="width: 100%">
                                                 <option value="" selected></option>
                                                 <option value="{{a}}" *ngFor="let a of allreferences">{{a}}</option>
                                             </select>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </td>
                                 <td>
@@ -96,41 +96,74 @@
         <div class="col-5">
             <div class="card">
                 <div class="card-body">
-
                     <div class="row mb-1">
-                        <div class="col-4">Color Name</div>
-                        <div class="col-6"><input></div>
-
-                    </div>
-                    <div class="row mb-1">
-                        <div class="col-4">Knitting Type</div>
+                        <div class="col-4">Color name</div>
                         <div class="col-6">
-                        <input>   
+                        <input #colorName>   
                         </div>
                         <div class="col-2">
-                            <button>ADD</button>
+                            <button (click)="addColor(colorName.value); colorName.value=''">ADD</button>
                         </div>
+                        <ul class="colors">
+                                <li *ngFor= "let col of color,index as i">
+                                  <a>
+                                    <span class="badge">{{i+1}}</span>{{col}}
+                                  </a>
+                               
+                                        <button class="delete" title="delete color"
+                                        (click)="deleteColor(col)">x</button>
+                             
+                                
+                                </li>
+                              </ul>
 
                     </div>
-                    <!-- <div class="row mb-1">
-                        <div class="col-4">Weight</div>
-                        <div class="col-6">
-                            <input type="text">
-                        </div>
-                        <div class="col-2">
-                            <select name="" id="" style="width: 100%">
-                                <option value="" selected>kg</option>
-                                <option></option>
 
-                            </select>
-                        </div>
-
-                    </div> -->
 
                 </div>
             </div>
         </div>
+        <div class="col-5">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-1">
+                        <div class="col-4">knitting Type</div>
+                        <div class="col-6">
+                        <input #knittingname>   
+                        </div>
+                        <div class="col-2">
+                            <button (click)="addKnittingType(knittingname.value); knittingname.value=''">ADD</button>
+                        </div>
+                        <ul class="colors">
+                                <li *ngFor= "let col of knittingType,index as i">
+                                  <a>
+                                    <span class="badge">{{i+1}}</span>{{col}}
+                                  </a>
+                               
+                                        <button class="delete" title="delete color"
+                                        (click)="deleteKnittingType(col)">x</button>
+                             
+                                
+                                </li>
+                              </ul>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+  
     </div>
+    <!-- <div class="row">
+            <div class="col-2">
+            
+                    <div class="row-1">
+                            <button>Create Table</button>
+                    </div>
+                   
+                </div>
+    </div> -->
 
 </div>
 <div class="container">
@@ -161,12 +194,12 @@
                 <thead>
                    <tr>
                        <th>Color/knittingType</th>
-                       <th *ngFor="let lesson of knittingType; let i = index">{{i}} {{lesson}}</th>
+                       <th *ngFor="let lesson of knittingType; let i = index"> {{lesson}}</th>
                     </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let point of color; let j = index">
-                      <td>{{j}} {{point}}</td>
+                      <td>{{point}}</td>
                       <td *ngFor="let lesson of knittingType; let k = index">
                             <div class="row">
                                     <div class="col"><input type="text" id="{{j}}{{k}}" value=" "  placeholder="{{j}}{{k}}" ngModel  (keyup)="getvalue($event.target.value,j,k)"></div>
@@ -174,6 +207,7 @@
                       </td>
                   </tr>
                   <button (click)="showArray(this.arr)">Submit</button>
+                  <button (click)="clear()">clear</button>
                 </tbody>
               </table>
 </div>
