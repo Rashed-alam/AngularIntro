@@ -1,0 +1,32 @@
+import { knittingNdyeing } from './../models/knittingNdyeing';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+
+import { Reference } from '@angular/compiler/src/render3/r3_ast';
+
+const headerOption = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
+@Injectable({
+  providedIn: 'root'
+})
+export class KnittingNDyeingService {
+  url1="http://localhost:3000/api/v1/knittingNdyeingType";
+
+  constructor(private httpcall: HttpClient) { }
+  knittingData:knittingNdyeing={
+    referenceId:'',
+    styleCode:'',
+    kintting: [{
+      knittingType:'',
+      color: '',
+      weight:''
+  }]
+  }
+getdata(m): Observable<knittingNdyeing> {
+  return this.httpcall.post<knittingNdyeing>(this.url1+'/new/'+m.referenceId+'/'+m.styleCode, m , headerOption);
+}
+}

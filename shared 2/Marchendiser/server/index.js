@@ -15,6 +15,7 @@ const size = require('./routes/SizeApi');
 const priceCalculation =require('./routes/priceCalculationapi');
 const Currency=require('./routes/currencyapi');
 const knittingType=require('./routes/knittingTypeApi');
+const knittingNdyeingType=require('./routes/knittingNdyeingApi');
 const FabricPriceEntry= require('./routes/fabric-price-entry-Api');
 //setting up of express app 
 const app = express();
@@ -40,6 +41,7 @@ app.use('/api/v1/sizelist',size);
 app.use('/api/v1/priceCalculation',priceCalculation);
 app.use('/api/v1/currency',Currency);
 app.use('/api/v1/knittingType',knittingType);
+app.use('/api/v1/knittingNdyeingType',knittingNdyeingType);
 app.use('/api/v1/FabricPriceEntry',FabricPriceEntry);
 
 
