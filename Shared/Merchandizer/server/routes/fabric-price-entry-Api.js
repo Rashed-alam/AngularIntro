@@ -207,6 +207,12 @@ router.get('/allref', (req, res, next) => {
     }).catch(next);
 });
 
+//fetching the list of everything from database
+router.get('/everything', (req, res, next) => {
+    FabricPriceEntrySchema.find({}).then(function(a) {
+        res.send(a);
+    }).catch(next);
+});
 
 
 
