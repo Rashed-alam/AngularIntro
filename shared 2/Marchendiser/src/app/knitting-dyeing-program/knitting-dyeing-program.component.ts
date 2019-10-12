@@ -64,7 +64,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
 
   showArray(arr) {
     this.knit.referenceId = 'test-1';
-    this.knit.styleCode = 'est-';
+    this.knit.styleCode = 'est-1';
     for (let k = 0; k < this.color.length; k++) {
       for (let l = 0; l < this.knittingType.length; l++) {
         //  // console.log('no:' + this.color[k], ' ', this.knittingType[l], ' ', arr[k][l]);
