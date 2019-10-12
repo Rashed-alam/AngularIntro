@@ -25,7 +25,7 @@ router.post('/new/:referenceId/:styleCode', (req, res, next) => {
                             weight: req.body.cutting[0].weight,
                         }],
                     }
-                },
+                }, { multi: true },
                 function(err, result) {
                     if (err) {
                         //  console.log('ERROR: ' + err);

@@ -128,23 +128,17 @@
                                     <div class="col"><label for="">Quantity:</label></div>
                                     <div class="col"><input type="number"></div>
                                 </div> -->
-                                <br>
-                                <div class="row">
-                                    <div class="col-4 pl-5"><button type="button" class="btn btn-secondary">Report</button></div>
-                                    <div class="col-4 pl-5"><button type="button" class="btn btn-primary" (click)="addNew()">Add</button></div>
-                                    <div class="col-4 pl-5"><button type="button" class="btn btn-danger" (click)="clear()">Clear</button></div>
+                                <div class="container">
+                                    <div class="row justify-content-md-center">
+                                        <div class="col-md-auto">
+                                            <button type="button" class="btn btn-primary" (click)="addNew()">Add</button>
+                                            <button type="button" class="btn btn-danger" (click)="clear()">Clear</button>
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-2 pl-0">Remarks</div>
-                    <div class="col-8 pl-5"><input type="text" style="width: 100%"></div>
                 </div>
             </div>
             <br>
@@ -155,26 +149,38 @@
                             <tr>
                                 <th scope="col">Color/Size</th>
                                 <th *ngFor="let a of size">{{a}}</th>
+                                <th>TTL</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let b of color,index as i">
                                 <td>{{b}}</td>
                                 <td *ngFor="let a of size,index as j">
-                                    <input type="text" placeholder="{{i}},{{j}}" (keyup)="catch($event.target.value,i,j)">
+                                    <input type="text" placeholder="kg" (keyup)="catch($event.target.value,i,j)">
                                 </td>
+                                <td></td>
                             </tr>
 
                         </tbody>
                     </table>
-                    <p>This is a Remark <i class="fas fa-edit"></i></p>
-                    <button type="button" class="btn btn-primary" (click)="onSubmit(this.cutting)">Submit</button>
+                    <div class="row">
+                        <div class="col-2">Remark:</div>
+                        <div class="col-10"><input type="text" style="width: 100%;"></div>
+                    </div>
                 </div>
             </div>
 
 
         </div>
         <div class="card-footer">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <button type="button" class="btn btn-primary" (click)="onSubmit(this.cutting)">Submit</button>
 
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>

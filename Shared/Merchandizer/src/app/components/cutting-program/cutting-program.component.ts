@@ -20,14 +20,14 @@ export class CuttingProgramComponent implements OnInit {
   AllDetails : any = [];
   tempo: any = [];
   temp2: any;
-  cut = { cutting: [], referenceId: '', styleCode: ' ' };
+  cut = { cutting: [], referenceId: ' ', styleCode: ' ' };
   size = [];
   color = [];
   cuttingArray:any[][]=[ ];
   colorName: string;
-  sizeName: number;
-
-
+  sizeName: number; 
+  sum : any = 0;
+  
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
               private CP:CuttingService) { }
@@ -37,9 +37,9 @@ export class CuttingProgramComponent implements OnInit {
     this.getAllBuyersList();
    
     // 
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 50; i++) {
       this.cuttingArray[i] = [];
-      for (let j = 0; j < 1000; j++) {
+      for (let j = 0; j < 50; j++) {
         this.cuttingArray[i][j] = 0;
       }
     }
@@ -48,9 +48,14 @@ export class CuttingProgramComponent implements OnInit {
   }
 
 
-
   catch(a,b,c){
     this.cuttingArray[b][c] = a;
+    // const array1 = this.cuttingArray[b];
+    // console.log(this.cuttingArray[b]);
+    // const sum = array1.reduce((accumulator, currentValue)=>{
+    //   return accumulator + currentValue;
+    // }, 0);
+    // console.log(sum);
   }
   addNew(){
     this.color.push(this.colorName);
@@ -81,12 +86,14 @@ export class CuttingProgramComponent implements OnInit {
           size: this.size[l],
           color: this.color[k],
           weight:this.cuttingArray[k][l]
-        }); 
+        })
+        
       }
     }
    // console.log(this.cut)
-    this.CP.create(this.cut).subscribe(res=>{});
-    this.clearEverything();
+   
+   this.CP.create(this.cut).subscribe(res=>{});
+   this.clearEverything();
   }
   //GET ALL REFERENCES NUMBERS FROM DATABASE
   getAllreference(){
@@ -130,16 +137,17 @@ export class CuttingProgramComponent implements OnInit {
     //console.log(this.temp2);
   }
   clearEverything(){
-    for (let i = 0; i < 1000; i++) {
-      this.cuttingArray[i] = [];
-      for (let j = 0; j < 1000; j++) {
-        // console.log(this.arr[i][j]);
-        this.cuttingArray[i][j] = 0;
-        // console.log(this.arr[i][j]);
-      }
-    }
+    // for (let i = 0; i < 1000; i++) {
+    //   this.cuttingArray[i] = [];
+    //   for (let j = 0; j < 1000; j++) {
+    //     // console.log(this.arr[i][j]);
+    //     this.cuttingArray[i][j] = 0;
+    //     // console.log(this.arr[i][j]);
+    //   }
+    // }
     this.size = [];
     this.color = [];
+    this.cut.cutting = []
   }
   }
 
