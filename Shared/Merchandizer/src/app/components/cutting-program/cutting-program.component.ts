@@ -20,6 +20,14 @@ export class CuttingProgramComponent implements OnInit {
   AllDetails : any = [];
   tempo: any = [];
   temp2: any;
+  cut = { cutting: [], referenceId: '', styleCode: ' ' };
+  size = [];
+  color = [];
+  cuttingArray:any[][]=[ ];
+  colorName: string;
+  sizeName: number;
+
+
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
               private CP:CuttingService) { }
@@ -27,38 +35,59 @@ export class CuttingProgramComponent implements OnInit {
   ngOnInit() {
     this.getAllreference();
     this.getAllBuyersList();
+   
     // 
-    for (let i = 0; i < 3; i++) {
-      this.cutting[i] = [];
-      for (let j = 0; j < 3; j++) {
-        this.cutting[i][j] = 0;
+    for (let i = 0; i < 1000; i++) {
+      this.cuttingArray[i] = [];
+      for (let j = 0; j < 1000; j++) {
+        this.cuttingArray[i][j] = 0;
       }
     }
     //
     
   }
 
-  size = [30,35,40];
-  color = ['red', 'blue','green'];
-  cutting:any[][]=[ ];
+
 
   catch(a,b,c){
-    this.cutting[b][c] = a;
-    for (let k = 0; k < this.color.length; k++) {
-      for (let l = 0; l < this.size.length; l++) {
-        // console.log(this.color[k], this.size[l], this.cutting[k][l]);
-        this.CP.currentCutting.cutting[0].color = this.color[k];
-        this.CP.currentCutting.cutting[0].size = this.size[l];
-        this.CP.currentCutting.cutting[0].weight =this.cutting[k][l];
-      }
-
-    }
-    // console.log(this.cutting);
-    this.CP.createEntry(this.CP.currentCutting);
-   
+    this.cuttingArray[b][c] = a;
+  }
+  addNew(){
+    this.color.push(this.colorName);
+    this.size.push(this.sizeName);
+    // console.log(this.color);
+    // console.log(this.size);
+    this.clear();
+  }
+  clear(){
+    this.colorName = '';
+    this.sizeName = null;
   }
 
-
+  deleteColor(valueToRemove){
+  //this.color = this.color.filter(item => item !== valueToRemove)
+  this.color = [];
+  }
+  deleteSize(valueToRemove){
+   // this.size = this.size.filter(item => item !== valueToRemove)
+    this.size = [];
+    }
+  onSubmit(){
+    this.cut.referenceId = this.CP.currentCutting.referenceId;
+    this.cut.styleCode = this.CP.currentCutting.styleCode;
+    for (let k = 0; k < this.color.length; k++) {
+      for (let l = 0; l < this.size.length; l++) {
+        this.cut.cutting.push({
+          size: this.size[l],
+          color: this.color[k],
+          weight:this.cuttingArray[k][l]
+        }); 
+      }
+    }
+   // console.log(this.cut)
+    this.CP.create(this.cut).subscribe(res=>{});
+    this.clearEverything();
+  }
   //GET ALL REFERENCES NUMBERS FROM DATABASE
   getAllreference(){
     this.FP.getEverything()
@@ -78,16 +107,13 @@ export class CuttingProgramComponent implements OnInit {
            this.buyerinfo = data;
          });
   }
-
-//
   OnBuyerSelection(b){
     var marvel = this.buyerOrderReference.filter(hero => hero.buyerCode == b);
     this.AllReference = marvel;
     this.tempo = [];
   }
-
-
   OnReferenceIdSelection(r){
+    this.CP.currentCutting.referenceId = r;
     var gotham = this.buyerOrderReference.filter(hero => hero.referenceId == r);
     this.AllDetails = gotham;
     for(let i =0; i<this.AllDetails.length;i++){
@@ -95,16 +121,27 @@ export class CuttingProgramComponent implements OnInit {
          this.tempo.push(this.AllDetails[i].fabricPriceInformation[j]); 
       }
     }
-    //console.log(this.AllDetails);
-  }
 
+  }
   OnStyleCodeSelection(s){
+    this.CP.currentCutting.styleCode = s;
     var marvel = this.tempo.filter(hero=> hero.styleCode == s);
     this.temp2 = marvel;
-    console.log(this.temp2);
+    //console.log(this.temp2);
   }
-
-
+  clearEverything(){
+    for (let i = 0; i < 1000; i++) {
+      this.cuttingArray[i] = [];
+      for (let j = 0; j < 1000; j++) {
+        // console.log(this.arr[i][j]);
+        this.cuttingArray[i][j] = 0;
+        // console.log(this.arr[i][j]);
+      }
+    }
+    this.size = [];
+    this.color = [];
+  }
+  }
 
 
 
@@ -112,7 +149,6 @@ export class CuttingProgramComponent implements OnInit {
     
     
    
-  }
 
 
 

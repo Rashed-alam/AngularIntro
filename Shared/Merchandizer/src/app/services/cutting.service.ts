@@ -10,19 +10,20 @@ const headerOption = {
 @Injectable()
 export class CuttingService {
 
+  url1="http://localhost:3000/api/v1/Cutting";
+
   constructor(private httpcall: HttpClient) { }
 
   currentCutting: cuttingModel = {
     referenceId : '',
-    buyerName:'',
-    season : '',
     styleCode : '',
     cutting:[
         { color:'',  size: null, weight: null}
     ]
   }
 
-  createEntry(fabcal : cuttingModel) {
-   console.log(fabcal);
+  create(m: any): Observable<cuttingModel> {
+    console.log(m);
+    return this.httpcall.post<cuttingModel>(this.url1+'/new/'+m.referenceId+'/'+m.styleCode, m , headerOption);
   }
 }

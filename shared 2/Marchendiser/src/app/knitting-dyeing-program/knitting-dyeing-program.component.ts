@@ -14,15 +14,6 @@ export class KnittingDyeingProgramComponent implements OnInit {
   knittingType: any = [];
   arr: any[][] = [];
   knit = { kintting: [], referenceId: '', styleCode: ' ' };
-  knittData: knittingNdyeing = {
-    referenceId: '',
-    styleCode: '',
-    kintting: [{
-      knittingType: '',
-      color: '',
-      weight: ''
-    }]
-  }
 
   constructor(public KD: KnittingNDyeingService) { }
   ngOnInit() {
@@ -67,12 +58,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
     this.knit.styleCode = 'est-';
     for (let k = 0; k < this.color.length; k++) {
       for (let l = 0; l < this.knittingType.length; l++) {
-        //  // console.log('no:' + this.color[k], ' ', this.knittingType[l], ' ', arr[k][l]);
-        //   this.knit.kintting.knittingType = this.knittingType[l];
-        //   this.knit.kintting.color = this.color[k];
-        //   //  console.log(arr[k][l]);
-        //   //  let j = arr[k][l];
-        //   this.knit.kintting[0].weight = arr[k][l];
+      
         this.knit.kintting.push({
           knittingType: this.knittingType[l],
           color: this.color[k],
