@@ -17,13 +17,14 @@ export class CuttingService {
   currentCutting: cuttingModel = {
     referenceId : '',
     styleCode : '',
+    remarks:'',
     cutting:[
         { color:'',  size: null, weight: null}
     ]
   }
 
   create(m: any): Observable<cuttingModel> {
-    console.log(m);
+    
     return this.httpcall.post<cuttingModel>(this.url1+'/new/'+m.referenceId+'/'+m.styleCode, m , headerOption);
   }
 }

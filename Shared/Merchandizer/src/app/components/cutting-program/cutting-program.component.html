@@ -3,12 +3,13 @@
         <div class="card-header">
             <h5 style="text-align: center">Abloom Design Limited</h5>
         </div>
-        <div class="card-body">
+        <div class="card-body" id="content">
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
+
                                 <th colspan="2">Cutting Program Form</th>
                                 <td>
                                     <div class="row">
@@ -66,7 +67,7 @@
                                 <td>
                                     <div class="row">
                                         <div class="col">Order Qty:</div>
-                                        <div class="col" *ngFor="let a of temp2">{{a.fabricWeight}} kg</div>
+                                        <div class="col" *ngFor="let a of temp2"> kg</div>
                                     </div>
                                 </td>
                                 <td>
@@ -96,7 +97,7 @@
                     </table>
                 </div>
             </div>
-            <div class="container">
+            <div class="container" *ngIf="reportMiddlePart">
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
                         <div class="card">
@@ -105,7 +106,10 @@
                                 <div class="row">
                                     <div class="col"><label for="">Color Name:</label></div>
                                     <div class="col">
-                                        <input type="text" name="colorName" [(ngModel)]="colorName" autocomplete="on" required>
+                                        <input type="text" #colorName required>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-danger mb-3" (click)="addColor(colorName.value);colorName.value=''">Add</button>
                                     </div>
                                     <div class="col" *ngFor="let a of color">
                                         <li>
@@ -116,7 +120,10 @@
                                 <div class="row">
                                     <div class="col"><label for="">Size:</label></div>
                                     <div class="col">
-                                        <input type="number" name="sizeName" [(ngModel)]="sizeName" autocomplete="on" required>
+                                        <input type="number" #sizeName required>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-danger" (click)="addSize(sizeName.value);sizeName.value=''">Add</button>
                                     </div>
                                     <div class="col" *ngFor="let a of size">
                                         <li>
@@ -128,14 +135,14 @@
                                     <div class="col"><label for="">Quantity:</label></div>
                                     <div class="col"><input type="number"></div>
                                 </div> -->
-                                <div class="container">
+                                <!-- <div class="container">
                                     <div class="row justify-content-md-center">
                                         <div class="col-md-auto">
                                             <button type="button" class="btn btn-primary" (click)="addNew()">Add</button>
                                             <button type="button" class="btn btn-danger" (click)="clear()">Clear</button>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -144,32 +151,64 @@
             <br>
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Color/Size</th>
-                                <th *ngFor="let a of size">{{a}}</th>
-                                <th>TTL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let b of color,index as i">
-                                <td>{{b}}</td>
-                                <td *ngFor="let a of size,index as j">
-                                    <input type="text" placeholder="kg" (keyup)="catch($event.target.value,i,j)">
-                                </td>
-                                <td></td>
-                            </tr>
+                    <h2 style="text-align: center;" *ngIf="reportHeading">Cutting Program Report</h2>
+                    <div class="row">
+                        <div class="col-10">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Color/Size</th>
+                                        <th *ngFor="let a of size">{{a}}</th>
 
-                        </tbody>
-                    </table>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let b of color,index as i">
+                                        <td>
+                                            {{b}}
+                                        </td>
+                                        <td *ngFor="let a of size,index as j">
+                                            <input type="number" placeholder="kg" (keyup)="catch($event.target.value,i,j)">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            TTL
+                                        </td>
+                                        <td *ngFor="let a of columnSum">{{a}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-2">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>TTL</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let p of rowSum; let j = index">
+                                        <td>{{p}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
                     <div class="row">
                         <div class="col-2">Remark:</div>
-                        <div class="col-10"><input type="text" style="width: 100%;"></div>
+                        <div class="col-10"><input type="text" style="width: 100%;" name="CP.currentCutting.remarks" [(ngModel)]="CP.currentCutting.remarks"></div>
                     </div>
                 </div>
             </div>
-
+            <div class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="align-content: center">
+                Entry Created successfully.
+            </div>
 
         </div>
         <div class="card-footer">
@@ -177,7 +216,7 @@
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
                         <button type="button" class="btn btn-primary" (click)="onSubmit(this.cutting)">Submit</button>
-
+                        <button type="button" class="btn btn-warning" (click)="reportPrint()">Report</button>
                     </div>
 
                 </div>

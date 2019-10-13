@@ -10,6 +10,10 @@ const CuttingSchema = new mongoose.Schema({
         type: String,
 
     },
+    remarks: {
+        type: String,
+        default: null
+    },
     cutting: [{
         size: {
             type: Number,

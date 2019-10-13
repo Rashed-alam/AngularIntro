@@ -24,6 +24,7 @@ router.post('/new/:referenceId/:styleCode', (req, res, next) => {
                             color: req.body.cutting[0].color,
                             weight: req.body.cutting[0].weight,
                         }],
+                        remarks: req.body.remarks
                     }
                 }, { multi: true },
                 function(err, result) {

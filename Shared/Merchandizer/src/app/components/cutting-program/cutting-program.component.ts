@@ -7,6 +7,8 @@ import { BuyersService } from 'src/app/services/buyers.service';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { cuttingModel } from 'src/app/models/cutting.model';
 import { CuttingService } from 'src/app/services/cutting.service';
+import * as jspdf from 'jspdf'; 
+import  html2canvas from 'html2canvas';  
 
 @Component({
   selector: 'app-cutting-program',
@@ -20,13 +22,20 @@ export class CuttingProgramComponent implements OnInit {
   AllDetails : any = [];
   tempo: any = [];
   temp2: any;
-  cut = { cutting: [], referenceId: ' ', styleCode: ' ' };
+  cut = { cutting: [], referenceId: ' ', styleCode: ' ',remarks: '' };
   size = [];
   color = [];
   cuttingArray:any[][]=[ ];
   colorName: string;
   sizeName: number; 
-  sum : any = 0;
+  rowSum  =[];
+  columnSum = [];
+  reportHeading: boolean = false;
+  reportMiddlePart: boolean = true;
+  showsuccessmessageforsubmitting: boolean = false;
+  row = 0;
+  col= 0;
+
   
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
@@ -49,26 +58,20 @@ export class CuttingProgramComponent implements OnInit {
 
 
   catch(a,b,c){
-    this.cuttingArray[b][c] = a;
-    // const array1 = this.cuttingArray[b];
-    // console.log(this.cuttingArray[b]);
-    // const sum = array1.reduce((accumulator, currentValue)=>{
-    //   return accumulator + currentValue;
-    // }, 0);
-    // console.log(sum);
+    this.cuttingArray[b][c] = Number(a);
   }
-  addNew(){
-    this.color.push(this.colorName);
-    this.size.push(this.sizeName);
-    // console.log(this.color);
-    // console.log(this.size);
-    this.clear();
+  addSize(s){
+    this.size.push(s);
+  
+  }
+  addColor(c){
+    this.color.push(c);
+ 
   }
   clear(){
     this.colorName = '';
     this.sizeName = null;
   }
-
   deleteColor(valueToRemove){
   //this.color = this.color.filter(item => item !== valueToRemove)
   this.color = [];
@@ -78,10 +81,18 @@ export class CuttingProgramComponent implements OnInit {
     this.size = [];
     }
   onSubmit(){
+    this.rowSum = [];
+    this.columnSum = [];
     this.cut.referenceId = this.CP.currentCutting.referenceId;
     this.cut.styleCode = this.CP.currentCutting.styleCode;
+    this.cut.remarks = this.CP.currentCutting.remarks;
     for (let k = 0; k < this.color.length; k++) {
+      let row = 0;
+      // let col = 0;
       for (let l = 0; l < this.size.length; l++) {
+        // col = col + this.cuttingArray[l][k];
+        row = row +this.cuttingArray[k][l];
+
         this.cut.cutting.push({
           size: this.size[l],
           color: this.color[k],
@@ -89,11 +100,21 @@ export class CuttingProgramComponent implements OnInit {
         })
         
       }
+      // this.columnSum.push(col);
+      this.rowSum.push(row);
     }
-   // console.log(this.cut)
-   
-   this.CP.create(this.cut).subscribe(res=>{});
-   this.clearEverything();
+    for (let k = 0; k < this.size.length; k++) {
+      let col = 0;
+      for (let l = 0; l < this.color.length; l++) {
+       col = col + this.cuttingArray[l][k]; 
+      }
+      this.columnSum.push(col);
+    }
+    this.CP.create(this.cut).subscribe(res=>{
+    this.showsuccessmessageforsubmitting = true;
+    setTimeout(() => this.showsuccessmessageforsubmitting = false, 3000);
+    this.clearEverything();
+   });
   }
   //GET ALL REFERENCES NUMBERS FROM DATABASE
   getAllreference(){
@@ -147,8 +168,44 @@ export class CuttingProgramComponent implements OnInit {
     // }
     this.size = [];
     this.color = [];
-    this.cut.cutting = []
+    this.cut.cutting = [];
+    this.CP.currentCutting.remarks = '';
   }
+    //PDF GENERATOR FUNCTION
+  public reportPrint() {
+      this.reportHeading =true;
+      this.reportMiddlePart = false;
+      const data = document.getElementById('content');
+      data.style.display = 'block';
+      html2canvas(data).then(canvas => {
+        const imgWidth = 180;
+        const pageHeight = 500;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        let heightLeft = imgHeight;
+  
+        const contentDataURL = canvas.toDataURL('image/png');
+       // var doc = new jspdf('p', 'mm');
+        const doc =  new jspdf('p', 'mm', 'a4');
+        let position = 5;
+        let k = 1;
+        doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      //  doc.setPage(k);
+        while (heightLeft >= 0) {
+          position = heightLeft - imgHeight;
+          doc.addPage();
+          doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+          k++;
+        //  doc.setPage(k);
+        }
+        const blob = doc.output('blob');
+        window.open(URL.createObjectURL(blob));
+        data.style.display = 'none';
+      });
+  }
+
+    
   }
 
 
