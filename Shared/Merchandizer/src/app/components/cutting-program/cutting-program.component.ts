@@ -55,27 +55,31 @@ export class CuttingProgramComponent implements OnInit {
     //
     
   }
-
-
+  //ASSIGNING VALUES TO MATRIX POSITION
   catch(a,b,c){
     this.cuttingArray[b][c] = Number(a);
   }
+  //ADDING NEW SIZE INTO THE ARRAY
   addSize(s){
     this.size.push(s);
   
   }
+  //ADDING NEW COLOR INTO THE ARRAY
   addColor(c){
     this.color.push(c);
  
   }
+  //CLEARING OUT THE SIZE AND COLOR FIELDS AFTER INPUT
   clear(){
     this.colorName = '';
     this.sizeName = null;
   }
+  //DELETING A GIVEN INPUT FROM THE ARRAY
   deleteColor(valueToRemove){
   //this.color = this.color.filter(item => item !== valueToRemove)
   this.color = [];
   }
+  //DELETING A GIVEN INPUT FROM THE ARRAY
   deleteSize(valueToRemove){
    // this.size = this.size.filter(item => item !== valueToRemove)
     this.size = [];
@@ -112,8 +116,8 @@ export class CuttingProgramComponent implements OnInit {
     }
     this.CP.create(this.cut).subscribe(res=>{
     this.showsuccessmessageforsubmitting = true;
-    setTimeout(() => this.showsuccessmessageforsubmitting = false, 3000);
-    this.clearEverything();
+    setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
+    // this.clearEverything();
    });
   }
   //GET ALL REFERENCES NUMBERS FROM DATABASE
@@ -127,7 +131,7 @@ export class CuttingProgramComponent implements OnInit {
       }
     )
   }
- //GET ALL BUYERS DETAIL FROM DATABASE
+ //GET ALL BUYER DETAILS FROM DATABASE
   getAllBuyersList(){
       this.Bs.getAllBuyers()
       .subscribe(
@@ -135,11 +139,14 @@ export class CuttingProgramComponent implements OnInit {
            this.buyerinfo = data;
          });
   }
+  //UPON SELECTING THE BUYER, ALL THE ITEMS REGARDING THAT BUYER IS FETCHED
   OnBuyerSelection(b){
     var marvel = this.buyerOrderReference.filter(hero => hero.buyerCode == b);
     this.AllReference = marvel;
+    // console.log(marvel)
     this.tempo = [];
   }
+  //UPON SELECTING THE REFERENCE, ALL THE ITEMS REGARDING THAT BUYER IS FETCHED
   OnReferenceIdSelection(r){
     this.CP.currentCutting.referenceId = r;
     var gotham = this.buyerOrderReference.filter(hero => hero.referenceId == r);
@@ -151,12 +158,14 @@ export class CuttingProgramComponent implements OnInit {
     }
 
   }
+  //UPON SELECTING THE STYLECODE, ALL THE ITEMS REGARDING THAT BUYER IS FETCHED
   OnStyleCodeSelection(s){
     this.CP.currentCutting.styleCode = s;
     var marvel = this.tempo.filter(hero=> hero.styleCode == s);
     this.temp2 = marvel;
     //console.log(this.temp2);
   }
+  //THIS WILL CLEAR ALL THE INPUT FIELDS AND ARRAYS
   clearEverything(){
     // for (let i = 0; i < 1000; i++) {
     //   this.cuttingArray[i] = [];
@@ -170,8 +179,10 @@ export class CuttingProgramComponent implements OnInit {
     this.color = [];
     this.cut.cutting = [];
     this.CP.currentCutting.remarks = '';
+    this.columnSum =[];
+    this.rowSum = [];
   }
-    //PDF GENERATOR FUNCTION
+  //PDF GENERATOR FUNCTION
   public reportPrint() {
       this.reportHeading =true;
       this.reportMiddlePart = false;

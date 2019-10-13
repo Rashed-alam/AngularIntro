@@ -7,7 +7,6 @@ router.post('/new/:referenceId/:styleCode', (req, res, next) => {
     CuttingSchema.findOne({ 'referenceId': req.params.referenceId, 'styleCode': req.params.styleCode }).then(function(a) {
         if (a == null) {
             CuttingSchema.create(req.body).then(function(a) {
-                // console.log(a);
                 res.send(a);
 
             }).catch(next);
@@ -39,6 +38,17 @@ router.post('/new/:referenceId/:styleCode', (req, res, next) => {
         }
     });
 });
+
+//GET
+//fetching the list of everything from database
+router.get('/everything', (req, res, next) => {
+    CuttingSchema.find({}).then(function(a) {
+        res.send(a);
+    }).catch(next);
+});
+
+
+
 
 
 

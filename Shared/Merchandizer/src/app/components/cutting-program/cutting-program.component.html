@@ -1,9 +1,9 @@
 <div class="container">
     <div class="card">
-        <div class="card-header">
+        <!-- <div class="card-header">
             <h5 style="text-align: center">Abloom Design Limited</h5>
-        </div>
-        <div class="card-body" id="content">
+        </div> -->
+        <div class="card-body" id="content" style="margin-top:-1rem;">
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
@@ -24,8 +24,8 @@
                             <tr>
                                 <td>
                                     <div class="row">
-                                        <div class="col">Buyer Name:</div>
-                                        <div class="col">
+                                        <div class="col-4">Buyer:</div>
+                                        <div class="col-8">
                                             <select name="" id="" style="width: 100%" (change)="OnBuyerSelection($event.target.value)">
                                                         <option selected></option>
                                                         <option value="{{a.buyerCode}}" *ngFor="let a of buyerinfo">{{a.name}}</option>
@@ -35,8 +35,8 @@
                                 </td>
                                 <td>
                                     <div class="row">
-                                        <div class="col">Ref. No:</div>
-                                        <div class="col">
+                                        <div class="col-4">Ref:</div>
+                                        <div class="col-8">
                                             <select name="" id="" style="width: 100%" (change)="OnReferenceIdSelection($event.target.value)">
                                                 <option value="" selected></option>
                                                 <option value="{{a.referenceId}}" *ngFor="let a of AllReference">{{a.referenceId}}</option>
@@ -55,8 +55,8 @@
                             <tr>
                                 <td>
                                     <div class="row">
-                                        <div class="col">Style Code:</div>
-                                        <div class="col">
+                                        <div class="col-4">Style Code:</div>
+                                        <div class="col-8">
                                             <select name="" id="" style="width: 100%" (change)="OnStyleCodeSelection($event.target.value)">
                                                 <option value="" selected></option>
                                                 <option value="{{a.styleCode}}" *ngFor="let a of tempo">{{a.styleCode}}</option>
@@ -109,7 +109,7 @@
                                         <input type="text" #colorName required>
                                     </div>
                                     <div class="col">
-                                        <button type="button" class="btn btn-danger mb-3" (click)="addColor(colorName.value);colorName.value=''">Add</button>
+                                        <button type="button" class="btn btn-secondary btn-sm" (click)="addColor(colorName.value);colorName.value=''">Add</button>
                                     </div>
                                     <div class="col" *ngFor="let a of color">
                                         <li>
@@ -123,7 +123,7 @@
                                         <input type="number" #sizeName required>
                                     </div>
                                     <div class="col">
-                                        <button type="button" class="btn btn-danger" (click)="addSize(sizeName.value);sizeName.value=''">Add</button>
+                                        <button type="button" class="btn btn-secondary btn-sm" (click)="addSize(sizeName.value);sizeName.value=''">Add</button>
                                     </div>
                                     <div class="col" *ngFor="let a of size">
                                         <li>
@@ -131,18 +131,7 @@
                                         </li>
                                     </div>
                                 </div>
-                                <!-- <div class="row">
-                                    <div class="col"><label for="">Quantity:</label></div>
-                                    <div class="col"><input type="number"></div>
-                                </div> -->
-                                <!-- <div class="container">
-                                    <div class="row justify-content-md-center">
-                                        <div class="col-md-auto">
-                                            <button type="button" class="btn btn-primary" (click)="addNew()">Add</button>
-                                            <button type="button" class="btn btn-danger" (click)="clear()">Clear</button>
-                                        </div>
-                                    </div>
-                                </div> -->
+
                             </div>
                         </div>
                     </div>
@@ -217,6 +206,8 @@
                     <div class="col-md-auto">
                         <button type="button" class="btn btn-primary" (click)="onSubmit(this.cutting)">Submit</button>
                         <button type="button" class="btn btn-warning" (click)="reportPrint()">Report</button>
+                        <button type="button" class="btn btn-success" (click)="clearEverything()">Clear</button>
+
                     </div>
 
                 </div>
