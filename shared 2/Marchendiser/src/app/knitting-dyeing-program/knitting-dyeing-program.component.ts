@@ -3,7 +3,9 @@ import { knittingTypeModel } from './../models/knittingType.model';
 import { KnittingNDyeingService } from './../services/knitting-ndyeing.service';
 import { FabricPriceServiceService } from 'src/app/services/fabric-price-service.service';
 import { Component, OnInit } from '@angular/core';
-
+import * as jspdf from 'jspdf'; 
+import  html2canvas from 'html2canvas';  
+ 
 
 @Component({
   selector: 'app-knitting-dyeing-program',
@@ -186,6 +188,42 @@ export class KnittingDyeingProgramComponent implements OnInit {
     this.ttl = [];
     this.ttlCol = [];
   }
+     //PDF GENERATOR FUNCTION
+     public reportPrint() {
+      // this.reportHeading =true;
+      // this.reportMiddlePart = false;
+      const data = document.getElementById('content');
+      data.style.display = 'block';
+      html2canvas(data).then(canvas => {
+        const imgWidth = 180;
+        const pageHeight = 500;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        let heightLeft = imgHeight;
+  
+        const contentDataURL = canvas.toDataURL('image/png');
+       // var doc = new jspdf('p', 'mm');
+        const doc =  new jspdf('p', 'mm', 'a4');
+        let position = 5;
+        let k = 1;
+        doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      //  doc.setPage(k);
+        while (heightLeft >= 0) {
+          position = heightLeft - imgHeight;
+          doc.addPage();
+          doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+          k++;
+        //  doc.setPage(k);
+        }
+        const blob = doc.output('blob');
+        window.open(URL.createObjectURL(blob));
+        data.style.display = 'none';
+      });
+  }
+
+    
+  
 }
 
 

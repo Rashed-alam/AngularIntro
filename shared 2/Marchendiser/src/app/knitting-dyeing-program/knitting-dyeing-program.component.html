@@ -160,41 +160,9 @@
         </div>
 
     </div>
-    <!-- <div class="row">
-            <div class="col-2">
-            
-                    <div class="row-1">
-                            <button>Create Table</button>
-                    </div>
-                   
-                </div>
-    </div> -->
 
 </div>
-<div class="container">
-    <!-- <table>
-        <template ngFor #lesson [ngForOf]="knittingType" #i="index">
-          <template ngFor #point [ngForOf]="color" #j="index">
-          <tr>{{point}}</tr>
-          </template>
-        </template>
-        </table> -->
-    <!-- <table>
-                <thead>
-                      
-                            <th></th>
-                            <th ng-repeat="let k of knittingType; let l = index "></th>
-                            <tr>
-
-                                    {{k}}
-                         </tr>
-                     </thead>
-            <ng-container *ngFor="let lesson of knittingType; let i = index">
-              <ng-container *ngFor="let point of color; let j = index">
-                <tr>{{point}}</tr>
-              </ng-container>
-            </ng-container>
-        </table> -->
+<div class="container"  id="content">
         <div class="row">
             <div class="col-10 pr-0">
                 <table class="table table-bordered mt-3">
@@ -224,6 +192,7 @@
                         </tr>
                      
                         <button (click)="showArray(this.arr)">Submit</button>
+                       
                         <button (click)="clear()">clear</button>
                     </tbody>
                 </table>
@@ -245,7 +214,5 @@
                 </table>
             </div>
         </div>
-     
-  
-
 </div>
+<button (click)="reportPrint()">Report</button>
