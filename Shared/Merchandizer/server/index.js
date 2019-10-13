@@ -14,6 +14,7 @@ const uom = require('./routes/uomApi'); //importing the routes from api file
 const size = require('./routes/SizeApi');
 const Currency = require('./routes/currencyapi');
 const FabricPriceEntry = require('./routes/fabric-price-entry-Api');
+const CuttingProgram = require('./routes/cuttingApi');
 //setting up of express app 
 const app = express();
 
@@ -48,6 +49,7 @@ app.use('/api/v1/MachineCapacity', machineCapacity);
 app.use('/api/v1/sizelist', size);
 app.use('/api/v1/currency', Currency);
 app.use('/api/v1/FabricPriceEntry', FabricPriceEntry);
+app.use('/api/v1/Cutting', CuttingProgram);
 
 //this is for error handling[middleware]
 app.use(function(err, req, res, next) {

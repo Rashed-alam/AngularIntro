@@ -66,7 +66,7 @@
                                 <td>
                                     <div class="row">
                                         <div class="col">Order Qty:</div>
-                                        <div class="col" *ngFor="let a of temp2">{{a.fabricWeight}} kg/per dozen</div>
+                                        <div class="col" *ngFor="let a of temp2">{{a.fabricWeight}} kg</div>
                                     </div>
                                 </td>
                                 <td>
@@ -101,37 +101,44 @@
                     <div class="col-md-auto">
                         <div class="card">
                             <div class="card-body">
+
                                 <div class="row">
                                     <div class="col"><label for="">Color Name:</label></div>
                                     <div class="col">
-                                        <select name="" id=""><option value=""></option></select>
+                                        <input type="text" name="colorName" [(ngModel)]="colorName" autocomplete="on" required>
+                                    </div>
+                                    <div class="col" *ngFor="let a of color">
+                                        <li>
+                                            {{a}} <button type="button" (click)="deleteColor(a)">X</button>
+                                        </li>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col"><label for="">Size:</label></div>
-                                    <div class="col"><input type="number"></div>
+                                    <div class="col">
+                                        <input type="number" name="sizeName" [(ngModel)]="sizeName" autocomplete="on" required>
+                                    </div>
+                                    <div class="col" *ngFor="let a of size">
+                                        <li>
+                                            {{a}}<button type="button" (click)="deleteSize(a)">X</button>
+                                        </li>
+                                    </div>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col"><label for="">Quantity:</label></div>
                                     <div class="col"><input type="number"></div>
+                                </div> -->
+                                <div class="container">
+                                    <div class="row justify-content-md-center">
+                                        <div class="col-md-auto">
+                                            <button type="button" class="btn btn-primary" (click)="addNew()">Add</button>
+                                            <button type="button" class="btn btn-danger" (click)="clear()">Clear</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-4 pl-5"><button type="button">Report</button></div>
-                                    <div class="col-4 pl-5"><button type="button">Save</button></div>
-                                    <div class="col-4 pl-5"><button type="button">Clear</button></div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-2 pl-0">Remarks</div>
-                    <div class="col-8 pl-5"><input type="text" style="width: 100%"></div>
                 </div>
             </div>
             <br>
@@ -142,25 +149,38 @@
                             <tr>
                                 <th scope="col">Color/Size</th>
                                 <th *ngFor="let a of size">{{a}}</th>
+                                <th>TTL</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let b of color,index as i">
                                 <td>{{b}}</td>
                                 <td *ngFor="let a of size,index as j">
-                                    <input type="text" placeholder="{{i}},{{j}}" (keyup)="catch($event.target.value,i,j)">
+                                    <input type="text" placeholder="kg" (keyup)="catch($event.target.value,i,j)">
                                 </td>
+                                <td></td>
                             </tr>
 
                         </tbody>
                     </table>
-                    <p>This is a Remark <i class="fas fa-edit"></i></p>
+                    <div class="row">
+                        <div class="col-2">Remark:</div>
+                        <div class="col-10"><input type="text" style="width: 100%;"></div>
+                    </div>
                 </div>
             </div>
 
 
         </div>
         <div class="card-footer">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <button type="button" class="btn btn-primary" (click)="onSubmit(this.cutting)">Submit</button>
 
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
