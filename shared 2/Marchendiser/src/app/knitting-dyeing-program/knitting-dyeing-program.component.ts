@@ -149,7 +149,6 @@ export class KnittingDyeingProgramComponent implements OnInit {
     this.knit.referenceId = this.ref;
     this.knit.styleCode = this.stl;
     for (let k = 0; k < this.color.length; k++) {
-      this.sum = 0;
       let r = 0;
       for (let l = 0; l < this.knittingType.length; l++) {
         r = r + parseInt(arr[k][l]);
@@ -161,10 +160,6 @@ export class KnittingDyeingProgramComponent implements OnInit {
 
       }
       this.ttl.push(r);
-      console.log(this.ttl);
-      console.log(this.ttlCol);
-
-
     }
 
     for (let k = 0; k < this.knittingType.length; k++) {
@@ -173,13 +168,9 @@ export class KnittingDyeingProgramComponent implements OnInit {
         m = m + parseInt(arr[l][k]);
       }
       this.ttlCol.push(m);
-      console.log(this.ttlCol);
     }
     this.KD.getdata(this.knit).subscribe(res => {
     });
-
-    console.log(this.knit);
-
   }
   clear() {
     this.color = [];
