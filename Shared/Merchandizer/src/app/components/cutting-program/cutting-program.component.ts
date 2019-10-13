@@ -5,7 +5,6 @@ import { from } from 'rxjs';
 import { Buyers } from 'src/app/models/buyers.model';
 import { BuyersService } from 'src/app/services/buyers.service';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { cuttingModel } from 'src/app/models/cutting.model';
 import { CuttingService } from 'src/app/services/cutting.service';
 import * as jspdf from 'jspdf'; 
 import  html2canvas from 'html2canvas';  
