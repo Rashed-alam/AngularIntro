@@ -118,7 +118,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
     //  console.log(l);
     this.knittingType.push(l);
 
- //  this.knittingType = ['k', 'b', 'c', 'ttl'];
+    //  this.knittingType = ['k', 'b', 'c', 'ttl'];
     // console.log(this.knittingType);
 
   }
@@ -141,19 +141,16 @@ export class KnittingDyeingProgramComponent implements OnInit {
   }
 
   showArray(arr) {
-    this.ttl=[];
-    this.ttlCol=[];
+    this.ttl = [];
+    this.ttlCol = [];
 
     this.knit.referenceId = this.ref;
     this.knit.styleCode = this.stl;
     for (let k = 0; k < this.color.length; k++) {
-      let m=0;
-      this.sum=0;
+      this.sum = 0;
       let r = 0;
       for (let l = 0; l < this.knittingType.length; l++) {
-       r = r + parseInt(arr[k][l]);
-        m = m+ parseInt (arr[l][k]);
-        console.log(arr[k][l]);
+        r = r + parseInt(arr[k][l]);
         this.knit.kintting.push({
           knittingType: this.knittingType[l],
           color: this.color[k],
@@ -161,12 +158,20 @@ export class KnittingDyeingProgramComponent implements OnInit {
         })
 
       }
-      this.ttlCol.push(m);
       this.ttl.push(r);
       console.log(this.ttl);
       console.log(this.ttlCol);
 
 
+    }
+
+    for (let k = 0; k < this.knittingType.length; k++) {
+      let m = 0;
+      for (let l = 0; l < this.color.length; l++) {
+        m = m + parseInt(arr[l][k]);
+      }
+      this.ttlCol.push(m);
+      console.log(this.ttlCol);
     }
     this.KD.getdata(this.knit).subscribe(res => {
     });
@@ -178,6 +183,8 @@ export class KnittingDyeingProgramComponent implements OnInit {
     this.color = [];
     this.knittingType = [];
     this.knit.kintting = [];
+    this.ttl = [];
+    this.ttlCol = [];
   }
 }
 

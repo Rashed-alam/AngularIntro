@@ -6,3 +6,6 @@ select{
 button{
     font-size: 12px;
 }
+td{
+    height: 60px;
+}
