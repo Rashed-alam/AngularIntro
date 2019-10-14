@@ -22,9 +22,13 @@ export class CuttingService {
         { color:'',  size: null, weight: null}
     ]
   }
-
+//POST 
   create(m: any): Observable<cuttingModel> {
-    
     return this.httpcall.post<cuttingModel>(this.url1+'/new/'+m.referenceId+'/'+m.styleCode, m , headerOption);
   }
+
+//GET everything
+getEverything(){
+  return this.httpcall.get(this.url1+'/everything',headerOption);
+}
 }

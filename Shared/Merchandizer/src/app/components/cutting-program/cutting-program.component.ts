@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FabricPriceServiceService } from 'src/app/services/fabric-price-service.service';
-import { FabricPriceModel } from 'src/app/models/fabric-price.model';
 import { from } from 'rxjs';
-import { Buyers } from 'src/app/models/buyers.model';
 import { BuyersService } from 'src/app/services/buyers.service';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { CuttingService } from 'src/app/services/cutting.service';
@@ -34,7 +32,9 @@ export class CuttingProgramComponent implements OnInit {
   showsuccessmessageforsubmitting: boolean = false;
   row = 0;
   col= 0;
-
+  everything;
+  temp3 : any = [];
+  decoyEverything: any = [];
   
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
@@ -43,7 +43,7 @@ export class CuttingProgramComponent implements OnInit {
   ngOnInit() {
     this.getAllreference();
     this.getAllBuyersList();
-   
+    this.getEverything();
     // 
     for (let i = 0; i < 50; i++) {
       this.cuttingArray[i] = [];
@@ -91,11 +91,8 @@ export class CuttingProgramComponent implements OnInit {
     this.cut.remarks = this.CP.currentCutting.remarks;
     for (let k = 0; k < this.color.length; k++) {
       let row = 0;
-      // let col = 0;
       for (let l = 0; l < this.size.length; l++) {
-        // col = col + this.cuttingArray[l][k];
         row = row +this.cuttingArray[k][l];
-
         this.cut.cutting.push({
           size: this.size[l],
           color: this.color[k],
@@ -103,7 +100,6 @@ export class CuttingProgramComponent implements OnInit {
         })
         
       }
-      // this.columnSum.push(col);
       this.rowSum.push(row);
     }
     for (let k = 0; k < this.size.length; k++) {
@@ -150,6 +146,7 @@ export class CuttingProgramComponent implements OnInit {
     this.CP.currentCutting.referenceId = r;
     var gotham = this.buyerOrderReference.filter(hero => hero.referenceId == r);
     this.AllDetails = gotham;
+    
     for(let i =0; i<this.AllDetails.length;i++){
       for(let j =0; j<this.AllDetails[i].fabricPriceInformation.length;j++){
          this.tempo.push(this.AllDetails[i].fabricPriceInformation[j]); 
@@ -180,6 +177,9 @@ export class CuttingProgramComponent implements OnInit {
     this.CP.currentCutting.remarks = '';
     this.columnSum =[];
     this.rowSum = [];
+    // this.CP.currentCutting.referenceId='';
+    // this.CP.currentCutting.styleCode = '';
+    // this.CP.currentCutting.remarks = '';
   }
   //PDF GENERATOR FUNCTION
   public reportPrint() {
@@ -215,9 +215,20 @@ export class CuttingProgramComponent implements OnInit {
       });
   }
 
-    
+  //GET EVERYTHING FROM DATABASE
+  getEverything(){
+    this.CP.getEverything()
+    .subscribe(
+      (data)=>{
+        this.everything = data;
+        this.decoyEverything = data;
+        // console.log(data)
+      });
   }
-
+    
+//GET ITEM BY REFERENCE SELECTION DROPDWON
+  
+}
 
 
   
