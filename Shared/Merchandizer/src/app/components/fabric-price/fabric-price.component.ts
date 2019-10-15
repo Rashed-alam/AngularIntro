@@ -43,7 +43,7 @@ export class FabricPriceComponent implements OnInit {
   defaultCurrency: any = "USD";
   defaultUnitofMeasurement : any = "cm";
   name: any;
-   buyerCode:any;
+  buyerCode:any;
 
   constructor(public FabPriService: FabricPriceServiceService,
               private DP: DatePipe,
@@ -94,9 +94,9 @@ export class FabricPriceComponent implements OnInit {
     this.FabPriService.currentEntry.buyerName = this.buyerAddressInfo[0].name;
    this.FabPriService.currentEntry.fabricPriceInformation[0].unitOfMeasurement = this.defaultUnitofMeasurement;
    this.FabPriService.currentEntry.fabricPriceInformation[0].currency = this.defaultCurrency;
-   this.FabPriService.currentEntry.referenceId = entry.referenceId.toUpperCase();
-  this.FabPriService.currentEntry.fabricPriceInformation[0].styleCode = entry.fabricPriceInformation[0].styleCode.toUpperCase();
-  this.FabPriService.createEntry(entry)
+     this.FabPriService.currentEntry.referenceId = entry.referenceId.toUpperCase();
+    this.FabPriService.currentEntry.fabricPriceInformation[0].styleCode = entry.fabricPriceInformation[0].styleCode.toUpperCase();
+    this.FabPriService.createEntry(entry)
   .subscribe(
     res => {
       this.showsuccessmessageforsubmitting = true;

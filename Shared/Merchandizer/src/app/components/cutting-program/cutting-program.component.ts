@@ -35,6 +35,9 @@ export class CuttingProgramComponent implements OnInit {
   everything;
   temp3 : any = [];
   decoyEverything: any = [];
+  temp4: any = [];
+  temp5: any = [];
+
   
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
@@ -45,9 +48,9 @@ export class CuttingProgramComponent implements OnInit {
     this.getAllBuyersList();
     this.getEverything();
     // 
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 10; i++) {
       this.cuttingArray[i] = [];
-      for (let j = 0; j < 50; j++) {
+      for (let j = 0; j < 10; j++) {
         this.cuttingArray[i][j] = 0;
       }
     }
@@ -61,7 +64,6 @@ export class CuttingProgramComponent implements OnInit {
   //ADDING NEW SIZE INTO THE ARRAY
   addSize(s){
     this.size.push(s);
-  
   }
   //ADDING NEW COLOR INTO THE ARRAY
   addColor(c){
@@ -75,33 +77,35 @@ export class CuttingProgramComponent implements OnInit {
   }
   //DELETING A GIVEN INPUT FROM THE ARRAY
   deleteColor(valueToRemove){
-  //this.color = this.color.filter(item => item !== valueToRemove)
   this.color = [];
   }
   //DELETING A GIVEN INPUT FROM THE ARRAY
   deleteSize(valueToRemove){
-   // this.size = this.size.filter(item => item !== valueToRemove)
     this.size = [];
     }
   onSubmit(){
-    this.rowSum = [];
+    this.rowSum = []; 
     this.columnSum = [];
     this.cut.referenceId = this.CP.currentCutting.referenceId;
     this.cut.styleCode = this.CP.currentCutting.styleCode;
     this.cut.remarks = this.CP.currentCutting.remarks;
+
+    //for row summing
     for (let k = 0; k < this.color.length; k++) {
       let row = 0;
       for (let l = 0; l < this.size.length; l++) {
-        row = row +this.cuttingArray[k][l];
+        row = row + this.cuttingArray[k][l];
+
         this.cut.cutting.push({
           size: this.size[l],
           color: this.color[k],
           weight:this.cuttingArray[k][l]
-        })
+        });
         
       }
       this.rowSum.push(row);
     }
+    //for column summing
     for (let k = 0; k < this.size.length; k++) {
       let col = 0;
       for (let l = 0; l < this.color.length; l++) {
@@ -109,10 +113,11 @@ export class CuttingProgramComponent implements OnInit {
       }
       this.columnSum.push(col);
     }
+
+    //send the list to service
     this.CP.create(this.cut).subscribe(res=>{
-    this.showsuccessmessageforsubmitting = true;
-    setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
-    // this.clearEverything();
+      this.showsuccessmessageforsubmitting = true;
+      setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
    });
   }
   //GET ALL REFERENCES NUMBERS FROM DATABASE
@@ -214,7 +219,6 @@ export class CuttingProgramComponent implements OnInit {
         data.style.display = 'none';
       });
   }
-
   //GET EVERYTHING FROM DATABASE
   getEverything(){
     this.CP.getEverything()
@@ -225,9 +229,20 @@ export class CuttingProgramComponent implements OnInit {
         // console.log(data)
       });
   }
-    
 //GET ITEM BY REFERENCE SELECTION DROPDWON
-  
+  referenceSelected(r){
+    var gotham = this.decoyEverything.filter(hero => hero.referenceId == r);
+    this.temp3 = gotham;
+    console.log(gotham);
+
+    for(let i =0; i<this.temp3.length;i++){
+
+      for(let j =0; j<this.temp3[i].cutting.length;j++){
+         this.temp4.push(this.temp3[i].cutting[j]);
+      }
+    }
+
+}
 }
 
 

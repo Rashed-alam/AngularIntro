@@ -28,7 +28,7 @@ export class CuttingService {
   }
 
 //GET everything
-getEverything(){
+  getEverything(){
   return this.httpcall.get(this.url1+'/everything',headerOption);
-}
+  }
 }

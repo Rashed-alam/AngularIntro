@@ -67,7 +67,7 @@
                                 <td>
                                     <div class="row">
                                         <div class="col">Order Qty:</div>
-                                        <div class="col" *ngFor="let a of temp2"> kg</div>
+                                        <div class="col"> kg</div>
                                     </div>
                                 </td>
                                 <td>
@@ -147,15 +147,17 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Color/Size</th>
+                                        <!-- SIZE COLUMNS -->
                                         <th *ngFor="let a of size">{{a}}</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <!-- CCOLOR ROW -->
                                     <tr *ngFor="let b of color,index as i">
                                         <td>
                                             {{b}}
                                         </td>
+
                                         <td *ngFor="let a of size,index as j">
                                             <input type="number" placeholder="kg" (keyup)="catch($event.target.value,i,j)">
                                         </td>
@@ -225,22 +227,33 @@
                     <h4>Reference Id:</h4>
                 </div>
                 <div class="col">
-                    <select name="" id="">
+                    <select name="" id="" (change)="referenceSelected($event.target.value)">
                         <option selected></option>
-                        <option value="{{a.referenceId}}" *ngFor="let a of everything">{{a.referenceId}}</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <h4>Style Code:</h4>
-                </div>
-                <div class="col">
-                    <select name="" id="">
-                        <option value=""></option>
+                        <option value="{{a.referenceId}}" *ngFor="let a of everything">{{a.referenceId}}---{{a.styleCode}}</option>
                     </select>
                 </div>
             </div>
         </div>
-        <div class="card-body"></div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Color/Size</th>
+                        <th *ngFor="let a of temp4">{{a.size}}</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr *ngFor="let b of temp4">
+                        <td>{{b.color}}</td>
+                        <td *ngFor="let a of temp4">
+                            {{a.weight}}
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
         <div class="card-footer"></div>
     </div>
 </div>
