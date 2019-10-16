@@ -3,6 +3,6 @@ export class cuttingModel{
     styleCode : string;
     remarks: string;
     cutting:[
-        { color:string;  size: number; weight:number;}
+        { color:string;  size: number; weight:number;row:number;col:number;}
     ]
 }

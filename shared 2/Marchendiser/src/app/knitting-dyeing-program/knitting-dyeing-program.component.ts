@@ -232,9 +232,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
   createNewMatrixForShow(Info) {
     this.acolor=[];
     this.aknittingType=[];
-    
     this.InfoAll = Info.kintting;
-
     for (let i = 0; i < this.InfoAll.length; i++) {
       if (this.acolor.indexOf(this.InfoAll[i].color) === -1) {
         this.acolor.push(this.InfoAll[i].color);
@@ -244,8 +242,6 @@ export class KnittingDyeingProgramComponent implements OnInit {
         this.aknittingType.push(this.InfoAll[i].knittingType);
         this.aknittingType.sort();
       }
-
-
       // console.log(this.InfoAll[i].color);
     }
   //  console.log(this.acolor);
@@ -254,13 +250,14 @@ export class KnittingDyeingProgramComponent implements OnInit {
     //  for (let l = 0; l < this.InfoAll.length; l++) {
           //  if(this.InfoAll[k].row=== k && this.InfoAll[k].col===l){
             //  this.arr1[k][l]=this.InfoAll[k].weight;
-
 this.newarrMake(this.InfoAll[k].weight,this.InfoAll[k].row,this.InfoAll[k].col);
 
     }
     console.log(this.arr1);
 
   }
+
+  
   newarrMake(m,i,j){
     this.arr1[i][j]=m;
   }

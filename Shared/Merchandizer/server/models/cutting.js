@@ -28,6 +28,14 @@ const CuttingSchema = new mongoose.Schema({
             type: Number,
             default: null
         },
+        row: {
+            type: Number,
+            default: null
+        },
+        col: {
+            type: Number,
+            default: null
+        }
 
     }]
 

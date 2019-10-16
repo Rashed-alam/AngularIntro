@@ -19,7 +19,7 @@ export class CuttingService {
     styleCode : '',
     remarks:'',
     cutting:[
-        { color:'',  size: null, weight: null}
+        { color:'',  size: null, weight: null,row:null, col:null}
     ]
   }
 //POST 
@@ -27,8 +27,12 @@ export class CuttingService {
     return this.httpcall.post<cuttingModel>(this.url1+'/new/'+m.referenceId+'/'+m.styleCode, m , headerOption);
   }
 
-//GET everything
+//GET everything FROM THE DATABASE
   getEverything(){
   return this.httpcall.get(this.url1+'/everything',headerOption);
+  }
+//GET A PARTICULAR DATA BY REFERENCE ID AND STYLE CODE
+  getCertainData(m: any): Observable<cuttingModel> {
+    return this.httpcall.post<cuttingModel>(this.url1+'/all/'+m.referenceId+'/'+m.styleCode, m , headerOption);
   }
 }

@@ -242,6 +242,7 @@
 </div>
 <br>
 <hr>
+<!-- REPORT SECTION -->
 <div class="container">
     <div class="card">
         <div class="card-header">
@@ -250,10 +251,22 @@
                     <h4>Reference Id:</h4>
                 </div>
                 <div class="col">
-                    <select name="" id="" (change)="referenceSelected($event.target.value)">
+                    <select name="" id="" (change)="referenceSelected($event.target.value)" #reference ngmodel>
                             <option selected></option>
-                            <option value="{{a.referenceId}}" *ngFor="let a of everything">{{a.referenceId}}---{{a.styleCode}}</option>
+                            <option value="{{a.referenceId}}" *ngFor="let a of everything">{{a.referenceId}}</option>
                         </select>
+                </div>
+                <div class="col">
+                    <h4>Style Code:</h4>
+                </div>
+                <div class="col">
+                    <select name="" id="" (change)="referenceSelected($event.target.value)" #styleCode ngmodel>
+                                <option selected></option>
+                                <option value="{{a}}" *ngFor="let a of temp4">{{a}}</option>
+                     </select>
+                </div>
+                <div class="col">
+                    <button type="button" (click)="sendforReport(reference.value,styleCode.value)">Search</button>
                 </div>
             </div>
         </div>
@@ -262,23 +275,27 @@
                 <thead>
                     <tr>
                         <th>Color/Size</th>
-                        <th *ngFor="let a of temp4">{{a.size}}</th>
-
+                        <th *ngFor="let a of tempsize;let i = index">{{a}}</th>
+                        <th>TTL</th>
                     </tr>
-
-
                 </thead>
                 <tbody>
-                    <tr *ngFor="let b of temp4">
-                        <td>{{b.color}}</td>
-                        <td *ngFor="let a of temp4">
-                            {{a.weight}}
+                    <tr *ngFor="let b of tempcolor;let j = index">
+                        <td>{{b}}</td>
+                        <td *ngFor="let a of tempsize;let k = index">
+                            <input type="text" value="{{reportArray[j][k]}}">
                         </td>
+                    </tr>
+                    <tr>
+                        <td>TTL</td>
+                        <td *ngFor="let l of columnSum">{{l}}</td>
                     </tr>
 
                 </tbody>
             </table>
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer">
+
+        </div>
     </div>
 </div>

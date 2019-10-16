@@ -34,7 +34,6 @@ postData(m): Observable<knittingNdyeing> {
   return this.httpcall.post<knittingNdyeing>(this.url1+'/new/'+ m.referenceId+'/'+ m.styleCode, m , headerOption);
 }
 getReviewdata(a): Observable<any> {
-  //console.log('service' + a);
   return this.httpcall.post<any>(this.url1 + '/all/' + a.referenceId + '/' + a.styleCode, headerOption);
 }
 }
