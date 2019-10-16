@@ -143,7 +143,7 @@ export class CuttingProgramComponent implements OnInit {
       }
     )
   }
- //GET ALL BUYER DETAILS FROM DATABASE
+ //GET ALL BUYER DETAILS FROM DATABASE 
   getAllBuyersList(){
       this.Bs.getAllBuyers()
       .subscribe(
@@ -175,7 +175,7 @@ export class CuttingProgramComponent implements OnInit {
   OnStyleCodeSelection(s){
     this.CP.currentCutting.styleCode = s;
     var marvel = this.tempo.filter(hero=> hero.styleCode == s);
-    this.temp2 = marvel;
+    this.temp2 = marvel; 
     //console.log(this.temp2);
   }
   //THIS WILL CLEAR ALL THE INPUT FIELDS AND ARRAYS
@@ -244,11 +244,10 @@ export class CuttingProgramComponent implements OnInit {
 //GET ITEM BY REFERENCE SELECTION DROPDWON
   referenceSelected(r){
     var gotham = this.decoyEverything.filter(hero => hero.referenceId == r);
-    this.temp3 = gotham;
+    this.temp3 = gotham; //storing the filtered value into this value named 'temp3'
     // console.log(gotham);
     for(let i =0; i<this.temp3.length;i++){
-         this.temp4.push(this.temp3[i].styleCode);
-      
+         this.temp4.push(this.temp3[i].styleCode); //pushing the filterd value into an array 
     }
     // console.log(this.temp4)
 
@@ -262,13 +261,13 @@ sendforReport(m,n){
   this.CP.getCertainData(l).
     subscribe((data) => {
       this.Info = data;
-      console.log(data)
+      // console.log(data)
        this.createNewMatrixForShow(this.Info);
     });
 }
 //GETS THE ROWS AND COLUMNS FROM DATABASE AND ASSIGNGS THEM INTO ANOTHER 2 DIMENSIONAL MATRIX
 createNewMatrixForShow(a) {
-  console.log(a)
+  // console.log(a)
   this.tempcolor=[];
   this.tempsize=[];
 
@@ -277,19 +276,19 @@ createNewMatrixForShow(a) {
     if (this.tempcolor.indexOf(this.InfoAll[i].color) === -1) {
       this.tempcolor.push(this.InfoAll[i].color);
       this.tempcolor.sort();
-      console.log(this.tempcolor)
+      // console.log(this.tempcolor)
     }
     if (this.tempsize.indexOf(this.InfoAll[i].size) === -1) {
       this.tempsize.push(this.InfoAll[i].size);
       this.tempsize.sort();
-      console.log(this.tempsize)
+      // console.log(this.tempsize)
     }
   }
 
   for (let k = 0; k < this.InfoAll.length; k++) {
     this.newarrMake(this.InfoAll[k].weight,this.InfoAll[k].row,this.InfoAll[k].col);
   }
-  console.log(this.reportArray);
+  // console.log(this.reportArray);
 
 }
 //ASSIGNING VALUES TO ANOTHER 2 DIMENSIONAL MATRIX
