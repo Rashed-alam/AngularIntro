@@ -25,6 +25,8 @@ router.post('/new/:referenceId/:styleCode', (req, res, next) => {
                             knittingType: req.body.kintting[0].knittingType,
                             color: req.body.kintting[0].color,
                             weight: req.body.kintting[0].weight,
+                            row: req.body.kintting[0].row,
+                            col: req.body.kintting[0].col,
                         }],
                     }
                 }, { multi: true },
@@ -39,6 +41,13 @@ router.post('/new/:referenceId/:styleCode', (req, res, next) => {
 
         }
     });
+});
+//get every object
+router.post('/all/:referenceId/:styleCode', (req, res, next) => {
+    knittingNdyeingType.findOne({ 'referenceId': req.params.referenceId,'styleCode': req.params.styleCode }).then(function (a) {
+        res.send(a);
+      // console.log(a.kintting);
+    }).catch(next);
 });
 
 module.exports=router;

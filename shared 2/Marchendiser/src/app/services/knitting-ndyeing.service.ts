@@ -23,12 +23,18 @@ export class KnittingNDyeingService {
     kintting: [{
       knittingType:'',
       color: '',
-      weight:''
+      weight:'',
+      row:null,
+      col:null,
   }]
   }
-getdata(m): Observable<knittingNdyeing> {
+postData(m): Observable<knittingNdyeing> {
   console.log(m);
   //console.log(m.referenceId,m.styleCode);
   return this.httpcall.post<knittingNdyeing>(this.url1+'/new/'+ m.referenceId+'/'+ m.styleCode, m , headerOption);
+}
+getReviewdata(a): Observable<any> {
+  //console.log('service' + a);
+  return this.httpcall.post<any>(this.url1 + '/all/' + a.referenceId + '/' + a.styleCode, headerOption);
 }
 }

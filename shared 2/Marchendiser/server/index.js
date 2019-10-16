@@ -22,6 +22,8 @@ const app = express();
 
 //connecting to mongodb
 mongoose.connect('mongodb://localhost/Project');
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useCreateIndex', true);
 mongoose.Promise = global.Promise;
 
 //this will allow request from any port number or domain

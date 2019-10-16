@@ -25,6 +25,14 @@ const KnittingNdyeingTypeSchema = new mongoose.Schema({
         weight: {
             type: String,
             default:null
+        },
+        row:{
+            type: Number,
+            default:null
+        },
+        col:{
+            type: Number,
+            default:null
         }
     }
 ] 

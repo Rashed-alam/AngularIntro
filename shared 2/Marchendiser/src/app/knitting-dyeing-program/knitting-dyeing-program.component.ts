@@ -3,9 +3,9 @@ import { knittingTypeModel } from './../models/knittingType.model';
 import { KnittingNDyeingService } from './../services/knitting-ndyeing.service';
 import { FabricPriceServiceService } from 'src/app/services/fabric-price-service.service';
 import { Component, OnInit } from '@angular/core';
-import * as jspdf from 'jspdf'; 
-import  html2canvas from 'html2canvas';  
- 
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
+
 
 @Component({
   selector: 'app-knitting-dyeing-program',
@@ -15,35 +15,36 @@ import  html2canvas from 'html2canvas';
 export class KnittingDyeingProgramComponent implements OnInit {
   AllReference: any[];
   fabricReport: any = [];
+  acolor: any = [];
+  aknittingType: any = [];
+  arr1: any[][] = [];
+  InfoAll: any = [];
   buyerinfo: any;
   color: any = [];
   knittingType: any = [];
   AllinfoData: any = [];
   arr: any[][] = [];
-  styleCode: any = [];
+  styleCode2: any = [];
+  styleCode1: any = [];
   ref: any;
+  ref1: any;
   stl: any;
   sum = 0;
   bName: any;
   knit = { kintting: [], referenceId: '', styleCode: ' ' };
+  Info = { kintting: [], referenceId: '', styleCode: ' ' };
   ttl = [];
   ttlCol = [];
-  knittData: knittingNdyeing = {
-    referenceId: '',
-    styleCode: '',
-    kintting: [{
-      knittingType: '',
-      color: '',
-      weight: ''
-    }]
-  }
+
 
   constructor(public KD: KnittingNDyeingService, public Fc: FabricPriceServiceService) { }
   ngOnInit() {
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 40; i++) {
       this.arr[i] = [];
-      for (let j = 0; j < 1000; j++) {
+      this.arr1[i] = [];
+      for (let j = 0; j < 40; j++) {
         this.arr[i][j] = 0;
+        this.arr1[i][j] = 0;
         // console.log(this.arr[i][j]);
       }
     }
@@ -74,7 +75,29 @@ export class KnittingDyeingProgramComponent implements OnInit {
         // this.styleCode=this.fabricReport[0].styleCode;
         //  console.log(this.fabricReport);
         for (let i = 0; i < this.fabricReport.length; i++) {
-          this.styleCode[i] = (this.fabricReport[i].styleCode);
+          this.styleCode2[i] = (this.fabricReport[i].styleCode);
+          // console.log(this.styleCode[i]);
+        }
+        console.log(this.styleCode2);
+      }
+    );
+
+    //console.log(this.styleCode);
+
+  }
+  //for editing
+  getreportdata1(a) {
+    this.ref1 = " ";
+    this.ref1 = a;
+    console.log(this.ref1);
+    this.Fc.getAllData(a).subscribe(
+      (data) => {
+        this.fabricReport = data;
+        // this.bName = this.fabricReport[0].buyerName;
+        // this.styleCode=this.fabricReport[0].styleCode;
+        //  console.log(this.fabricReport);
+        for (let i = 0; i < this.fabricReport.length; i++) {
+          this.styleCode1[i] = (this.fabricReport[i].styleCode);
           // console.log(this.styleCode[i]);
         }
         //  console.log(this.styleCode);
@@ -84,6 +107,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
     //console.log(this.styleCode);
 
   }
+
   getAllBuyerInfo() {
     this.Fc.getAllBuyer().
       subscribe((data) => {
@@ -112,13 +136,17 @@ export class KnittingDyeingProgramComponent implements OnInit {
 
   addColor(m) {
     this.color.push(m);
+    this.color.sort();
   }
   deleteColor(n) {
     this.color = this.color.filter(h => h !== n);
+    this.color.sort();
   }
   addKnittingType(l) {
     //  console.log(l);
     this.knittingType.push(l);
+    this.knittingType.sort();
+
 
     //  this.knittingType = ['k', 'b', 'c', 'ttl'];
     // console.log(this.knittingType);
@@ -126,6 +154,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
   }
   deleteKnittingType(m) {
     this.knittingType = this.knittingType.filter(h => h !== m);
+    this.knittingType.sort();
   }
 
 
@@ -143,6 +172,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
   }
 
   showArray(arr) {
+    console.log(arr);
     this.ttl = [];
     this.ttlCol = [];
 
@@ -155,7 +185,9 @@ export class KnittingDyeingProgramComponent implements OnInit {
         this.knit.kintting.push({
           knittingType: this.knittingType[l],
           color: this.color[k],
-          weight: arr[k][l]
+          weight: arr[k][l],
+          row: k,
+          col: l,
         })
 
       }
@@ -169,7 +201,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
       }
       this.ttlCol.push(m);
     }
-    this.KD.getdata(this.knit).subscribe(res => {
+    this.KD.postData(this.knit).subscribe(res => {
     });
   }
   clear() {
@@ -179,42 +211,95 @@ export class KnittingDyeingProgramComponent implements OnInit {
     this.ttl = [];
     this.ttlCol = [];
   }
-     //PDF GENERATOR FUNCTION
-     public reportPrint() {
-      // this.reportHeading =true;
-      // this.reportMiddlePart = false;
-      const data = document.getElementById('content');
-      data.style.display = 'block';
-      html2canvas(data).then(canvas => {
-        const imgWidth = 180;
-        const pageHeight = 500;
-        const imgHeight = canvas.height * imgWidth / canvas.width;
-        let heightLeft = imgHeight;
-  
-        const contentDataURL = canvas.toDataURL('image/png');
-       // var doc = new jspdf('p', 'mm');
-        const doc =  new jspdf('p', 'mm', 'a4');
-        let position = 5;
-        let k = 1;
+  sendforReport(m, n) {
+    this.InfoAll = [];
+    let l = { referenceId: '', styleCode: ' ' };
+    l.referenceId = m;
+    l.styleCode = n;
+    this.KD.getReviewdata(l).
+      subscribe((data) => {
+        this.Info = data;
+        this.createNewMatrixForShow(this.Info);
+
+      });
+
+    // for (let i = 0; i < this.Info.size; i++) {
+    //   this.InfoAll.push(this.Info[i].knittingType);
+    // }
+    // console.log(this.InfoAll);
+
+  }
+  createNewMatrixForShow(Info) {
+    this.acolor=[];
+    this.aknittingType=[];
+    
+    this.InfoAll = Info.kintting;
+
+    for (let i = 0; i < this.InfoAll.length; i++) {
+      if (this.acolor.indexOf(this.InfoAll[i].color) === -1) {
+        this.acolor.push(this.InfoAll[i].color);
+        this.acolor.sort();
+      }
+      if (this.aknittingType.indexOf(this.InfoAll[i].knittingType) === -1) {
+        this.aknittingType.push(this.InfoAll[i].knittingType);
+        this.aknittingType.sort();
+      }
+
+
+      // console.log(this.InfoAll[i].color);
+    }
+  //  console.log(this.acolor);
+   //  console.log(this.aknittingType);
+    for (let k = 0; k < this.InfoAll.length; k++) {
+    //  for (let l = 0; l < this.InfoAll.length; l++) {
+          //  if(this.InfoAll[k].row=== k && this.InfoAll[k].col===l){
+            //  this.arr1[k][l]=this.InfoAll[k].weight;
+
+this.newarrMake(this.InfoAll[k].weight,this.InfoAll[k].row,this.InfoAll[k].col);
+
+    }
+    console.log(this.arr1);
+
+  }
+  newarrMake(m,i,j){
+    this.arr1[i][j]=m;
+  }
+  //PDF GENERATOR FUNCTION
+  public reportPrint() {
+    // this.reportHeading =true;
+    // this.reportMiddlePart = false;
+    const data = document.getElementById('content');
+    data.style.display = 'block';
+    html2canvas(data).then(canvas => {
+      const imgWidth = 180;
+      const pageHeight = 500;
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      let heightLeft = imgHeight;
+
+      const contentDataURL = canvas.toDataURL('image/png');
+      // var doc = new jspdf('p', 'mm');
+      const doc = new jspdf('p', 'mm', 'a4');
+      let position = 5;
+      let k = 1;
+      doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+      //  doc.setPage(k);
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
         doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
-      //  doc.setPage(k);
-        while (heightLeft >= 0) {
-          position = heightLeft - imgHeight;
-          doc.addPage();
-          doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
-          heightLeft -= pageHeight;
-          k++;
+        k++;
         //  doc.setPage(k);
-        }
-        const blob = doc.output('blob');
-        window.open(URL.createObjectURL(blob));
-        data.style.display = 'none';
-      });
+      }
+      const blob = doc.output('blob');
+      window.open(URL.createObjectURL(blob));
+      data.style.display = 'none';
+    });
   }
 
-    
-  
+
+
 }
 
 

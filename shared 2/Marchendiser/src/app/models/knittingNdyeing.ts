@@ -5,5 +5,7 @@ export class knittingNdyeing {
         knittingType: string;
         color: string;
         weight: string;
+        row:number;
+        col:number;
     }]
 }
