@@ -27,7 +27,8 @@ const CuttingSchema = new mongoose.Schema({
         weight: {
             type: Number,
             default: null
-        }
+        },
+
     }]
 
 })

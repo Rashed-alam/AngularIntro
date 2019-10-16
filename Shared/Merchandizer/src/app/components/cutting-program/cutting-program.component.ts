@@ -77,11 +77,11 @@ export class CuttingProgramComponent implements OnInit {
   }
   //DELETING A GIVEN INPUT FROM THE ARRAY
   deleteColor(valueToRemove){
-  this.color = [];
+    this.color = this.color.filter(h => h !== valueToRemove);
   }
   //DELETING A GIVEN INPUT FROM THE ARRAY
   deleteSize(valueToRemove){
-    this.size = [];
+    this.size = this.size.filter(h => h !== valueToRemove);
     }
   onSubmit(){
     this.rowSum = []; 

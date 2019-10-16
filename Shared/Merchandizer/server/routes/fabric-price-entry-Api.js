@@ -6,11 +6,11 @@ const FabricPriceEntrySchema = require('../models/fabric-price-entry');
 //POSTING TO DATABASE
 router.post('/new/:referenceId', (req, res, next) => {
     FabricPriceEntrySchema.findOne({ referenceId: req.params.referenceId }).then(function(a) {
-        if (a == null) {
+        if (a == null) { //if there is no other styleCode under one reference number then create a new one
             FabricPriceEntrySchema.create(req.body).then(function(a) {
                 res.send(a);
             }).catch(next);
-        } else {
+        } else { //if there is already some entries under one reference number then add it to the end 
             FabricPriceEntrySchema.update({ referenceId: req.params.referenceId },
 
                 {
@@ -94,14 +94,11 @@ router.post('/get/:styleCode', (req, res, next) => {
 router.delete('/delete/:referenceId/:styleCode', function(req, res, next) {
     FabricPriceEntrySchema.findOne({ referenceId: req.params.referenceId }).then(function(a) {
         var lengthofA = a.fabricPriceInformation.length;
-
-        if (lengthofA > 1) {
-            var array = a.fabricPriceInformation;
+        if (lengthofA > 1) { //if there is more than one object under one reference number
+            var array = a.fabricPriceInformation; // assigning the nested array into this variable
             var l = a.fabricPriceInformation.length;
             for (let i = 0; i < array.length; i++) {
-                //  console.log('check='+ array[i].styleCode);
                 if (a.fabricPriceInformation[i].styleCode == req.params.styleCode) {
-                    //    console.log('ok')
                     array.splice(i, 1);
                 }
             }
@@ -109,7 +106,7 @@ router.delete('/delete/:referenceId/:styleCode', function(req, res, next) {
             a.save().then(function(a) {
                 res.send({ "message": "ENTRY SUCCESSFULLY DELETED" });
             }).catch(next);
-        } else {
+        } else { //if there is only one object under one style code and reference number
             FabricPriceEntrySchema.findOneAndDelete({ referenceId: req.params.referenceId }).then(function(fabricentry) {
                 res.send({ "message": "ENTRY SUCCESSFULLY DELETED" });
             }).catch(next);
@@ -166,7 +163,7 @@ router.put('/update/:referenceId/:styleCode', function(req, res, next) {
             function(err, result) {
                 if (err) {
                     console.log('ERROR: ' + err);
-                    res.send({ 'error': 'An error has occurred' });
+                    res.send({ 'error': 'An error has occurred.' });
                 } else {
                     res.send(result);
                 }
@@ -195,7 +192,7 @@ router.get('/', function(req, res, next) {
         });
 });
 
-//fetching the list of reference IDs created
+//fetching the list of all reference IDs which are stored in the database
 router.get('/allref', (req, res, next) => {
     FabricPriceEntrySchema.find({}).then(function(a) {
         var allref = [];

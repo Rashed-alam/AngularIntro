@@ -1,8 +1,8 @@
 <div class="container">
     <div class="card">
         <!-- <div class="card-header">
-            <h5 style="text-align: center">Abloom Design Limited</h5>
-        </div> -->
+                <h5 style="text-align: center">Abloom Design Limited</h5>
+            </div> -->
         <div class="card-body" id="content" style="margin-top:-1rem;">
             <div class="row">
                 <div class="col-md-12">
@@ -27,9 +27,9 @@
                                         <div class="col-4">Buyer:</div>
                                         <div class="col-8">
                                             <select name="" id="" style="width: 100%" (change)="OnBuyerSelection($event.target.value)">
-                                                        <option selected></option>
-                                                        <option value="{{a.buyerCode}}" *ngFor="let a of buyerinfo">{{a.name}}</option>
-                                          </select>
+                                                            <option selected></option>
+                                                            <option value="{{a.buyerCode}}" *ngFor="let a of buyerinfo">{{a.name}}</option>
+                                              </select>
                                         </div>
                                     </div>
                                 </td>
@@ -38,9 +38,9 @@
                                         <div class="col-4">Ref:</div>
                                         <div class="col-8">
                                             <select name="" id="" style="width: 100%" (change)="OnReferenceIdSelection($event.target.value)">
-                                                <option value="" selected></option>
-                                                <option value="{{a.referenceId}}" *ngFor="let a of AllReference">{{a.referenceId}}</option>
-                                            </select>
+                                                    <option value="" selected></option>
+                                                    <option value="{{a.referenceId}}" *ngFor="let a of AllReference">{{a.referenceId}}</option>
+                                                </select>
                                         </div>
                                     </div>
                                 </td>
@@ -58,9 +58,9 @@
                                         <div class="col-4">Style Code:</div>
                                         <div class="col-8">
                                             <select name="" id="" style="width: 100%" (change)="OnStyleCodeSelection($event.target.value)">
-                                                <option value="" selected></option>
-                                                <option value="{{a.styleCode}}" *ngFor="let a of tempo">{{a.styleCode}}</option>
-                                            </select>
+                                                    <option value="" selected></option>
+                                                    <option value="{{a.styleCode}}" *ngFor="let a of tempo">{{a.styleCode}}</option>
+                                                </select>
                                         </div>
                                     </div>
                                 </td>
@@ -106,29 +106,52 @@
                                 <div class="row">
                                     <div class="col"><label for="">Color Name:</label></div>
                                     <div class="col">
-                                        <input type="text" #colorName required>
+                                        <!-- <input type="text" #colorName required> -->
+                                        <input list="colors" type="text" #colorName autocomplete="on" required>
+                                        <datalist id="colors">
+                                                  <option value="red">
+                                                  <option value="blue">
+                                                  <option value="orange">
+                                                  <option value="black">
+                                                  <option value="green">
+                                                  <option value="yellow">
+                                                  <option value="violet">
+                                                  <option value="white">
+                                            </datalist>
+
                                     </div>
                                     <div class="col">
+
                                         <button type="button" class="btn btn-secondary btn-sm" (click)="addColor(colorName.value);colorName.value=''">Add</button>
                                     </div>
                                     <div class="col" *ngFor="let a of color">
-                                        <li>
-                                            {{a}} <button type="button" (click)="deleteColor(a)">X</button>
-                                        </li>
+
+                                        {{a}} <button type="button" (click)="deleteColor(a)">X</button>
+
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col"><label for="">Size:</label></div>
                                     <div class="col">
-                                        <input type="number" #sizeName required>
+                                        <!-- <input type="number" #sizeName required> -->
+                                        <input type="text" list="sizes" type="text" #sizeName autocomplete="on" required>
+                                        <datalist id="sizes">
+                                                  <option value="72">
+                                                  <option value="76">
+                                                  <option value="80">
+                                                  <option value="87">
+                                                  <option value="92">
+                                                  <option value="95">
+                                                 
+                                            </datalist>
                                     </div>
                                     <div class="col">
                                         <button type="button" class="btn btn-secondary btn-sm" (click)="addSize(sizeName.value);sizeName.value=''">Add</button>
                                     </div>
                                     <div class="col" *ngFor="let a of size">
-                                        <li>
-                                            {{a}}<button type="button" (click)="deleteSize(a)">X</button>
-                                        </li>
+
+                                        {{a}}<button type="button" (click)="deleteSize(a)">X</button>
+
                                     </div>
                                 </div>
 
@@ -228,9 +251,9 @@
                 </div>
                 <div class="col">
                     <select name="" id="" (change)="referenceSelected($event.target.value)">
-                        <option selected></option>
-                        <option value="{{a.referenceId}}" *ngFor="let a of everything">{{a.referenceId}}---{{a.styleCode}}</option>
-                    </select>
+                            <option selected></option>
+                            <option value="{{a.referenceId}}" *ngFor="let a of everything">{{a.referenceId}}---{{a.styleCode}}</option>
+                        </select>
                 </div>
             </div>
         </div>
@@ -240,7 +263,9 @@
                     <tr>
                         <th>Color/Size</th>
                         <th *ngFor="let a of temp4">{{a.size}}</th>
+
                     </tr>
+
 
                 </thead>
                 <tbody>

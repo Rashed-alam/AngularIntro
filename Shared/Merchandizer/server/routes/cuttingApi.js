@@ -130,11 +130,10 @@ router.delete('/delete/:referenceId/:styleCode/:_id', function(req, res, next) {
         if (lengthofA > 1) {
             var array = a.cutting;
             var l = a.cutting.length;
-
             for (let i = 0; i < array.length; i++) {
                 //  console.log('check='+ array[i].styleCode);
                 if (a.cutting[i]._id == req.params._id) {
-                    console.log('ok')
+                    // console.log('ok')
                     array.splice(i, 1);
                 }
             }
@@ -148,7 +147,6 @@ router.delete('/delete/:referenceId/:styleCode/:_id', function(req, res, next) {
             }).catch(next);
         }
     });
-
 });
 
 //DELETE WHOLE OBJECT
