@@ -32,6 +32,8 @@ export class KnittingDyeingProgramComponent implements OnInit {
   sum = 0;
   bName: any;
   knit = { kintting: [], referenceId: '', styleCode: ' ' };
+  knit1 = { kintting: [], referenceId: '', styleCode: ' ' };
+  
   Info = { kintting: [], referenceId: '', styleCode: ' ' };
   ttl = [];
   ttlCol = [];
@@ -183,7 +185,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
     console.log(arr);
     this.ttl = [];
     this.ttlCol = [];
-
+    this.knit.kintting=[];
     this.knit.referenceId = this.ref;
     this.knit.styleCode = this.stl;
     for (let k = 0; k < this.color.length; k++) {
@@ -212,6 +214,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
     this.KD.postData(this.knit).subscribe(res => {
     });
   }
+  
   clear() {
     this.color = [];
     this.knittingType = [];
@@ -224,6 +227,8 @@ export class KnittingDyeingProgramComponent implements OnInit {
     let l = { referenceId: '', styleCode: ' ' };
     l.referenceId = m;
     l.styleCode = n;
+    this.ref=m;
+    this.stl=n;
     this.KD.getReviewdata(l).
       subscribe((data) => {
         this.Info = data;
@@ -237,6 +242,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
     // console.log(this.InfoAll);
 
   }
+
   createNewMatrixForShow(Info) {
     this.acolor=[];
     this.aknittingType=[];
@@ -255,19 +261,55 @@ export class KnittingDyeingProgramComponent implements OnInit {
   //  console.log(this.acolor);
    //  console.log(this.aknittingType);
     for (let k = 0; k < this.InfoAll.length; k++) {
-    //  for (let l = 0; l < this.InfoAll.length; l++) {
-          //  if(this.InfoAll[k].row=== k && this.InfoAll[k].col===l){
-            //  this.arr1[k][l]=this.InfoAll[k].weight;
+    
 this.newarrMake(this.InfoAll[k].weight,this.InfoAll[k].row,this.InfoAll[k].col);
 
     }
-    console.log(this.arr1);
+  //  console.log(this.arr1);
 
   }
 
   
   newarrMake(m,i,j){
-    this.arr1[i][j]=m;
+    this.arr1[i][j]= m;
+  }
+  //report to db
+  showArray1(arr) {
+    // console.log(arr);
+    // this.knit = { kintting: [], referenceId: '', styleCode: ' ' };
+    this.knit.kintting=[];
+ 
+    this.ttl = [];
+    this.ttlCol = [];
+
+    this.knit.referenceId = this.ref;
+    this.knit.styleCode = this.stl;
+    for (let k = 0; k < this.acolor.length; k++) {
+      let r = 0;
+      for (let l = 0; l < this.aknittingType.length; l++) {
+        r = r + parseInt(arr[k][l]);
+        this.knit.kintting.push({
+          knittingType: this.aknittingType[l],
+          color: this.acolor[k],
+          weight: arr[k][l],
+          row: k,
+          col: l,
+        })
+
+      }
+      this.ttl.push(r);
+    }
+
+    for (let k = 0; k < this.aknittingType.length; k++) {
+      let m = 0;
+      for (let l = 0; l < this.acolor.length; l++) {
+        m = m + parseInt(arr[l][k]);
+      }
+      this.ttlCol.push(m);
+    }
+    // console.log(this.knit);
+    this.KD.UpdateEntry(this.knit).subscribe(res => {
+    });
   }
   //PDF GENERATOR FUNCTION
   public reportPrint() {

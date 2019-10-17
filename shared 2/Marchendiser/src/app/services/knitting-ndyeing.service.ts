@@ -36,4 +36,9 @@ postData(m): Observable<knittingNdyeing> {
 getReviewdata(a): Observable<any> {
   return this.httpcall.post<any>(this.url1 + '/all/' + a.referenceId + '/' + a.styleCode, headerOption);
 }
+  // update
+  UpdateEntry(entry): Observable<any[]> {
+    // tslint:disable-next-line: max-line-length
+    return this.httpcall.post<any[]>(this.url1 + '/update/' + entry.referenceId + '/' + entry.styleCode, entry, headerOption);
+  }
 }

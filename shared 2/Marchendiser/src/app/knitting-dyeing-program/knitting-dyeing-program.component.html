@@ -326,7 +326,7 @@
                                     <tr *ngFor="let point of acolor; let j = index">
                                         <td>{{point}}</td>
                                         <td *ngFor="let lesson of aknittingType; let k = index">
-                                    <input type="text" value="{{arr1[j][k]}}">
+                                    <input type="text" value="{{arr1[j][k]}}"  (keyup)="newarrMake($event.target.value,j,k)">
                                             
                                         </td>
                                     </tr>
@@ -335,7 +335,7 @@
                                         <td *ngFor="let l of ttlCol">{{l}}</td>
                                     </tr>
                             
-                                    <button (click)="showArray(this.arr)">Submit</button>
+                                    <button (click)="showArray1(this.arr1)"> Submit</button>
                             
                                     <button (click)="clear()">clear</button>
                                 </tbody>
