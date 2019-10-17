@@ -229,7 +229,7 @@
             <div class="container">
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
-                        <button type="button" class="btn btn-primary" (click)="onSubmit(this.cutting)">Submit</button>
+                        <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
                         <button type="button" class="btn btn-warning" (click)="reportPrint()">Report</button>
                         <button type="button" class="btn btn-success" (click)="clearEverything()">Clear</button>
 
@@ -270,6 +270,70 @@
                 </div>
             </div>
         </div>
+        <div class="container" *ngIf="reportMiddlePart">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col"><label for="">Color Name:</label></div>
+                                <div class="col">
+                                    <!-- <input type="text" #colorName required> -->
+                                    <input list="colors" type="text" #colorName autocomplete="on" required>
+                                    <datalist id="colors">
+                                              <option value="red">
+                                              <option value="blue">
+                                              <option value="orange">
+                                              <option value="black">
+                                              <option value="green">
+                                              <option value="yellow">
+                                              <option value="violet">
+                                              <option value="white">
+                                        </datalist>
+
+                                </div>
+                                <div class="col">
+
+                                    <button type="button" class="btn btn-secondary btn-sm" (click)="addColor(colorName.value);colorName.value=''">Add</button>
+                                </div>
+                                <div class="col" *ngFor="let a of color">
+
+                                    {{a}} <button type="button" (click)="deleteColor(a)">X</button>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><label for="">Size:</label></div>
+                                <div class="col">
+                                    <!-- <input type="number" #sizeName required> -->
+                                    <input type="text" list="sizes" type="text" #sizeName autocomplete="on" required>
+                                    <datalist id="sizes">
+                                              <option value="72">
+                                              <option value="76">
+                                              <option value="80">
+                                              <option value="87">
+                                              <option value="92">
+                                              <option value="95">
+                                             
+                                        </datalist>
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-secondary btn-sm" (click)="addSize(sizeName.value);sizeName.value=''">Add</button>
+                                </div>
+                                <div class="col" *ngFor="let a of size">
+
+                                    {{a}}<button type="button" (click)="deleteSize(a)">X</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="card-body">
             <table class="table table-bordered">
                 <thead>
@@ -295,7 +359,11 @@
             </table>
         </div>
         <div class="card-footer">
-
+            <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+            <button type="button" class="btn btn-success" (click)="clearEverything()">Clear</button>
+            <div class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="align-content: center">
+                Entry Created successfully.
+            </div>
         </div>
     </div>
 </div>

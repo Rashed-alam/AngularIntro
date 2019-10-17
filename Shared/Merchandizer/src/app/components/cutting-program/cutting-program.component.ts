@@ -94,6 +94,7 @@ export class CuttingProgramComponent implements OnInit {
     }
   //AFTER GIVING ALL INPUT, THIS SUBMIT FUNCTION IS FIRED
   onSubmit(){
+    
     this.rowSum = []; 
     this.columnSum = [];
     this.cut.referenceId = this.CP.currentCutting.referenceId;
