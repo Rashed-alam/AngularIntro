@@ -142,8 +142,12 @@ export class KnittingDyeingProgramComponent implements OnInit {
     this.color = this.color.filter(h => h !== n);
     this.color.sort();
   }
+  deleteColor1(n) {
+    this.acolor = this.acolor.filter(h => h !== n);
+    this.acolor.sort();
+  }
   addKnittingType(l) {
-    //  console.log(l);
+     console.log(l);
     this.knittingType.push(l);
     this.knittingType.sort();
 
@@ -155,6 +159,10 @@ export class KnittingDyeingProgramComponent implements OnInit {
   deleteKnittingType(m) {
     this.knittingType = this.knittingType.filter(h => h !== m);
     this.knittingType.sort();
+  }
+  deleteKnittingType1(m) {
+    this.aknittingType = this.aknittingType.filter(h => h !== m);
+    this.aknittingType.sort();
   }
 
 
