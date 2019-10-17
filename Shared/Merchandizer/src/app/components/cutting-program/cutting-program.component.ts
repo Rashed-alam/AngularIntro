@@ -194,23 +194,15 @@ export class CuttingProgramComponent implements OnInit {
   }
   //THIS WILL CLEAR ALL THE INPUT FIELDS AND ARRAYS
   clearEverything(){
-    // for (let i = 0; i < 1000; i++) {
-    //   this.cuttingArray[i] = [];
-    //   for (let j = 0; j < 1000; j++) {
-    //     // console.log(this.arr[i][j]);
-    //     this.cuttingArray[i][j] = 0;
-    //     // console.log(this.arr[i][j]);
-    //   }
-    // }
     this.size = [];
     this.color = [];
     this.cut.cutting = [];
     this.CP.currentCutting.remarks = '';
     this.columnSum =[];
     this.rowSum = [];
-    // this.CP.currentCutting.referenceId='';
-    // this.CP.currentCutting.styleCode = '';
-    // this.CP.currentCutting.remarks = '';
+    this.tempcolor = [];
+    this.tempsize = [];
+    this.Info.cutting = [];
   }
   //PDF GENERATOR FUNCTION
   public reportPrint() {

@@ -270,44 +270,51 @@
                      </select>
                 </div>
                 <div class="col">
-                    <button type="button" (click)="SearchDatabase(reference.value,styleCode.value)">Search</button>
+                    <button type="button" (click)="SearchDatabase(reference.value,styleCode.value)"><i class="fa fa-search">Search</i></button>
                 </div>
             </div>
         </div>
-        <div class="container" *ngIf="reportMiddlePart">
-            <div class="row justify-content-md-center">
-                <div class="col-md-auto">
-                    <div class="card">
-                        <div class="card-body">
 
-                            <div class="row">
-                                <div class="col"><label for="">Color Name:</label></div>
 
-                                <div class="col">
-                                    <li *ngFor="let a of tempcolor ">
+        <div class="row justify-content-md-center" style="margin-top: 1rem;">
+            <div class="col-md-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col"><label for="">Color Name:</label></div>
+
+
+                            <!-- <li *ngFor="let a of tempcolor ">
                                         <a>{{a}}</a>
                                         <button class="delete" title="delete color" (click)="deleteColorFromReport(a)">x</button>
-                                    </li>
+                                    </li> -->
 
-                                </div>
-
+                            <div class="col" *ngFor="let a of tempcolor">
+                                <button type="button" class="close" aria-label="Close" (click)="deleteColorFromReport(a)">
+                                            {{a}}  <span aria-hidden="true">&times;</span>
+                                    </button>
                             </div>
-                            <div class="row">
-                                <div class="col"><label for="">Size:</label></div>
-                                <div class="col">
+                        </div>
+                        <div class="row">
+                            <div class="col"><label for="">Size:</label></div>
+                            <!-- <div class="col">
                                     <li *ngFor="let a of tempsize ">
                                         <a>{{a}}</a>
                                         <button class="delete" title="delete color" (click)="deleteSizeFromReport(a)">x</button>
                                     </li>
-
-                                </div>
+                                </div> -->
+                            <div class="col" *ngFor="let a of tempsize">
+                                <button type="button" class="close" aria-label="Close" (click)="deleteSizeFromReport(a)">
+                                            {{a}}  <span aria-hidden="true">&times;</span>
+                                    </button>
                             </div>
-
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div class="card-body">
 
