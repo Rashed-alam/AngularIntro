@@ -22,7 +22,8 @@ export class CuttingProgramComponent implements OnInit {
   cut = { cutting: [], referenceId: ' ', styleCode: ' ',remarks: '' };
   size = [];
   color = [];
-  cuttingArray:any[][]=[ ];
+  cuttingArray:any[][]=[ ];//for initially holding the data here 
+  reportArray: any[][]= [ ];//for storing the array in report stage
   colorName: string;
   sizeName: number; 
   rowSum  =[];
@@ -36,8 +37,10 @@ export class CuttingProgramComponent implements OnInit {
   temp3 : any = [];
   decoyEverything: any = [];
   temp4: any = [];
-  temp5: any = [];
-
+  InfoAll: any = [];
+  Info = { cutting: [], referenceId: ' ', styleCode: ' ',remarks: '' };
+  tempcolor=[];
+  tempsize=[];
   
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
@@ -50,24 +53,28 @@ export class CuttingProgramComponent implements OnInit {
     // 
     for (let i = 0; i < 10; i++) {
       this.cuttingArray[i] = [];
+      this.reportArray[i] =[];
       for (let j = 0; j < 10; j++) {
         this.cuttingArray[i][j] = 0;
+        this.reportArray[i][j] = 0;
       }
     }
     //
     
   }
-  //ASSIGNING VALUES TO MATRIX POSITION
+  //ASSIGNING VALUES TO A 2 DIMENSIONAL MATRIX 
   catch(a,b,c){
     this.cuttingArray[b][c] = Number(a);
   }
   //ADDING NEW SIZE INTO THE ARRAY
   addSize(s){
     this.size.push(s);
+    this.size.sort();
   }
   //ADDING NEW COLOR INTO THE ARRAY
   addColor(c){
     this.color.push(c);
+    this.color.sort();
  
   }
   //CLEARING OUT THE SIZE AND COLOR FIELDS AFTER INPUT
@@ -77,12 +84,15 @@ export class CuttingProgramComponent implements OnInit {
   }
   //DELETING A GIVEN INPUT FROM THE ARRAY
   deleteColor(valueToRemove){
-  this.color = [];
+    this.color = this.color.filter(h => h !== valueToRemove);
+    this.color.sort();
   }
   //DELETING A GIVEN INPUT FROM THE ARRAY
   deleteSize(valueToRemove){
-    this.size = [];
+    this.size = this.size.filter(h => h !== valueToRemove);
+    this.size.sort();
     }
+  //AFTER GIVING ALL INPUT, THIS SUBMIT FUNCTION IS FIRED
   onSubmit(){
     this.rowSum = []; 
     this.columnSum = [];
@@ -99,7 +109,9 @@ export class CuttingProgramComponent implements OnInit {
         this.cut.cutting.push({
           size: this.size[l],
           color: this.color[k],
-          weight:this.cuttingArray[k][l]
+          weight:this.cuttingArray[k][l],
+          row: k,
+          col: l,
         });
         
       }
@@ -131,7 +143,7 @@ export class CuttingProgramComponent implements OnInit {
       }
     )
   }
- //GET ALL BUYER DETAILS FROM DATABASE
+ //GET ALL BUYER DETAILS FROM DATABASE 
   getAllBuyersList(){
       this.Bs.getAllBuyers()
       .subscribe(
@@ -163,7 +175,7 @@ export class CuttingProgramComponent implements OnInit {
   OnStyleCodeSelection(s){
     this.CP.currentCutting.styleCode = s;
     var marvel = this.tempo.filter(hero=> hero.styleCode == s);
-    this.temp2 = marvel;
+    this.temp2 = marvel; 
     //console.log(this.temp2);
   }
   //THIS WILL CLEAR ALL THE INPUT FIELDS AND ARRAYS
@@ -232,17 +244,59 @@ export class CuttingProgramComponent implements OnInit {
 //GET ITEM BY REFERENCE SELECTION DROPDWON
   referenceSelected(r){
     var gotham = this.decoyEverything.filter(hero => hero.referenceId == r);
-    this.temp3 = gotham;
-    console.log(gotham);
-
+    this.temp3 = gotham; //storing the filtered value into this value named 'temp3'
+    // console.log(gotham);
     for(let i =0; i<this.temp3.length;i++){
-
-      for(let j =0; j<this.temp3[i].cutting.length;j++){
-         this.temp4.push(this.temp3[i].cutting[j]);
-      }
+         this.temp4.push(this.temp3[i].styleCode); //pushing the filterd value into an array 
     }
+    // console.log(this.temp4)
 
 }
+//SEARCHES THE DATABASE BY MATCHING THE REFERENCE NUMBER AND STYLECODE
+sendforReport(m,n){
+  // this.InfoAll = [];
+  let l = { referenceId: '', styleCode: ' ' };
+  l.referenceId = m;
+  l.styleCode = n;
+  this.CP.getCertainData(l).
+    subscribe((data) => {
+      this.Info = data;
+      // console.log(data)
+       this.createNewMatrixForShow(this.Info);
+    });
+}
+//GETS THE ROWS AND COLUMNS FROM DATABASE AND ASSIGNGS THEM INTO ANOTHER 2 DIMENSIONAL MATRIX
+createNewMatrixForShow(a) {
+  // console.log(a)
+  this.tempcolor=[];
+  this.tempsize=[];
+
+  this.InfoAll = a.cutting;
+  for (let i = 0; i < this.InfoAll.length; i++) {
+    if (this.tempcolor.indexOf(this.InfoAll[i].color) === -1) {
+      this.tempcolor.push(this.InfoAll[i].color);
+      this.tempcolor.sort();
+      // console.log(this.tempcolor)
+    }
+    if (this.tempsize.indexOf(this.InfoAll[i].size) === -1) {
+      this.tempsize.push(this.InfoAll[i].size);
+      this.tempsize.sort();
+      // console.log(this.tempsize)
+    }
+  }
+
+  for (let k = 0; k < this.InfoAll.length; k++) {
+    this.newarrMake(this.InfoAll[k].weight,this.InfoAll[k].row,this.InfoAll[k].col);
+  }
+  // console.log(this.reportArray);
+
+}
+//ASSIGNING VALUES TO ANOTHER 2 DIMENSIONAL MATRIX
+newarrMake(m,i,j){
+  this.reportArray[i][j]=m;
+}
+
+
 }
 
 

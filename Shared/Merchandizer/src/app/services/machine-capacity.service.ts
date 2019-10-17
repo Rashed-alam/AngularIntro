@@ -54,7 +54,7 @@ export class MachineCapacityService {
     getAll(): Observable<MachineCapacityModel[]>{
       return this.httpcall.get<MachineCapacityModel[]>(this.url1+'/allMachineDetails', headerOption);
     }
-  //get machine_id from database
+    //get machine_id from database
     getMachine_Id(){
     return this.httpcall.get(this.url1+'/id', headerOption);
   }
