@@ -137,11 +137,10 @@
                         <div class="row mb-1">
                             <div class="col-4">knitting Type</div>
                             <div class="col-6">
-                                <input #knittingname>
+                                <input #knittingName>
                             </div>
                             <div class="col-2">
-                                <button
-                                    (click)="addKnittingType(knittingname.value); knittingname.value=''">ADD</button>
+                                <button (click)="addKnittingType(knittingName.value); knittingName.value=''">ADD</button>
                             </div>
                             <ul class="colors">
                                 <li *ngFor="let col of knittingType,index as i">
@@ -149,8 +148,7 @@
                                         <span class="badge">{{i+1}}</span>{{col}}
                                     </a>
 
-                                    <button class="delete" title="delete color"
-                                        (click)="deleteKnittingType(col)">x</button>
+                                    <button class="delete" title="delete color" (click)="deleteKnittingType(col)">x</button>
 
 
                                 </li>
@@ -257,56 +255,95 @@
                     </div>
                   
                 </div>
-                <!-- <div class="row">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-1">
+                                    <div class="col-4">Color name</div>
+                                   
+                                    <ul class="colors">
+                                        <li *ngFor="let acol of acolor,index as i">
+                                            <a>
+                                                <span class="badge">{{i+1}}</span>{{acol}}
+                                            </a>
+        
+                                            <button class="delete" title="delete color" (click)="deleteColor1(acol)">x</button>
+        
+        
+                                        </li>
+                                    </ul>
+        
+                                </div>
+        
+        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-1">
+                                    <div class="col-4">knitting Type</div>
+                                    <div class="col-6">
+                                        <input #knittingname>
+                                    </div>
+                                
+                                    <ul class="knittingType1">
+                                        <li *ngFor="let col of aknittingType,index as i">
+                                            <a>
+                                                <span class="badge">{{i+1}}</span>{{col}}
+                                            </a>
+        
+                                            <button class="delete" title="delete color"
+                                                (click)="deleteKnittingType1(col)">x</button>
+        
+        
+                                        </li>
+                                    </ul>
+        
+                                </div>
+        
+        
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="row"> 
                         <div class="col-10">
                             <table class="table table-bordered mt-3">
                                 <thead>
                                     <tr>
-                                            <th>Color</th>
-                                            <th>Knitting Type</th>
-                                            <th>Weight</th>
+                                        <th>Color/knittingType</th>
+                                        <th *ngFor="let lesson of aknittingType; let i = index"> {{lesson}}</th>
+                                        <th> TTL</th>
                                     </tr>
+                            
+                            
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let p of InfoAll;let i= index">
-                                        <td>{{p.color}}</td>
-                                        <td>{{p.knittingType}}</td>
-                                        <td>{{p.weight}}</td>
+                                    <tr *ngFor="let point of acolor; let j = index">
+                                        <td>{{point}}</td>
+                                        <td *ngFor="let lesson of aknittingType; let k = index">
+                                    <input type="text" value="{{arr1[j][k]}}">
+                                            
+                                        </td>
                                     </tr>
+                                    <tr>
+                                        <td>TTL</td>
+                                        <td *ngFor="let l of ttlCol">{{l}}</td>
+                                    </tr>
+                            
+                                    <button (click)="showArray(this.arr)">Submit</button>
+                            
+                                    <button (click)="clear()">clear</button>
                                 </tbody>
-                            </table>
+                            </table> 
                         </div>
-                    </div> -->
+                    </div> 
     </div>
    
 
 
 </div>
- <table class="table table-bordered mt-3">
-    <thead>
-        <tr>
-            <th>Color/knittingType</th>
-            <th *ngFor="let lesson of aknittingType; let i = index"> {{lesson}}</th>
-            <th> TTL</th>
-        </tr>
-
-
-    </thead>
-    <tbody>
-        <tr *ngFor="let point of acolor; let j = index">
-            <td>{{point}}</td>
-            <td *ngFor="let lesson of aknittingType; let k = index">
-        <input type="text" value="{{arr1[j][k]}}">
-                
-            </td>
-        </tr>
-        <tr>
-            <td>TTL</td>
-            <td *ngFor="let l of ttlCol">{{l}}</td>
-        </tr>
-
-        <button (click)="showArray(this.arr)">Submit</button>
-
-        <button (click)="clear()">clear</button>
-    </tbody>
-</table> 
