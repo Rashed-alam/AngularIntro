@@ -66,6 +66,10 @@ export class CuttingProgramComponent implements OnInit {
   catch(a,b,c){
     this.cuttingArray[b][c] = Number(a);
   }
+  Add(a,b){
+    this.addColor(a);
+    this.addSize(b);
+  }
   //ADDING NEW SIZE INTO THE ARRAY
   addSize(s){
     this.size.push(s);
@@ -75,12 +79,11 @@ export class CuttingProgramComponent implements OnInit {
   addColor(c){
     this.color.push(c);
     this.color.sort();
- 
   }
   //CLEARING OUT THE SIZE AND COLOR FIELDS AFTER INPUT
   clear(){
-    this.colorName = '';
-    this.sizeName = null;
+    this.color = [];
+    this.size = [];
   }
   //DELETING A GIVEN INPUT FROM THE ARRAY
   deleteColor(valueToRemove){
