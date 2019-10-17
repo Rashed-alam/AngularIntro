@@ -229,7 +229,7 @@
             <div class="container">
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
-                        <button type="button" class="btn btn-primary" (click)="onSubmit(this.cutting)">Submit</button>
+                        <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
                         <button type="button" class="btn btn-warning" (click)="reportPrint()">Report</button>
                         <button type="button" class="btn btn-success" (click)="clearEverything()">Clear</button>
 
@@ -270,32 +270,97 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Color/Size</th>
-                        <th *ngFor="let a of tempsize;let i = index">{{a}}</th>
-                        <th>TTL</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let b of tempcolor;let j = index">
-                        <td>{{b}}</td>
-                        <td *ngFor="let a of tempsize;let k = index">
-                            <input type="text" value="{{reportArray[j][k]}}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>TTL</td>
-                        <td *ngFor="let l of columnSum">{{l}}</td>
-                    </tr>
+        <div class="container" *ngIf="reportMiddlePart">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <div class="card">
+                        <div class="card-body">
 
-                </tbody>
-            </table>
+                            <div class="row">
+                                <div class="col"><label for="">Color Name:</label></div>
+                                <div class="col">
+                                    <li *ngFor="let a of tempcolor ">
+                                        <a>{{a}}</a>
+                                        <button class="delete" title="delete color" (click)="deleteColorFromReport(a)">x</button>
+                                    </li>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col"><label for="">Size:</label></div>
+                                <div class="col">
+                                    <li *ngFor="let a of tempsize ">
+                                        <a>{{a}}</a>
+                                        <button class="delete" title="delete color" (click)="deleteSizeFromReport(a)">x</button>
+                                    </li>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-10">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Color/Size</th>
+                                <!-- Size column -->
+                                <th *ngFor="let a of tempsize;let i = index">{{a}}</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- color row -->
+                            <tr *ngFor="let b of tempcolor;let j = index">
+                                <!-- color row and size column -->
+                                <td>{{b}}</td>
+                                <td *ngFor="let a of tempsize;let k = index">
+                                    <input type="number" value="{{reportArray[j][k]}}" (keyup)="catchForEditing($event.target.value,j,k)">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>TTL</td>
+                                <td *ngFor="let l of columnSum">{{l}}</td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="col-2">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>TTL</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of rowSum; let j = index">
+                                <td>{{p}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         <div class="card-footer">
-
+            <button type="button" class="btn btn-primary" (click)="OnSubmitForEdit()">Save</button>
+            <button type="button" class="btn btn-success" (click)="clearEverything()">Clear</button>
+            <div class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="align-content: center">
+                Entry Saved successfully.
+            </div>
         </div>
     </div>
 </div>
