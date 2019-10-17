@@ -39,8 +39,8 @@ export class CuttingProgramComponent implements OnInit {
   temp4: any = [];
   InfoAll: any = [];
   Info = { cutting: [], referenceId: ' ', styleCode: ' ',remarks: '' };
-  tempcolor=[];
-  tempsize=[];
+  tempcolor=[]; //report
+  tempsize=[]; //report
   
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
@@ -87,10 +87,20 @@ export class CuttingProgramComponent implements OnInit {
     this.color = this.color.filter(h => h !== valueToRemove);
     this.color.sort();
   }
+  //DELETING AN INPUTED ITEM FROM THE DATABASE
+  deleteColorFromReport(valueToRemove){
+    this.tempcolor = this.tempcolor.filter(h => h !== valueToRemove);
+    this.tempcolor.sort();
+  }
   //DELETING A GIVEN INPUT FROM THE ARRAY
   deleteSize(valueToRemove){
     this.size = this.size.filter(h => h !== valueToRemove);
     this.size.sort();
+    }
+    //DELETING A GIVEN INPUT FROM THE DATABASE
+  deleteSizeFromReport(valueToRemove){
+    this.tempsize = this.tempsize.filter(h => h !== valueToRemove);
+    this.tempsize.sort();
     }
   //AFTER GIVING ALL INPUT, THIS SUBMIT FUNCTION IS FIRED
   onSubmit(){
@@ -262,7 +272,6 @@ sendforReport(m,n){
   this.CP.getCertainData(l).
     subscribe((data) => {
       this.Info = data;
-      // console.log(data)
        this.createNewMatrixForShow(this.Info);
     });
 }
@@ -296,8 +305,56 @@ createNewMatrixForShow(a) {
 newarrMake(m,i,j){
   this.reportArray[i][j]=m;
 }
+//ASSIGNING NEW GIVEN INPUTTED VALUES TO THE ARRAY
+catchForEditing(a: number,b,c){
+  this.reportArray[b][c]= a;
+  // console.log(this.reportArray)
+}
 
+OnSubmitForEdit(){
+  this.rowSum = []; 
+  this.columnSum = [];
+  this.cuttingArray = [];
+  this.Info.cutting = []
+  // this.Info.referenceId = this.CP.currentCutting.referenceId;
+  // this.Info.styleCode = this.CP.currentCutting.styleCode;
+  // this.Info.remarks = this.CP.currentCutting.remarks;
+  let l = { referenceId: '', styleCode: ' ' };
+  l.referenceId = this.Info.referenceId;
+  l.styleCode = this.Info.styleCode;
+  console.log(l);
+  //for row summing
+  for (let k = 0; k < this.tempcolor.length; k++) {
+    let row = 0;
+    for (let l = 0; l < this.tempsize.length; l++) {
+      row = row + parseInt(this.reportArray[k][l]);
 
+      this.Info.cutting.push({
+        size: this.tempsize[l],
+        color: this.tempcolor[k],
+        weight: parseInt(this.reportArray[k][l]),
+        row: k,
+        col: l,
+      });
+      
+    }
+    this.rowSum.push(row);
+  }
+  //for column summing
+  for (let k = 0; k < this.tempsize.length; k++) {
+    let col = 0;
+    for (let l = 0; l < this.tempcolor.length; l++) {
+     col = col + parseInt(this.reportArray[l][k]); 
+    }
+    this.columnSum.push(col);
+  }
+
+  //send the list to service
+//   this.CP.create(this.cut).subscribe(res=>{
+//     this.showsuccessmessageforsubmitting = true;
+//     setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
+//  });
+}
 }
 
 
