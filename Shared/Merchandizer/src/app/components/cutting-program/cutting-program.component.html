@@ -106,7 +106,6 @@
                                 <div class="row">
                                     <div class="col"><label for="">Color Name:</label></div>
                                     <div class="col">
-                                        <!-- <input type="text" #colorName required> -->
                                         <input list="colors" type="text" #colorName autocomplete="on" required>
                                         <datalist id="colors">
                                                   <option value="red">
@@ -260,13 +259,13 @@
                     <h4>Style Code:</h4>
                 </div>
                 <div class="col">
-                    <select name="" id="" (change)="referenceSelected($event.target.value)" #styleCode ngmodel>
+                    <select name="" id="" #styleCode ngmodel>
                                 <option selected></option>
                                 <option value="{{a}}" *ngFor="let a of temp4">{{a}}</option>
                      </select>
                 </div>
                 <div class="col">
-                    <button type="button" (click)="sendforReport(reference.value,styleCode.value)">Search</button>
+                    <button type="button" (click)="SearchDatabase(reference.value,styleCode.value)">Search</button>
                 </div>
             </div>
         </div>
@@ -278,6 +277,7 @@
 
                             <div class="row">
                                 <div class="col"><label for="">Color Name:</label></div>
+
                                 <div class="col">
                                     <li *ngFor="let a of tempcolor ">
                                         <a>{{a}}</a>

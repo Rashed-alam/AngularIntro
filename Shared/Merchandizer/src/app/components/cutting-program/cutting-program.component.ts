@@ -254,6 +254,7 @@ export class CuttingProgramComponent implements OnInit {
   }
 //GET ITEM BY REFERENCE SELECTION DROPDWON
   referenceSelected(r){
+    this.temp4 = [];
     var gotham = this.decoyEverything.filter(hero => hero.referenceId == r);
     this.temp3 = gotham; //storing the filtered value into this value named 'temp3'
     // console.log(gotham);
@@ -261,11 +262,11 @@ export class CuttingProgramComponent implements OnInit {
          this.temp4.push(this.temp3[i].styleCode); //pushing the filterd value into an array 
     }
     // console.log(this.temp4)
+    
 
 }
 //SEARCHES THE DATABASE BY MATCHING THE REFERENCE NUMBER AND STYLECODE
-sendforReport(m,n){
-  // this.InfoAll = [];
+  SearchDatabase(m,n){
   let l = { referenceId: '', styleCode: ' ' };
   l.referenceId = m;
   l.styleCode = n;
@@ -276,7 +277,7 @@ sendforReport(m,n){
     });
 }
 //GETS THE ROWS AND COLUMNS FROM DATABASE AND ASSIGNGS THEM INTO ANOTHER 2 DIMENSIONAL MATRIX
-createNewMatrixForShow(a) {
+  createNewMatrixForShow(a) {
   // console.log(a)
   this.tempcolor=[];
   this.tempsize=[];
@@ -302,23 +303,20 @@ createNewMatrixForShow(a) {
 
 }
 //ASSIGNING VALUES TO ANOTHER 2 DIMENSIONAL MATRIX
-newarrMake(m,i,j){
+  newarrMake(m,i,j){
   this.reportArray[i][j]=m;
 }
 //ASSIGNING NEW GIVEN INPUTTED VALUES TO THE ARRAY
-catchForEditing(a: number,b,c){
+  catchForEditing(a: number,b,c){
   this.reportArray[b][c]= a;
   // console.log(this.reportArray)
 }
-
-OnSubmitForEdit(){
+//EDIT FUNCTION
+  OnSubmitForEdit(){
   this.rowSum = []; 
   this.columnSum = [];
   this.cuttingArray = [];
-  this.Info.cutting = []
-  // this.Info.referenceId = this.CP.currentCutting.referenceId;
-  // this.Info.styleCode = this.CP.currentCutting.styleCode;
-  // this.Info.remarks = this.CP.currentCutting.remarks;
+  this.Info.cutting = [];
   let l = { referenceId: '', styleCode: ' ' };
   l.referenceId = this.Info.referenceId;
   l.styleCode = this.Info.styleCode;
@@ -348,12 +346,11 @@ OnSubmitForEdit(){
     }
     this.columnSum.push(col);
   }
-
   //send the list to service
-//   this.CP.create(this.cut).subscribe(res=>{
-//     this.showsuccessmessageforsubmitting = true;
-//     setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
-//  });
+  this.CP.UpdateEntry(this.Info).subscribe(res=>{
+    this.showsuccessmessageforsubmitting = true;
+    setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
+ });
 }
 }
 
