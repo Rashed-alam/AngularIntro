@@ -288,7 +288,20 @@
                                         <a>{{a}}</a>
                                         <button class="delete" title="delete color" (click)="deleteColorFromReport(a)">x</button>
                                     </li> -->
-
+                            <div class="col">
+                                <!-- <input type="text" #Cname id="Cname" name="Cname"> -->
+                                <input list="colors" type="text" #Cname autocomplete="on" onfocus="this.value=''" required>
+                                <datalist id="colors">
+                                                  <option value="red">
+                                                  <option value="blue">
+                                                  <option value="orange">
+                                                  <option value="black">
+                                                  <option value="green">
+                                                  <option value="yellow">
+                                                  <option value="violet">
+                                                  <option value="white">
+                                            </datalist>
+                            </div>
                             <div class="col" *ngFor="let a of tempcolor">
                                 <button type="button" class="close" aria-label="Close" (click)="deleteColorFromReport(a)">
                                             {{a}}  <span aria-hidden="true">&times;</span>
@@ -303,13 +316,30 @@
                                         <button class="delete" title="delete color" (click)="deleteSizeFromReport(a)">x</button>
                                     </li>
                                 </div> -->
+                            <div class="col">
+                                <!-- <input type="number" #Sname id="Sname" name="Sname"> -->
+                                <input type="text" list="sizes" type="text" #Sname autocomplete="on" onfocus="this.value=''" required>
+                                <datalist id="sizes">
+                                          <option value="72">
+                                          <option value="76">
+                                          <option value="80">
+                                          <option value="87">
+                                          <option value="92">
+                                          <option value="95">
+                                         
+                                    </datalist>
+                            </div>
                             <div class="col" *ngFor="let a of tempsize">
                                 <button type="button" class="close" aria-label="Close" (click)="deleteSizeFromReport(a)">
                                             {{a}}  <span aria-hidden="true">&times;</span>
                                     </button>
                             </div>
                         </div>
-
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-auto">
+                                <button type="button" class="btn btn-primary btn-sm" (click)="AddNewForEditSection(Cname.value,Sname.value)">Add New</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -335,7 +365,7 @@
                                 <!-- color row and size column -->
                                 <td>{{b}}</td>
                                 <td *ngFor="let a of tempsize;let k = index">
-                                    <input type="number" value="{{reportArray[j][k]}}" (keyup)="catchForEditing($event.target.value,j,k)">
+                                    <input type="number" value="{{reportArray[j][k]}}" onfocus="this.value=''" (keyup)="catchForEditing($event.target.value,j,k)">
                                 </td>
                             </tr>
 
@@ -370,6 +400,7 @@
         <div class="card-footer">
             <button type="button" class="btn btn-primary" (click)="OnSubmitForEdit()">Save</button>
             <button type="button" class="btn btn-success" (click)="clearEverything()">Clear</button>
+            <button type="button" class="btn btn-danger" (click)="deleteWholeItem()">Delete</button>
             <div class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="align-content: center">
                 Entry Saved successfully.
             </div>

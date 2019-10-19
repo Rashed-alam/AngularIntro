@@ -26,6 +26,7 @@ export class CuttingProgramComponent implements OnInit {
   reportArray: any[][]= [ ];//for storing the array in report stage
   colorName: string;
   sizeName: number; 
+  deleteReferenceNumber: any;
   rowSum  =[];
   columnSum = [];
   reportHeading: boolean = false;
@@ -41,6 +42,7 @@ export class CuttingProgramComponent implements OnInit {
   Info = { cutting: [], referenceId: ' ', styleCode: ' ',remarks: '' };
   tempcolor=[]; //report
   tempsize=[]; //report
+  inputboxFlag: boolean =false;
   
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
@@ -265,6 +267,7 @@ export class CuttingProgramComponent implements OnInit {
   let l = { referenceId: '', styleCode: ' ' };
   l.referenceId = m;
   l.styleCode = n;
+  l.referenceId = this.deleteReferenceNumber;
   this.CP.getCertainData(l).
     subscribe((data) => {
       this.Info = data;
@@ -347,6 +350,19 @@ export class CuttingProgramComponent implements OnInit {
     setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
  });
 }
+//ADD NEW SIZE AND COLOR FOR EDIT SECTION
+AddNewForEditSection(a,b){
+  console.log(a,b);
+  this.inputboxFlag = true;
+  this.tempcolor.push(a);
+  this.tempsize.push(b);
+
+}
+
+deleteWholeItem(){
+
+}
+
 }
 
 
