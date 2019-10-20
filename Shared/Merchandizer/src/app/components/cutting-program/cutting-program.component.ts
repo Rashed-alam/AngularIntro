@@ -51,7 +51,7 @@ export class CuttingProgramComponent implements OnInit {
   deleteEvent: string = "DELETE";
   today: any = Date.now(); //for showing today's date
   changeDate: any = this.today;
-
+  swapVariableForArchieve: any;
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
               private CP:CuttingService) { }
@@ -284,6 +284,8 @@ export class CuttingProgramComponent implements OnInit {
     subscribe((data) => {
       this.Info = data;
       // console.log(data);
+      this.swapVariableForArchieve = this.Info;
+     // console.log(this.swapVariableForArchieve)
        this.createNewMatrixForShow(this.Info);
     });
    this.deleteReferenceNumber = m;
@@ -320,7 +322,7 @@ export class CuttingProgramComponent implements OnInit {
   this.reportArray[i][j]=m;
 }
 //ASSIGNING NEW GIVEN INPUTTED VALUES TO THE ARRAY
-  catchForEditing(a: number,b,c){
+ catchForEditing(a: number,b,c){
   this.reportArray[b][c]= a;
   // console.log(this.reportArray)
 }
@@ -359,11 +361,13 @@ OnSubmitForEdit(){
     this.columnSum.push(col);
   }
   //send the list to service
-  var ob = this.Info;
-  ob.changeUser = this.changeUser;
-  ob.changeEvent = this.editEvent;
-  ob.changeDate = this.changeDate;
-  this.CP.createCuttingArchieve(ob).subscribe((data)=>{
+  this.swapVariableForArchieve.changeUser = this.changeUser;
+  this.swapVariableForArchieve.changeEvent = this.editEvent;
+  this.swapVariableForArchieve.changeDate = this.changeDate;
+  this.swapVariableForArchieve._id = null;
+  console.log(this.swapVariableForArchieve)
+  this.CP.createCuttingArchieve(this.swapVariableForArchieve).subscribe((data)=>{
+   this.Info.remarks = this.CP.currentCutting.remarks;
    this.CP.UpdateEntry(this.Info).subscribe(res=>{
     this.showeditmessage = true;
     setTimeout(() => this.showeditmessage = false, 4000);
