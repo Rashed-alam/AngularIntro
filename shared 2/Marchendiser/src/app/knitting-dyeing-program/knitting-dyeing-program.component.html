@@ -101,7 +101,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-md-center">
             <div class="col-5">
                 <div class="card">
                     <div class="card-body">
@@ -268,13 +268,19 @@
                     </div>
                   
                 </div>
-                <div class="row">
+              
+             <div class="row justify-content-md-center">
                     <div class="col-5">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row mb-1">
                                     <div class="col-4">Color name</div>
-                                   
+                                     <div class="col-6">
+                                        <input #acolorName>
+                                    </div>
+                                    <div class="col-2">
+                                        <button (click)="addColor1(acolorName.value); acolorName.value=''">ADD</button>
+                                    </div>
                                     <ul class="colors">
                                         <li *ngFor="let acol of acolor,index as i">
                                             <a>
@@ -299,9 +305,11 @@
                                 <div class="row mb-1">
                                     <div class="col-4">knitting Type</div>
                                     <div class="col-6">
-                                        <input #knittingname>
+                                        <input #aknittingname>
                                     </div>
-                                
+                                 <div class="col-2">
+                                        <button (click)="addKnittingType1(aknittingname.value); aknittingname.value=''">ADD</button>
+                                    </div>
                                     <ul class="knittingType1">
                                         <li *ngFor="let col of aknittingType,index as i">
                                             <a>
@@ -322,15 +330,14 @@
                         </div>
                     </div>
         
-                </div>
+                </div> 
                 <div class="row"> 
-                        <div class="col-10">
-                            <table class="table table-bordered mt-3">
+                        <div class="col-10 pr-0">
+                            <table class="table table-bordered mt-3 ">
                                 <thead>
                                     <tr>
                                         <th>Color/knittingType</th>
                                         <th *ngFor="let lesson of aknittingType; let i = index"> {{lesson}}</th>
-                                        <th> TTL</th>
                                     </tr>
                             
                             
@@ -349,14 +356,29 @@
                                     </tr>
                             
                                     <button (click)="showArray1(this.arr1)"> Submit</button>
+                                    <button (click)="deleteEntry(this.l)"> Delete</button>
                             
                                     <button (click)="clear()">clear</button>
                                 </tbody>
                             </table> 
                         </div>
+                        <div class="col-2 pl-0">
+                            <table class="table table-bordered mt-3">
+                                <thead>
+                                    <tr>
+                                        <th>TTL</th>
+            
+                                    </tr>
+            
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let p of ttl; let j = index">
+                                        <td>{{p}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div> 
     </div>
    
-
-
 </div>

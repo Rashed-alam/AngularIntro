@@ -41,4 +41,9 @@ getReviewdata(a): Observable<any> {
     // tslint:disable-next-line: max-line-length
     return this.httpcall.post<any[]>(this.url1 + '/update/' + entry.referenceId + '/' + entry.styleCode, entry, headerOption);
   }
+  // DELETE
+  deleteEntry(entry: any): Observable<any[]> {
+    // tslint:disable-next-line: max-line-length
+    return this.httpcall.delete<any[]>(this.url1 + '/delete/' + entry.referenceId + '/' + entry.styleCode, headerOption);
+  }
 }

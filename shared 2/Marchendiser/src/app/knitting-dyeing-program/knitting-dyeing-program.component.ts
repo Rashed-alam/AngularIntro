@@ -32,7 +32,8 @@ export class KnittingDyeingProgramComponent implements OnInit {
   sum = 0;
   bName: any;
   knit = { kintting: [], referenceId: '', styleCode: ' ' };
-  knit1 = { kintting: [], referenceId: '', styleCode: ' ' };
+  l = { referenceId: '', styleCode: ' ' };
+ // knit1 = { kintting: [], referenceId: '', styleCode: ' ' };
   
   Info = { kintting: [], referenceId: '', styleCode: ' ' };
   ttl = [];
@@ -140,6 +141,10 @@ export class KnittingDyeingProgramComponent implements OnInit {
     this.color.push(m);
     this.color.sort();
   }
+  addColor1(m) {
+    this.acolor.push(m);
+    this.acolor.sort();
+  }
   deleteColor(n) {
     this.color = this.color.filter(h => h !== n);
     this.color.sort();
@@ -152,6 +157,16 @@ export class KnittingDyeingProgramComponent implements OnInit {
      console.log(l);
     this.knittingType.push(l);
     this.knittingType.sort();
+
+
+    //  this.knittingType = ['k', 'b', 'c', 'ttl'];
+    // console.log(this.knittingType);
+
+  }
+  addKnittingType1(l) {
+     console.log(l);
+    this.aknittingType.push(l);
+    this.aknittingType.sort();
 
 
     //  this.knittingType = ['k', 'b', 'c', 'ttl'];
@@ -224,12 +239,12 @@ export class KnittingDyeingProgramComponent implements OnInit {
   }
   sendforReport(m, n) {
     this.InfoAll = [];
-    let l = { referenceId: '', styleCode: ' ' };
-    l.referenceId = m;
-    l.styleCode = n;
+    this.l = { referenceId: '', styleCode: ' ' };
+   this.l.referenceId = m;
+    this.l.styleCode = n;
     this.ref=m;
     this.stl=n;
-    this.KD.getReviewdata(l).
+    this.KD.getReviewdata(this.l).
       subscribe((data) => {
         this.Info = data;
         this.createNewMatrixForShow(this.Info);
@@ -310,6 +325,9 @@ this.newarrMake(this.InfoAll[k].weight,this.InfoAll[k].row,this.InfoAll[k].col);
     // console.log(this.knit);
     this.KD.UpdateEntry(this.knit).subscribe(res => {
     });
+  }
+  deleteEntry(l){
+    this.KD.deleteEntry(l).subscribe(res=>{});
   }
   //PDF GENERATOR FUNCTION
   public reportPrint() {
