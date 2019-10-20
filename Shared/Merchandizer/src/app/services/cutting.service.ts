@@ -19,8 +19,12 @@ export class CuttingService {
     styleCode : '',
     remarks:'',
     cutting:[
-        { color:'',  size: null, weight: null,row:null,col:null}
-    ]
+        { color:'', size: null, weight: null,row:null,col:null}
+    ],
+    trackId: null,
+    changeUser: '',
+    changeDate: '',
+    changeEvent: ''
   }
 //POST 
   create(m: any): Observable<cuttingModel> {
@@ -38,4 +42,13 @@ export class CuttingService {
   UpdateEntry(entry): Observable<any[]> {
     return this.httpcall.post<any[]>(this.url1 + '/update/' + entry.referenceId + '/' + entry.styleCode, entry, headerOption);
   }
+  //DELETE ENTRY BY MATCHING THE REFERENCE ID
+  deleteEntry(entry){
+   return this.httpcall.delete(this.url1+'/delete/'+ entry.referenceId+'/'+entry.styleCode, headerOption);
+  }
+  //ARCHIEVE PART
+  createCuttingArchieve(fab:any): Observable<cuttingModel> {
+    return this.httpcall.post<cuttingModel>(this.url1+'/cuttingArchieve', fab , headerOption);
+  }
+
 }
