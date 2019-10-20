@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const CuttingSchema = require('../models/cutting');
+var Promise = require('promise');
+
 
 //POST
 router.post('/new/:referenceId/:styleCode', (req, res, next) => {
@@ -142,5 +144,24 @@ router.post('/all/:referenceId/:styleCode', (req, res, next) => {
 
 // });
 
+//EDIT 
+//GET THE ITEM FIRST, DELETE IT THEN PUT THE UPDATED/EDITED ONE INTO THE DATABASE
+router.post('/update/:referenceId/:styleCode', (req, res, next) => {
+    CuttingSchema.findOne({ referenceId: req.params.referenceId, styleCode: req.params.styleCode }).then(function(_err, a) {
+        CuttingSchema.findOneAndDelete({ a }).then(
+            CuttingSchema.create(req.body).then(function(a) {
+                res.send(a);
+            }).catch(next)
+        )
+    });
+});
 
+//DELETE
+//IF THE USER WANTS TO DELETE THE COMPLETE RECORD ALL BY HIMESELF 
+router.delete('/delete/:referenceId', (req, res, next) => {
+    CuttingSchema.findOneAndDelete({ referenceId: req.params.referenceId }).then(function(fabricentry) {
+        res.send({ "message": "Deleted Sucessfully" });
+    }).catch(next);
+
+});
 module.exports = router;

@@ -17,3 +17,8 @@
         h5 {
             margin-bottom: 0rem;
         }
+        
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+        }

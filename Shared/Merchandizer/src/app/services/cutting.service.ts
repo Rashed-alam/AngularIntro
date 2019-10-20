@@ -19,14 +19,13 @@ export class CuttingService {
     styleCode : '',
     remarks:'',
     cutting:[
-        { color:'',  size: null, weight: null,row:null, col:null}
+        { color:'',  size: null, weight: null,row:null,col:null}
     ]
   }
 //POST 
   create(m: any): Observable<cuttingModel> {
     return this.httpcall.post<cuttingModel>(this.url1+'/new/'+m.referenceId+'/'+m.styleCode, m , headerOption);
   }
-
 //GET everything FROM THE DATABASE
   getEverything(){
   return this.httpcall.get(this.url1+'/everything',headerOption);
@@ -34,5 +33,9 @@ export class CuttingService {
 //GET A PARTICULAR DATA BY REFERENCE ID AND STYLE CODE
   getCertainData(m: any): Observable<cuttingModel> {
     return this.httpcall.post<cuttingModel>(this.url1+'/all/'+m.referenceId+'/'+m.styleCode, m , headerOption);
+  }
+//UPDATE ENTRY BY MATCHING REFEFERNCE ID AND STYLE CODE
+  UpdateEntry(entry): Observable<any[]> {
+    return this.httpcall.post<any[]>(this.url1 + '/update/' + entry.referenceId + '/' + entry.styleCode, entry, headerOption);
   }
 }

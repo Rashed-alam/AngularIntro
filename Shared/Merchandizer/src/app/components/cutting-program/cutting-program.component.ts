@@ -26,6 +26,7 @@ export class CuttingProgramComponent implements OnInit {
   reportArray: any[][]= [ ];//for storing the array in report stage
   colorName: string;
   sizeName: number; 
+  deleteReferenceNumber: any;
   rowSum  =[];
   columnSum = [];
   reportHeading: boolean = false;
@@ -41,6 +42,7 @@ export class CuttingProgramComponent implements OnInit {
   Info = { cutting: [], referenceId: ' ', styleCode: ' ',remarks: '' };
   tempcolor=[]; //report
   tempsize=[]; //report
+  inputboxFlag: boolean =false;
   
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
@@ -66,6 +68,10 @@ export class CuttingProgramComponent implements OnInit {
   catch(a,b,c){
     this.cuttingArray[b][c] = Number(a);
   }
+  Add(a,b){
+    this.addColor(a);
+    this.addSize(b);
+  }
   //ADDING NEW SIZE INTO THE ARRAY
   addSize(s){
     this.size.push(s);
@@ -75,12 +81,11 @@ export class CuttingProgramComponent implements OnInit {
   addColor(c){
     this.color.push(c);
     this.color.sort();
- 
   }
   //CLEARING OUT THE SIZE AND COLOR FIELDS AFTER INPUT
   clear(){
-    this.colorName = '';
-    this.sizeName = null;
+    this.color = [];
+    this.size = [];
   }
   //DELETING A GIVEN INPUT FROM THE ARRAY
   deleteColor(valueToRemove){
@@ -191,23 +196,15 @@ export class CuttingProgramComponent implements OnInit {
   }
   //THIS WILL CLEAR ALL THE INPUT FIELDS AND ARRAYS
   clearEverything(){
-    // for (let i = 0; i < 1000; i++) {
-    //   this.cuttingArray[i] = [];
-    //   for (let j = 0; j < 1000; j++) {
-    //     // console.log(this.arr[i][j]);
-    //     this.cuttingArray[i][j] = 0;
-    //     // console.log(this.arr[i][j]);
-    //   }
-    // }
     this.size = [];
     this.color = [];
     this.cut.cutting = [];
     this.CP.currentCutting.remarks = '';
     this.columnSum =[];
     this.rowSum = [];
-    // this.CP.currentCutting.referenceId='';
-    // this.CP.currentCutting.styleCode = '';
-    // this.CP.currentCutting.remarks = '';
+    this.tempcolor = [];
+    this.tempsize = [];
+    this.Info.cutting = [];
   }
   //PDF GENERATOR FUNCTION
   public reportPrint() {
@@ -254,6 +251,7 @@ export class CuttingProgramComponent implements OnInit {
   }
 //GET ITEM BY REFERENCE SELECTION DROPDWON
   referenceSelected(r){
+    this.temp4 = [];
     var gotham = this.decoyEverything.filter(hero => hero.referenceId == r);
     this.temp3 = gotham; //storing the filtered value into this value named 'temp3'
     // console.log(gotham);
@@ -261,14 +259,15 @@ export class CuttingProgramComponent implements OnInit {
          this.temp4.push(this.temp3[i].styleCode); //pushing the filterd value into an array 
     }
     // console.log(this.temp4)
+    
 
 }
 //SEARCHES THE DATABASE BY MATCHING THE REFERENCE NUMBER AND STYLECODE
-sendforReport(m,n){
-  // this.InfoAll = [];
+  SearchDatabase(m,n){
   let l = { referenceId: '', styleCode: ' ' };
   l.referenceId = m;
   l.styleCode = n;
+  l.referenceId = this.deleteReferenceNumber;
   this.CP.getCertainData(l).
     subscribe((data) => {
       this.Info = data;
@@ -276,7 +275,7 @@ sendforReport(m,n){
     });
 }
 //GETS THE ROWS AND COLUMNS FROM DATABASE AND ASSIGNGS THEM INTO ANOTHER 2 DIMENSIONAL MATRIX
-createNewMatrixForShow(a) {
+  createNewMatrixForShow(a) {
   // console.log(a)
   this.tempcolor=[];
   this.tempsize=[];
@@ -302,23 +301,20 @@ createNewMatrixForShow(a) {
 
 }
 //ASSIGNING VALUES TO ANOTHER 2 DIMENSIONAL MATRIX
-newarrMake(m,i,j){
+  newarrMake(m,i,j){
   this.reportArray[i][j]=m;
 }
 //ASSIGNING NEW GIVEN INPUTTED VALUES TO THE ARRAY
-catchForEditing(a: number,b,c){
+  catchForEditing(a: number,b,c){
   this.reportArray[b][c]= a;
   // console.log(this.reportArray)
 }
-
-OnSubmitForEdit(){
+//EDIT FUNCTION
+  OnSubmitForEdit(){
   this.rowSum = []; 
   this.columnSum = [];
   this.cuttingArray = [];
-  this.Info.cutting = []
-  // this.Info.referenceId = this.CP.currentCutting.referenceId;
-  // this.Info.styleCode = this.CP.currentCutting.styleCode;
-  // this.Info.remarks = this.CP.currentCutting.remarks;
+  this.Info.cutting = [];
   let l = { referenceId: '', styleCode: ' ' };
   l.referenceId = this.Info.referenceId;
   l.styleCode = this.Info.styleCode;
@@ -348,13 +344,25 @@ OnSubmitForEdit(){
     }
     this.columnSum.push(col);
   }
-
   //send the list to service
-//   this.CP.create(this.cut).subscribe(res=>{
-//     this.showsuccessmessageforsubmitting = true;
-//     setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
-//  });
+  this.CP.UpdateEntry(this.Info).subscribe(res=>{
+    this.showsuccessmessageforsubmitting = true;
+    setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
+ });
 }
+//ADD NEW SIZE AND COLOR FOR EDIT SECTION
+AddNewForEditSection(a,b){
+  console.log(a,b);
+  this.inputboxFlag = true;
+  this.tempcolor.push(a);
+  this.tempsize.push(b);
+
+}
+
+deleteWholeItem(){
+
+}
+
 }
 
 
