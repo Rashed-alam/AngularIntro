@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-// const AutoIncrement = require('mongoose-sequence')(mongoose);
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-const KnittingNdyeingTypeSchema = new mongoose.Schema({
+const KnittingNdyeingArchive = new mongoose.Schema({
 
     referenceId: {
         type: String,
@@ -10,6 +10,20 @@ const KnittingNdyeingTypeSchema = new mongoose.Schema({
     styleCode: {
         type: String,
        
+    },
+    changeUser: {
+        type: String,
+        default: null
+
+    },
+    changeDate: {
+        type: Date,
+        default: null
+
+    },
+    changeEvent: {
+        type: String,
+        default: null
     },
     kintting:[
         {
@@ -38,4 +52,5 @@ const KnittingNdyeingTypeSchema = new mongoose.Schema({
 ] 
 
 })
-module.exports = mongoose.model('knittingNdyeingType', KnittingNdyeingTypeSchema);
+KnittingNdyeingArchive.plugin(AutoIncrement, { inc_field: 'trackId' });
+module.exports = mongoose.model('KnittingNdyeingArchive', KnittingNdyeingArchive);
