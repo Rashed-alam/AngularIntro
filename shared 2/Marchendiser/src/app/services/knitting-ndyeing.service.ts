@@ -20,6 +20,10 @@ export class KnittingNDyeingService {
   knittingData:knittingNdyeing={
     referenceId:'',
     styleCode:'',
+    trackId: null,
+    changeUser: '',
+    changeDate: '',
+    changeEvent: '',
     kintting: [{
       knittingType:'',
       color: '',
@@ -46,4 +50,10 @@ getReviewdata(a): Observable<any> {
     // tslint:disable-next-line: max-line-length
     return this.httpcall.delete<any[]>(this.url1 + '/delete/' + entry.referenceId + '/' + entry.styleCode, headerOption);
   }
+ 
+  //ARCHIEVE PART
+  createKnittingNdyeingArchieve(fab:any): Observable<any[]> {
+    return this.httpcall.post<any>(this.url1+'/KnittingNdyeingArchive', fab , headerOption);
+  }
+
 }

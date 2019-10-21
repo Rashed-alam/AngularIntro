@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const knittingNdyeingType = require('../models/knittingNdyeing');
+const knittingNdyeingArchive=require('../models/KnittingNdyeingArchive');
 var Promise = require('promise');
 
 
@@ -93,5 +94,10 @@ router.delete('/delete/:referenceId/:styleCode', (req, res, next) => {
     res.send(re)
   });
 });
-
+//archive
+router.post('/knittingNdyeingArchive', (req, res, next) => {
+  knittingNdyeingArchive.create(req.body).then(function(f) {
+      res.send({ f });
+  }).catch(next);
+});
 module.exports = router;

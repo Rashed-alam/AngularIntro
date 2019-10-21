@@ -31,11 +31,17 @@ export class KnittingDyeingProgramComponent implements OnInit {
   stl: any;
   sum = 0;
   bName: any;
-  knit = { kintting: [], referenceId: '', styleCode: ' ' };
+  changeUser: string = "Rashed";
+  editEvent: string = "EDIT";
+  deleteEvent: string = "DELETE";
+  today: any = Date.now(); //for showing today's date
+  changeDate: any = this.today;
+  swapVariableForArchieve: any;
+  knit = { kintting: [], referenceId: '', styleCode: ' ', changeUser: '', changeDate: '', changeEvent: '' };
   l = { referenceId: '', styleCode: ' ' };
- // knit1 = { kintting: [], referenceId: '', styleCode: ' ' };
-  
-  Info = { kintting: [], referenceId: '', styleCode: ' ' };
+  // knit1 = { kintting: [], referenceId: '', styleCode: ' ' };
+
+  Info = { kintting: [], referenceId: '', styleCode: ' ',changeUser: '', changeDate: '', changeEvent: '' };
   ttl = [];
   ttlCol = [];
 
@@ -154,7 +160,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
     this.acolor.sort();
   }
   addKnittingType(l) {
-     console.log(l);
+    console.log(l);
     this.knittingType.push(l);
     this.knittingType.sort();
 
@@ -164,7 +170,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
 
   }
   addKnittingType1(l) {
-     console.log(l);
+    console.log(l);
     this.aknittingType.push(l);
     this.aknittingType.sort();
 
@@ -200,7 +206,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
     console.log(arr);
     this.ttl = [];
     this.ttlCol = [];
-    this.knit.kintting=[];
+    this.knit.kintting = [];
     this.knit.referenceId = this.ref;
     this.knit.styleCode = this.stl;
     for (let k = 0; k < this.color.length; k++) {
@@ -229,7 +235,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
     this.KD.postData(this.knit).subscribe(res => {
     });
   }
-  
+
   clear() {
     this.color = [];
     this.knittingType = [];
@@ -240,14 +246,18 @@ export class KnittingDyeingProgramComponent implements OnInit {
   sendforReport(m, n) {
     this.InfoAll = [];
     this.l = { referenceId: '', styleCode: ' ' };
-   this.l.referenceId = m;
+    this.l.referenceId = m;
     this.l.styleCode = n;
-    this.ref=m;
-    this.stl=n;
+    this.ref = m;
+    this.stl = n;
     this.KD.getReviewdata(this.l).
       subscribe((data) => {
         this.Info = data;
+        console.log(this.Info);
         this.createNewMatrixForShow(this.Info);
+        this.swapVariableForArchieve = this.Info;
+     
+    
 
       });
 
@@ -259,8 +269,9 @@ export class KnittingDyeingProgramComponent implements OnInit {
   }
 
   createNewMatrixForShow(Info) {
-    this.acolor=[];
-    this.aknittingType=[];
+    console.log(Info);
+    this.acolor = [];
+    this.aknittingType = [];
     this.InfoAll = Info.kintting;
     for (let i = 0; i < this.InfoAll.length; i++) {
       if (this.acolor.indexOf(this.InfoAll[i].color) === -1) {
@@ -273,27 +284,27 @@ export class KnittingDyeingProgramComponent implements OnInit {
       }
       // console.log(this.InfoAll[i].color);
     }
-  //  console.log(this.acolor);
-   //  console.log(this.aknittingType);
+      console.log(this.acolor);
+      console.log(this.aknittingType);
     for (let k = 0; k < this.InfoAll.length; k++) {
-    
-this.newarrMake(this.InfoAll[k].weight,this.InfoAll[k].row,this.InfoAll[k].col);
+
+      this.newarrMake(this.InfoAll[k].weight, this.InfoAll[k].row, this.InfoAll[k].col);
 
     }
-  //  console.log(this.arr1);
+    //  console.log(this.arr1);
 
   }
 
-  
-  newarrMake(m,i,j){
-    this.arr1[i][j]= m;
+
+  newarrMake(m, i, j) {
+    this.arr1[i][j] = m;
   }
   //report to db
   showArray1(arr) {
     // console.log(arr);
     // this.knit = { kintting: [], referenceId: '', styleCode: ' ' };
-    this.knit.kintting=[];
- 
+    this.knit.kintting = [];
+
     this.ttl = [];
     this.ttlCol = [];
 
@@ -323,44 +334,64 @@ this.newarrMake(this.InfoAll[k].weight,this.InfoAll[k].row,this.InfoAll[k].col);
       this.ttlCol.push(m);
     }
     // console.log(this.knit);
+    // for Archive
+    this.swapVariableForArchieve.changeUser = this.changeUser;
+    this.swapVariableForArchieve.changeEvent = this.editEvent;
+    this.swapVariableForArchieve.changeDate = this.changeDate;
+    this.swapVariableForArchieve._id = null;
+    console.log(this.swapVariableForArchieve)
+    this.KD.createKnittingNdyeingArchieve(this.swapVariableForArchieve).subscribe((data)=>{
     this.KD.UpdateEntry(this.knit).subscribe(res => {
     });
+  });
   }
-  deleteEntry(l){
-    this.KD.deleteEntry(l).subscribe(res=>{});
-  }
-  //PDF GENERATOR FUNCTION
-  public reportPrint() {
-    // this.reportHeading =true;
-    // this.reportMiddlePart = false;
-    const data = document.getElementById('content');
-    data.style.display = 'block';
-    html2canvas(data).then(canvas => {
-      const imgWidth = 180;
-      const pageHeight = 500;
-      const imgHeight = canvas.height * imgWidth / canvas.width;
-      let heightLeft = imgHeight;
 
-      const contentDataURL = canvas.toDataURL('image/png');
-      // var doc = new jspdf('p', 'mm');
-      const doc = new jspdf('p', 'mm', 'a4');
-      let position = 5;
-      let k = 1;
-      doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-      //  doc.setPage(k);
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        doc.addPage();
-        doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-        k++;
-        //  doc.setPage(k);
-      }
-      const blob = doc.output('blob');
-      window.open(URL.createObjectURL(blob));
-      data.style.display = 'none';
+  deleteEntry(l) {
+    var ob = this.Info;
+    var confirmation;
+    confirmation= confirm("Are you sure ?");
+    if(confirmation == true){
+    ob.changeUser = this.changeUser;
+    ob.changeEvent = this.deleteEvent;
+    ob.changeDate = this.changeDate;
+    this.KD.createKnittingNdyeingArchieve(ob).subscribe((data)=>{
+    this.KD.deleteEntry(l).subscribe(res => { 
+
     });
+  });
+  }
+  // //PDF GENERATOR FUNCTION
+  //  reportPrint() {
+  //   // this.reportHeading =true;
+  //   // this.reportMiddlePart = false;
+  //   const data = document.getElementById('content');
+  //   data.style.display = 'block';
+  //   html2canvas(data).then(canvas => {
+  //     const imgWidth = 180;
+  //     const pageHeight = 500;
+  //     const imgHeight = canvas.height * imgWidth / canvas.width;
+  //     let heightLeft = imgHeight;
+
+  //     const contentDataURL = canvas.toDataURL('image/png');
+  //     // var doc = new jspdf('p', 'mm');
+  //     const doc = new jspdf('p', 'mm', 'a4');
+  //     let position = 5;
+  //     let k = 1;
+  //     doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
+  //     heightLeft -= pageHeight;
+  //     //  doc.setPage(k);
+  //     while (heightLeft >= 0) {
+  //       position = heightLeft - imgHeight;
+  //       doc.addPage();
+  //       doc.addImage(contentDataURL, 'PNG', 15, position, imgWidth, imgHeight);
+  //       heightLeft -= pageHeight;
+  //       k++;
+  //       //  doc.setPage(k);
+  //     }
+  //     const blob = doc.output('blob');
+  //     window.open(URL.createObjectURL(blob));
+  //     data.style.display = 'none';
+  //   });
   }
 
 
