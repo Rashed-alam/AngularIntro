@@ -19,7 +19,7 @@ export class CuttingProgramComponent implements OnInit {
   AllDetails : any = [];
   tempo: any = [];
   temp2: any;
-  cut = { cutting: [], referenceId: ' ', styleCode: ' ',remarks: '' };
+  cut = { cutting: [], referenceId: ' ', styleCode: ' ',remarks: '', changeUser: '',changeDate:'', changeEvent:'' };
   size = [];
   color = [];
   cuttingArray:any[][]=[ ];//for initially holding the data here 
@@ -43,6 +43,7 @@ export class CuttingProgramComponent implements OnInit {
   temp4: any = [];
   InfoAll: any = [];
   Info = { cutting: [], referenceId: ' ', styleCode: ' ',remarks: '', changeUser: '',changeDate:'', changeEvent:'' };
+  decoy = { cutting: [], referenceId: ' ', styleCode: ' ',remarks: '', changeUser: '',changeDate:'', changeEvent:'' };
   tempcolor=[]; //report
   tempsize=[]; //report
   inputboxFlag: boolean =false;
@@ -52,6 +53,9 @@ export class CuttingProgramComponent implements OnInit {
   today: any = Date.now(); //for showing today's date
   changeDate: any = this.today;
   swapVariableForArchieve: any;
+  reportRemark;
+  referencePressed: boolean = false;
+
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
               private CP:CuttingService) { }
@@ -194,6 +198,7 @@ export class CuttingProgramComponent implements OnInit {
          this.tempo.push(this.AllDetails[i].fabricPriceInformation[j]); 
       }
     }
+    
   }
   //UPON SELECTING THE STYLECODE, ALL THE ITEMS REGARDING THAT BUYER IS FETCHED
   OnStyleCodeSelection(s){
@@ -220,8 +225,8 @@ export class CuttingProgramComponent implements OnInit {
   }
   //PDF GENERATOR FUNCTION
   public reportPrint() {
-      this.reportMiddlePart = false;
-      this.reportHeading =true;
+      // this.reportMiddlePart = false;
+      // this.reportHeading =true;
       const data = document.getElementById('content');
       data.style.display = 'block';
       html2canvas(data).then(canvas => {
@@ -270,30 +275,24 @@ export class CuttingProgramComponent implements OnInit {
     for(let i =0; i<this.temp3.length;i++){
          this.temp4.push(this.temp3[i].styleCode); //pushing the filterd value into an array 
     }
-    // console.log(this.temp4)
-    
-
-}
+    this.referencePressed = true;
+  }
 //SEARCHES THE DATABASE BY MATCHING THE REFERENCE NUMBER AND STYLECODE
   SearchDatabase(m,n){
   let l = { referenceId: ' ', styleCode: ' ' };
   l.referenceId = m;
   l.styleCode = n;
-
-  this.CP.getCertainData(l).
-    subscribe((data) => {
+  this.CP.getCertainData(l).subscribe((data) => {
       this.Info = data;
-      // console.log(data);
-      this.swapVariableForArchieve = this.Info;
-     // console.log(this.swapVariableForArchieve)
-       this.createNewMatrixForShow(this.Info);
+      this.swapVariableForArchieve = data;
+      this.createNewMatrixForShow(this.Info);
     });
    this.deleteReferenceNumber = m;
    this.deleteStyleCodeNumber = n;
 }
 //GETS THE ROWS AND COLUMNS FROM DATABASE AND ASSIGNGS THEM INTO ANOTHER 2 DIMENSIONAL MATRIX
   createNewMatrixForShow(a) {
-  // console.log(a)
+  //console.log(a)
   this.tempcolor=[];
   this.tempsize=[];
   // this.InfoAll = a;
@@ -314,7 +313,7 @@ export class CuttingProgramComponent implements OnInit {
   for (let k = 0; k < this.InfoAll.length; k++) {
     this.newarrMake(this.InfoAll[k].weight,this.InfoAll[k].row,this.InfoAll[k].col);
   }
-  // console.log(this.reportArray);
+
 
 }
 //ASSIGNING VALUES TO ANOTHER 2 DIMENSIONAL MATRIX
@@ -328,6 +327,16 @@ export class CuttingProgramComponent implements OnInit {
 }
 //EDIT FUNCTION
 OnSubmitForEdit(){
+   // console.log(this.swapVariableForArchieve);
+    //send the list to service
+    this.swapVariableForArchieve.changeUser = this.changeUser;
+    this.swapVariableForArchieve.changeEvent = this.editEvent;
+    this.swapVariableForArchieve.changeDate = this.changeDate;
+    this.swapVariableForArchieve.remarks = this.Info.remarks;
+    this.swapVariableForArchieve._id = null;
+    this.CP.createCuttingArchieve(this.swapVariableForArchieve).subscribe((data)=>{});
+
+
   this.rowSum = []; 
   this.columnSum = [];
   this.cuttingArray = [];
@@ -360,19 +369,14 @@ OnSubmitForEdit(){
     }
     this.columnSum.push(col);
   }
-  //send the list to service
-  this.swapVariableForArchieve.changeUser = this.changeUser;
-  this.swapVariableForArchieve.changeEvent = this.editEvent;
-  this.swapVariableForArchieve.changeDate = this.changeDate;
-  this.swapVariableForArchieve._id = null;
-  console.log(this.swapVariableForArchieve)
-  this.CP.createCuttingArchieve(this.swapVariableForArchieve).subscribe((data)=>{
-   this.Info.remarks = this.CP.currentCutting.remarks;
-   this.CP.UpdateEntry(this.Info).subscribe(res=>{
-    this.showeditmessage = true;
+
+  // this.CP.createCuttingArchieve(this.swapVariableForArchieve).subscribe((data)=>{   
+  this.Info.remarks = this.CP.currentCutting.remarks;
+  this.CP.UpdateEntry(this.Info).subscribe((res)=>{
+  this.showeditmessage = true;
     setTimeout(() => this.showeditmessage = false, 4000);
  });
-});
+//});
 }
 //ADD NEW SIZE AND COLOR FOR EDIT SECTION
 AddNewForEditSection(a,b){

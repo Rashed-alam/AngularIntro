@@ -1,6 +1,6 @@
 <div class="container">
     <div class="card">
-        <div class="card-body" id="content" style="margin-top:-1rem;">
+        <div class="card-body" style="margin-top:-1rem;">
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
@@ -44,7 +44,9 @@
                                 <td>
                                     <div class="row">
                                         <div class="col">Order Date:</div>
-                                        <div class="col"><input type="text"></div>
+                                        <div class="col">
+                                            <!-- <input type="text"> -->
+                                        </div>
 
                                     </div>
                                 </td>
@@ -70,7 +72,9 @@
                                 <td>
                                     <div class="row">
                                         <div class="col">Delivery Date:</div>
-                                        <div class="col"><input type="text"></div>
+                                        <div class="col">
+                                            <!-- <input type="text"> -->
+                                        </div>
                                     </div>
                                 </td>
 
@@ -86,7 +90,9 @@
                                 <td>
                                     <div class="row">
                                         <div class="col">Lead Time:</div>
-                                        <div class="col"><input type="text"></div>
+                                        <div class="col">
+                                            <!-- <input type="text"> -->
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -99,12 +105,12 @@
                     <div class="col-md-auto">
                         <div class="card">
                             <div class="card-body">
-
-                                <div class="row">
-                                    <div class="col"><label for="">Color Name:</label></div>
-                                    <div class="col">
-                                        <input list="colors" type="text" #colorName autocomplete="on" onfocus="this.value=''" required>
-                                        <datalist id="colors">
+                                <form name="mainform" (ngSubmit)="mainform.form.valid && Add(colorName,sizeName)" #mainform="ngForm" novalidate>
+                                    <div class="row">
+                                        <div class="col"><label for="">Color Name:</label></div>
+                                        <div class="col">
+                                            <input list="colors" type="text" class="form-control" title="Please enter a color name" [(ngModel)]="colorName" name="colorName" maxlength="10" minlength="3" autocomplete="on" onfocus="this.value=''" required>
+                                            <datalist id="colors">
                                                   <option value="red">
                                                   <option value="blue">
                                                   <option value="orange">
@@ -115,23 +121,23 @@
                                                   <option value="white">
                                             </datalist>
 
-                                    </div>
-                                    <!-- <div class="col">
+                                        </div>
+                                        <!-- <div class="col">
 
                                         <button type="button" class="btn btn-secondary btn-sm" (click)="addColor(colorName.value);colorName.value=''">Add</button>
                                     </div> -->
-                                    <div class="col" *ngFor="let a of color">
-                                        <button type="button" class="close" aria-label="Close" (click)="deleteColor(a)">
+                                        <div class="col" *ngFor="let a of color">
+                                            <button type="button" class="close" aria-label="Close" (click)="deleteColor(a)">
                                             {{a}}  <span aria-hidden="true">&times;</span>
                                           </button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><label for="">Size:</label></div>
-                                    <div class="col">
-                                        <!-- <input type="number" #sizeName required> -->
-                                        <input type="text" list="sizes" type="text" #sizeName autocomplete="on" onfocus="this.value=''" required>
-                                        <datalist id="sizes">
+                                    <div class="row">
+                                        <div class="col"><label for="">Size:</label></div>
+                                        <div class="col">
+                                            <!-- <input type="number" #sizeName required> -->
+                                            <input type="number" class="form-control" list="sizes" title="Please enter a size number" maxlength="10" minlength="2" name="sizeName" [(ngModel)]="sizeName" autocomplete="on" onfocus="this.value=''" required>
+                                            <datalist id="sizes">
                                                   <option value="72">
                                                   <option value="76">
                                                   <option value="80">
@@ -140,25 +146,25 @@
                                                   <option value="95">
                                                  
                                             </datalist>
-                                    </div>
-                                    <!-- <div class="col">
+                                        </div>
+                                        <!-- <div class="col">
                                         <button type="button" class="btn btn-secondary btn-sm" (click)="addSize(sizeName.value);sizeName.value=''">Add</button>
                                     </div> -->
-                                    <div class="col" *ngFor="let a of size">
+                                        <div class="col" *ngFor="let a of size">
 
-                                        <!-- {{a}}<button type="button" (click)="deleteSize(a)">X</button> -->
-                                        <button type="button" class="close" aria-label="Close" (click)="deleteSize(a)">
+                                            <!-- {{a}}<button type="button" (click)="deleteSize(a)">X</button> -->
+                                            <button type="button" class="close" aria-label="Close" (click)="deleteSize(a)">
                                             {{a}}  <span aria-hidden="true">&times;</span>
                                           </button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row justify-content-md-center">
-                                    <div class="col-md-auto">
-                                        <button type="button" class="btn btn-primary btn-sm" (click)="Add(colorName.value,sizeName.value)">Add</button>
-                                        <button type="button" class="btn btn-danger btn-sm" (click)="clear()">Clear All</button>
+                                    <div class="row justify-content-md-center">
+                                        <div class="col-md-auto">
+                                            <button type="submit" class="btn btn-primary btn-sm" [disabled]="mainform.form.pristine || mainform.form.invalid">Add</button>
+                                            <button type="button" class="btn btn-danger btn-sm" (click)="clear()">Clear All</button>
+                                        </div>
                                     </div>
-                                </div>
-
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -192,7 +198,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            TTL
+                                            Total size:
                                         </td>
                                         <td *ngFor="let a of columnSum">{{a}} kg</td>
 
@@ -204,7 +210,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>TTL</th>
+                                        <th>Total Color:</th>
                                     </tr>
 
                                 </thead>
@@ -234,9 +240,7 @@
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
                         <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
-                        <button type="button" class="btn btn-warning" (click)="reportPrint()">Report</button>
                         <button type="button" class="btn btn-success" (click)="clearEverything()">Clear</button>
-
                     </div>
 
                 </div>
@@ -270,7 +274,7 @@
                      </select>
                 </div>
                 <div class="col">
-                    <button type="button" (click)="SearchDatabase(reference.value,styleCode.value)"><i class="fa fa-search"> Search </i></button>
+                    <button type="button" (click)="SearchDatabase(reference.value,styleCode.value)" *ngIf="referencePressed"><i class="fa fa-search"> Search </i></button>
                 </div>
             </div>
         </div>
@@ -346,7 +350,7 @@
         </div>
 
 
-        <div class="card-body">
+        <div class="card-body" id="content">
 
             <div class="row">
                 <div class="col-10">
@@ -411,6 +415,7 @@
             <button type="button" class="btn btn-primary" (click)="OnSubmitForEdit()">Save</button>
             <button type="button" class="btn btn-success" (click)="clearEverything()">Clear</button>
             <button type="button" class="btn btn-danger" (click)="deleteWholeItem()">Delete</button>
+            <button type="button" class="btn btn-warning" (click)="reportPrint()">Report</button>
             <div class="alert alert-success" role="alert" *ngIf="showeditmessage" style="align-content: center">
                 Entry Saved successfully.
             </div>
