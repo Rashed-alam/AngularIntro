@@ -27,11 +27,14 @@ export class CuttingProgramComponent implements OnInit {
   colorName: string;
   sizeName: number; 
   deleteReferenceNumber: any;
+  deleteStyleCodeNumber: any;
   rowSum  =[];
   columnSum = [];
   reportHeading: boolean = false;
   reportMiddlePart: boolean = true;
   showsuccessmessageforsubmitting: boolean = false;
+  showdeletemessage: boolean = false;
+  showeditmessage: boolean = false;
   row = 0;
   col= 0;
   everything;
@@ -39,11 +42,16 @@ export class CuttingProgramComponent implements OnInit {
   decoyEverything: any = [];
   temp4: any = [];
   InfoAll: any = [];
-  Info = { cutting: [], referenceId: ' ', styleCode: ' ',remarks: '' };
+  Info = { cutting: [], referenceId: ' ', styleCode: ' ',remarks: '', changeUser: '',changeDate:'', changeEvent:'' };
   tempcolor=[]; //report
   tempsize=[]; //report
   inputboxFlag: boolean =false;
-  
+  changeUser: string = "Ashraf";
+  editEvent: string  = "EDIT";
+  deleteEvent: string = "DELETE";
+  today: any = Date.now(); //for showing today's date
+  changeDate: any = this.today;
+  swapVariableForArchieve: any;
   constructor(private  FP: FabricPriceServiceService,
               private Bs:BuyersService,
               private CP:CuttingService) { }
@@ -177,6 +185,7 @@ export class CuttingProgramComponent implements OnInit {
   //UPON SELECTING THE REFERENCE, ALL THE ITEMS REGARDING THAT BUYER IS FETCHED
   OnReferenceIdSelection(r){
     this.CP.currentCutting.referenceId = r;
+    this.tempo = [];
     var gotham = this.buyerOrderReference.filter(hero => hero.referenceId == r);
     this.AllDetails = gotham;
     
@@ -185,7 +194,6 @@ export class CuttingProgramComponent implements OnInit {
          this.tempo.push(this.AllDetails[i].fabricPriceInformation[j]); 
       }
     }
-
   }
   //UPON SELECTING THE STYLECODE, ALL THE ITEMS REGARDING THAT BUYER IS FETCHED
   OnStyleCodeSelection(s){
@@ -205,11 +213,15 @@ export class CuttingProgramComponent implements OnInit {
     this.tempcolor = [];
     this.tempsize = [];
     this.Info.cutting = [];
+    this.tempo = [];
+    this.AllReference = [];
+    this.temp2 = [];
+    this.buyerinfo = [];
   }
   //PDF GENERATOR FUNCTION
   public reportPrint() {
-      this.reportHeading =true;
       this.reportMiddlePart = false;
+      this.reportHeading =true;
       const data = document.getElementById('content');
       data.style.display = 'block';
       html2canvas(data).then(canvas => {
@@ -264,23 +276,28 @@ export class CuttingProgramComponent implements OnInit {
 }
 //SEARCHES THE DATABASE BY MATCHING THE REFERENCE NUMBER AND STYLECODE
   SearchDatabase(m,n){
-  let l = { referenceId: '', styleCode: ' ' };
+  let l = { referenceId: ' ', styleCode: ' ' };
   l.referenceId = m;
   l.styleCode = n;
-  l.referenceId = this.deleteReferenceNumber;
+
   this.CP.getCertainData(l).
     subscribe((data) => {
       this.Info = data;
+      // console.log(data);
+      this.swapVariableForArchieve = this.Info;
+     // console.log(this.swapVariableForArchieve)
        this.createNewMatrixForShow(this.Info);
     });
+   this.deleteReferenceNumber = m;
+   this.deleteStyleCodeNumber = n;
 }
 //GETS THE ROWS AND COLUMNS FROM DATABASE AND ASSIGNGS THEM INTO ANOTHER 2 DIMENSIONAL MATRIX
   createNewMatrixForShow(a) {
   // console.log(a)
   this.tempcolor=[];
   this.tempsize=[];
-
-  this.InfoAll = a.cutting;
+  // this.InfoAll = a;
+   this.InfoAll = a.cutting;
   for (let i = 0; i < this.InfoAll.length; i++) {
     if (this.tempcolor.indexOf(this.InfoAll[i].color) === -1) {
       this.tempcolor.push(this.InfoAll[i].color);
@@ -305,12 +322,12 @@ export class CuttingProgramComponent implements OnInit {
   this.reportArray[i][j]=m;
 }
 //ASSIGNING NEW GIVEN INPUTTED VALUES TO THE ARRAY
-  catchForEditing(a: number,b,c){
+ catchForEditing(a: number,b,c){
   this.reportArray[b][c]= a;
   // console.log(this.reportArray)
 }
 //EDIT FUNCTION
-  OnSubmitForEdit(){
+OnSubmitForEdit(){
   this.rowSum = []; 
   this.columnSum = [];
   this.cuttingArray = [];
@@ -318,7 +335,6 @@ export class CuttingProgramComponent implements OnInit {
   let l = { referenceId: '', styleCode: ' ' };
   l.referenceId = this.Info.referenceId;
   l.styleCode = this.Info.styleCode;
-  console.log(l);
   //for row summing
   for (let k = 0; k < this.tempcolor.length; k++) {
     let row = 0;
@@ -345,21 +361,51 @@ export class CuttingProgramComponent implements OnInit {
     this.columnSum.push(col);
   }
   //send the list to service
-  this.CP.UpdateEntry(this.Info).subscribe(res=>{
-    this.showsuccessmessageforsubmitting = true;
-    setTimeout(() => this.showsuccessmessageforsubmitting = false, 4000);
+  this.swapVariableForArchieve.changeUser = this.changeUser;
+  this.swapVariableForArchieve.changeEvent = this.editEvent;
+  this.swapVariableForArchieve.changeDate = this.changeDate;
+  this.swapVariableForArchieve._id = null;
+  console.log(this.swapVariableForArchieve)
+  this.CP.createCuttingArchieve(this.swapVariableForArchieve).subscribe((data)=>{
+   this.Info.remarks = this.CP.currentCutting.remarks;
+   this.CP.UpdateEntry(this.Info).subscribe(res=>{
+    this.showeditmessage = true;
+    setTimeout(() => this.showeditmessage = false, 4000);
  });
+});
 }
 //ADD NEW SIZE AND COLOR FOR EDIT SECTION
 AddNewForEditSection(a,b){
-  console.log(a,b);
   this.inputboxFlag = true;
   this.tempcolor.push(a);
   this.tempsize.push(b);
 
 }
-
+//DELETE FUNCTION TO DELETE A CERTAIN ENTRY
 deleteWholeItem(){
+// console.log(this.deleteReferenceNumber);
+let a = { referenceId: '' , styleCode:'', };
+a.referenceId = this.deleteReferenceNumber;
+a.styleCode = this.deleteStyleCodeNumber;
+var ob = this.Info;
+var confirmation;
+confirmation= confirm("Are you sure ?");
+if(confirmation == true){
+ob.changeUser = this.changeUser;
+ob.changeEvent = this.deleteEvent;
+ob.changeDate = this.changeDate;
+this.CP.createCuttingArchieve(ob).subscribe((data)=>{
+  this.CP.deleteEntry(a).subscribe((data) =>{
+    this.showdeletemessage=true;
+    setTimeout(()=>this.showdeletemessage=false,4000);
+    this.getAllreference();
+    this.clearEverything();
+    this.getEverything();
+    this.SearchDatabase(a.referenceId,a.styleCode);
+  });
+});
+
+}
 
 }
 

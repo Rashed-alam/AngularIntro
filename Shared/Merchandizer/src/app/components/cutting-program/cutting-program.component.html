@@ -80,7 +80,7 @@
                                 <td colspan="2">
                                     <div class="row">
                                         <div class="col-3">Description:</div>
-                                        <div class="col-9" *ngFor="let a of temp2">Item Type: {{a.itemName}}, Fabric Type:{{a.fabricType}} GSM</div>
+                                        <div class="col-9" *ngFor="let a of temp2">Item Type: {{a.itemName}}, Fabric Type: {{a.fabricType}} GSM</div>
                                     </div>
                                 </td>
                                 <td>
@@ -194,7 +194,7 @@
                                         <td>
                                             TTL
                                         </td>
-                                        <td *ngFor="let a of columnSum">{{a}}</td>
+                                        <td *ngFor="let a of columnSum">{{a}} kg</td>
 
                                     </tr>
                                 </tbody>
@@ -210,7 +210,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let p of rowSum; let j = index">
-                                        <td>{{p}}</td>
+                                        <td>{{p}} kg</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -270,7 +270,7 @@
                      </select>
                 </div>
                 <div class="col">
-                    <button type="button" (click)="SearchDatabase(reference.value,styleCode.value)"><i class="fa fa-search">Search</i></button>
+                    <button type="button" (click)="SearchDatabase(reference.value,styleCode.value)"><i class="fa fa-search"> Search </i></button>
                 </div>
             </div>
         </div>
@@ -396,13 +396,26 @@
                     </table>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-2">
+                    <i class="fas fa-comment-alt"> Remarks: </i>
+                </div>
+                <div class="col-10">
+
+                    <input type="text" value="{{Info.remarks}}" name="CP.currentCutting.remarks" [(ngModel)]="CP.currentCutting.remarks">
+                </div>
+            </div>
         </div>
+
         <div class="card-footer">
             <button type="button" class="btn btn-primary" (click)="OnSubmitForEdit()">Save</button>
             <button type="button" class="btn btn-success" (click)="clearEverything()">Clear</button>
             <button type="button" class="btn btn-danger" (click)="deleteWholeItem()">Delete</button>
-            <div class="alert alert-success" role="alert" *ngIf="showsuccessmessageforsubmitting" style="align-content: center">
+            <div class="alert alert-success" role="alert" *ngIf="showeditmessage" style="align-content: center">
                 Entry Saved successfully.
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="showdeletemessage" style="align-content: center">
+                Entry Deleted successfully.
             </div>
         </div>
     </div>

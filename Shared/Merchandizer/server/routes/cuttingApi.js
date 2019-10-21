@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const CuttingSchema = require('../models/cutting');
+const cuttingArchieve = require('../models/cuttingArchieve');
 var Promise = require('promise');
 
 
@@ -27,7 +28,11 @@ router.post('/new/:referenceId/:styleCode', (req, res, next) => {
                             row: req.body.cutting[0].row,
                             col: req.body.cutting[0].col
                         }],
-                        remarks: req.body.remarks
+                        remarks: req.body.remarks,
+                        changeUser: req.body.changeUser,
+                        changeDate: req.body.changeDate,
+                        changeEvent: req.body.changeEvent
+
                     }
                 }, { multi: true },
                 function(err, result) {
@@ -158,10 +163,18 @@ router.post('/update/:referenceId/:styleCode', (req, res, next) => {
 
 //DELETE
 //IF THE USER WANTS TO DELETE THE COMPLETE RECORD ALL BY HIMESELF 
-router.delete('/delete/:referenceId', (req, res, next) => {
-    CuttingSchema.findOneAndDelete({ referenceId: req.params.referenceId }).then(function(fabricentry) {
+router.delete('/delete/:referenceId/:styleCode', (req, res, next) => {
+    CuttingSchema.findOneAndDelete({ referenceId: req.params.referenceId, styleCode: req.params.styleCode }).then(function(fabricentry) {
         res.send({ "message": "Deleted Sucessfully" });
     }).catch(next);
 
 });
+
+// this is for archieve part
+router.post('/cuttingArchieve', (req, res, next) => {
+    cuttingArchieve.create(req.body).then(function(f) {
+        res.send({ f });
+    }).catch(next);
+});
+
 module.exports = router;
