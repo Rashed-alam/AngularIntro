@@ -98,7 +98,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
   getreportdata1(a) {
     this.ref1 = " ";
     this.ref1 = a;
-    console.log(this.ref1);
+   // console.log(this.ref1);
     this.Fc.getAllData(a).subscribe(
       (data) => {
         this.fabricReport = data;
@@ -149,7 +149,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
   }
   addColor1(m) {
     this.acolor.push(m);
-    this.acolor.sort();
+  //  this.acolor.sort();
   }
   deleteColor(n) {
     this.color = this.color.filter(h => h !== n);
@@ -157,10 +157,10 @@ export class KnittingDyeingProgramComponent implements OnInit {
   }
   deleteColor1(n) {
     this.acolor = this.acolor.filter(h => h !== n);
-    this.acolor.sort();
+  //  this.acolor.sort();
   }
   addKnittingType(l) {
-    console.log(l);
+  //  console.log(l);
     this.knittingType.push(l);
     this.knittingType.sort();
 
@@ -170,7 +170,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
 
   }
   addKnittingType1(l) {
-    console.log(l);
+   // console.log(l);
     this.aknittingType.push(l);
     this.aknittingType.sort();
 
@@ -199,11 +199,11 @@ export class KnittingDyeingProgramComponent implements OnInit {
   getstl(k) {
     this.stl = " ";
     this.stl = k;
-    console.log(this.stl);
+   // console.log(this.stl);
   }
 
   showArray(arr) {
-    console.log(arr);
+  //  console.log(arr);
     this.ttl = [];
     this.ttlCol = [];
     this.knit.kintting = [];
@@ -239,6 +239,8 @@ export class KnittingDyeingProgramComponent implements OnInit {
   clear() {
     this.color = [];
     this.knittingType = [];
+    this.acolor = [];
+    this.aknittingType = [];
     this.knit.kintting = [];
     this.ttl = [];
     this.ttlCol = [];
@@ -269,7 +271,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
   }
 
   createNewMatrixForShow(Info) {
-    console.log(Info);
+  //  console.log(Info);
     this.acolor = [];
     this.aknittingType = [];
     this.InfoAll = Info.kintting;
@@ -284,8 +286,8 @@ export class KnittingDyeingProgramComponent implements OnInit {
       }
       // console.log(this.InfoAll[i].color);
     }
-      console.log(this.acolor);
-      console.log(this.aknittingType);
+     // console.log(this.acolor);
+    //  console.log(this.aknittingType);
     for (let k = 0; k < this.InfoAll.length; k++) {
 
       this.newarrMake(this.InfoAll[k].weight, this.InfoAll[k].row, this.InfoAll[k].col);
@@ -339,7 +341,7 @@ export class KnittingDyeingProgramComponent implements OnInit {
     this.swapVariableForArchieve.changeEvent = this.editEvent;
     this.swapVariableForArchieve.changeDate = this.changeDate;
     this.swapVariableForArchieve._id = null;
-    console.log(this.swapVariableForArchieve)
+    // console.log(this.swapVariableForArchieve)
     this.KD.createKnittingNdyeingArchieve(this.swapVariableForArchieve).subscribe((data)=>{
     this.KD.UpdateEntry(this.knit).subscribe(res => {
     });
