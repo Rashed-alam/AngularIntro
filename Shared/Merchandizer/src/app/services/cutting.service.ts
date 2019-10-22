@@ -47,8 +47,8 @@ export class CuttingService {
    return this.httpcall.delete(this.url1+'/delete/'+ entry.referenceId+'/'+entry.styleCode, headerOption);
   }
   //ARCHIEVE PART
-  createCuttingArchieve(fab:any): Observable<cuttingModel> {
-    return this.httpcall.post<cuttingModel>(this.url1+'/cuttingArchieve', fab , headerOption);
+  createCuttingArchieve(fab:any): Observable<any> {
+    return this.httpcall.post<any>(this.url1+'/cuttingArchieve', fab , headerOption);
   }
 
 }
