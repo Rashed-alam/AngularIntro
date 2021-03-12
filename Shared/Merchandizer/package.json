@@ -24,7 +24,7 @@
     "angular-animations": "0.0.10",
     "d-bs-datepicker": "^0.3.5",
     "html2canvas": "^1.0.0-rc.5",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "ng-pick-datetime": "^7.0.0",
     "ngx-bootstrap": "^5.1.2",
     "rxjs": "~6.4.0",
