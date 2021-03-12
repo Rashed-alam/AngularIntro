@@ -28,7 +28,7 @@
     "bootstrap-datepicker": "^1.9.0",
     "font-awesome": "^4.7.0",
     "html2canvas": "^1.0.0-rc.5",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "ngx-bootstrap": "^5.1.0",
     "primeicons": "^2.0.0",
     "primeng": "^8.0.3",
